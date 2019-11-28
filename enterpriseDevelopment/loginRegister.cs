@@ -130,6 +130,7 @@ namespace enterpriseDevelopment
 
 
         }
+        
         private bool CheckUserForLogin(UserAccount userAccount)
         {
 
@@ -144,7 +145,7 @@ namespace enterpriseDevelopment
 
         {
 
-            bool isMatched = bcrypt.Verify(pwdLog, userAccount.UserPwd);
+            bool isMatched = bcrypt.Verify("hEllo" + pwdLog + "woRld", userAccount.UserPwd);
 
             if (!isMatched)
             {
@@ -163,11 +164,11 @@ namespace enterpriseDevelopment
         private void EncryptPwd()
         {
 
-            pwdReg = bcrypt.HashPassword("hEllo" + pwdReg + "woRd", bcrypt.GenerateSalt());
+            pwdReg = bcrypt.HashPassword("hEllo" + pwdReg + "woRld", bcrypt.GenerateSalt());
         }
         private void RegisterBtn_Click(object sender, EventArgs e)
         {
-            // There are privat string already declared at the beginning of the page
+            // There are private string already declared at the beginning of the page
             fullNameReg = fullNameRegTxt.Text;
             usernameReg = usernameRegTxt.Text;
             pwdReg = passwordRegTxt.Text;
