@@ -53,6 +53,7 @@
             this.loginBtn.TabIndex = 0;
             this.loginBtn.Text = "Login";
             this.loginBtn.UseVisualStyleBackColor = true;
+            this.loginBtn.Click += new System.EventHandler(this.loginBtn_Click);
             // 
             // registerBtn
             // 
@@ -62,7 +63,7 @@
             this.registerBtn.TabIndex = 1;
             this.registerBtn.Text = "Register";
             this.registerBtn.UseVisualStyleBackColor = true;
-            this.registerBtn.Click += new System.EventHandler(this.registerBtn_Click);
+            this.registerBtn.Click += new System.EventHandler(this.RegisterBtn_Click);
             // 
             // usernameLogTxt
             // 

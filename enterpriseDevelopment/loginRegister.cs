@@ -7,121 +7,206 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using bcrypt = BCrypt.Net.BCrypt;
 
 namespace enterpriseDevelopment
 {
     public partial class LoginRegister : Form
     {
-        // 
-        private string fullName, username, pwd, pwd2;
 
+        private string fullNameReg, usernameReg, pwdReg, pwd2Reg;
+        private string userNameLog, pwdLog;
+        UserRepository userRepositoryObj;
         public LoginRegister()
         {
             InitializeComponent();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
+            userRepositoryObj = new UserRepository();
         }
 
 
-
-        private void label2_Click(object sender, EventArgs e)
+        // function for registration validations
+        private bool RegistrationValidation()
         {
 
-        }
-
-        private void registerBtn_Click(object sender, EventArgs e)
-        {
-            // There are privat string already declared at the beginning of the page
-            fullName = fullNameRegTxt.Text;
-            username = usernameRegTxt.Text;
-            pwd = passwordRegTxt.Text;
-            pwd2 = password2RegTxt.Text;
-
-
-            private bool registrationValidation()
+            if (String.IsNullOrEmpty(fullNameReg))
             {
-
-                if (String.IsNullOrEmpty(fullName))
-                {
-                    MessageBox.Show("Full name cannot be empty");
-                    return false;
-                }
+                MessageBox.Show("Full name cannot be empty");
+                return false;
+            }
 
 
-                if (fullName.Length < 3)
-                {
-                    MessageBox.Show("Name is too short, please use your full name");
-                    return false;
-                }
+            if (fullNameReg.Length < 3)
+            {
+                MessageBox.Show("Name is too short, please use your full name");
+                return false;
+            }
 
-                if (String.IsNullOrWhiteSpace(username))
+            if (fullNameReg.Length > 30)
+            {
+                MessageBox.Show("Name is too long, please try again");
+                return false;
+            }
+
+            if (String.IsNullOrWhiteSpace(usernameReg))
+            {
+                MessageBox.Show("Username cannot have empty spaces");
+                return false;
+            }
+            else
+            {
+                if (usernameReg.Contains(" "))
                 {
                     MessageBox.Show("Username cannot have empty spaces");
                     return false;
                 }
-                else
-                {
-                    if (username.Contains(" "))
-                    {
-                        MessageBox.Show("Username cannot have empty spaces");
-                        return false;
-                    }
-                }
-
-                if (username.Length < 6)
-                {
-                    MessageBox.Show("Username is too short, please try again");
-                    return false;
-                }
-
-                if (String.IsNullOrWhiteSpace(pwd))
-                {
-                    MessageBox.Show("Your pasword cannot be empty or contain spaces");
-                    return false;
-                }
-
-                if (pwd.Length < 8)
-                {
-                    MessageBox.Show("Password is too short, insert minimum 8 characters");
-                    return false;
-                }
-
-                if (!pwd.Equals(pwd2))
-                {
-                    MessageBox.Show("Your paswords does not match");
-                    return false;
-                }
-                return true;
             }
-            
+
+            if (usernameReg.Length < 6)
+            {
+                MessageBox.Show("Username is too short, please try again");
+                return false;
+            }
+
+            if (usernameReg.Length > 45)
+            {
+                MessageBox.Show("Username is too long, please try again");
+                return false;
+            }
 
 
-            UserAccount userObj = new UserAccount();
-            userObj.UserFName = fullName;
-            userObj.Username = username;
-            userObj.UserPwd = pwd;
 
-            // create instance of UserRepository [[user account]]
-            UserRepository userRepositoryObj = new UserRepository();
-            // checks if there was any error during the insertion of the user data into the database, AddUserAccount method returns tre of false values
-            bool check = userRepositoryObj.AddUserAccount(userObj);
+            if (String.IsNullOrWhiteSpace(pwdReg))
+            {
+                MessageBox.Show("Your pasword cannot be empty or contain spaces");
+                return false;
+            }
+
+            if (pwdReg.Length < 8)
+            {
+                MessageBox.Show("Password is too short, insert minimum 8 characters");
+                return false;
+            }
+
+            if (pwdReg.Length > 100)
+            {
+                MessageBox.Show("Password is too long, you can use up to 100 character");
+                return false;
+            }
+
+
+            if (!pwdReg.Equals(pwd2Reg))
+            {
+                MessageBox.Show("Your paswords does not match");
+                return false;
+            }
+            return true;
+        }
+        private bool LoginValidation()
+        {
+            if (String.IsNullOrWhiteSpace(userNameLog))
+            {
+                MessageBox.Show("Username cannot be empty");
+                return false;
+            }
+            if (String.IsNullOrWhiteSpace(pwdLog))
+            {
+                MessageBox.Show("Password cannot be empty, please insert a password");
+                return false;
+            }
+            return true;
+        }
+        private void loginBtn_Click(object sender, EventArgs e)
+        {
+            userNameLog = usernameLogTxt.Text;
+            pwdLog = passwordLogTxt.Text;
+
+            if (!LoginValidation()) return;
+
+            UserAccount userAccount = userRepositoryObj.GetUserByUsername(userNameLog);
+            if (!CheckUserForLogin(userAccount)) return;
+
+            if (!CheckPwdForLogin(userAccount)) return;
+
+
+
+        }
+        private bool CheckUserForLogin(UserAccount userAccount)
+        {
+
+            if (!(userAccount.UserId > 0))
+            {
+                MessageBox.Show("Username or Password is incorrect, please try again", "Alert");
+                return false;
+            }
+            return true;
+        }
+        private bool CheckPwdForLogin(UserAccount userAccount)
+
+        {
+
+            bool isMatched = bcrypt.Verify(pwdLog, userAccount.UserPwd);
+
+            if (!isMatched)
+            {
+                MessageBox.Show("Error, invalid credentials");
+                return false;
+
+
+            }
+            else {
+                MessageBox.Show("Logged in successfully");
+            }
+            return true;
+        }
+
+
+        private void EncryptPwd()
+        {
+
+            pwdReg = bcrypt.HashPassword("hEllo" + pwdReg + "woRd", bcrypt.GenerateSalt());
+        }
+        private void RegisterBtn_Click(object sender, EventArgs e)
+        {
+            // There are privat string already declared at the beginning of the page
+            fullNameReg = fullNameRegTxt.Text;
+            usernameReg = usernameRegTxt.Text;
+            pwdReg = passwordRegTxt.Text;
+            pwd2Reg = password2RegTxt.Text;
+
+            // if the RegistrationValidation not true then - >return  
+            if (!RegistrationValidation()) return;
+            if (!CheckIfUserExists()) return;
+            EncryptPwd();
+
+
+
+            // using an anonymus object which is not saved anywhere, is passes the values straight to method AddUserAccount
+            bool check = userRepositoryObj.AddUserAccount(new UserAccount { UserFName = fullNameReg, Username = usernameReg, UserPwd = pwdReg });
+            // checks if there was any error during the insertion of the user data into the database, AddUserAccount method returns tre of false 
             if (check)
             {
-                MessageBox.Show("Acount successfully created");
-
+                MessageBox.Show("Account successfully created");
             }
             else
             {
-                MessageBox.Show("Error, try again.");
-
+                MessageBox.Show("Error,acount not creted. Try again.");
             }
 
 
 
 
+        }
+        private bool CheckIfUserExists()
+        {
+
+            UserAccount userAccount = userRepositoryObj.GetUserByUsername(usernameReg);
+            // if the usernameReg already exist, it will pop up the error message
+            if (userAccount.UserId > 0)
+            {
+                MessageBox.Show("Username already in use, please try with different name", "Alert");
+                return false;
+            }
+            return true;
         }
 
         private void loginRegister_Load(object sender, EventArgs e)
