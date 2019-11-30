@@ -53,6 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\ContactsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ContactsForm.Designer.cs">
+      <DependentUpon>ContactsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Instance.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Repositories\ContactRepository.cs" />
@@ -72,6 +78,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\UserAccount.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
+    <EmbeddedResource Include="Forms\ContactsForm.resx">
+      <DependentUpon>ContactsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

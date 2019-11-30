@@ -37,12 +37,13 @@ namespace enterpriseDevelopment
                 {
                     connection.Close();
                     return true;
-                } else
+                }
+                else
                 {
                     connection.Close();
                     return false;
                 }
-                
+
 
             }
 
@@ -50,10 +51,86 @@ namespace enterpriseDevelopment
             {
                 return false;
             }
-            
+
         }
 
+        public List<Contact> GetContacts(int id)
+        {
 
-    }
+            // object u
+            List<Contact> u = new List<Contact>();
+
+            string selectQuery = "SELECT * FROM Contacts WHERE [userIdFk] = @userID";
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
+                // userName parameter of his method
+                sqlCommand.Parameters.Add("@userID", SqlDbType.Int).Value = id;
+
+
+                connection.Open();
+                // Ask to retrieve all the  row
+                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+
+
+
+                while (sqlDataReader.Read())
+                {
+                    u.Add(new Contact
+                    {
+                        ContactId = (int)sqlDataReader["ContactId"],
+                        userIdFk = (int)sqlDataReader["userIdFk"],
+                        ContactName = sqlDataReader["Contactname"].ToString()
+                    });
+
+
+                }
+                connection.Close();
+
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            // u is the object created at the beginning of the this method 
+            return u;
+        }
+
+        public bool DeleteContact(Contact contact)
+        {
+            
+
+            string selectQuery = "DELETE FROM Contacts WHERE [userIdFk] = @userID AND [ContactId] = @contactID";
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
+                // userName parameter of his method
+                sqlCommand.Parameters.Add("@userID", SqlDbType.Int).Value = contact.userIdFk;
+                sqlCommand.Parameters.Add("@contactID", SqlDbType.Int).Value = contact.ContactId;
+
+                connection.Open();
+                var x = sqlCommand.ExecuteNonQuery();
+                connection.Close();
+                if (x > 0 )
+                {
+                    return true;
+                }else
+                {
+                    return false;
+                }
+                
+
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+           
+        }
+     }
 
 }
