@@ -28,5 +28,10 @@ namespace enterpriseDevelopment
             LoginRegisterObj.Activate();
             LoginRegisterObj.Show();
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

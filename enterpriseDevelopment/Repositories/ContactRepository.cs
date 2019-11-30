@@ -19,7 +19,7 @@ namespace enterpriseDevelopment
             connection = new SqlConnection(databaseConn);
         }
 
-        public bool AddContact(ContactClass ContactObj)
+        public bool AddContact(Contact ContactObj)
         {
 
             string addContact = "INSERT INTO Contacts([Contactname], [userIdFk])" + "VALUES" + "(@contactName, userAccountID);";
@@ -52,6 +52,7 @@ namespace enterpriseDevelopment
             }
             
         }
+
 
     }
 
