@@ -10,11 +10,14 @@ using System.Windows.Forms;
 
 namespace enterpriseDevelopment
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
+
+        // set reference to Instance class
+            Instance.MainForm = this;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -24,14 +27,24 @@ namespace enterpriseDevelopment
 
         private void button1_Click(object sender, EventArgs e)
         {
-            LoginRegister LoginRegisterObj = new LoginRegister();
-            LoginRegisterObj.Activate();
-            LoginRegisterObj.Show();
+            
         }
 
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void MainForm_Activated(object sender, EventArgs e)
+        {
+
+            // hide the mainform if the StaticUserAccount is empty
+            if (Instance.StaticUserAccount == null)
+            {
+                LoginRegister LoginRegisterObj = new LoginRegister();
+                LoginRegisterObj.Activate();
+                LoginRegisterObj.Show();
+            }
         }
     }
 }

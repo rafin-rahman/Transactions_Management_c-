@@ -186,6 +186,7 @@
             this.Controls.Add(this.loginBtn);
             this.Name = "LoginRegister";
             this.Text = "Form2";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LoginRegister_FormClosed);
             this.Load += new System.EventHandler(this.loginRegister_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

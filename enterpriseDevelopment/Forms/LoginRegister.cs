@@ -21,6 +21,8 @@ namespace enterpriseDevelopment
         {
             InitializeComponent();
             userRepositoryObj = new UserRepository();
+            // When this form in opened, main form will be hidden
+            Instance.MainForm.Hide();
         }
 
 
@@ -126,9 +128,9 @@ namespace enterpriseDevelopment
             if (!CheckUserForLogin(userAccount)) return;
 
             if (!CheckPwdForLogin(userAccount)) return;
-
-
-
+            // if login is successful, it will store login user data into the static class
+            Instance.StaticUserAccount = userAccount;
+            Close();
         }
         
         private bool CheckUserForLogin(UserAccount userAccount)
@@ -160,6 +162,21 @@ namespace enterpriseDevelopment
             return true;
         }
 
+        private void LoginRegister_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // If used is not logged in, 
+            if (Instance.StaticUserAccount == null)
+            {
+                Instance.MainForm.Close();
+            }
+            else
+            {
+                Instance.MainForm.Activate();
+                Instance.MainForm.Show();
+            }
+            // Close the application, removes all the unnecessary data
+            Dispose();
+        }
 
         private void EncryptPwd()
         {
