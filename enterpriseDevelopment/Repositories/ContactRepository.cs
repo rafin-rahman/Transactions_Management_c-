@@ -19,40 +19,6 @@ namespace enterpriseDevelopment
             connection = new SqlConnection(databaseConn);
         }
 
-        public bool AddContact(Contact ContactObj)
-        {
-
-            string addContact = "INSERT INTO Contacts([Contactname], [userIdFk])" + "VALUES" + "(@contactName, userAccountID);";
-            try
-            {
-                SqlCommand sqlCommand = new SqlCommand(addContact, connection);
-                sqlCommand.Parameters.Add("@contactName", SqlDbType.Text).Value = ContactObj.ContactName;
-                sqlCommand.Parameters.Add("@userAccountID", SqlDbType.Int).Value = ContactObj.userIdFk;
-
-                connection.Open();
-                // Exceute non query when there's nothing to return, in this case is just inserting data into DB.
-                // sqlCommand.ExecuteNonQuery() returs number of rows affected
-                var i = sqlCommand.ExecuteNonQuery();
-                if (i > 0)
-                {
-                    connection.Close();
-                    return true;
-                }
-                else
-                {
-                    connection.Close();
-                    return false;
-                }
-
-
-            }
-
-            catch (Exception ex)
-            {
-                return false;
-            }
-
-        }
 
         public List<Contact> GetContacts(int id)
         {
@@ -131,6 +97,77 @@ namespace enterpriseDevelopment
 
            
         }
-     }
+
+        public bool AddContact(Contact contact)
+        {
+
+
+            string selectQuery = "INSERT INTO Contacts  ([userIdFk], [Contactname]) VALUES (@userID, @name)";
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
+                // userName parameter of his method
+                sqlCommand.Parameters.Add("@userID", SqlDbType.Int).Value = contact.userIdFk;
+                sqlCommand.Parameters.Add("@name", SqlDbType.NVarChar).Value = contact.ContactName;
+
+                connection.Open();
+                var x = sqlCommand.ExecuteNonQuery();
+                connection.Close();
+                if (x > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+
+        }
+
+        public bool EditContact(Contact contact)
+        {
+
+
+            string selectQuery = "UPDATE Contacts SET [Contactname] = @name WHERE [ContactId] = @id AND [userIdFk] = @userID";
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
+                // userName parameter of his method
+                sqlCommand.Parameters.Add("@userID", SqlDbType.Int).Value = contact.userIdFk;
+                sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = contact.ContactId;
+                sqlCommand.Parameters.Add("@name", SqlDbType.NVarChar).Value = contact.ContactName;
+
+                connection.Open();
+                var x = sqlCommand.ExecuteNonQuery();
+                connection.Close();
+                if (x > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+
+        }
+    }
 
 }

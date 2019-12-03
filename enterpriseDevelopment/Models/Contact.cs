@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace enterpriseDevelopment
 {
-    class Contact
+    public class Contact
 
     {
         public int ContactId { get; set; }

@@ -18,11 +18,15 @@ namespace enterpriseDevelopment.Forms
         {
             InitializeComponent();
             ContactRepository = new ContactRepository();
+            // When this form in opened, main form will be hidden
+            Instance.MainForm.Hide();
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        // [TODO change add button name]
+        private void addBtn_Click(object sender, EventArgs e)
         {
-
+            ContactAddEdit contactAddEdit = new ContactAddEdit();
+            contactAddEdit.Activate();
+            contactAddEdit.Show();
         }
 
         private void ContactsForm_Activated(object sender, EventArgs e)
@@ -54,5 +58,39 @@ namespace enterpriseDevelopment.Forms
 
             }
         }
+
+        private void editBtn_Click(object sender, EventArgs e)
+        {
+            if (listViewContact.SelectedItems.Count > 0 )
+            {
+
+                Contact contact = (Contact)listViewContact.SelectedItems[0].Tag;
+                ContactAddEdit contactAddEdit = new ContactAddEdit(contact);
+                contactAddEdit.Activate();
+                contactAddEdit.Show();
+            }
+        }
+
+        private void ContactsForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
+            Instance.MainForm.Activate();
+            Instance.MainForm.Show();
+
+            Dispose();
+        }
+
+        private void listViewContact_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ContactsForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        
+       
     }
 }

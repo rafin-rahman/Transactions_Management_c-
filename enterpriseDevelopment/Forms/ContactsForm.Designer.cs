@@ -39,13 +39,16 @@
             // 
             this.listViewContact.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ContactNameColumn});
+            this.listViewContact.FullRowSelect = true;
             this.listViewContact.HideSelection = false;
             this.listViewContact.Location = new System.Drawing.Point(266, 58);
+            this.listViewContact.MultiSelect = false;
             this.listViewContact.Name = "listViewContact";
             this.listViewContact.Size = new System.Drawing.Size(191, 688);
             this.listViewContact.TabIndex = 0;
             this.listViewContact.UseCompatibleStateImageBehavior = false;
             this.listViewContact.View = System.Windows.Forms.View.Details;
+            this.listViewContact.SelectedIndexChanged += new System.EventHandler(this.listViewContact_SelectedIndexChanged);
             // 
             // ContactNameColumn
             // 
@@ -60,7 +63,7 @@
             this.addBtn.TabIndex = 1;
             this.addBtn.Text = "Add";
             this.addBtn.UseVisualStyleBackColor = true;
-            this.addBtn.Click += new System.EventHandler(this.button1_Click);
+            this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
             // 
             // deleteBtn
             // 
@@ -80,6 +83,7 @@
             this.editBtn.TabIndex = 2;
             this.editBtn.Text = "Edit";
             this.editBtn.UseVisualStyleBackColor = true;
+            this.editBtn.Click += new System.EventHandler(this.editBtn_Click);
             // 
             // ContactsForm
             // 
@@ -93,6 +97,8 @@
             this.Name = "ContactsForm";
             this.Text = "ContactsForm";
             this.Activated += new System.EventHandler(this.ContactsForm_Activated);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ContactsForm_FormClosed);
+            this.Load += new System.EventHandler(this.ContactsForm_Load);
             this.ResumeLayout(false);
 
         }

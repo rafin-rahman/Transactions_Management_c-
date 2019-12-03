@@ -1,4 +1,5 @@
-﻿using System;
+﻿using enterpriseDevelopment.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -25,11 +26,6 @@ namespace enterpriseDevelopment
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void label2_Click(object sender, EventArgs e)
         {
 
@@ -37,7 +33,7 @@ namespace enterpriseDevelopment
 
         private void MainForm_Activated(object sender, EventArgs e)
         {
-
+            Instance.StaticUserAccount = new UserAccount { UserId = 5, UserFName = "rafraf" };
             // hide the mainform if the StaticUserAccount is empty
             if (Instance.StaticUserAccount == null)
             {
@@ -45,6 +41,16 @@ namespace enterpriseDevelopment
                 LoginRegisterObj.Activate();
                 LoginRegisterObj.Show();
             }
+        }
+
+
+        private void contactClickMainForm(object sender, EventArgs e)
+
+            
+        {
+            ContactsForm contactsForm = new ContactsForm();
+            contactsForm.Activate();
+            contactsForm.Show();
         }
     }
 }

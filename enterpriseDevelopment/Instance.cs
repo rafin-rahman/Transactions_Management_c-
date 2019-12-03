@@ -11,7 +11,7 @@ namespace enterpriseDevelopment
     {
         // Creating reference to main form to use in other forms(windows)
         public static Form MainForm;
-         
         public static UserAccount StaticUserAccount = null;
+        
     }
 }
