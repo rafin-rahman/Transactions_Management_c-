@@ -33,8 +33,8 @@ namespace enterpriseDevelopment
 
         private void MainForm_Activated(object sender, EventArgs e)
         {
-            Instance.StaticUserAccount = new UserAccount { UserId = 5, UserFName = "rafraf" };
-            // hide the mainform if the StaticUserAccount is empty
+            Instance.StaticUserAccount = new UserAccount { UserId = 1, UserFName = "rafraf" };
+          //  hide the mainform if the StaticUserAccount is empty
             if (Instance.StaticUserAccount == null)
             {
                 LoginRegister LoginRegisterObj = new LoginRegister();
@@ -51,6 +51,15 @@ namespace enterpriseDevelopment
             ContactsForm contactsForm = new ContactsForm();
             contactsForm.Activate();
             contactsForm.Show();
+        }
+
+        private void transactionClickMainForm(object sender, EventArgs e)
+        {
+
+            TransactionForm transactionForm = new TransactionForm();
+            transactionForm.Activate();
+            transactionForm.Show();
+
         }
     }
 }

@@ -36,6 +36,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.transactionBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -134,16 +135,26 @@
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
+            // transactionBtn
+            // 
+            this.transactionBtn.Location = new System.Drawing.Point(1300, 350);
+            this.transactionBtn.Name = "transactionBtn";
+            this.transactionBtn.Size = new System.Drawing.Size(244, 71);
+            this.transactionBtn.TabIndex = 5;
+            this.transactionBtn.Text = "Transactions";
+            this.transactionBtn.UseVisualStyleBackColor = true;
+            this.transactionBtn.Click += new System.EventHandler(this.transactionClickMainForm);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2048, 1154);
+            this.Controls.Add(this.transactionBtn);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.ContactBtn);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -168,6 +179,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button transactionBtn;
     }
 }
 

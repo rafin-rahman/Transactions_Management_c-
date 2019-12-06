@@ -188,7 +188,7 @@ namespace enterpriseDevelopment
 
         private void RegisterBtn_Click(object sender, EventArgs e)
         {
-            // There are private string already declared at the beginning of the page
+            // These are private string already declared at the beginning of the page
             fullNameReg = fullNameRegTxt.Text;
             usernameReg = usernameRegTxt.Text;
             pwdReg = passwordRegTxt.Text;
@@ -210,7 +210,7 @@ namespace enterpriseDevelopment
             }
             else
             {
-                MessageBox.Show("Error,acount not creted. Try again.");
+                MessageBox.Show("Error,account not created. Try again.");
             }
 
 

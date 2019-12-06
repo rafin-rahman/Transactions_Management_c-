@@ -66,15 +66,15 @@ namespace enterpriseDevelopment.Forms
 
         private void TransactionForm_Load(object sender, EventArgs e)
         {
-            Instance.MainForm.Activate();
-            Instance.MainForm.Show();
-
-            Dispose();
         }
 
         private void TransactionForm_FormClosed(object sender, FormClosedEventArgs e)
         {
 
+            Instance.MainForm.Activate();
+            Instance.MainForm.Show();
+
+            Dispose();
         }
 
         private void TransactionForm_Activated(object sender, EventArgs e)
