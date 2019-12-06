@@ -98,11 +98,11 @@ namespace enterpriseDevelopment
            
         }
 
-        public bool AddContact(Contact contact)
+        public int AddContact(Contact contact)
         {
 
 
-            string selectQuery = "INSERT INTO ContactsTbl  ([userIdFk], [Contactname]) VALUES (@userID, @name)";
+            string selectQuery = "INSERT INTO ContactsTbl  ([userIdFk], [Contactname]) OUTPUT INSERTED.ContactId VALUES (@userID, @name)";
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
@@ -111,23 +111,24 @@ namespace enterpriseDevelopment
                 sqlCommand.Parameters.Add("@name", SqlDbType.NVarChar).Value = contact.ContactName;
 
                 connection.Open();
-                var x = sqlCommand.ExecuteNonQuery();
-                connection.Close();
-                if (x > 0)
+
+                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                int y = 0;
+                while (sqlDataReader.Read())
                 {
-                    return true;
+                    y = (int)sqlDataReader["ContactId"];
                 }
-                else
-                {
-                    return false;
-                }
+                return y;
+
+
+            
 
 
 
             }
             catch (Exception ex)
             {
-                return false;
+                return 0;
             }
 
 

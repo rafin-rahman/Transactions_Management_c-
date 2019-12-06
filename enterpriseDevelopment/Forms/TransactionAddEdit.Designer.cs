@@ -28,30 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.RadioButton radioButton2;
+            this.expenseRadio = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.categoryTxt = new System.Windows.Forms.TextBox();
             this.amountLbl = new System.Windows.Forms.Label();
-            this.transactionAmountTxt = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.transDateTime = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.incomeRadio = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            radioButton2 = new System.Windows.Forms.RadioButton();
+            this.messageRichTetx = new System.Windows.Forms.RichTextBox();
+            this.actionBtn = new System.Windows.Forms.Button();
+            this.transactionAmountNum = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.contactComboBox = new System.Windows.Forms.ComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.transactionAmountNum)).BeginInit();
             this.SuspendLayout();
             // 
-            // radioButton2
+            // expenseRadio
             // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new System.Drawing.Point(569, 223);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new System.Drawing.Size(127, 29);
-            radioButton2.TabIndex = 8;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "Expense";
-            radioButton2.UseVisualStyleBackColor = true;
+            this.expenseRadio.AutoSize = true;
+            this.expenseRadio.Location = new System.Drawing.Point(548, 223);
+            this.expenseRadio.Name = "expenseRadio";
+            this.expenseRadio.Size = new System.Drawing.Size(127, 29);
+            this.expenseRadio.TabIndex = 8;
+            this.expenseRadio.Text = "Expense";
+            this.expenseRadio.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -78,13 +80,6 @@
             this.amountLbl.TabIndex = 2;
             this.amountLbl.Text = "Amount";
             // 
-            // transactionAmountTxt
-            // 
-            this.transactionAmountTxt.Location = new System.Drawing.Point(196, 222);
-            this.transactionAmountTxt.Name = "transactionAmountTxt";
-            this.transactionAmountTxt.Size = new System.Drawing.Size(100, 31);
-            this.transactionAmountTxt.TabIndex = 3;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -94,12 +89,14 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Date of the transaction";
             // 
-            // dateTimePicker1
+            // transDateTime
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(196, 357);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 31);
-            this.dateTimePicker1.TabIndex = 5;
+            this.transDateTime.CustomFormat = "dd/MM/yyyy HH:mm";
+            this.transDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.transDateTime.Location = new System.Drawing.Point(196, 357);
+            this.transDateTime.Name = "transDateTime";
+            this.transDateTime.Size = new System.Drawing.Size(242, 31);
+            this.transDateTime.TabIndex = 5;
             // 
             // label3
             // 
@@ -109,18 +106,18 @@
             this.label3.Size = new System.Drawing.Size(214, 25);
             this.label3.TabIndex = 6;
             this.label3.Text = "Income or Expense ?";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
-            // radioButton1
+            // incomeRadio
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(417, 223);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(112, 29);
-            this.radioButton1.TabIndex = 7;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Income";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.incomeRadio.AutoSize = true;
+            this.incomeRadio.Checked = true;
+            this.incomeRadio.Location = new System.Drawing.Point(417, 223);
+            this.incomeRadio.Name = "incomeRadio";
+            this.incomeRadio.Size = new System.Drawing.Size(112, 29);
+            this.incomeRadio.TabIndex = 7;
+            this.incomeRadio.TabStop = true;
+            this.incomeRadio.Text = "Income";
+            this.incomeRadio.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -131,33 +128,76 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Description";
             // 
-            // richTextBox1
+            // messageRichTetx
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(201, 485);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(464, 137);
-            this.richTextBox1.TabIndex = 10;
-            this.richTextBox1.Text = "";
+            this.messageRichTetx.Location = new System.Drawing.Point(201, 485);
+            this.messageRichTetx.Name = "messageRichTetx";
+            this.messageRichTetx.Size = new System.Drawing.Size(464, 137);
+            this.messageRichTetx.TabIndex = 10;
+            this.messageRichTetx.Text = "";
+            // 
+            // actionBtn
+            // 
+            this.actionBtn.Location = new System.Drawing.Point(201, 652);
+            this.actionBtn.Name = "actionBtn";
+            this.actionBtn.Size = new System.Drawing.Size(146, 82);
+            this.actionBtn.TabIndex = 11;
+            this.actionBtn.Text = "Action";
+            this.actionBtn.UseVisualStyleBackColor = true;
+            this.actionBtn.Click += new System.EventHandler(this.actionBtn_Click);
+            // 
+            // transactionAmountNum
+            // 
+            this.transactionAmountNum.Location = new System.Drawing.Point(196, 221);
+            this.transactionAmountNum.Name = "transactionAmountNum";
+            this.transactionAmountNum.Size = new System.Drawing.Size(120, 31);
+            this.transactionAmountNum.TabIndex = 12;
+            this.transactionAmountNum.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(438, 45);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(177, 25);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Assigned contact";
+            // 
+            // contactComboBox
+            // 
+            this.contactComboBox.FormattingEnabled = true;
+            this.contactComboBox.Location = new System.Drawing.Point(443, 85);
+            this.contactComboBox.Name = "contactComboBox";
+            this.contactComboBox.Size = new System.Drawing.Size(121, 33);
+            this.contactComboBox.TabIndex = 15;
             // 
             // TransactionAddEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1351, 854);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.contactComboBox);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.transactionAmountNum);
+            this.Controls.Add(this.actionBtn);
+            this.Controls.Add(this.messageRichTetx);
             this.Controls.Add(this.label4);
-            this.Controls.Add(radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.expenseRadio);
+            this.Controls.Add(this.incomeRadio);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.transDateTime);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.transactionAmountTxt);
             this.Controls.Add(this.amountLbl);
             this.Controls.Add(this.categoryTxt);
             this.Controls.Add(this.label1);
             this.Name = "TransactionAddEdit";
             this.Text = "TransactionAddEdit";
             this.Load += new System.EventHandler(this.TransactionAddEdit_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.transactionAmountNum)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -168,12 +208,16 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox categoryTxt;
         private System.Windows.Forms.Label amountLbl;
-        private System.Windows.Forms.TextBox transactionAmountTxt;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker transDateTime;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton incomeRadio;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox messageRichTetx;
+        private System.Windows.Forms.Button actionBtn;
+        private System.Windows.Forms.NumericUpDown transactionAmountNum;
+        private System.Windows.Forms.RadioButton expenseRadio;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox contactComboBox;
     }
 }

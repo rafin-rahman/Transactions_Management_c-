@@ -34,7 +34,16 @@ namespace enterpriseDevelopment.Forms
 
         private void editBtn_Click(object sender, EventArgs e)
         {
+            if (listViewTransaction.SelectedItems.Count > 0)
+            {
 
+                Contact contact = (Contact)listViewTransaction.SelectedItems[0].Tag;
+                ContactAddEdit contactAddEdit = new ContactAddEdit(contact);
+                contactAddEdit.Activate();
+                contactAddEdit.Show();
+            }
+
+         
         }
         #endregion
 
@@ -83,7 +92,9 @@ namespace enterpriseDevelopment.Forms
             listViewTransaction.Items.Clear();
             foreach (Transaction transaction in transactionsList)
             {
-                ListViewItem listViewI = new ListViewItem(new string[] { transaction.transactionAmount.ToString() , });
+                ListViewItem listViewI = new ListViewItem(new string[] { transaction.transactionAmount.ToString(),transaction.typeValue,transaction.transactionCategory, transaction.dateTime.ToString() ,transaction.contactName,transaction.transactionMessage });
+                listViewI.Tag = transaction;
+                listViewTransaction.Items.Add(listViewI);
             }
         }
     }

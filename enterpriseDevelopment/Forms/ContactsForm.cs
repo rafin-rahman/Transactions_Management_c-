@@ -13,11 +13,11 @@ namespace enterpriseDevelopment.Forms
     public partial class ContactsForm : Form
     {
         // Instance of contact repository
-        private ContactRepository ContactRepository;
+        private ContactRepository contactRepository;
         public ContactsForm()
         {
             InitializeComponent();
-            ContactRepository = new ContactRepository();
+            contactRepository = new ContactRepository();
             // When this form in opened, main form will be hidden
             Instance.MainForm.Hide();
         }
@@ -37,7 +37,7 @@ namespace enterpriseDevelopment.Forms
                 DialogResult dialogResult = MessageBox.Show("Do you want do delete this contact?", "Confirm", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    bool x = ContactRepository.DeleteContact(contact);
+                    bool x = contactRepository.DeleteContact(contact);
                     if (x)
                     {
                         MessageBox.Show("Contact deleted");
@@ -52,7 +52,7 @@ namespace enterpriseDevelopment.Forms
 
         private void ContactsForm_Activated(object sender, EventArgs e)
         {
-            List<Contact> ContactList = ContactRepository.GetContacts(Instance.StaticUserAccount.UserId);
+            List<Contact> ContactList = contactRepository.GetContacts(Instance.StaticUserAccount.UserId);
             listViewContact.Items.Clear();
             foreach (Contact contact in ContactList)
             {

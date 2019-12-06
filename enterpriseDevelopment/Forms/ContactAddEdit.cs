@@ -40,7 +40,7 @@ namespace enterpriseDevelopment
             c.ContactName = contactTxtBox.Text;
             ContactRepository contactRepository = new ContactRepository();
 
-            bool x;
+            bool x = false;
 
             if (c.ContactId > 0)
             {
@@ -48,7 +48,8 @@ namespace enterpriseDevelopment
             }
             else
             {
-                x = contactRepository.AddContact(c);
+                int i = contactRepository.AddContact(c);
+                if (i > 0) x = true;
             }
 
             if (c.ContactId > 0 && x == true)

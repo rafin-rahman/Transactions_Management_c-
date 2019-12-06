@@ -29,28 +29,70 @@
         private void InitializeComponent()
         {
             this.listViewTransaction = new System.Windows.Forms.ListView();
+            this.amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.incomeExpense = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.category = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.contact = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.message = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.addBtn = new System.Windows.Forms.Button();
             this.editBtn = new System.Windows.Forms.Button();
             this.deleteBtn = new System.Windows.Forms.Button();
-            this.incomeExpense = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // listViewTransaction
             // 
             this.listViewTransaction.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.incomeExpense});
+            this.amount,
+            this.incomeExpense,
+            this.category,
+            this.date,
+            this.contact,
+            this.message});
             this.listViewTransaction.HideSelection = false;
-            this.listViewTransaction.Location = new System.Drawing.Point(49, 93);
+            this.listViewTransaction.Location = new System.Drawing.Point(50, 45);
             this.listViewTransaction.Name = "listViewTransaction";
-            this.listViewTransaction.Size = new System.Drawing.Size(386, 419);
+            this.listViewTransaction.Size = new System.Drawing.Size(1367, 461);
             this.listViewTransaction.TabIndex = 0;
             this.listViewTransaction.UseCompatibleStateImageBehavior = false;
             this.listViewTransaction.View = System.Windows.Forms.View.Details;
             this.listViewTransaction.SelectedIndexChanged += new System.EventHandler(this.listView_SelectedIndexChanged);
             // 
+            // amount
+            // 
+            this.amount.Text = "Amount";
+            this.amount.Width = 100;
+            // 
+            // incomeExpense
+            // 
+            this.incomeExpense.Text = "Income / Expense";
+            this.incomeExpense.Width = 250;
+            // 
+            // category
+            // 
+            this.category.Text = "Category";
+            this.category.Width = 100;
+            // 
+            // date
+            // 
+            this.date.Text = "Date";
+            this.date.Width = 100;
+            // 
+            // contact
+            // 
+            this.contact.DisplayIndex = 5;
+            this.contact.Text = "Contacts";
+            this.contact.Width = 173;
+            // 
+            // message
+            // 
+            this.message.DisplayIndex = 4;
+            this.message.Text = "Description";
+            this.message.Width = 300;
+            // 
             // addBtn
             // 
-            this.addBtn.Location = new System.Drawing.Point(468, 93);
+            this.addBtn.Location = new System.Drawing.Point(1739, 61);
             this.addBtn.Name = "addBtn";
             this.addBtn.Size = new System.Drawing.Size(192, 103);
             this.addBtn.TabIndex = 1;
@@ -60,7 +102,7 @@
             // 
             // editBtn
             // 
-            this.editBtn.Location = new System.Drawing.Point(468, 229);
+            this.editBtn.Location = new System.Drawing.Point(1739, 197);
             this.editBtn.Name = "editBtn";
             this.editBtn.Size = new System.Drawing.Size(192, 103);
             this.editBtn.TabIndex = 2;
@@ -70,7 +112,7 @@
             // 
             // deleteBtn
             // 
-            this.deleteBtn.Location = new System.Drawing.Point(468, 360);
+            this.deleteBtn.Location = new System.Drawing.Point(1739, 328);
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.Size = new System.Drawing.Size(192, 103);
             this.deleteBtn.TabIndex = 3;
@@ -78,16 +120,11 @@
             this.deleteBtn.UseVisualStyleBackColor = true;
             this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
             // 
-            // incomeExpense
-            // 
-            this.incomeExpense.Text = "Income / Expense";
-            this.incomeExpense.Width = 183;
-            // 
             // TransactionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1006, 619);
+            this.ClientSize = new System.Drawing.Size(2507, 918);
             this.Controls.Add(this.deleteBtn);
             this.Controls.Add(this.editBtn);
             this.Controls.Add(this.addBtn);
@@ -108,5 +145,10 @@
         private System.Windows.Forms.Button editBtn;
         private System.Windows.Forms.Button deleteBtn;
         private System.Windows.Forms.ColumnHeader incomeExpense;
+        private System.Windows.Forms.ColumnHeader amount;
+        private System.Windows.Forms.ColumnHeader category;
+        private System.Windows.Forms.ColumnHeader date;
+        private System.Windows.Forms.ColumnHeader message;
+        private System.Windows.Forms.ColumnHeader contact;
     }
 }

@@ -10,7 +10,7 @@ using enterpriseDevelopment.Models;
 
 namespace enterpriseDevelopment.Repositories
 {
-    class TransactionRepository
+     class TransactionRepository
     {
 
         public string databaseConn;
@@ -27,7 +27,7 @@ namespace enterpriseDevelopment.Repositories
             // object u
             List<Transaction> u = new List<Transaction>();
 
-            string selectQuery = "SELECT * FROM TransactionsTbl WHERE [userIdFk] = @userID";
+            string selectQuery = "SELECT TransactionsTbl.*, ContactsTbl.ContactName AS ContactName FROM TransactionsTbl LEFT JOIN ContactsTbl ON ContactsTbl.ContactId = TransactionsTbl.contactIdFk WHERE TransactionsTbl.userIdFk = @userID";
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
@@ -45,14 +45,15 @@ namespace enterpriseDevelopment.Repositories
                 {
                     Transaction temp = new Transaction
                     {
-                        transactionId = (int)sqlDataReader["TransacionI"],
+                        transactionId = (int)sqlDataReader["TransactionId"],
                         transactionCategory = sqlDataReader["TransactionCategory"].ToString(),
                         transactionAmount = (decimal)sqlDataReader["TransactionAmount"],
                         dateTime = (DateTime)sqlDataReader["dateTime"],
                         transactionMessage = sqlDataReader["TransactionMessage"].ToString(),
                         incomeExpense = (bool)sqlDataReader["IncomeExpense"],
                         userIdFk = (int)sqlDataReader["userIdFk"],
-                        contactIdFk = (int)sqlDataReader["contactIdFk"]
+                        contactIdFk = (int)sqlDataReader["contactIdFk"],
+                        contactName = sqlDataReader["ContactName"].ToString()
                     };
 
                     if (temp.incomeExpense)
@@ -64,13 +65,12 @@ namespace enterpriseDevelopment.Repositories
                         temp.typeValue = "Income";
                     }
 
-
-
-                    //}
-                    connection.Close();
+                    u.Add(temp);
+                    
 
 
                 }
+                    connection.Close();
             }
             catch (Exception ex)
             {
@@ -120,20 +120,23 @@ namespace enterpriseDevelopment.Repositories
         {
 
 
-            string selectQuery = "INSERT INTO TransactionsTbl  ([TransactionId], [TransactionCategory], [TransactionAmount], [userIdFk], [contactIdFk], [dateTime], [TransactionMessage], [IncomeExpense]) VALUES" +
-                " (@TransactionId, @TransactionCategory, @TransactionAmount, @userIdFk, @contactIdFk, @dateTime, @TransactionMessage, @IncomeExpense)";
+            string selectQuery = "INSERT INTO TransactionsTbl  ([TransactionCategory], [TransactionAmount], [userIdFk], [contactIdFk], [dateTime], [TransactionMessage], [IncomeExpense]) VALUES (@TransactionCategory, @TransactionAmount, @userIdFk, @contactIdFk, @dateTime, @TransactionMessage, @IncomeExpense)";
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
                 
-                sqlCommand.Parameters.Add("@TransactionId", SqlDbType.Int).Value = transaction.transactionId;
-                sqlCommand.Parameters.Add("@TransactionCategory", SqlDbType.NVarChar).Value = transaction.transactionCategory;
-                sqlCommand.Parameters.Add("@TransactionAmount", SqlDbType.Money).Value = transaction.transactionCategory;
-                sqlCommand.Parameters.Add("@userIdFk", SqlDbType.Int).Value = transaction.transactionCategory;
-                sqlCommand.Parameters.Add("@contactIdFk", SqlDbType.Int).Value = transaction.transactionCategory;
-                sqlCommand.Parameters.Add("@dateTime", SqlDbType.Date).Value = transaction.transactionCategory;
-                sqlCommand.Parameters.Add("@TransactionMessage", SqlDbType.NVarChar).Value = transaction.transactionCategory;
+                
+                sqlCommand.Parameters.Add("@TransactionCategory", SqlDbType.VarChar).Value = transaction.transactionCategory;
+                sqlCommand.Parameters.Add("@TransactionAmount", SqlDbType.Money).Value = transaction.transactionAmount;
+                sqlCommand.Parameters.Add("@userIdFk", SqlDbType.Int).Value = transaction.userIdFk;
+                sqlCommand.Parameters.Add("@dateTime", SqlDbType.DateTime).Value = transaction.dateTime;
+                sqlCommand.Parameters.Add("@TransactionMessage", SqlDbType.VarChar).Value = transaction.transactionMessage;
                 sqlCommand.Parameters.Add("@IncomeExpense", SqlDbType.Bit).Value = transaction.incomeExpense;
+                // to avoid storing contact id as 0
+                SqlParameter sqlParameter = new SqlParameter("@contactIdFk", SqlDbType.Int);
+                if (transaction.contactIdFk == 0) sqlParameter.Value = DBNull.Value;
+                else sqlParameter.Value = transaction.contactIdFk;
+                sqlCommand.Parameters.Add(sqlParameter);
 
                 connection.Open();
                 var x = sqlCommand.ExecuteNonQuery();
@@ -158,7 +161,7 @@ namespace enterpriseDevelopment.Repositories
 
         }
 
-        public bool EditContact(Transaction transaction)
+        public bool EditTransaction(Transaction transaction)
         {
 
 
