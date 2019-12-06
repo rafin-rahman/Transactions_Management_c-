@@ -25,7 +25,6 @@ namespace enterpriseDevelopment
             Instance.MainForm.Hide();
         }
 
-
         // function for registration validations
         private bool RegistrationValidation()
         {
@@ -103,6 +102,7 @@ namespace enterpriseDevelopment
             }
             return true;
         }
+
         private bool LoginValidation()
         {
             if (String.IsNullOrWhiteSpace(userNameLog))
@@ -117,6 +117,7 @@ namespace enterpriseDevelopment
             }
             return true;
         }
+
         private void loginBtn_Click(object sender, EventArgs e)
         {
             userNameLog = usernameLogTxt.Text;
@@ -143,6 +144,7 @@ namespace enterpriseDevelopment
             }
             return true;
         }
+
         private bool CheckPwdForLogin(UserAccount userAccount)
 
         {
@@ -183,6 +185,7 @@ namespace enterpriseDevelopment
 
             pwdReg = bcrypt.HashPassword("hEllo" + pwdReg + "woRld", bcrypt.GenerateSalt());
         }
+
         private void RegisterBtn_Click(object sender, EventArgs e)
         {
             // There are private string already declared at the beginning of the page
@@ -214,6 +217,7 @@ namespace enterpriseDevelopment
 
 
         }
+
         private bool CheckIfUserExists()
         {
 
@@ -227,9 +231,6 @@ namespace enterpriseDevelopment
             return true;
         }
 
-        private void loginRegister_Load(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }

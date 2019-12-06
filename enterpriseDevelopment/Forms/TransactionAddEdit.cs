@@ -21,5 +21,15 @@ namespace enterpriseDevelopment.Forms
         {
 
         }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TransactionAddEdit_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -25,13 +25,13 @@ namespace enterpriseDevelopment
         public bool AddUserAccount(UserAccount userObj)
         {
 
-            string addUserQuery = "INSERT INTO UserAccounts( [Username], [UserPwd], [UserFName] ) " + "VALUES " + "(@UserName,@UserPwd, @UserFName) ;";
+            string addUserQuery = "INSERT INTO UserAccountsTbl( [Username], [UserPwd], [UserFName] ) " + "VALUES " + "(@UserName,@UserPwd, @UserFName) ;";
 
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(addUserQuery, connection);
                 // SqlDbType => converts string from c# to varchar for Sql || userObj.[[table column name]]
-                // This line will take user input and store it to @UserName and convert into Sql varchar and send it to Username column in UserAccounts
+                // This line will take user input and store it to @UserName and convert into Sql varchar and send it to Username column in UserAccountsTbl
                 sqlCommand.Parameters.Add("@UserName", SqlDbType.Text).Value = userObj.Username;
                 sqlCommand.Parameters.Add("@UserPwd", SqlDbType.Text).Value = userObj.UserPwd;
                 sqlCommand.Parameters.Add("@UserFName", SqlDbType.Text).Value = userObj.UserFName;
@@ -67,8 +67,8 @@ namespace enterpriseDevelopment
 
             // object u
             UserAccount u = new UserAccount();
-            // UserAccounts is the table name
-            string selectQuery = "SELECT * FROM UserAccounts WHERE [Username] = @Username";
+            // UserAccountsTbl is the table name
+            string selectQuery = "SELECT * FROM UserAccountsTbl WHERE [Username] = @Username";
             dbConn = ConfigurationManager.ConnectionStrings["Conn"].ConnectionString;
             try
             {

@@ -1,4 +1,5 @@
-﻿using enterpriseDevelopment.Repositories;
+﻿using enterpriseDevelopment.Models;
+using enterpriseDevelopment.Repositories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +24,41 @@ namespace enterpriseDevelopment.Forms
             Instance.MainForm.Hide();
         }
 
+        #region Button click events
+        private void addBtn_Click(object sender, EventArgs e)
+        {
+            TransactionAddEdit transactionAddEdit = new TransactionAddEdit();
+            transactionAddEdit.Activate();
+            transactionAddEdit.Show();
+        }
+
+        private void editBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
+
+        private void deleteBtn_Click(object sender, EventArgs e)
+        {
+            if (listViewTransaction.SelectedItems.Count > 0)
+            {
+                Transaction transaction = (Transaction)listViewTransaction.SelectedItems[0].Tag;
+
+                DialogResult dialogResult = MessageBox.Show("Do you want do delete the transaction?", "Confirm", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes) { 
+                bool x = transactionRepository.DeleteTransaction(transaction);
+                if (x)
+                {
+                    MessageBox.Show("Transaction deleted");
+                }
+                else
+                {
+                    MessageBox.Show("Transaction not deleted");
+                }
+            }
+            }
+        }
+
         private void listView_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -41,16 +77,14 @@ namespace enterpriseDevelopment.Forms
 
         }
 
-        private void addBtn_Click(object sender, EventArgs e)
+        private void TransactionForm_Activated(object sender, EventArgs e)
         {
-            TransactionAddEdit transactionAddEdit = new TransactionAddEdit();
-            transactionAddEdit.Activate();
-            transactionAddEdit.Show();
-        }
-
-        private void editBtn_Click(object sender, EventArgs e)
-        {
-
+            List<Transaction> transactionsList = transactionRepository.GetTransactions(Instance.StaticUserAccount.UserId);
+            listViewTransaction.Items.Clear();
+            foreach (Transaction transaction in transactionsList)
+            {
+                ListViewItem listViewI = new ListViewItem(new string[] { transaction.transactionAmount.ToString() , });
+            }
         }
     }
 }

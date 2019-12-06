@@ -26,7 +26,7 @@ namespace enterpriseDevelopment
             // object u
             List<Contact> u = new List<Contact>();
 
-            string selectQuery = "SELECT * FROM Contacts WHERE [userIdFk] = @userID";
+            string selectQuery = "SELECT * FROM ContactsTbl WHERE [userIdFk] = @userID";
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
@@ -68,7 +68,7 @@ namespace enterpriseDevelopment
         {
             
 
-            string selectQuery = "DELETE FROM Contacts WHERE [userIdFk] = @userID AND [ContactId] = @contactID";
+            string selectQuery = "DELETE FROM ContactsTbl WHERE [userIdFk] = @userID AND [ContactId] = @contactID";
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
@@ -102,7 +102,7 @@ namespace enterpriseDevelopment
         {
 
 
-            string selectQuery = "INSERT INTO Contacts  ([userIdFk], [Contactname]) VALUES (@userID, @name)";
+            string selectQuery = "INSERT INTO ContactsTbl  ([userIdFk], [Contactname]) VALUES (@userID, @name)";
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
@@ -137,7 +137,7 @@ namespace enterpriseDevelopment
         {
 
 
-            string selectQuery = "UPDATE Contacts SET [Contactname] = @name WHERE [ContactId] = @id AND [userIdFk] = @userID";
+            string selectQuery = "UPDATE ContactsTbl SET [Contactname] = @name WHERE [ContactId] = @id AND [userIdFk] = @userID";
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);

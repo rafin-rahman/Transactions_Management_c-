@@ -21,12 +21,33 @@ namespace enterpriseDevelopment.Forms
             // When this form in opened, main form will be hidden
             Instance.MainForm.Hide();
         }
-        // [TODO change add button name]
+        
         private void addBtn_Click(object sender, EventArgs e)
         {
             ContactAddEdit contactAddEdit = new ContactAddEdit();
             contactAddEdit.Activate();
             contactAddEdit.Show();
+        }
+
+        private void deleteBtn_Click(object sender, EventArgs e)
+        {
+            if (listViewContact.SelectedItems.Count > 0)
+            {
+                Contact contact = (Contact)listViewContact.SelectedItems[0].Tag;
+                DialogResult dialogResult = MessageBox.Show("Do you want do delete this contact?", "Confirm", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    bool x = ContactRepository.DeleteContact(contact);
+                    if (x)
+                    {
+                        MessageBox.Show("Contact deleted");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Contact not deleted");
+                    }
+                }
+            }
         }
 
         private void ContactsForm_Activated(object sender, EventArgs e)
@@ -40,25 +61,7 @@ namespace enterpriseDevelopment.Forms
                 listViewContact.Items.Add(lvi);
             }
         }
-
-        private void deleteBtn_Click(object sender, EventArgs e)
-        {
-            if (listViewContact.SelectedItems.Count > 0)
-            {
-                Contact contact = (Contact)listViewContact.SelectedItems[0].Tag;
-                bool x = ContactRepository.DeleteContact(contact);
-                if (x)
-                {
-                    MessageBox.Show("Contact deleted");
-                }
-                else
-                {
-                     MessageBox.Show("Contact not deleted");
-                }
-
-            }
-        }
-
+         
         private void editBtn_Click(object sender, EventArgs e)
         {
             if (listViewContact.SelectedItems.Count > 0 )

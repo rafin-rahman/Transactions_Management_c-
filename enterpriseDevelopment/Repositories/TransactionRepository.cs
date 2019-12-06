@@ -27,7 +27,7 @@ namespace enterpriseDevelopment.Repositories
             // object u
             List<Transaction> u = new List<Transaction>();
 
-            string selectQuery = "SELECT * FROM TransactionTbl WHERE [userIdFk] = @userID";
+            string selectQuery = "SELECT * FROM TransactionsTbl WHERE [userIdFk] = @userID";
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
@@ -85,7 +85,7 @@ namespace enterpriseDevelopment.Repositories
         {
 
 
-            string selectQuery = "DELETE FROM TransactionTbl WHERE [TransactionId] = @transactionID AND [userIdFk] = @userId";
+            string selectQuery = "DELETE FROM TransactionsTbl WHERE [TransactionId] = @transactionID AND [userIdFk] = @userId";
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
@@ -120,7 +120,7 @@ namespace enterpriseDevelopment.Repositories
         {
 
 
-            string selectQuery = "INSERT INTO TransactionTbl  ([TransactionId], [TransactionCategory], [TransactionAmount], [userIdFk], [contactIdFk], [dateTime], [TransactionMessage], [IncomeExpense]) VALUES" +
+            string selectQuery = "INSERT INTO TransactionsTbl  ([TransactionId], [TransactionCategory], [TransactionAmount], [userIdFk], [contactIdFk], [dateTime], [TransactionMessage], [IncomeExpense]) VALUES" +
                 " (@TransactionId, @TransactionCategory, @TransactionAmount, @userIdFk, @contactIdFk, @dateTime, @TransactionMessage, @IncomeExpense)";
             try
             {
@@ -162,7 +162,7 @@ namespace enterpriseDevelopment.Repositories
         {
 
 
-            string selectQuery = "UPDATE TransactionTbl SET [TransactionCategory] = @transactionCategory, [TransactionAmount] = @transactionAmount, [dateTime] = @dateTime, [TransactionMessage] = @transactionMessage, [IncomeExpense] = @incomeExpense WHERE [TransactionId] = @id AND [userIdFk] = @userID";
+            string selectQuery = "UPDATE TransactionsTbl SET [TransactionCategory] = @transactionCategory, [TransactionAmount] = @transactionAmount, [dateTime] = @dateTime, [TransactionMessage] = @transactionMessage, [IncomeExpense] = @incomeExpense WHERE [TransactionId] = @id AND [userIdFk] = @userID";
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
