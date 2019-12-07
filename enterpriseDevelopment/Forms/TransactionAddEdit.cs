@@ -15,6 +15,7 @@ namespace enterpriseDevelopment.Forms
     public partial class TransactionAddEdit : Form
     {
         private Transaction t;
+
         public TransactionAddEdit()
         {
             InitializeComponent();
@@ -51,9 +52,7 @@ namespace enterpriseDevelopment.Forms
         {
 
         }
-
-
-
+        
         private void TransactionAddEdit_Load(object sender, EventArgs e)
         {
             ContactRepository contactRepository = new ContactRepository();
@@ -83,7 +82,7 @@ namespace enterpriseDevelopment.Forms
 
         private void actionBtn_Click(object sender, EventArgs e)
         {
-
+            // On button click it stores all the form filled from the user into the transaction object
             t.transactionCategory = categoryTxt.Text;
             t.transactionAmount = transactionAmountNum.Value;
 

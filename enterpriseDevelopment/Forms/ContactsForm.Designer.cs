@@ -41,10 +41,11 @@
             this.ContactNameColumn});
             this.listViewContact.FullRowSelect = true;
             this.listViewContact.HideSelection = false;
-            this.listViewContact.Location = new System.Drawing.Point(266, 58);
+            this.listViewContact.Location = new System.Drawing.Point(133, 30);
+            this.listViewContact.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.listViewContact.MultiSelect = false;
             this.listViewContact.Name = "listViewContact";
-            this.listViewContact.Size = new System.Drawing.Size(191, 688);
+            this.listViewContact.Size = new System.Drawing.Size(98, 360);
             this.listViewContact.TabIndex = 0;
             this.listViewContact.UseCompatibleStateImageBehavior = false;
             this.listViewContact.View = System.Windows.Forms.View.Details;
@@ -57,9 +58,10 @@
             // 
             // addBtn
             // 
-            this.addBtn.Location = new System.Drawing.Point(598, 114);
+            this.addBtn.Location = new System.Drawing.Point(299, 59);
+            this.addBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.addBtn.Name = "addBtn";
-            this.addBtn.Size = new System.Drawing.Size(300, 162);
+            this.addBtn.Size = new System.Drawing.Size(150, 84);
             this.addBtn.TabIndex = 1;
             this.addBtn.Text = "Add";
             this.addBtn.UseVisualStyleBackColor = true;
@@ -67,9 +69,10 @@
             // 
             // deleteBtn
             // 
-            this.deleteBtn.Location = new System.Drawing.Point(598, 323);
+            this.deleteBtn.Location = new System.Drawing.Point(299, 168);
+            this.deleteBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.deleteBtn.Name = "deleteBtn";
-            this.deleteBtn.Size = new System.Drawing.Size(300, 162);
+            this.deleteBtn.Size = new System.Drawing.Size(150, 84);
             this.deleteBtn.TabIndex = 2;
             this.deleteBtn.Text = "Delete";
             this.deleteBtn.UseVisualStyleBackColor = true;
@@ -77,9 +80,10 @@
             // 
             // editBtn
             // 
-            this.editBtn.Location = new System.Drawing.Point(598, 543);
+            this.editBtn.Location = new System.Drawing.Point(299, 282);
+            this.editBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.editBtn.Name = "editBtn";
-            this.editBtn.Size = new System.Drawing.Size(300, 162);
+            this.editBtn.Size = new System.Drawing.Size(150, 84);
             this.editBtn.TabIndex = 2;
             this.editBtn.Text = "Edit";
             this.editBtn.UseVisualStyleBackColor = true;
@@ -87,14 +91,16 @@
             // 
             // ContactsForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1663, 942);
+            this.ClientSize = new System.Drawing.Size(832, 490);
             this.Controls.Add(this.editBtn);
             this.Controls.Add(this.deleteBtn);
             this.Controls.Add(this.addBtn);
             this.Controls.Add(this.listViewContact);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ContactsForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ContactsForm";
             this.Activated += new System.EventHandler(this.ContactsForm_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ContactsForm_FormClosed);

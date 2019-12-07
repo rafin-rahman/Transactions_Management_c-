@@ -50,9 +50,10 @@
             this.contact,
             this.message});
             this.listViewTransaction.HideSelection = false;
-            this.listViewTransaction.Location = new System.Drawing.Point(50, 45);
+            this.listViewTransaction.Location = new System.Drawing.Point(25, 23);
+            this.listViewTransaction.Margin = new System.Windows.Forms.Padding(2);
             this.listViewTransaction.Name = "listViewTransaction";
-            this.listViewTransaction.Size = new System.Drawing.Size(1367, 461);
+            this.listViewTransaction.Size = new System.Drawing.Size(686, 242);
             this.listViewTransaction.TabIndex = 0;
             this.listViewTransaction.UseCompatibleStateImageBehavior = false;
             this.listViewTransaction.View = System.Windows.Forms.View.Details;
@@ -92,9 +93,10 @@
             // 
             // addBtn
             // 
-            this.addBtn.Location = new System.Drawing.Point(1739, 61);
+            this.addBtn.Location = new System.Drawing.Point(870, 32);
+            this.addBtn.Margin = new System.Windows.Forms.Padding(2);
             this.addBtn.Name = "addBtn";
-            this.addBtn.Size = new System.Drawing.Size(192, 103);
+            this.addBtn.Size = new System.Drawing.Size(96, 54);
             this.addBtn.TabIndex = 1;
             this.addBtn.Text = "Add";
             this.addBtn.UseVisualStyleBackColor = true;
@@ -102,9 +104,10 @@
             // 
             // editBtn
             // 
-            this.editBtn.Location = new System.Drawing.Point(1739, 197);
+            this.editBtn.Location = new System.Drawing.Point(870, 102);
+            this.editBtn.Margin = new System.Windows.Forms.Padding(2);
             this.editBtn.Name = "editBtn";
-            this.editBtn.Size = new System.Drawing.Size(192, 103);
+            this.editBtn.Size = new System.Drawing.Size(96, 54);
             this.editBtn.TabIndex = 2;
             this.editBtn.Text = "Edit";
             this.editBtn.UseVisualStyleBackColor = true;
@@ -112,9 +115,10 @@
             // 
             // deleteBtn
             // 
-            this.deleteBtn.Location = new System.Drawing.Point(1739, 328);
+            this.deleteBtn.Location = new System.Drawing.Point(870, 171);
+            this.deleteBtn.Margin = new System.Windows.Forms.Padding(2);
             this.deleteBtn.Name = "deleteBtn";
-            this.deleteBtn.Size = new System.Drawing.Size(192, 103);
+            this.deleteBtn.Size = new System.Drawing.Size(96, 54);
             this.deleteBtn.TabIndex = 3;
             this.deleteBtn.Text = "Delete";
             this.deleteBtn.UseVisualStyleBackColor = true;
@@ -122,14 +126,16 @@
             // 
             // TransactionForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2507, 918);
+            this.ClientSize = new System.Drawing.Size(1254, 477);
             this.Controls.Add(this.deleteBtn);
             this.Controls.Add(this.editBtn);
             this.Controls.Add(this.addBtn);
             this.Controls.Add(this.listViewTransaction);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "TransactionForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "TransactionForm";
             this.Activated += new System.EventHandler(this.TransactionForm_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.TransactionForm_FormClosed);

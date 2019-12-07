@@ -42,15 +42,18 @@
             this.transactionAmountNum = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.contactComboBox = new System.Windows.Forms.ComboBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.transactionAmountNum)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // expenseRadio
             // 
             this.expenseRadio.AutoSize = true;
-            this.expenseRadio.Location = new System.Drawing.Point(548, 223);
+            this.expenseRadio.Location = new System.Drawing.Point(90, 18);
+            this.expenseRadio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.expenseRadio.Name = "expenseRadio";
-            this.expenseRadio.Size = new System.Drawing.Size(127, 29);
+            this.expenseRadio.Size = new System.Drawing.Size(66, 17);
             this.expenseRadio.TabIndex = 8;
             this.expenseRadio.Text = "Expense";
             this.expenseRadio.UseVisualStyleBackColor = true;
@@ -58,34 +61,38 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(191, 45);
+            this.label1.Location = new System.Drawing.Point(96, 23);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(99, 25);
+            this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Category";
             // 
             // categoryTxt
             // 
-            this.categoryTxt.Location = new System.Drawing.Point(196, 87);
+            this.categoryTxt.Location = new System.Drawing.Point(98, 45);
+            this.categoryTxt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.categoryTxt.Name = "categoryTxt";
-            this.categoryTxt.Size = new System.Drawing.Size(100, 31);
+            this.categoryTxt.Size = new System.Drawing.Size(52, 20);
             this.categoryTxt.TabIndex = 1;
             // 
             // amountLbl
             // 
             this.amountLbl.AutoSize = true;
-            this.amountLbl.Location = new System.Drawing.Point(201, 166);
+            this.amountLbl.Location = new System.Drawing.Point(100, 86);
+            this.amountLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.amountLbl.Name = "amountLbl";
-            this.amountLbl.Size = new System.Drawing.Size(85, 25);
+            this.amountLbl.Size = new System.Drawing.Size(43, 13);
             this.amountLbl.TabIndex = 2;
             this.amountLbl.Text = "Amount";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(196, 305);
+            this.label2.Location = new System.Drawing.Point(98, 159);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(229, 25);
+            this.label2.Size = new System.Drawing.Size(115, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "Date of the transaction";
             // 
@@ -93,17 +100,19 @@
             // 
             this.transDateTime.CustomFormat = "dd/MM/yyyy HH:mm";
             this.transDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.transDateTime.Location = new System.Drawing.Point(196, 357);
+            this.transDateTime.Location = new System.Drawing.Point(98, 186);
+            this.transDateTime.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.transDateTime.Name = "transDateTime";
-            this.transDateTime.Size = new System.Drawing.Size(242, 31);
+            this.transDateTime.Size = new System.Drawing.Size(123, 20);
             this.transDateTime.TabIndex = 5;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(412, 166);
+            this.label3.Location = new System.Drawing.Point(206, 86);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(214, 25);
+            this.label3.Size = new System.Drawing.Size(107, 13);
             this.label3.TabIndex = 6;
             this.label3.Text = "Income or Expense ?";
             // 
@@ -111,9 +120,10 @@
             // 
             this.incomeRadio.AutoSize = true;
             this.incomeRadio.Checked = true;
-            this.incomeRadio.Location = new System.Drawing.Point(417, 223);
+            this.incomeRadio.Location = new System.Drawing.Point(17, 18);
+            this.incomeRadio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.incomeRadio.Name = "incomeRadio";
-            this.incomeRadio.Size = new System.Drawing.Size(112, 29);
+            this.incomeRadio.Size = new System.Drawing.Size(60, 17);
             this.incomeRadio.TabIndex = 7;
             this.incomeRadio.TabStop = true;
             this.incomeRadio.Text = "Income";
@@ -122,25 +132,28 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(201, 428);
+            this.label4.Location = new System.Drawing.Point(100, 223);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(120, 25);
+            this.label4.Size = new System.Drawing.Size(60, 13);
             this.label4.TabIndex = 9;
             this.label4.Text = "Description";
             // 
             // messageRichTetx
             // 
-            this.messageRichTetx.Location = new System.Drawing.Point(201, 485);
+            this.messageRichTetx.Location = new System.Drawing.Point(100, 252);
+            this.messageRichTetx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.messageRichTetx.Name = "messageRichTetx";
-            this.messageRichTetx.Size = new System.Drawing.Size(464, 137);
+            this.messageRichTetx.Size = new System.Drawing.Size(234, 73);
             this.messageRichTetx.TabIndex = 10;
             this.messageRichTetx.Text = "";
             // 
             // actionBtn
             // 
-            this.actionBtn.Location = new System.Drawing.Point(201, 652);
+            this.actionBtn.Location = new System.Drawing.Point(100, 339);
+            this.actionBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.actionBtn.Name = "actionBtn";
-            this.actionBtn.Size = new System.Drawing.Size(146, 82);
+            this.actionBtn.Size = new System.Drawing.Size(73, 43);
             this.actionBtn.TabIndex = 11;
             this.actionBtn.Text = "Action";
             this.actionBtn.UseVisualStyleBackColor = true;
@@ -148,9 +161,10 @@
             // 
             // transactionAmountNum
             // 
-            this.transactionAmountNum.Location = new System.Drawing.Point(196, 221);
+            this.transactionAmountNum.Location = new System.Drawing.Point(98, 115);
+            this.transactionAmountNum.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.transactionAmountNum.Name = "transactionAmountNum";
-            this.transactionAmountNum.Size = new System.Drawing.Size(120, 31);
+            this.transactionAmountNum.Size = new System.Drawing.Size(60, 20);
             this.transactionAmountNum.TabIndex = 12;
             this.transactionAmountNum.Value = new decimal(new int[] {
             1,
@@ -161,43 +175,56 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(438, 45);
+            this.label5.Location = new System.Drawing.Point(219, 23);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(177, 25);
+            this.label5.Size = new System.Drawing.Size(89, 13);
             this.label5.TabIndex = 13;
             this.label5.Text = "Assigned contact";
             // 
             // contactComboBox
             // 
             this.contactComboBox.FormattingEnabled = true;
-            this.contactComboBox.Location = new System.Drawing.Point(443, 85);
+            this.contactComboBox.Location = new System.Drawing.Point(222, 44);
+            this.contactComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.contactComboBox.Name = "contactComboBox";
-            this.contactComboBox.Size = new System.Drawing.Size(121, 33);
+            this.contactComboBox.Size = new System.Drawing.Size(62, 21);
             this.contactComboBox.TabIndex = 15;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.incomeRadio);
+            this.panel1.Controls.Add(this.expenseRadio);
+            this.panel1.Location = new System.Drawing.Point(196, 115);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(172, 52);
+            this.panel1.TabIndex = 16;
             // 
             // TransactionAddEdit
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1351, 854);
+            this.ClientSize = new System.Drawing.Size(676, 444);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.contactComboBox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.transactionAmountNum);
             this.Controls.Add(this.actionBtn);
             this.Controls.Add(this.messageRichTetx);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.expenseRadio);
-            this.Controls.Add(this.incomeRadio);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.transDateTime);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.amountLbl);
             this.Controls.Add(this.categoryTxt);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "TransactionAddEdit";
             this.Text = "TransactionAddEdit";
             this.Load += new System.EventHandler(this.TransactionAddEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.transactionAmountNum)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,5 +246,6 @@
         private System.Windows.Forms.RadioButton expenseRadio;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox contactComboBox;
+        private System.Windows.Forms.Panel panel1;
     }
 }

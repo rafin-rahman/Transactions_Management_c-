@@ -15,6 +15,7 @@ namespace enterpriseDevelopment.Repositories
 
         public string databaseConn;
         SqlConnection connection;
+
         public TransactionRepository()
         {
             databaseConn = ConfigurationManager.ConnectionStrings["Conn"].ConnectionString;
@@ -56,13 +57,13 @@ namespace enterpriseDevelopment.Repositories
                         contactName = sqlDataReader["ContactName"].ToString()
                     };
 
-                    if (temp.incomeExpense)
+                    if (temp.incomeExpense == true)
                     {
-                        temp.typeValue = "Expense";
+                        temp.typeValue = "Income";
                     }
                     else
                     {
-                        temp.typeValue = "Income";
+                        temp.typeValue = "Expense";
                     }
 
                     u.Add(temp);
