@@ -1,4 +1,5 @@
-﻿using System;
+﻿using enterpriseDevelopment.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,13 @@ namespace enterpriseDevelopment
         public EventForm()
         {
             InitializeComponent();
+        }
+
+        private void addBtn_Click(object sender, EventArgs e)
+        {
+            EventAddEdit eventAddEdit = new EventAddEdit();
+            eventAddEdit.Activate();
+            eventAddEdit.Show();
         }
     }
 }

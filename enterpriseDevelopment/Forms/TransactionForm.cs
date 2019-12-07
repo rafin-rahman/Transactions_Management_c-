@@ -37,10 +37,10 @@ namespace enterpriseDevelopment.Forms
             if (listViewTransaction.SelectedItems.Count > 0)
             {
 
-                Contact contact = (Contact)listViewTransaction.SelectedItems[0].Tag;
-                ContactAddEdit contactAddEdit = new ContactAddEdit(contact);
-                contactAddEdit.Activate();
-                contactAddEdit.Show();
+                Transaction transaction = (Transaction)listViewTransaction.SelectedItems[0].Tag;
+                TransactionAddEdit transactionAddEdit = new TransactionAddEdit(transaction);
+                transactionAddEdit.Activate();
+                transactionAddEdit.Show();
             }
 
          

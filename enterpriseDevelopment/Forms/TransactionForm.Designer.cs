@@ -93,7 +93,7 @@
             // 
             // addBtn
             // 
-            this.addBtn.Location = new System.Drawing.Point(870, 32);
+            this.addBtn.Location = new System.Drawing.Point(729, 21);
             this.addBtn.Margin = new System.Windows.Forms.Padding(2);
             this.addBtn.Name = "addBtn";
             this.addBtn.Size = new System.Drawing.Size(96, 54);
@@ -104,7 +104,7 @@
             // 
             // editBtn
             // 
-            this.editBtn.Location = new System.Drawing.Point(870, 102);
+            this.editBtn.Location = new System.Drawing.Point(729, 91);
             this.editBtn.Margin = new System.Windows.Forms.Padding(2);
             this.editBtn.Name = "editBtn";
             this.editBtn.Size = new System.Drawing.Size(96, 54);
@@ -115,7 +115,7 @@
             // 
             // deleteBtn
             // 
-            this.deleteBtn.Location = new System.Drawing.Point(870, 171);
+            this.deleteBtn.Location = new System.Drawing.Point(729, 160);
             this.deleteBtn.Margin = new System.Windows.Forms.Padding(2);
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.Size = new System.Drawing.Size(96, 54);

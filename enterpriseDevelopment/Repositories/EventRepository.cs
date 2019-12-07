@@ -29,7 +29,7 @@ namespace enterpriseDevelopment.Repositories
         public bool AddEvent(Event eventObj)
         {
 
-            string addQuery = "INSERT INTO EventsTbl ([EventTitle],[EventStatus],[Location],[EventMessage],[dateTime],[userIdFk],[contactIdFk]) VALUES (@title, @status, @location, @messsage, @datetime, @userFk, @contactFk)"
+            string addQuery = "INSERT INTO EventsTbl ([EventTitle],[EventStatus],[Location],[EventMessage],[dateTime],[userIdFk],[contactIdFk]) VALUES (@title, @status, @location, @messsage, @datetime, @userFk, @contactFk)";
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(addQuery, connection);
@@ -40,6 +40,31 @@ namespace enterpriseDevelopment.Repositories
                 sqlCommand.Parameters.Add("@datetime", SqlDbType.DateTime).Value = eventObj.date;
                 sqlCommand.Parameters.Add("@userFk", SqlDbType.Int).Value = eventObj.userFK;
                 sqlCommand.Parameters.Add("@contactFk", SqlDbType.Int).Value = eventObj.contactFk;
+
+                // to avoid storing contact id as 0
+                SqlParameter sqlParameter = new SqlParameter("@contactFk", SqlDbType.Int);
+                if (eventObj.contactFk == 0)
+                {
+                    sqlParameter.Value = DBNull.Value;
+                }
+                else
+                {
+                    sqlParameter.Value = eventObj.contactFk;
+                }
+
+                sqlCommand.Parameters.Add(sqlParameter);
+
+                connection.Open();
+                var x = sqlCommand.ExecuteNonQuery();
+                connection.Close();
+                if (x > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             catch (Exception ex)
             {

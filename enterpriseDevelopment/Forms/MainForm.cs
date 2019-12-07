@@ -61,5 +61,12 @@ namespace enterpriseDevelopment
             transactionForm.Show();
 
         }
+
+        private void event_Click(object sender, EventArgs e)
+        {
+            EventForm eventForm = new EventForm();
+            eventForm.Activate();
+            eventForm.Show();
+        }
     }
 }

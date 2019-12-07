@@ -42,7 +42,7 @@
             this.listViewContact.FullRowSelect = true;
             this.listViewContact.HideSelection = false;
             this.listViewContact.Location = new System.Drawing.Point(133, 30);
-            this.listViewContact.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listViewContact.Margin = new System.Windows.Forms.Padding(2);
             this.listViewContact.MultiSelect = false;
             this.listViewContact.Name = "listViewContact";
             this.listViewContact.Size = new System.Drawing.Size(98, 360);
@@ -59,7 +59,7 @@
             // addBtn
             // 
             this.addBtn.Location = new System.Drawing.Point(299, 59);
-            this.addBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.addBtn.Margin = new System.Windows.Forms.Padding(2);
             this.addBtn.Name = "addBtn";
             this.addBtn.Size = new System.Drawing.Size(150, 84);
             this.addBtn.TabIndex = 1;
@@ -69,8 +69,8 @@
             // 
             // deleteBtn
             // 
-            this.deleteBtn.Location = new System.Drawing.Point(299, 168);
-            this.deleteBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.deleteBtn.Location = new System.Drawing.Point(299, 235);
+            this.deleteBtn.Margin = new System.Windows.Forms.Padding(2);
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.Size = new System.Drawing.Size(150, 84);
             this.deleteBtn.TabIndex = 2;
@@ -80,8 +80,8 @@
             // 
             // editBtn
             // 
-            this.editBtn.Location = new System.Drawing.Point(299, 282);
-            this.editBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.editBtn.Location = new System.Drawing.Point(299, 147);
+            this.editBtn.Margin = new System.Windows.Forms.Padding(2);
             this.editBtn.Name = "editBtn";
             this.editBtn.Size = new System.Drawing.Size(150, 84);
             this.editBtn.TabIndex = 2;
@@ -98,7 +98,7 @@
             this.Controls.Add(this.deleteBtn);
             this.Controls.Add(this.addBtn);
             this.Controls.Add(this.listViewContact);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ContactsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ContactsForm";
