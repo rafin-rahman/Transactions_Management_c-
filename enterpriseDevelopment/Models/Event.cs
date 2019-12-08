@@ -16,6 +16,7 @@ namespace enterpriseDevelopment.Models
         public DateTime date { get; set; }
         public int userFK { get; set; }
         public int contactFk { get; set; }
+        public string contactName { get; set; }
     }
 
 }

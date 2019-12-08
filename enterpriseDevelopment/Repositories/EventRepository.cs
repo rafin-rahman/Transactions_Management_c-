@@ -25,6 +25,45 @@ namespace enterpriseDevelopment.Repositories
             connection = new SqlConnection(databaseConn);
         }
 
+        public List<Event> GetEvents(int id)
+        {
+            List<Event> u = new List<Event>();
+            string selectQuery = "SELECT EventsTbl.*, ContactsTbl.ContacName FROM EventsTbl LEFT JOIN ContactsTbl ON ContactsTbl.ContactId = EventsTbl.contactIdFk WHERE EventsTbl.userIdFk = @userID";
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
+                sqlCommand.Parameters.Add("@userID", SqlDbType.Int).Value = id;
+
+                connection.Open();
+                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+
+                while (sqlDataReader.Read())
+                {
+                    Event temp = new Event
+                    {
+                        id = (int)sqlDataReader["EventId"],
+                        title = sqlDataReader["EventStatus"].ToString(),
+                        location = sqlDataReader["Location"].ToString(),
+                        message = sqlDataReader["EventMessage"].ToString(),
+                        date = (DateTime)sqlDataReader["daetTime"],
+                        userFK = (int)sqlDataReader["userIdFk"],
+                        contactFk = (int)sqlDataReader["contactIdFk"],
+                        contactName = sqlDataReader["ContactName"].ToString()
+                    };
+
+                    u.Add(temp);
+
+                }
+                connection.Close();
+            }
+            catch (Exception)
+            {
+
+                
+            }
+            return u;
+        }
+
         // Store events into DB
         public bool AddEvent(Event eventObj)
         {

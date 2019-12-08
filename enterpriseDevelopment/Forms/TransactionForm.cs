@@ -68,11 +68,6 @@ namespace enterpriseDevelopment.Forms
             }
         }
 
-        private void listView_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void TransactionForm_Load(object sender, EventArgs e)
         {
         }
@@ -96,6 +91,11 @@ namespace enterpriseDevelopment.Forms
                 listViewI.Tag = transaction;
                 listViewTransaction.Items.Add(listViewI);
             }
+        }
+
+        private void listView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
