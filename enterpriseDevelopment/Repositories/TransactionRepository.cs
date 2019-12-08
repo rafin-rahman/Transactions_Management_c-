@@ -150,16 +150,11 @@ namespace enterpriseDevelopment.Repositories
                 {
                     return false;
                 }
-
-
-
             }
             catch (Exception ex)
             {
                 return false;
             }
-
-
         }
 
         public bool EditTransaction(Transaction transaction)

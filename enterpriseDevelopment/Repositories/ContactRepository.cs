@@ -118,6 +118,7 @@ namespace enterpriseDevelopment
                 {
                     y = (int)sqlDataReader["ContactId"];
                 }
+                connection.Close();
                 return y;
 
 

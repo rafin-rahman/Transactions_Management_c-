@@ -82,7 +82,7 @@ namespace enterpriseDevelopment.Forms
 
         private void actionBtn_Click(object sender, EventArgs e)
         {
-            // On button click it stores all the form filled from the user into the transaction object
+         
             t.transactionCategory = categoryTxt.Text;
             t.transactionAmount = transactionAmountNum.Value;
 

@@ -29,7 +29,7 @@ namespace enterpriseDevelopment.Repositories
         public bool AddEvent(Event eventObj)
         {
 
-            string addQuery = "INSERT INTO EventsTbl ([EventTitle],[EventStatus],[Location],[EventMessage],[dateTime],[userIdFk],[contactIdFk]) VALUES (@title, @status, @location, @messsage, @datetime, @userFk, @contactFk)";
+            string addQuery = "INSERT INTO EventsTbl ([EventTitle],[EventStatus],[Location],[EventMessage],[dateTime],[userIdFk],[contactIdFk]) VALUES (@title, @status, @location, @message, @datetime, @userFk, @contactFk)";
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(addQuery, connection);
@@ -39,19 +39,12 @@ namespace enterpriseDevelopment.Repositories
                 sqlCommand.Parameters.Add("@message", SqlDbType.VarChar).Value = eventObj.message;
                 sqlCommand.Parameters.Add("@datetime", SqlDbType.DateTime).Value = eventObj.date;
                 sqlCommand.Parameters.Add("@userFk", SqlDbType.Int).Value = eventObj.userFK;
-                sqlCommand.Parameters.Add("@contactFk", SqlDbType.Int).Value = eventObj.contactFk;
+
 
                 // to avoid storing contact id as 0
                 SqlParameter sqlParameter = new SqlParameter("@contactFk", SqlDbType.Int);
-                if (eventObj.contactFk == 0)
-                {
-                    sqlParameter.Value = DBNull.Value;
-                }
-                else
-                {
-                    sqlParameter.Value = eventObj.contactFk;
-                }
-
+                if (eventObj.contactFk == 0) sqlParameter.Value = DBNull.Value;
+                else sqlParameter.Value = eventObj.contactFk;
                 sqlCommand.Parameters.Add(sqlParameter);
 
                 connection.Open();
@@ -73,6 +66,40 @@ namespace enterpriseDevelopment.Repositories
             }
         }
 
+
+        public bool EditEvent(Event eventObj)
+        {
+            string editQuery = "UPDATE EventsTbl SET [EventTitle] = @title, [EventStatus] = @status, [Location] = @location, [EventMessage] = @message, [dateTime] = @dateTime WHERE [EventId] = @id AND [userIdFk] = @userID";
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand(editQuery, connection);
+
+                sqlCommand.Parameters.Add("@title", SqlDbType.NVarChar).Value = eventObj.title;
+                sqlCommand.Parameters.Add("@status", SqlDbType.NVarChar).Value = eventObj.status;
+                sqlCommand.Parameters.Add("@location", SqlDbType.NVarChar).Value = eventObj.location;
+                sqlCommand.Parameters.Add("@message", SqlDbType.NVarChar).Value = eventObj.message;
+                sqlCommand.Parameters.Add("@dateTime", SqlDbType.DateTime).Value = eventObj.date;
+                sqlCommand.Parameters.Add("@userID", SqlDbType.Int).Value = eventObj.userFK;
+
+
+                connection.Open();
+                var x = sqlCommand.ExecuteNonQuery();
+                connection.Close();
+                if (x > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return false;
+            }
+        }
     }
 
 
