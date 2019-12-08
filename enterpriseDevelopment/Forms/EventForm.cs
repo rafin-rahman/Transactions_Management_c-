@@ -45,7 +45,7 @@ namespace enterpriseDevelopment
 
         private void EventForm_Activated(object sender, EventArgs e)
         {
-            List<Event> eventList = eventRepository.
+           
         }
     }
 }

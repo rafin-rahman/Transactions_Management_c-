@@ -16,9 +16,28 @@ namespace enterpriseDevelopment.Forms
     {
 
         private TransactionRepository transactionRepository;
+        private TransactionRecurringRepository TransactionRecurringRepository;
+        private bool isRepeating = false;
         public TransactionForm()
         {
             InitializeComponent();
+            transactionRepository = new TransactionRepository();
+            // When this form in opened, main form will be hidden
+            Instance.MainForm.Hide();
+        }
+
+        public TransactionForm(bool repeat)
+        {
+            InitializeComponent();
+            isRepeating = repeat;
+            if (isRepeating == true)
+            {
+
+                listViewTransaction.Columns.Add("Period");
+                listViewTransaction.Columns.Add("Ending date");
+                TransactionRecurringRepository = new TransactionRecurringRepository();
+            }
+            
             transactionRepository = new TransactionRepository();
             // When this form in opened, main form will be hidden
             Instance.MainForm.Hide();
@@ -83,13 +102,37 @@ namespace enterpriseDevelopment.Forms
 
         private void TransactionForm_Activated(object sender, EventArgs e)
         {
-            List<Transaction> transactionsList = transactionRepository.GetTransactions(Instance.StaticUserAccount.UserId);
-            listViewTransaction.Items.Clear();
-            foreach (Transaction transaction in transactionsList)
+            if (isRepeating)
             {
-                ListViewItem listViewI = new ListViewItem(new string[] { transaction.transactionAmount.ToString(),transaction.typeValue,transaction.transactionCategory, transaction.dateTime.ToString() ,transaction.contactName,transaction.transactionMessage });
-                listViewI.Tag = transaction;
-                listViewTransaction.Items.Add(listViewI);
+                List<TransactionRepeat> transactionsList = TransactionRecurringRepository.GetTransactions(Instance.StaticUserAccount.UserId);
+                listViewTransaction.Items.Clear();
+                foreach (TransactionRepeat transactionRepeat in transactionsList)
+                {
+                    string endDate = "";
+                    if (transactionRepeat.subscriptionEndTime == DateTime.MinValue)
+                    {
+                        endDate = "N/A";
+                    }
+                    else
+                    {
+                        endDate = transactionRepeat.subscriptionEndTime.ToString();
+                    }
+
+                    ListViewItem listViewI = new ListViewItem(new string[] { transactionRepeat.transactionAmount.ToString(), transactionRepeat.typeValue, transactionRepeat.transactionCategory, transactionRepeat.dateTime.ToString(), transactionRepeat.contactName, transactionRepeat.transactionMessage, transactionRepeat.subscriptionPeriod, transactionRepeat.subscriptionEndTime.ToString() });
+                    listViewI.Tag = transactionRepeat;
+                    listViewTransaction.Items.Add(listViewI);
+                }
+            }
+            else
+            {
+                List<Transaction> transactionsList = transactionRepository.GetTransactions(Instance.StaticUserAccount.UserId);
+                listViewTransaction.Items.Clear();
+                foreach (Transaction transaction in transactionsList)
+                {
+                    ListViewItem listViewI = new ListViewItem(new string[] { transaction.transactionAmount.ToString(), transaction.typeValue, transaction.transactionCategory, transaction.dateTime.ToString(), transaction.contactName, transaction.transactionMessage });
+                    listViewI.Tag = transaction;
+                    listViewTransaction.Items.Add(listViewI);
+                }
             }
         }
 

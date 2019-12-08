@@ -66,6 +66,24 @@ namespace enterpriseDevelopment.Repositories
                         temp.typeValue = "Expense";
                     }
 
+
+                    if (sqlDataReader["contactIdFk"] == DBNull.Value)
+                    {
+                        temp.contactIdFk = 0;
+                    }
+                    else
+                    {
+                        temp.contactIdFk = (int)sqlDataReader["contactIdFk"];
+                    }
+
+                    if (sqlDataReader["ContactName"] == DBNull.Value)
+                    {
+                        temp.contactName = "";
+                    }
+                    else
+                    {
+                        temp.contactName = sqlDataReader["ContactName"].ToString();
+                    }
                     u.Add(temp);
                     
 

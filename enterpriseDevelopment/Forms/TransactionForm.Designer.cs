@@ -49,9 +49,11 @@
             this.date,
             this.contact,
             this.message});
+            this.listViewTransaction.FullRowSelect = true;
             this.listViewTransaction.HideSelection = false;
             this.listViewTransaction.Location = new System.Drawing.Point(50, 44);
-            this.listViewTransaction.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listViewTransaction.Margin = new System.Windows.Forms.Padding(4);
+            this.listViewTransaction.MultiSelect = false;
             this.listViewTransaction.Name = "listViewTransaction";
             this.listViewTransaction.Size = new System.Drawing.Size(1368, 462);
             this.listViewTransaction.TabIndex = 0;
@@ -94,7 +96,7 @@
             // addBtn
             // 
             this.addBtn.Location = new System.Drawing.Point(1458, 40);
-            this.addBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.addBtn.Margin = new System.Windows.Forms.Padding(4);
             this.addBtn.Name = "addBtn";
             this.addBtn.Size = new System.Drawing.Size(192, 104);
             this.addBtn.TabIndex = 1;
@@ -105,7 +107,7 @@
             // editBtn
             // 
             this.editBtn.Location = new System.Drawing.Point(1458, 175);
-            this.editBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.editBtn.Margin = new System.Windows.Forms.Padding(4);
             this.editBtn.Name = "editBtn";
             this.editBtn.Size = new System.Drawing.Size(192, 104);
             this.editBtn.TabIndex = 2;
@@ -116,7 +118,7 @@
             // deleteBtn
             // 
             this.deleteBtn.Location = new System.Drawing.Point(1458, 308);
-            this.deleteBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.deleteBtn.Margin = new System.Windows.Forms.Padding(4);
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.Size = new System.Drawing.Size(192, 104);
             this.deleteBtn.TabIndex = 3;
@@ -133,7 +135,7 @@
             this.Controls.Add(this.editBtn);
             this.Controls.Add(this.addBtn);
             this.Controls.Add(this.listViewTransaction);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "TransactionForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "TransactionForm";

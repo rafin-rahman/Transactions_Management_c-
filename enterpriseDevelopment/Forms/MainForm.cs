@@ -68,5 +68,12 @@ namespace enterpriseDevelopment
             eventForm.Activate();
             eventForm.Show();
         }
+
+        private void repeatBtn_Click(object sender, EventArgs e)
+        {
+            TransactionForm transactionForm = new TransactionForm(true);
+            transactionForm.Activate();
+            transactionForm.Show();
+        }
     }
 }
