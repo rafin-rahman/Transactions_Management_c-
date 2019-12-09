@@ -75,7 +75,6 @@ namespace enterpriseDevelopment.Forms
          
         }
         #endregion
-
         private void deleteBtn_Click(object sender, EventArgs e)
         {
             if (listViewTransaction.SelectedItems.Count > 0)

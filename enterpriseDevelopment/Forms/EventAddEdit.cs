@@ -68,7 +68,7 @@ namespace enterpriseDevelopment.Forms
             eventPrivate.message = messageRichTxt.Text;
             eventPrivate.date = dateTimePick.Value;
             eventPrivate.location = locationTxt.Text;
-            eventPrivate.status = statusTxt.Text;
+            eventPrivate.status = statusComboBox.Text;
 
             Contact contact = (Contact)comboBoxEvent.SelectedItem;
             if(contact == null)

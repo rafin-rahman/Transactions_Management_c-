@@ -92,6 +92,7 @@
     <Compile Include="Instance.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\EventRepeat.cs" />
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="Models\TransactionRepeat.cs" />
     <Compile Include="Repositories\ContactRepository.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\UserAccount.cs" />
+    <Compile Include="Repositories\EventRecurringRepository.cs" />
     <Compile Include="Repositories\EventRepository.cs" />
     <Compile Include="Repositories\TransactionRecurringRepository.cs" />
     <Compile Include="Repositories\TransactionRepository.cs" />

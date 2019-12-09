@@ -16,6 +16,7 @@ namespace enterpriseDevelopment
     public partial class EventForm : Form
     {
         private EventRepository eventRepository;
+       
         public EventForm()
         {
             InitializeComponent();
@@ -46,6 +47,11 @@ namespace enterpriseDevelopment
         private void EventForm_Activated(object sender, EventArgs e)
         {
            
+        }
+
+        private void editBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

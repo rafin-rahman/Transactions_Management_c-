@@ -14,6 +14,7 @@ namespace enterpriseDevelopment.Repositories
     {
 
         public string databaseConn;
+
         SqlConnection connection;
 
         public TransactionRecurringRepository()
@@ -53,6 +54,7 @@ namespace enterpriseDevelopment.Repositories
                         incomeExpense = (bool)sqlDataReader["IncomeExpense"],
                         userIdFk = (int)sqlDataReader["userIdFk"],
                         subscriptionPeriod = sqlDataReader["subscriptionPeriod"].ToString()
+                
                     };
 
                     if (temp.incomeExpense == true)
