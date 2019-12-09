@@ -59,7 +59,7 @@
             this.listViewTransaction.TabIndex = 0;
             this.listViewTransaction.UseCompatibleStateImageBehavior = false;
             this.listViewTransaction.View = System.Windows.Forms.View.Details;
-            this.listViewTransaction.SelectedIndexChanged += new System.EventHandler(this.listView_SelectedIndexChanged);
+         
             // 
             // amount
             // 

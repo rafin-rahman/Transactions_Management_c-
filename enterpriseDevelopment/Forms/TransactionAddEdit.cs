@@ -267,7 +267,7 @@ namespace enterpriseDevelopment.Forms
             Close();
             Dispose();
         }
-
+        
         private void addEditransactionRepeat()
         {
             tr.transactionCategory = categoryTxt.Text;
@@ -339,6 +339,7 @@ namespace enterpriseDevelopment.Forms
             Close();
             Dispose();
         }
+
         private void recurrCheck_CheckedChanged(object sender, EventArgs e)
         {
             if (recurrCheck.Checked == true)

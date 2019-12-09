@@ -39,6 +39,7 @@
             this.transactionBtn = new System.Windows.Forms.Button();
             this.eventsBtn = new System.Windows.Forms.Button();
             this.repeatBtn = new System.Windows.Forms.Button();
+            this.eventsRepeatBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -47,7 +48,7 @@
             // ContactBtn
             // 
             this.ContactBtn.Location = new System.Drawing.Point(1300, 225);
-            this.ContactBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ContactBtn.Margin = new System.Windows.Forms.Padding(4);
             this.ContactBtn.Name = "ContactBtn";
             this.ContactBtn.Size = new System.Drawing.Size(244, 65);
             this.ContactBtn.TabIndex = 0;
@@ -61,7 +62,7 @@
             this.panel1.Controls.Add(this.button2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel1.Margin = new System.Windows.Forms.Padding(6);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(408, 1154);
             this.panel1.TabIndex = 1;
@@ -73,7 +74,7 @@
             this.button2.Font = new System.Drawing.Font("Cambria Math", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(0, 0);
-            this.button2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.button2.Margin = new System.Windows.Forms.Padding(6);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(400, 179);
             this.button2.TabIndex = 4;
@@ -85,7 +86,7 @@
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(153)))), ((int)(((byte)(162)))));
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(408, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel2.Margin = new System.Windows.Forms.Padding(6);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1640, 37);
             this.panel2.TabIndex = 2;
@@ -97,7 +98,7 @@
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.pictureBox1);
             this.panel3.Location = new System.Drawing.Point(508, 23);
-            this.panel3.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel3.Margin = new System.Windows.Forms.Padding(6);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(236, 248);
             this.panel3.TabIndex = 3;
@@ -130,7 +131,7 @@
             // 
             this.pictureBox1.Image = global::enterpriseDevelopment.Properties.Resources.icon;
             this.pictureBox1.Location = new System.Drawing.Point(52, 25);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(130, 129);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -140,7 +141,7 @@
             // transactionBtn
             // 
             this.transactionBtn.Location = new System.Drawing.Point(1300, 350);
-            this.transactionBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.transactionBtn.Margin = new System.Windows.Forms.Padding(4);
             this.transactionBtn.Name = "transactionBtn";
             this.transactionBtn.Size = new System.Drawing.Size(244, 71);
             this.transactionBtn.TabIndex = 5;
@@ -150,8 +151,8 @@
             // 
             // eventsBtn
             // 
-            this.eventsBtn.Location = new System.Drawing.Point(1300, 469);
-            this.eventsBtn.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.eventsBtn.Location = new System.Drawing.Point(1300, 466);
+            this.eventsBtn.Margin = new System.Windows.Forms.Padding(6);
             this.eventsBtn.Name = "eventsBtn";
             this.eventsBtn.Size = new System.Drawing.Size(244, 75);
             this.eventsBtn.TabIndex = 6;
@@ -161,7 +162,7 @@
             // 
             // repeatBtn
             // 
-            this.repeatBtn.Location = new System.Drawing.Point(1300, 601);
+            this.repeatBtn.Location = new System.Drawing.Point(1027, 350);
             this.repeatBtn.Name = "repeatBtn";
             this.repeatBtn.Size = new System.Drawing.Size(244, 70);
             this.repeatBtn.TabIndex = 7;
@@ -169,11 +170,23 @@
             this.repeatBtn.UseVisualStyleBackColor = true;
             this.repeatBtn.Click += new System.EventHandler(this.repeatBtn_Click);
             // 
+            // eventsRepeatBtn
+            // 
+            this.eventsRepeatBtn.Location = new System.Drawing.Point(1027, 466);
+            this.eventsRepeatBtn.Margin = new System.Windows.Forms.Padding(6);
+            this.eventsRepeatBtn.Name = "eventsRepeatBtn";
+            this.eventsRepeatBtn.Size = new System.Drawing.Size(244, 75);
+            this.eventsRepeatBtn.TabIndex = 8;
+            this.eventsRepeatBtn.Text = "Recurring Events";
+            this.eventsRepeatBtn.UseVisualStyleBackColor = true;
+            this.eventsRepeatBtn.Click += new System.EventHandler(this.eventRecurring_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2048, 1154);
+            this.Controls.Add(this.eventsRepeatBtn);
             this.Controls.Add(this.repeatBtn);
             this.Controls.Add(this.eventsBtn);
             this.Controls.Add(this.transactionBtn);
@@ -181,7 +194,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.ContactBtn);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
@@ -208,6 +221,7 @@
         private System.Windows.Forms.Button transactionBtn;
         private System.Windows.Forms.Button eventsBtn;
         private System.Windows.Forms.Button repeatBtn;
+        private System.Windows.Forms.Button eventsRepeatBtn;
     }
 }
 

@@ -61,7 +61,13 @@ namespace enterpriseDevelopment
             transactionForm.Show();
 
         }
-
+        
+        private void repeatBtn_Click(object sender, EventArgs e)
+        {
+            TransactionForm transactionForm = new TransactionForm(true);
+            transactionForm.Activate();
+            transactionForm.Show();
+        }
         private void event_Click(object sender, EventArgs e)
         {
             EventForm eventForm = new EventForm();
@@ -69,11 +75,13 @@ namespace enterpriseDevelopment
             eventForm.Show();
         }
 
-        private void repeatBtn_Click(object sender, EventArgs e)
+        private void eventRecurring_Click(object sender, EventArgs e)
         {
-            TransactionForm transactionForm = new TransactionForm(true);
-            transactionForm.Activate();
-            transactionForm.Show();
+           
+                EventForm eventForm = new EventForm();
+                eventForm.Activate();
+                eventForm.Show();
+            
         }
     }
 }

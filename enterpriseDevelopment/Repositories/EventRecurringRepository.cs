@@ -96,7 +96,7 @@ namespace enterpriseDevelopment.Repositories
 
         public bool AddEvent(EventRepeat eventRepeat)
         {
-            string query = "INSERT INTO EventsTbl ([EventTitle],[EventStatus],[Location],[EventMessage],[EventPeriod],[dateTime],[EventPeriodEndDate],[userIdFk],[contactIdFk])" +
+            string query = "INSERT INTO EventsRepeatTbl ([EventTitle],[EventStatus],[Location],[EventMessage],[EventPeriod],[dateTime],[EventPeriodEndDate],[userIdFk],[contactIdFk])" +
                 "VALUES" +
                 "(@title, @status, @location, @message, @period, @dateTime, @endDate, @userID, @contactID)";
             try

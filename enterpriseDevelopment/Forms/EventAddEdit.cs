@@ -73,7 +73,7 @@ namespace enterpriseDevelopment.Forms
             {
                 if (ev.contactFk == 0)
                 {
-                    statusComboBox.Text = "";
+                    periodCombo.Text = "";
                 }
                 else
                 {
@@ -81,7 +81,7 @@ namespace enterpriseDevelopment.Forms
                     {
                         if (ev.contactFk == list[x].ContactId)
                         {
-                            statusComboBox.SelectedItem = statusComboBox.Items[x];
+                            periodCombo.SelectedItem = periodCombo.Items[x];
                         }
                     }
                 }

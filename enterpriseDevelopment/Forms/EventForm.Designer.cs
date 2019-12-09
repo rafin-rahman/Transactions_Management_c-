@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.listViewEvent = new System.Windows.Forms.ListView();
             this.titleCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.loactionCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -39,22 +39,22 @@
             this.deleteBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // listView1
+            // listViewEvent
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listViewEvent.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.titleCol,
             this.statusCol,
             this.loactionCol,
             this.messageCol,
             this.dateTimeCol});
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(107, 65);
-            this.listView1.Margin = new System.Windows.Forms.Padding(6);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(976, 533);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listViewEvent.HideSelection = false;
+            this.listViewEvent.Location = new System.Drawing.Point(107, 65);
+            this.listViewEvent.Margin = new System.Windows.Forms.Padding(6);
+            this.listViewEvent.Name = "listViewEvent";
+            this.listViewEvent.Size = new System.Drawing.Size(976, 533);
+            this.listViewEvent.TabIndex = 0;
+            this.listViewEvent.UseCompatibleStateImageBehavior = false;
+            this.listViewEvent.View = System.Windows.Forms.View.Details;
             // 
             // titleCol
             // 
@@ -112,6 +112,7 @@
             this.deleteBtn.TabIndex = 3;
             this.deleteBtn.Text = "Delete";
             this.deleteBtn.UseVisualStyleBackColor = true;
+            this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
             // 
             // EventForm
             // 
@@ -121,7 +122,7 @@
             this.Controls.Add(this.deleteBtn);
             this.Controls.Add(this.editBtn);
             this.Controls.Add(this.addBtn);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.listViewEvent);
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "EventForm";
             this.Text = "EventForm";
@@ -134,7 +135,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView listViewEvent;
         private System.Windows.Forms.Button addBtn;
         private System.Windows.Forms.Button editBtn;
         private System.Windows.Forms.Button deleteBtn;
