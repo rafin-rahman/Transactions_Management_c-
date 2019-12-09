@@ -31,6 +31,7 @@ namespace enterpriseDevelopment.Forms
         public EventAddEdit(Event eventObj)
         {
             InitializeComponent();
+            ev = eventObj;
             actionBtn.Text = "Edit";
             Text = "Edit event";
             titleTxt.Text = eventObj.title;
@@ -46,6 +47,8 @@ namespace enterpriseDevelopment.Forms
         public EventAddEdit(EventRepeat eventRepeat)
         {
             InitializeComponent();
+            isRepeat = true;
+            er = eventRepeat;
             actionBtn.Text = "Edit";
             Text = "Edit recurring event";
             titleTxt.Text = eventRepeat.title;
@@ -53,7 +56,7 @@ namespace enterpriseDevelopment.Forms
             statusComboBox.SelectedItem = eventRepeat.status;
             dateTimePick.Value = eventRepeat.date;
             locationTxt.Text = eventRepeat.location;
-            groupBox1.Visible = false;
+            groupBox1.Visible = true;
             recurrCheck.Visible = false;
 
             if (er.endDate == DateTime.MinValue)
@@ -73,7 +76,7 @@ namespace enterpriseDevelopment.Forms
             {
                 if (ev.contactFk == 0)
                 {
-                    periodCombo.Text = "";
+                    comboBoxEvent.Text = "";
                 }
                 else
                 {
@@ -81,7 +84,7 @@ namespace enterpriseDevelopment.Forms
                     {
                         if (ev.contactFk == list[x].ContactId)
                         {
-                            periodCombo.SelectedItem = periodCombo.Items[x];
+                            comboBoxEvent.SelectedItem = comboBoxEvent.Items[x];
                         }
                     }
                 }
@@ -94,7 +97,7 @@ namespace enterpriseDevelopment.Forms
             {
                 if (er.contactFk == 0)
                 {
-                    statusComboBox.Text = "";
+                    comboBoxEvent.Text = "";
                 }
                 else
                 {
@@ -102,7 +105,7 @@ namespace enterpriseDevelopment.Forms
                     {
                         if (er.contactFk == list[x].ContactId)
                         {
-                            statusComboBox.SelectedItem = statusComboBox.Items[x];
+                            comboBoxEvent.SelectedItem = comboBoxEvent.Items[x];
                         }
                     }
                 }
@@ -113,8 +116,8 @@ namespace enterpriseDevelopment.Forms
         {
             ContactRepository contactRepository = new ContactRepository();
             List<Contact> list = contactRepository.GetContacts(Instance.StaticUserAccount.UserId);
-            statusComboBox.DataSource = list;
-            statusComboBox.DisplayMember = "ContactName";
+            comboBoxEvent.DataSource = list;
+            comboBoxEvent.DisplayMember = "ContactName";
 
             if (isRepeat)
             {
@@ -128,11 +131,22 @@ namespace enterpriseDevelopment.Forms
 
         private void actionBtn_Click(object sender, EventArgs e)
         {
+
+            if (isRepeat)
+            {
+                addEditEventRepeat();
+            } else
+            {
+                addEditNormEvent();
+            }
+
+        }
+       
+
+        private void addEditNormEvent()
+        {
             ev.title = titleTxt.Text;
             ev.message = messageRichTxt.Text;
-            ev.date = dateTimePick.Value;
-            ev.location = locationTxt.Text;
-            ev.status = statusComboBox.Text;
 
             Contact contact = (Contact)comboBoxEvent.SelectedItem;
             if (contact == null)
@@ -143,66 +157,8 @@ namespace enterpriseDevelopment.Forms
                 }
                 else
                 {
-                    ContactRepository contactRepository = new ContactRepository();
-                    ev.contactFk = contactRepository.AddContact(new Contact { ContactName = comboBoxEvent.Text, userIdFk = Instance.StaticUserAccount.UserId });
-
-                }
-            }
-            else
-            {
-                ev.contactFk = contact.ContactId;
-            }
-
-            // Select add event or edit event method from the repository
-            EventRepository eventRepository = new EventRepository();
-            bool x;
-            if (ev.id > 0)
-            {
-                x = eventRepository.EditEvent(ev);
-            }
-            else
-            {
-                x = eventRepository.AddEvent(ev);
-            }
-            if (ev.id > 0 && x == true)
-            {
-                MessageBox.Show("Event Edited!");
-            }
-            else if (x == true)
-            {
-                MessageBox.Show("Event Added!");
-            }
-            else
-            {
-                MessageBox.Show("ops, Something went wrong");
-            }
-            Close();
-            Dispose();
-
-
-
-
-
-
-
-        }
-
-        private void addEditNormEvent()
-        {
-            ev.title = titleTxt.Text;
-            ev.message = messageRichTxt.Text;
-
-            Contact contact = (Contact)statusComboBox.SelectedItem;
-            if (contact == null)
-            {
-                if (string.IsNullOrWhiteSpace(statusComboBox.Text))
-                {
-                    ev.contactFk = 0;
-                }
-                else
-                {
                     ContactRepository contactsRepository = new ContactRepository();
-                    ev.contactFk = contactsRepository.AddContact(new Contact { ContactName = statusComboBox.Text, userIdFk = Instance.StaticUserAccount.UserId });
+                    ev.contactFk = contactsRepository.AddContact(new Contact { ContactName = comboBoxEvent.Text, userIdFk = Instance.StaticUserAccount.UserId });
                 }
             }
             else
@@ -211,6 +167,8 @@ namespace enterpriseDevelopment.Forms
             }
             ev.date = dateTimePick.Value;
             ev.location = locationTxt.Text;
+
+            ev.status = statusComboBox.Text;
 
             EventRepository eventRepository = new EventRepository();
 
@@ -234,7 +192,8 @@ namespace enterpriseDevelopment.Forms
                     userFK = ev.userFK,
                     status = ev.status,
                     date = ev.date,
-                    contactFk = ev.contactFk
+                    contactFk = ev.contactFk,
+                    location = ev.location
                 };
 
 
@@ -278,17 +237,17 @@ namespace enterpriseDevelopment.Forms
             er.title = titleTxt.Text;
             er.message = messageRichTxt.Text;
 
-            Contact contact = (Contact)statusComboBox.SelectedItem;
+            Contact contact = (Contact)comboBoxEvent.SelectedItem;
             if (contact == null)
             {
-                if (string.IsNullOrWhiteSpace(statusComboBox.Text))
+                if (string.IsNullOrWhiteSpace(comboBoxEvent.Text))
                 {
                     er.contactFk = 0;
                 }
                 else
                 {
                     ContactRepository contactsRepository = new ContactRepository();
-                    er.contactFk = contactsRepository.AddContact(new Contact { ContactName = statusComboBox.Text, userIdFk = Instance.StaticUserAccount.UserId });
+                    er.contactFk = contactsRepository.AddContact(new Contact { ContactName = comboBoxEvent.Text, userIdFk = Instance.StaticUserAccount.UserId });
                 }
             }
             else

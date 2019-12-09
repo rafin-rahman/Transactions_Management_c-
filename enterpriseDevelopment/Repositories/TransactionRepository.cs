@@ -52,9 +52,7 @@ namespace enterpriseDevelopment.Repositories
                         dateTime = (DateTime)sqlDataReader["dateTime"],
                         transactionMessage = sqlDataReader["TransactionMessage"].ToString(),
                         incomeExpense = (bool)sqlDataReader["IncomeExpense"],
-                        userIdFk = (int)sqlDataReader["userIdFk"],
-                        contactIdFk = (int)sqlDataReader["contactIdFk"],
-                        contactName = sqlDataReader["ContactName"].ToString()
+                        userIdFk = (int)sqlDataReader["userIdFk"]
                     };
 
                     if (temp.incomeExpense == true)
@@ -179,7 +177,7 @@ namespace enterpriseDevelopment.Repositories
         {
 
 
-            string selectQuery = "UPDATE TransactionsTbl SET [TransactionCategory] = @transactionCategory, [TransactionAmount] = @transactionAmount, [dateTime] = @dateTime, [TransactionMessage] = @transactionMessage, [IncomeExpense] = @incomeExpense WHERE [TransactionId] = @id AND [userIdFk] = @userID";
+            string selectQuery = "UPDATE TransactionsTbl SET [TransactionCategory] = @transactionCategory, [TransactionAmount] = @transactionAmount, [dateTime] = @dateTime, [TransactionMessage] = @transactionMessage, [IncomeExpense] = @incomeExpense, [contactIdFk] = @contactIdFk WHERE [TransactionId] = @id AND [userIdFk] = @userID";
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
@@ -193,6 +191,11 @@ namespace enterpriseDevelopment.Repositories
                 sqlCommand.Parameters.Add("@userID", SqlDbType.Int).Value = transaction.userIdFk;
                 sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = transaction.transactionId;
 
+                // to avoid storing contact id as 0
+                SqlParameter sqlParameter = new SqlParameter("@contactIdFk", SqlDbType.Int);
+                if (transaction.contactIdFk == 0) sqlParameter.Value = DBNull.Value;
+                else sqlParameter.Value = transaction.contactIdFk;
+                sqlCommand.Parameters.Add(sqlParameter);
 
                 connection.Open();
                 var x = sqlCommand.ExecuteNonQuery();

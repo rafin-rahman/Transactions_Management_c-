@@ -28,7 +28,7 @@ namespace enterpriseDevelopment.Repositories
         public List<Event> GetEvents(int id)
         {
             List<Event> u = new List<Event>();
-            string selectQuery = "SELECT EventsTbl.*, ContactsTbl.ContacName FROM EventsTbl LEFT JOIN ContactsTbl ON ContactsTbl.ContactId = EventsTbl.contactIdFk WHERE EventsTbl.userIdFk = @userID";
+            string selectQuery = "SELECT EventsTbl.*, ContactsTbl.ContactName AS ContactName FROM EventsTbl LEFT JOIN ContactsTbl ON ContactsTbl.ContactId = EventsTbl.contactIdFk WHERE EventsTbl.userIdFk = @userID";
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
@@ -42,21 +42,38 @@ namespace enterpriseDevelopment.Repositories
                     Event temp = new Event
                     {
                         id = (int)sqlDataReader["EventId"],
-                        title = sqlDataReader["EventStatus"].ToString(),
+                        title = sqlDataReader["EventTitle"].ToString(),
+                        status = sqlDataReader["EventStatus"].ToString(),
                         location = sqlDataReader["Location"].ToString(),
                         message = sqlDataReader["EventMessage"].ToString(),
-                        date = (DateTime)sqlDataReader["daetTime"],
-                        userFK = (int)sqlDataReader["userIdFk"],
-                        contactFk = (int)sqlDataReader["contactIdFk"],
-                        contactName = sqlDataReader["ContactName"].ToString()
+                        date = (DateTime)sqlDataReader["dateTime"],
+                        userFK = (int)sqlDataReader["userIdFk"]
                     };
+
+                    if (sqlDataReader["contactIdFk"] == DBNull.Value)
+                    {
+                        temp.contactFk = 0;
+                    }
+                    else
+                    {
+                        temp.contactFk = (int)sqlDataReader["contactIdFk"];
+                    }
+
+                    if (sqlDataReader["ContactName"] == DBNull.Value)
+                    {
+                        temp.contactName = "";
+                    }
+                    else
+                    {
+                        temp.contactName = sqlDataReader["ContactName"].ToString();
+                    }
 
                     u.Add(temp);
 
                 }
                 connection.Close();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 connection.Close();
@@ -108,7 +125,7 @@ namespace enterpriseDevelopment.Repositories
 
         public bool EditEvent(Event eventObj)
         {
-            string editQuery = "UPDATE EventsTbl SET [EventTitle] = @title, [EventStatus] = @status, [Location] = @location, [EventMessage] = @message, [dateTime] = @dateTime WHERE [EventId] = @id AND [userIdFk] = @userID";
+            string editQuery = "UPDATE EventsTbl SET [EventTitle] = @title, [EventStatus] = @status, [Location] = @location, [EventMessage] = @message, [dateTime] = @dateTime, [contactIdFk] = @contactFk WHERE [EventId] = @id AND [userIdFk] = @userID";
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(editQuery, connection);
@@ -119,7 +136,14 @@ namespace enterpriseDevelopment.Repositories
                 sqlCommand.Parameters.Add("@message", SqlDbType.NVarChar).Value = eventObj.message;
                 sqlCommand.Parameters.Add("@dateTime", SqlDbType.DateTime).Value = eventObj.date;
                 sqlCommand.Parameters.Add("@userID", SqlDbType.Int).Value = eventObj.userFK;
+                sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = eventObj.id;
 
+
+                // to avoid storing contact id as 0
+                SqlParameter sqlParameter = new SqlParameter("@contactFk", SqlDbType.Int);
+                if (eventObj.contactFk == 0) sqlParameter.Value = DBNull.Value;
+                else sqlParameter.Value = eventObj.contactFk;
+                sqlCommand.Parameters.Add(sqlParameter);
 
                 connection.Open();
                 var x = sqlCommand.ExecuteNonQuery();

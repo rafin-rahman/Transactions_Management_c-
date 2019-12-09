@@ -103,14 +103,14 @@ namespace enterpriseDevelopment.Repositories
             {
                 SqlCommand cmd = new SqlCommand(query, connection);
 
-                cmd.Parameters.Add("@title", SqlDbType.VarChar).Value = eventRepeat.title;
-                cmd.Parameters.Add("@status", SqlDbType.VarChar).Value = eventRepeat.status;
+                cmd.Parameters.Add("@title", SqlDbType.NVarChar).Value = eventRepeat.title;
+                cmd.Parameters.Add("@status", SqlDbType.NChar).Value = eventRepeat.status;
                 cmd.Parameters.Add("@location", SqlDbType.VarChar).Value = eventRepeat.location;
                 cmd.Parameters.Add("@message", SqlDbType.VarChar).Value = eventRepeat.message;
                 cmd.Parameters.Add("@period", SqlDbType.VarChar).Value = eventRepeat.period;
-                cmd.Parameters.Add("@dateTime", SqlDbType.VarChar).Value = eventRepeat.date;
+                cmd.Parameters.Add("@dateTime", SqlDbType.DateTime).Value = eventRepeat.date;
                 // cmd.Parameters.Add("@endDate", SqlDbType.VarChar).Value = eventRepeat.endDate;
-                cmd.Parameters.Add("@userID", SqlDbType.Int).Value = eventRepeat.status;
+                cmd.Parameters.Add("@userID", SqlDbType.Int).Value = eventRepeat.userFK;
                 // cmd.Parameters.Add("@contactID", SqlDbType.Int).Value = eventRepeat.status;
 
 
@@ -168,7 +168,8 @@ namespace enterpriseDevelopment.Repositories
             {
                 SqlCommand cmd = new SqlCommand(query, connection);
                 cmd.Parameters.Add("@title", SqlDbType.NVarChar).Value = eventRepeat.title;
-                cmd.Parameters.Add("@status", SqlDbType.NVarChar).Value = eventRepeat.status;
+                cmd.Parameters.Add("@status", SqlDbType.NChar).Value = eventRepeat.status;
+                cmd.Parameters.Add("@period", SqlDbType.NVarChar).Value = eventRepeat.period;
                 cmd.Parameters.Add("@location", SqlDbType.NVarChar).Value = eventRepeat.location;
                 cmd.Parameters.Add("@message", SqlDbType.NVarChar).Value = eventRepeat.message;
                 cmd.Parameters.Add("@dateTime", SqlDbType.DateTime).Value = eventRepeat.date;
@@ -201,7 +202,7 @@ namespace enterpriseDevelopment.Repositories
             catch (Exception ex)
             {
                 connection.Close();
-                throw;
+                return false;
             }
             
         }

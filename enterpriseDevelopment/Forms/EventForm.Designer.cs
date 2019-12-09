@@ -33,6 +33,7 @@
             this.statusCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.loactionCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.messageCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.contactName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.dateTimeCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.addBtn = new System.Windows.Forms.Button();
             this.editBtn = new System.Windows.Forms.Button();
@@ -46,10 +47,13 @@
             this.statusCol,
             this.loactionCol,
             this.messageCol,
+            this.contactName,
             this.dateTimeCol});
+            this.listViewEvent.FullRowSelect = true;
             this.listViewEvent.HideSelection = false;
             this.listViewEvent.Location = new System.Drawing.Point(107, 65);
             this.listViewEvent.Margin = new System.Windows.Forms.Padding(6);
+            this.listViewEvent.MultiSelect = false;
             this.listViewEvent.Name = "listViewEvent";
             this.listViewEvent.Size = new System.Drawing.Size(976, 533);
             this.listViewEvent.TabIndex = 0;
@@ -75,6 +79,10 @@
             // 
             this.messageCol.Text = "Description";
             this.messageCol.Width = 200;
+            // 
+            // contactName
+            // 
+            this.contactName.Text = "Contact";
             // 
             // dateTimeCol
             // 
@@ -144,5 +152,6 @@
         private System.Windows.Forms.ColumnHeader loactionCol;
         private System.Windows.Forms.ColumnHeader messageCol;
         private System.Windows.Forms.ColumnHeader dateTimeCol;
+        private System.Windows.Forms.ColumnHeader contactName;
     }
 }

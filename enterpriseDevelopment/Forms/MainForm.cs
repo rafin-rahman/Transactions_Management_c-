@@ -78,7 +78,7 @@ namespace enterpriseDevelopment
         private void eventRecurring_Click(object sender, EventArgs e)
         {
            
-                EventForm eventForm = new EventForm();
+                EventForm eventForm = new EventForm(true);
                 eventForm.Activate();
                 eventForm.Show();
             

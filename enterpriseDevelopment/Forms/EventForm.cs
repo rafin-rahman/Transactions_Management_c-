@@ -25,6 +25,22 @@ namespace enterpriseDevelopment
             Instance.MainForm.Hide();
         }
 
+
+        public EventForm(bool rec)
+        {
+            InitializeComponent();
+            isRepeating = rec;
+            if (isRepeating == true)
+            {
+
+                listViewEvent.Columns.Add("Period");
+                listViewEvent.Columns.Add("Ending date");
+            }
+
+            eventRecurringRepository = new EventRecurringRepository();
+            Instance.MainForm.Hide();
+        }
+
         private void addBtn_Click(object sender, EventArgs e)
         {
             EventAddEdit eventAddEdit = new EventAddEdit();
@@ -47,7 +63,38 @@ namespace enterpriseDevelopment
 
         private void EventForm_Activated(object sender, EventArgs e)
         {
+            if (isRepeating)
+            {
+                List<EventRepeat> eventsList = eventRecurringRepository.GetEvents(Instance.StaticUserAccount.UserId);
+                listViewEvent.Items.Clear();
+                foreach (EventRepeat eventRepeat in eventsList)
+                {
+                    string endDate = "";
+                    if (eventRepeat.endDate == DateTime.MinValue)
+                    {
+                        endDate = "N/A";
+                    }
+                    else
+                    {
+                        endDate = eventRepeat.endDate.ToString();
+                    }
 
+                    ListViewItem listViewI = new ListViewItem(new string[] { eventRepeat.title, eventRepeat.status, eventRepeat.location, eventRepeat.message, eventRepeat.contactName, eventRepeat.date.ToString(), eventRepeat.period, endDate });
+                    listViewI.Tag = eventRepeat;
+                    listViewEvent.Items.Add(listViewI);
+                }
+            }
+            else
+            {
+                List<Event> eventsList = eventRepository.GetEvents(Instance.StaticUserAccount.UserId);
+                listViewEvent.Items.Clear();
+                foreach (Event eventObj in eventsList)
+                {
+                    ListViewItem listViewI = new ListViewItem(new string[] { eventObj.title, eventObj.status, eventObj.location, eventObj.message, eventObj.contactName, eventObj.date.ToString() });
+                    listViewI.Tag = eventObj;
+                    listViewEvent.Items.Add(listViewI);
+                }
+            }
         }
 
         private void editBtn_Click(object sender, EventArgs e)
