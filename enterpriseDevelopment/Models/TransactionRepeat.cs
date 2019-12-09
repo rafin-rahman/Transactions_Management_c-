@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace enterpriseDevelopment.Models
 {
-    class TransactionRepeat
+  public class TransactionRepeat
     {
 
         public int transactionId { get; set; }

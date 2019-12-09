@@ -160,21 +160,26 @@ namespace enterpriseDevelopment.Repositories
         {
 
 
-            string selectQuery = "UPDATE TransactionsRepeatTbl SET [TransactionCategory] = @transactionCategory, [TransactionAmount] = @transactionAmount, [dateTime] = @dateTime, [TransactionMessage] = @transactionMessage, [IncomeExpense] = @incomeExpense, [subscriptionPeriod] = @subscriptionPeriod, [subscriptionEndTime] = @subscriptionEndTime WHERE [TransactionId] = @id AND [userIdFk] = @userID";
+            string selectQuery = "UPDATE TransactionsRepeatTbl SET [TransactionCategory] = @transactionCategory, [TransactionAmount] = @transactionAmount, [dateTime] = @dateTime, [TransactionMessage] = @transactionMessage, [IncomeExpense] = @incomeExpense, [subscriptionPeriod] = @subscriptionPeriod, [subscriptionEndTime] = @subscriptionEndTime, [contactIdFk] = @contactIdFk WHERE [TransactionId] = @id AND [userIdFk] = @userID";
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
 
 
-                sqlCommand.Parameters.Add("@transactionCategory", SqlDbType.NVarChar).Value = transactionRepeat.transactionCategory;
+                sqlCommand.Parameters.Add("@transactionCategory", SqlDbType.VarChar).Value = transactionRepeat.transactionCategory;
                 sqlCommand.Parameters.Add("@transactionAmount", SqlDbType.Money).Value = transactionRepeat.transactionAmount;
                 sqlCommand.Parameters.Add("@dateTime", SqlDbType.DateTime).Value = transactionRepeat.dateTime;
-                sqlCommand.Parameters.Add("@subscriptionPeriod", SqlDbType.DateTime).Value = transactionRepeat.subscriptionPeriod;
-                sqlCommand.Parameters.Add("@subscriptionEndTime", SqlDbType.DateTime).Value = transactionRepeat.subscriptionEndTime;
-                sqlCommand.Parameters.Add("@transactionMessage", SqlDbType.NVarChar).Value = transactionRepeat.transactionMessage;
+                sqlCommand.Parameters.Add("@subscriptionPeriod", SqlDbType.VarChar).Value = transactionRepeat.subscriptionPeriod;
+                sqlCommand.Parameters.Add("@transactionMessage", SqlDbType.VarChar).Value = transactionRepeat.transactionMessage;
                 sqlCommand.Parameters.Add("@incomeExpense", SqlDbType.Bit).Value = transactionRepeat.incomeExpense;
                 sqlCommand.Parameters.Add("@userID", SqlDbType.Int).Value = transactionRepeat.userIdFk;
                 sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = transactionRepeat.transactionId;
+
+
+                SqlParameter sqlParameter = new SqlParameter("@contactIdFk", SqlDbType.Int);
+                if (transactionRepeat.contactIdFk == 0) sqlParameter.Value = DBNull.Value;
+                else sqlParameter.Value = transactionRepeat.contactIdFk;
+                sqlCommand.Parameters.Add(sqlParameter);
 
                 SqlParameter sqlParameter2 = new SqlParameter("@subscriptionEndTime", SqlDbType.DateTime);
                 if (transactionRepeat.subscriptionEndTime == DateTime.MinValue) sqlParameter2.Value = DBNull.Value;

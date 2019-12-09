@@ -59,7 +59,7 @@ namespace enterpriseDevelopment.Repositories
             catch (Exception)
             {
 
-                
+
             }
             return u;
         }
@@ -134,6 +134,34 @@ namespace enterpriseDevelopment.Repositories
                 }
             }
             catch (Exception ex)
+            {
+
+                return false;
+            }
+        }
+
+        public bool DeleteEvent(Event eventObj)
+        {
+            string query = "DELETE FROM EventsTbl WHERE [EventId] = @eventID and [userIdFk] = @userID";
+            try
+            {
+
+                SqlCommand sqlcommand = new SqlCommand(query, connection);
+                sqlcommand.Parameters.Add("@eventID", SqlDbType.Int).Value = eventObj.id;
+                sqlcommand.Parameters.Add("@userId", SqlDbType.Int).Value = eventObj.userFK;
+                connection.Open();
+                var x = sqlcommand.ExecuteNonQuery();
+                connection.Close();
+                if (x > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception)
             {
 
                 return false;

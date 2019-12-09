@@ -56,10 +56,20 @@ namespace enterpriseDevelopment.Forms
             if (listViewTransaction.SelectedItems.Count > 0)
             {
 
-                Transaction transaction = (Transaction)listViewTransaction.SelectedItems[0].Tag;
-                TransactionAddEdit transactionAddEdit = new TransactionAddEdit(transaction);
-                transactionAddEdit.Activate();
-                transactionAddEdit.Show();
+                if (isRepeating)
+                {
+                    TransactionRepeat transaction = (TransactionRepeat)listViewTransaction.SelectedItems[0].Tag;
+                    TransactionAddEdit transactionAddEdit = new TransactionAddEdit(transaction);
+                    transactionAddEdit.Activate();
+                    transactionAddEdit.Show();
+                }
+                else
+                {
+                    Transaction transaction = (Transaction)listViewTransaction.SelectedItems[0].Tag;
+                    TransactionAddEdit transactionAddEdit = new TransactionAddEdit(transaction);
+                    transactionAddEdit.Activate();
+                    transactionAddEdit.Show();
+                }
             }
 
          
@@ -70,20 +80,42 @@ namespace enterpriseDevelopment.Forms
         {
             if (listViewTransaction.SelectedItems.Count > 0)
             {
-                Transaction transaction = (Transaction)listViewTransaction.SelectedItems[0].Tag;
-
-                DialogResult dialogResult = MessageBox.Show("Do you want do delete the transaction?", "Confirm", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes) { 
-                bool x = transactionRepository.DeleteTransaction(transaction);
-                if (x)
+                if (isRepeating)
                 {
-                    MessageBox.Show("Transaction deleted");
+                   TransactionRepeat transaction = (TransactionRepeat)listViewTransaction.SelectedItems[0].Tag;
+
+                    DialogResult dialogResult = MessageBox.Show("Do you want do delete the transaction?", "Confirm", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        bool x = TransactionRecurringRepository.DeleteTransaction(transaction);
+                        if (x)
+                        {
+                            MessageBox.Show("Transaction deleted");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Transaction not deleted");
+                        }
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Transaction not deleted");
+                    Transaction transaction = (Transaction)listViewTransaction.SelectedItems[0].Tag;
+
+                    DialogResult dialogResult = MessageBox.Show("Do you want do delete the transaction?", "Confirm", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        bool x = transactionRepository.DeleteTransaction(transaction);
+                        if (x)
+                        {
+                            MessageBox.Show("Transaction deleted");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Transaction not deleted");
+                        }
+                    }
                 }
-            }
             }
         }
 

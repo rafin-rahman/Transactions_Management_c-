@@ -40,7 +40,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.comboBoxEvent = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.statusTxt = new System.Windows.Forms.TextBox();
+            this.statusComboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // titleTxt
@@ -157,19 +157,25 @@
             this.label6.TabIndex = 11;
             this.label6.Text = "Is it a task or event?";
             // 
-            // statusTxt
+            // statusComboBox
             // 
-            this.statusTxt.Location = new System.Drawing.Point(964, 97);
-            this.statusTxt.Name = "statusTxt";
-            this.statusTxt.Size = new System.Drawing.Size(100, 31);
-            this.statusTxt.TabIndex = 12;
+            this.statusComboBox.FormattingEnabled = true;
+            this.statusComboBox.Items.AddRange(new object[] {
+            "Task",
+            "Event"});
+            this.statusComboBox.Location = new System.Drawing.Point(964, 98);
+            this.statusComboBox.Name = "statusComboBox";
+            this.statusComboBox.Size = new System.Drawing.Size(121, 33);
+            this.statusComboBox.TabIndex = 13;
+            this.statusComboBox.Tag = "";
+            this.statusComboBox.Text = "Task";
             // 
             // EventAddEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1600, 865);
-            this.Controls.Add(this.statusTxt);
+            this.Controls.Add(this.statusComboBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.comboBoxEvent);
             this.Controls.Add(this.label5);
@@ -205,6 +211,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox comboBoxEvent;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox statusTxt;
+        private System.Windows.Forms.ComboBox statusComboBox;
     }
 }

@@ -10,7 +10,7 @@ using enterpriseDevelopment.Models;
 
 namespace enterpriseDevelopment.Repositories
 {
-     class TransactionRepository
+    class TransactionRepository
     {
 
         public string databaseConn;
@@ -85,11 +85,11 @@ namespace enterpriseDevelopment.Repositories
                         temp.contactName = sqlDataReader["ContactName"].ToString();
                     }
                     u.Add(temp);
-                    
+
 
 
                 }
-                    connection.Close();
+                connection.Close();
             }
             catch (Exception ex)
             {
@@ -102,8 +102,6 @@ namespace enterpriseDevelopment.Repositories
 
         public bool DeleteTransaction(Transaction transaction)
         {
-
-
             string selectQuery = "DELETE FROM TransactionsTbl WHERE [TransactionId] = @transactionID AND [userIdFk] = @userId";
             try
             {
@@ -143,8 +141,8 @@ namespace enterpriseDevelopment.Repositories
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
-                
-                
+
+
                 sqlCommand.Parameters.Add("@TransactionCategory", SqlDbType.VarChar).Value = transaction.transactionCategory;
                 sqlCommand.Parameters.Add("@TransactionAmount", SqlDbType.Money).Value = transaction.transactionAmount;
                 sqlCommand.Parameters.Add("@userIdFk", SqlDbType.Int).Value = transaction.userIdFk;
@@ -192,7 +190,7 @@ namespace enterpriseDevelopment.Repositories
                 sqlCommand.Parameters.Add("@incomeExpense", SqlDbType.Bit).Value = transaction.incomeExpense;
                 sqlCommand.Parameters.Add("@userID", SqlDbType.Int).Value = transaction.userIdFk;
                 sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = transaction.transactionId;
-                
+
 
                 connection.Open();
                 var x = sqlCommand.ExecuteNonQuery();
