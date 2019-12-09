@@ -56,6 +56,8 @@ namespace enterpriseDevelopment.Forms
             if (listViewTransaction.SelectedItems.Count > 0)
             {
 
+
+
                 if (isRepeating)
                 {
                     TransactionRepeat transaction = (TransactionRepeat)listViewTransaction.SelectedItems[0].Tag;
@@ -149,7 +151,7 @@ namespace enterpriseDevelopment.Forms
                         endDate = transactionRepeat.subscriptionEndTime.ToString();
                     }
 
-                    ListViewItem listViewI = new ListViewItem(new string[] { transactionRepeat.transactionAmount.ToString(), transactionRepeat.typeValue, transactionRepeat.transactionCategory, transactionRepeat.dateTime.ToString(), transactionRepeat.contactName, transactionRepeat.transactionMessage, transactionRepeat.subscriptionPeriod, transactionRepeat.subscriptionEndTime.ToString() });
+                    ListViewItem listViewI = new ListViewItem(new string[] { transactionRepeat.transactionAmount.ToString("0.00"), transactionRepeat.typeValue, transactionRepeat.transactionCategory, transactionRepeat.dateTime.ToString(), transactionRepeat.contactName, transactionRepeat.transactionMessage, transactionRepeat.subscriptionPeriod, transactionRepeat.subscriptionEndTime.ToString() });
                     listViewI.Tag = transactionRepeat;
                     listViewTransaction.Items.Add(listViewI);
                 }
@@ -160,7 +162,7 @@ namespace enterpriseDevelopment.Forms
                 listViewTransaction.Items.Clear();
                 foreach (Transaction transaction in transactionsList)
                 {
-                    ListViewItem listViewI = new ListViewItem(new string[] { transaction.transactionAmount.ToString(), transaction.typeValue, transaction.transactionCategory, transaction.dateTime.ToString(), transaction.contactName, transaction.transactionMessage });
+                    ListViewItem listViewI = new ListViewItem(new string[] { transaction.transactionAmount.ToString("0.00"), transaction.typeValue, transaction.transactionCategory, transaction.dateTime.ToString(), transaction.contactName, transaction.transactionMessage });
                     listViewI.Tag = transaction;
                     listViewTransaction.Items.Add(listViewI);
                 }

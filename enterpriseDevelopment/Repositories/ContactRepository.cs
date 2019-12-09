@@ -57,7 +57,7 @@ namespace enterpriseDevelopment
             }
             catch (Exception ex)
             {
-
+                connection.Close();
             }
 
             // u is the object created at the beginning of the this method 
@@ -92,6 +92,7 @@ namespace enterpriseDevelopment
             }
             catch (Exception ex)
             {
+                connection.Close();
                 return false;
             }
 
@@ -129,6 +130,7 @@ namespace enterpriseDevelopment
             }
             catch (Exception ex)
             {
+                connection.Close();
                 return 0;
             }
 
@@ -165,6 +167,7 @@ namespace enterpriseDevelopment
             }
             catch (Exception ex)
             {
+                connection.Close();
                 return false;
             }
 

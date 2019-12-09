@@ -232,7 +232,7 @@
             this.groupBox1.Size = new System.Drawing.Size(376, 300);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupBox1.Text = "Option";
             this.groupBox1.Visible = false;
             // 
             // periodCombo

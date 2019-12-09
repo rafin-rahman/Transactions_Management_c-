@@ -41,6 +41,14 @@
             this.comboBoxEvent = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.statusComboBox = new System.Windows.Forms.ComboBox();
+            this.recurrCheck = new System.Windows.Forms.CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.noTimeLimit = new System.Windows.Forms.CheckBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label8 = new System.Windows.Forms.Label();
+            this.periodCombo = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // titleTxt
@@ -170,11 +178,90 @@
             this.statusComboBox.Tag = "";
             this.statusComboBox.Text = "Task";
             // 
+            // recurrCheck
+            // 
+            this.recurrCheck.AutoSize = true;
+            this.recurrCheck.Location = new System.Drawing.Point(964, 163);
+            this.recurrCheck.Name = "recurrCheck";
+            this.recurrCheck.Size = new System.Drawing.Size(257, 29);
+            this.recurrCheck.TabIndex = 14;
+            this.recurrCheck.Text = "Is it a recurring event?";
+            this.recurrCheck.UseVisualStyleBackColor = true;
+            this.recurrCheck.CheckedChanged += new System.EventHandler(this.recurrCheck_CheckedChanged);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.noTimeLimit);
+            this.groupBox1.Controls.Add(this.dateTimePicker1);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.periodCombo);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Location = new System.Drawing.Point(865, 226);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(436, 340);
+            this.groupBox1.TabIndex = 15;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Option";
+            // 
+            // noTimeLimit
+            // 
+            this.noTimeLimit.AutoSize = true;
+            this.noTimeLimit.Location = new System.Drawing.Point(117, 283);
+            this.noTimeLimit.Name = "noTimeLimit";
+            this.noTimeLimit.Size = new System.Drawing.Size(133, 29);
+            this.noTimeLimit.TabIndex = 4;
+            this.noTimeLimit.Text = "Unlimited";
+            this.noTimeLimit.UseVisualStyleBackColor = true;
+            this.noTimeLimit.CheckedChanged += new System.EventHandler(this.noTimeLimit_CheckedChanged);
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy HH:mm";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(116, 221);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(240, 31);
+            this.dateTimePicker1.TabIndex = 3;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(171, 145);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(96, 25);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "End time";
+            // 
+            // periodCombo
+            // 
+            this.periodCombo.FormattingEnabled = true;
+            this.periodCombo.Items.AddRange(new object[] {
+            "Daily",
+            "Weekly",
+            "Monthly",
+            "Yearly"});
+            this.periodCombo.Location = new System.Drawing.Point(144, 84);
+            this.periodCombo.Name = "periodCombo";
+            this.periodCombo.Size = new System.Drawing.Size(121, 33);
+            this.periodCombo.TabIndex = 1;
+            this.periodCombo.Text = "Daily";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(167, 44);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(74, 25);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Period";
+            // 
             // EventAddEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1600, 865);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.recurrCheck);
             this.Controls.Add(this.statusComboBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.comboBoxEvent);
@@ -192,6 +279,8 @@
             this.Name = "EventAddEdit";
             this.Text = "EventAddEdit";
             this.Load += new System.EventHandler(this.EventAddEdit_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -212,5 +301,12 @@
         private System.Windows.Forms.ComboBox comboBoxEvent;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox statusComboBox;
+        private System.Windows.Forms.CheckBox recurrCheck;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox periodCombo;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.CheckBox noTimeLimit;
     }
 }

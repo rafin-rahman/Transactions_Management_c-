@@ -17,7 +17,7 @@ namespace enterpriseDevelopment.Forms
         private Transaction t;
         private TransactionRepeat tr;
         private bool isRepeat = false;
-
+       
         public TransactionAddEdit()
         {
             InitializeComponent();
@@ -53,7 +53,8 @@ namespace enterpriseDevelopment.Forms
             recurrCheck.Visible = false;
 
         }
-
+        // Edit ONLY recurrring transaction
+        //Constructor
         public TransactionAddEdit(TransactionRepeat transaction)
         {
             InitializeComponent();
@@ -93,27 +94,6 @@ namespace enterpriseDevelopment.Forms
 
         }
 
-        private void listViewTransaction_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TransactionAddEdit_Load(object sender, EventArgs e)
-        {
-            ContactRepository contactRepository = new ContactRepository();
-            List<Contact> list = contactRepository.GetContacts(Instance.StaticUserAccount.UserId);
-            contactComboBox.DataSource = list;
-            contactComboBox.DisplayMember = "ContactName";
-
-            if (isRepeat)
-            {
-                setTransRepeatContact(list);
-            }
-            else
-            {
-                setTransContact(list);
-            }
-        }
         private void setTransContact(List<Contact> list)
         {
             if (t.transactionId > 0)
@@ -156,8 +136,23 @@ namespace enterpriseDevelopment.Forms
             }
         }
 
+        private void TransactionAddEdit_Load(object sender, EventArgs e)
+        {
+            ContactRepository contactRepository = new ContactRepository();
+            List<Contact> list = contactRepository.GetContacts(Instance.StaticUserAccount.UserId);
+            contactComboBox.DataSource = list;
+            contactComboBox.DisplayMember = "ContactName";
 
-
+            if (isRepeat)
+            {
+                setTransRepeatContact(list);
+            }
+            else
+            {
+                setTransContact(list);
+            }
+        }
+        
         private void actionBtn_Click(object sender, EventArgs e)
         {
             if (isRepeat)

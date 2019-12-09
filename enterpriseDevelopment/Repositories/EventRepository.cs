@@ -59,7 +59,7 @@ namespace enterpriseDevelopment.Repositories
             catch (Exception)
             {
 
-
+                connection.Close();
             }
             return u;
         }
@@ -100,7 +100,7 @@ namespace enterpriseDevelopment.Repositories
             }
             catch (Exception ex)
             {
-
+                connection.Close();
                 return false;
             }
         }
@@ -135,7 +135,7 @@ namespace enterpriseDevelopment.Repositories
             }
             catch (Exception ex)
             {
-
+                connection.Close();
                 return false;
             }
         }
@@ -163,7 +163,7 @@ namespace enterpriseDevelopment.Repositories
             }
             catch (Exception)
             {
-
+                connection.Close();
                 return false;
             }
         }

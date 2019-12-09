@@ -14,7 +14,6 @@ namespace enterpriseDevelopment.Repositories
     {
 
         public string databaseConn;
-
         SqlConnection connection;
 
         public TransactionRecurringRepository()
@@ -104,7 +103,7 @@ namespace enterpriseDevelopment.Repositories
             }
             catch (Exception ex)
             {
-
+                connection.Close();
             }
 
             // u is the object created at the beginning of the this method 
@@ -154,6 +153,7 @@ namespace enterpriseDevelopment.Repositories
             }
             catch (Exception ex)
             {
+                connection.Close();
                 return false;
             }
         }
@@ -205,6 +205,7 @@ namespace enterpriseDevelopment.Repositories
             }
             catch (Exception ex)
             {
+                connection.Close();
                 return false;
             }
 
@@ -240,6 +241,7 @@ namespace enterpriseDevelopment.Repositories
             }
             catch (Exception ex)
             {
+                connection.Close();
                 return false;
             }
 
