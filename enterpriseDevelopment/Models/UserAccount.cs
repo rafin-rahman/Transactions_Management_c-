@@ -13,7 +13,8 @@ namespace enterpriseDevelopment
         public string Username { get; set; }
         public string UserPwd { get; set; }
         public string UserFName { get; set; }
-        
+        public DateTime LogDate { get; set; }
+
 
     }
 }

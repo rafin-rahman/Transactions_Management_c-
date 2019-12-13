@@ -42,6 +42,7 @@
             this.eventsRepeatBtn = new System.Windows.Forms.Button();
             this.summaryBtn = new System.Windows.Forms.Button();
             this.predictBtn = new System.Windows.Forms.Button();
+            this.recurringBGWorker = new System.ComponentModel.BackgroundWorker();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -203,6 +204,13 @@
             this.predictBtn.UseVisualStyleBackColor = true;
             this.predictBtn.Click += new System.EventHandler(this.predictBtn_Click);
             // 
+            // recurringBGWorker
+            // 
+            this.recurringBGWorker.WorkerReportsProgress = true;
+            this.recurringBGWorker.WorkerSupportsCancellation = true;
+            this.recurringBGWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.recurringBGWorker_DoWork);
+            this.recurringBGWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.recurringBGWorker_ProgressChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -248,6 +256,7 @@
         private System.Windows.Forms.Button eventsRepeatBtn;
         private System.Windows.Forms.Button summaryBtn;
         private System.Windows.Forms.Button predictBtn;
+        private System.ComponentModel.BackgroundWorker recurringBGWorker;
     }
 }
 

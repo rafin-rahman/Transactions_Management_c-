@@ -229,7 +229,8 @@ namespace enterpriseDevelopment.Forms
                     typeValue = t.typeValue,
                     dateTime = t.dateTime,
                     transactionMessage = t.transactionMessage,
-                    contactIdFk = t.contactIdFk
+                    contactIdFk = t.contactIdFk,
+                    incomeExpense = t.incomeExpense
                 };
 
 
@@ -248,7 +249,7 @@ namespace enterpriseDevelopment.Forms
                 if (i == false)
                 {
                     MessageBox.Show("Ops, something went wrong", "Error");
-                    return;
+                    return; 
                 }
             }
 

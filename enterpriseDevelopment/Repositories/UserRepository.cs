@@ -90,7 +90,8 @@ namespace enterpriseDevelopment
                     u.UserFName = sqlDataReader["UserFName"].ToString();
                     u.Username = sqlDataReader["Username"].ToString();
                     u.UserPwd = sqlDataReader["UserPwd"].ToString();
-                    
+                    u.LogDate = (DateTime)sqlDataReader["LogDate"];
+
                 }
                 connection.Close();
 

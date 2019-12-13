@@ -196,7 +196,7 @@ namespace enterpriseDevelopment
 
             // if the RegistrationValidation not true then - >return  
             if (!RegistrationValidation()) return;
-            if (!CheckIfUserExists()) return;
+            if (!await CheckIfUserExists()) return;
             EncryptPwd();
 
 
@@ -218,7 +218,7 @@ namespace enterpriseDevelopment
 
         }
 
-        private async bool CheckIfUserExists()
+        private async Task<bool> CheckIfUserExists()
         {
 
             UserAccount userAccount = await Task.Run(() => userRepositoryObj.GetUserByUsername(usernameReg));
