@@ -1,4 +1,6 @@
-﻿using System;
+﻿using enterpriseDevelopment.Models;
+using enterpriseDevelopment.Repositories;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,16 +14,169 @@ namespace enterpriseDevelopment.Forms
 {
     public partial class financialPredictionForm : Form
     {
+
+        private List<Transaction> transactions;
+        private List<TransactionRepeat> transactionRepeats;
+        private TransactionRepository transactionRepository;
+        private TransactionRecurringRepository transactionRecurringRepository;
+        private decimal GetAvg()
+        {
+            decimal sumDayOfWeek = 0;
+            decimal sumDayOfMonth = 0;
+            decimal sumLastMonth = 0;
+
+            List<DateTime> datesOfWeek = new List<DateTime>();
+            List<DateTime> datesOfMonth = new List<DateTime>();
+            List<DateTime> datesOfLastMonth = new List<DateTime>();
+
+            DateTime predicDate = datePicker.Value.Date;
+            DateTime lastMonth = predicDate.AddMonths(-1);
+
+            foreach (Transaction t in transactions)
+            {
+                if (t.dateTime.DayOfWeek == predicDate.DayOfWeek)
+                {
+                    sumDayOfWeek += t.transactionAmount;
+                    if (!datesOfWeek.Contains(t.dateTime.Date))
+                    {
+                        datesOfWeek.Add(t.dateTime.Date);
+                    }
+                }
+
+                if (t.dateTime.Day == predicDate.Day)
+                {
+                    sumDayOfMonth += t.transactionAmount;
+                    if (!datesOfWeek.Contains(t.dateTime.Date))
+                    {
+                        datesOfWeek.Add(t.dateTime.Date);
+                    }
+                }
+
+                if (t.dateTime >= lastMonth)
+                {
+                    sumLastMonth += t.transactionAmount;
+                    if (!datesOfLastMonth.Contains(t.dateTime.Date))
+                    {
+                        datesOfLastMonth.Add(t.dateTime.Date);
+                    }
+                }
+            }
+
+            decimal avgDayOfWeek = sumDayOfWeek / datesOfWeek.Count;
+            decimal avgDayOfMonth = sumDayOfMonth / datesOfMonth.Count;
+            decimal avgLastMonth = sumLastMonth / datesOfLastMonth.Count;
+            decimal sumOfAvg = (avgDayOfWeek + avgDayOfMonth + avgLastMonth);
+
+            int n = 0;
+            if (avgDayOfWeek > 0) n++;
+            if (avgDayOfMonth > 0) n++;
+            if (avgLastMonth > 0) n++;
+
+            decimal average = 0;
+
+            if (n > 0)
+            {
+                average = sumOfAvg / n;
+            }
+
+            return average;
+        }
+        private decimal GetRecurringAmount()
+        {
+            decimal totRecurring = 0;
+            DateTime predicDate = datePicker.Value.Date;
+            foreach (TransactionRepeat transactionRepeat in transactionRepeats)
+            {
+                string tDateString = transactionRepeat.dateTime.ToString("dd/MM");
+                string predictDateString = predicDate.ToString("dd/MM");
+                if (transactionRepeat.subscriptionPeriod.Equals("Yearly"))
+                {
+                    if (tDateString.Equals(predictDateString))
+                    {
+                        totRecurring += transactionRepeat.transactionAmount;
+                    }
+                }
+
+                if (transactionRepeat.subscriptionPeriod.Equals("Monthly"))
+                {
+                    if (transactionRepeat.dateTime.Day == predicDate.Day)
+                    {
+                        totRecurring += transactionRepeat.transactionAmount;
+                    }
+                }
+
+                if (transactionRepeat.subscriptionPeriod.Equals("Weekly"))
+                {
+                    if (transactionRepeat.dateTime.DayOfWeek == predicDate.DayOfWeek)
+                    {
+                        totRecurring += transactionRepeat.transactionAmount;
+                    }
+                }
+
+
+                if (transactionRepeat.subscriptionPeriod.Equals("Daily"))
+                {
+                    totRecurring += transactionRepeat.transactionAmount;
+
+                }
+
+
+            }
+
+            return totRecurring;
+        }
+
         public financialPredictionForm()
         {
             InitializeComponent();
+            transactionRepository = new TransactionRepository();
+            transactionRecurringRepository = new TransactionRecurringRepository();
         }
 
-       
+
 
         private void predictBtn_Click(object sender, EventArgs e)
         {
+            if (transactions == null)
+            {
+                transactions = transactionRepository.GetTransactions(Instance.StaticUserAccount.UserId);
+                List<Transaction> tempTransactions = new List<Transaction>();
+                foreach (Transaction transaction in transactions)
+                {
+                    if (transaction.incomeExpense == false)
+                    {
+                        tempTransactions.Add(transaction);
+                    }
+                }
+                transactions = tempTransactions;
+            }
 
+            if (transactionRepeats == null)
+            {
+                transactionRepeats = transactionRecurringRepository.GetTransactions(Instance.StaticUserAccount.UserId);
+                List<TransactionRepeat> tempTransactions = new List<TransactionRepeat>();
+                foreach (TransactionRepeat transaction in transactionRepeats)
+                {
+                    if (transaction.incomeExpense == false)
+                    {
+                        tempTransactions.Add(transaction);
+                    }
+                }
+                transactionRepeats = tempTransactions;
+            }
+
+            decimal average = GetAvg();
+
+            decimal totalRecurring = GetRecurringAmount();
+
+            if (average > totalRecurring)
+            {
+                resultLbl.Text = "The result is " + average;
+            }
+            else
+            {
+                resultLbl.Text = "The result is " + totalRecurring;
+            }
         }
     }
 }

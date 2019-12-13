@@ -31,6 +31,7 @@
             this.datePicker = new System.Windows.Forms.DateTimePicker();
             this.predictBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.resultLbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // datePicker
@@ -60,13 +61,22 @@
             this.label1.Size = new System.Drawing.Size(202, 25);
             this.label1.TabIndex = 2;
             this.label1.Text = "Predict your income";
-           
+            // 
+            // resultLbl
+            // 
+            this.resultLbl.AutoSize = true;
+            this.resultLbl.Location = new System.Drawing.Point(175, 341);
+            this.resultLbl.Name = "resultLbl";
+            this.resultLbl.Size = new System.Drawing.Size(70, 25);
+            this.resultLbl.TabIndex = 3;
+            this.resultLbl.Text = "label2";
             // 
             // financialPredictionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1490, 1144);
+            this.Controls.Add(this.resultLbl);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.predictBtn);
             this.Controls.Add(this.datePicker);
@@ -82,5 +92,6 @@
         private System.Windows.Forms.DateTimePicker datePicker;
         private System.Windows.Forms.Button predictBtn;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label resultLbl;
     }
 }
