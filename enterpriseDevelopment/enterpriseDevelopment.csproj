@@ -77,6 +77,18 @@
     <Compile Include="Forms\ContactsForm.Designer.cs">
       <DependentUpon>ContactsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\financialPredictionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\financialPredictionForm.Designer.cs">
+      <DependentUpon>financialPredictionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SummaryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SummaryForm.Designer.cs">
+      <DependentUpon>SummaryForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\TransactionAddEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,11 +140,17 @@
     <EmbeddedResource Include="Forms\EventForm.resx">
       <DependentUpon>EventForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\financialPredictionForm.resx">
+      <DependentUpon>financialPredictionForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginRegister.resx">
       <DependentUpon>LoginRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SummaryForm.resx">
+      <DependentUpon>SummaryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TransactionAddEdit.resx">
       <DependentUpon>TransactionAddEdit.cs</DependentUpon>

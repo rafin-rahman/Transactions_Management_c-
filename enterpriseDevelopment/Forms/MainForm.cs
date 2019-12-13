@@ -83,5 +83,12 @@ namespace enterpriseDevelopment
                 eventForm.Show();
             
         }
+
+        private void summaryBtn_Click(object sender, EventArgs e)
+        {
+            SummaryForm summaryForm = new SummaryForm();
+            summaryForm.Activate();
+            summaryForm.Show();
+        }
     }
 }

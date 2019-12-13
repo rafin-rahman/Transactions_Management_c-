@@ -110,6 +110,8 @@
             this.transDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.transDateTime.Location = new System.Drawing.Point(196, 358);
             this.transDateTime.Margin = new System.Windows.Forms.Padding(4);
+            this.transDateTime.MaxDate = new System.DateTime(2200, 12, 31, 0, 0, 0, 0);
+            this.transDateTime.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.transDateTime.Name = "transDateTime";
             this.transDateTime.Size = new System.Drawing.Size(242, 31);
             this.transDateTime.TabIndex = 5;
@@ -272,6 +274,7 @@
             this.dateTimePicker1.CustomFormat = "dd/MM/yyyy HH:mm";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker1.Location = new System.Drawing.Point(42, 155);
+            this.dateTimePicker1.MaxDate = new System.DateTime(2200, 12, 31, 0, 0, 0, 0);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(307, 31);
             this.dateTimePicker1.TabIndex = 2;

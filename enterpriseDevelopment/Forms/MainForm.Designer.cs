@@ -40,6 +40,7 @@
             this.eventsBtn = new System.Windows.Forms.Button();
             this.repeatBtn = new System.Windows.Forms.Button();
             this.eventsRepeatBtn = new System.Windows.Forms.Button();
+            this.summaryBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -181,11 +182,22 @@
             this.eventsRepeatBtn.UseVisualStyleBackColor = true;
             this.eventsRepeatBtn.Click += new System.EventHandler(this.eventRecurring_Click);
             // 
+            // summaryBtn
+            // 
+            this.summaryBtn.Location = new System.Drawing.Point(1300, 584);
+            this.summaryBtn.Name = "summaryBtn";
+            this.summaryBtn.Size = new System.Drawing.Size(244, 78);
+            this.summaryBtn.TabIndex = 9;
+            this.summaryBtn.Text = "Summary";
+            this.summaryBtn.UseVisualStyleBackColor = true;
+            this.summaryBtn.Click += new System.EventHandler(this.summaryBtn_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2048, 1154);
+            this.Controls.Add(this.summaryBtn);
             this.Controls.Add(this.eventsRepeatBtn);
             this.Controls.Add(this.repeatBtn);
             this.Controls.Add(this.eventsBtn);
@@ -222,6 +234,7 @@
         private System.Windows.Forms.Button eventsBtn;
         private System.Windows.Forms.Button repeatBtn;
         private System.Windows.Forms.Button eventsRepeatBtn;
+        private System.Windows.Forms.Button summaryBtn;
     }
 }
 
