@@ -41,6 +41,7 @@
             this.repeatBtn = new System.Windows.Forms.Button();
             this.eventsRepeatBtn = new System.Windows.Forms.Button();
             this.summaryBtn = new System.Windows.Forms.Button();
+            this.predictBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -192,11 +193,22 @@
             this.summaryBtn.UseVisualStyleBackColor = true;
             this.summaryBtn.Click += new System.EventHandler(this.summaryBtn_Click);
             // 
+            // predictBtn
+            // 
+            this.predictBtn.Location = new System.Drawing.Point(1027, 583);
+            this.predictBtn.Name = "predictBtn";
+            this.predictBtn.Size = new System.Drawing.Size(244, 80);
+            this.predictBtn.TabIndex = 10;
+            this.predictBtn.Text = "Prediction";
+            this.predictBtn.UseVisualStyleBackColor = true;
+            this.predictBtn.Click += new System.EventHandler(this.predictBtn_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2048, 1154);
+            this.Controls.Add(this.predictBtn);
             this.Controls.Add(this.summaryBtn);
             this.Controls.Add(this.eventsRepeatBtn);
             this.Controls.Add(this.repeatBtn);
@@ -235,6 +247,7 @@
         private System.Windows.Forms.Button repeatBtn;
         private System.Windows.Forms.Button eventsRepeatBtn;
         private System.Windows.Forms.Button summaryBtn;
+        private System.Windows.Forms.Button predictBtn;
     }
 }
 

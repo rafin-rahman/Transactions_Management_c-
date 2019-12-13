@@ -29,7 +29,7 @@ namespace enterpriseDevelopment.Forms
             contactAddEdit.Show();
         }
 
-        private void deleteBtn_Click(object sender, EventArgs e)
+        private async void deleteBtn_Click(object sender, EventArgs e)
         {
             if (listViewContact.SelectedItems.Count > 0)
             {
@@ -37,7 +37,7 @@ namespace enterpriseDevelopment.Forms
                 DialogResult dialogResult = MessageBox.Show("Do you want do delete this contact?", "Confirm", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    bool x = contactRepository.DeleteContact(contact);
+                    bool x = await Task.Run(() => contactRepository.DeleteContact(contact));
                     if (x)
                     {
                         MessageBox.Show("Contact deleted");
@@ -50,9 +50,9 @@ namespace enterpriseDevelopment.Forms
             }
         }
 
-        private void ContactsForm_Activated(object sender, EventArgs e)
+        private async void ContactsForm_Activated(object sender, EventArgs e)
         {
-            List<Contact> ContactList = contactRepository.GetContacts(Instance.StaticUserAccount.UserId);
+            List<Contact> ContactList = await Task.Run(() => contactRepository.GetContacts(Instance.StaticUserAccount.UserId));
             listViewContact.Items.Clear();
             foreach (Contact contact in ContactList)
             {

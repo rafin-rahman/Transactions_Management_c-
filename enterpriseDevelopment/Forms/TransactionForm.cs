@@ -77,7 +77,7 @@ namespace enterpriseDevelopment.Forms
          
         }
         #endregion
-        private void deleteBtn_Click(object sender, EventArgs e)
+        private async void deleteBtn_Click(object sender, EventArgs e)
         {
             if (listViewTransaction.SelectedItems.Count > 0)
             {
@@ -88,7 +88,7 @@ namespace enterpriseDevelopment.Forms
                     DialogResult dialogResult = MessageBox.Show("Do you want do delete the transaction?", "Confirm", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        bool x = TransactionRecurringRepository.DeleteTransaction(transaction);
+                        bool x = await Task.Run(() => TransactionRecurringRepository.DeleteTransaction(transaction));
                         if (x)
                         {
                             MessageBox.Show("Transaction deleted");
@@ -106,7 +106,7 @@ namespace enterpriseDevelopment.Forms
                     DialogResult dialogResult = MessageBox.Show("Do you want do delete the transaction?", "Confirm", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        bool x = transactionRepository.DeleteTransaction(transaction);
+                        bool x = await Task.Run(() => transactionRepository.DeleteTransaction(transaction));
                         if (x)
                         {
                             MessageBox.Show("Transaction deleted");
@@ -133,11 +133,11 @@ namespace enterpriseDevelopment.Forms
             Dispose();
         }
 
-        private void TransactionForm_Activated(object sender, EventArgs e)
+        private async void TransactionForm_Activated(object sender, EventArgs e)
         {
             if (isRepeating)
             {
-                List<TransactionRepeat> transactionsList = TransactionRecurringRepository.GetTransactions(Instance.StaticUserAccount.UserId);
+                List<TransactionRepeat> transactionsList = await Task.Run(() => TransactionRecurringRepository.GetTransactions(Instance.StaticUserAccount.UserId));
                 listViewTransaction.Items.Clear();
                 foreach (TransactionRepeat transactionRepeat in transactionsList)
                 {
@@ -158,7 +158,7 @@ namespace enterpriseDevelopment.Forms
             }
             else
             {
-                List<Transaction> transactionsList = transactionRepository.GetTransactions(Instance.StaticUserAccount.UserId);
+                List<Transaction> transactionsList = await Task.Run(() => transactionRepository.GetTransactions(Instance.StaticUserAccount.UserId));
                 listViewTransaction.Items.Clear();
                 foreach (Transaction transaction in transactionsList)
                 {

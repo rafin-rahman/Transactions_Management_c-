@@ -112,10 +112,10 @@ namespace enterpriseDevelopment.Forms
             }
         }
 
-        private void EventAddEdit_Load(object sender, EventArgs e)
+        private async void EventAddEdit_Load(object sender, EventArgs e)
         {
             ContactRepository contactRepository = new ContactRepository();
-            List<Contact> list = contactRepository.GetContacts(Instance.StaticUserAccount.UserId);
+            List<Contact> list = await Task.Run(() => contactRepository.GetContacts(Instance.StaticUserAccount.UserId));
             comboBoxEvent.DataSource = list;
             comboBoxEvent.DisplayMember = "ContactName";
 
@@ -143,7 +143,7 @@ namespace enterpriseDevelopment.Forms
         }
        
 
-        private void addEditNormEvent()
+        private async void addEditNormEvent()
         {
             ev.title = titleTxt.Text;
             ev.message = messageRichTxt.Text;
@@ -158,7 +158,7 @@ namespace enterpriseDevelopment.Forms
                 else
                 {
                     ContactRepository contactsRepository = new ContactRepository();
-                    ev.contactFk = contactsRepository.AddContact(new Contact { ContactName = comboBoxEvent.Text, userIdFk = Instance.StaticUserAccount.UserId });
+                    ev.contactFk = await Task.Run(() => contactsRepository.AddContact(new Contact { ContactName = comboBoxEvent.Text, userIdFk = Instance.StaticUserAccount.UserId }));
                 }
             }
             else
@@ -176,11 +176,11 @@ namespace enterpriseDevelopment.Forms
             bool x;
             if (ev.id > 0)
             {
-                x = eventRepository.EditEvent(ev);
+                x = await Task.Run(() => eventRepository.EditEvent(ev));
             }
             else
             {
-                x = eventRepository.AddEvent(ev);
+                x = await Task.Run(() => eventRepository.AddEvent(ev));
             }
 
             if (recurrCheck.Checked == true && ev.id == 0)
@@ -208,7 +208,7 @@ namespace enterpriseDevelopment.Forms
                 eventRepeat.period = periodCombo.Text;
 
                 EventRecurringRepository eventRecurringRepository = new EventRecurringRepository();
-                bool i = eventRecurringRepository.AddEvent(eventRepeat);
+                bool i = await Task.Run(() => eventRecurringRepository.AddEvent(eventRepeat));
                 if (i == false)
                 {
                     MessageBox.Show("Ops, something went wrong", "Error");
@@ -232,7 +232,7 @@ namespace enterpriseDevelopment.Forms
             Dispose();
         }
 
-        private void addEditEventRepeat()
+        private async void addEditEventRepeat()
         {
             er.title = titleTxt.Text;
             er.message = messageRichTxt.Text;
@@ -247,7 +247,7 @@ namespace enterpriseDevelopment.Forms
                 else
                 {
                     ContactRepository contactsRepository = new ContactRepository();
-                    er.contactFk = contactsRepository.AddContact(new Contact { ContactName = comboBoxEvent.Text, userIdFk = Instance.StaticUserAccount.UserId });
+                    er.contactFk = await Task.Run(() => contactsRepository.AddContact(new Contact { ContactName = comboBoxEvent.Text, userIdFk = Instance.StaticUserAccount.UserId }));
                 }
             }
             else
@@ -276,7 +276,7 @@ namespace enterpriseDevelopment.Forms
             }
             er.period = periodCombo.Text;
 
-            x = eventRecurringRepository.editEvent(er);
+            x = await Task.Run(() => eventRecurringRepository.editEvent(er));
 
 
             if (er.id > 0 && x == true)

@@ -62,15 +62,29 @@ namespace enterpriseDevelopment.Forms
                 }
             }
 
-            decimal avgDayOfWeek = sumDayOfWeek / datesOfWeek.Count;
-            decimal avgDayOfMonth = sumDayOfMonth / datesOfMonth.Count;
-            decimal avgLastMonth = sumLastMonth / datesOfLastMonth.Count;
-            decimal sumOfAvg = (avgDayOfWeek + avgDayOfMonth + avgLastMonth);
+      
+            decimal sumOfAvg = 0;
+            
 
             int n = 0;
-            if (avgDayOfWeek > 0) n++;
-            if (avgDayOfMonth > 0) n++;
-            if (avgLastMonth > 0) n++;
+            if (datesOfWeek.Count > 0)
+            {
+                n++;
+                sumOfAvg += sumDayOfWeek / datesOfWeek.Count;
+            }
+
+            if (datesOfMonth.Count > 0)
+            {
+                n++;
+                sumOfAvg += sumDayOfMonth / datesOfMonth.Count;
+            }
+
+            if (datesOfLastMonth.Count > 0)
+            {
+                n++;
+                sumOfAvg += sumLastMonth / datesOfLastMonth.Count;
+            }
+            
 
             decimal average = 0;
 
@@ -135,11 +149,11 @@ namespace enterpriseDevelopment.Forms
 
 
 
-        private void predictBtn_Click(object sender, EventArgs e)
+        private async void predictBtn_Click(object sender, EventArgs e)
         {
             if (transactions == null)
             {
-                transactions = transactionRepository.GetTransactions(Instance.StaticUserAccount.UserId);
+                transactions = await Task.Run(() => transactionRepository.GetTransactions(Instance.StaticUserAccount.UserId));
                 List<Transaction> tempTransactions = new List<Transaction>();
                 foreach (Transaction transaction in transactions)
                 {
@@ -153,7 +167,7 @@ namespace enterpriseDevelopment.Forms
 
             if (transactionRepeats == null)
             {
-                transactionRepeats = transactionRecurringRepository.GetTransactions(Instance.StaticUserAccount.UserId);
+                transactionRepeats = await Task.Run(() => transactionRecurringRepository.GetTransactions(Instance.StaticUserAccount.UserId));
                 List<TransactionRepeat> tempTransactions = new List<TransactionRepeat>();
                 foreach (TransactionRepeat transaction in transactionRepeats)
                 {

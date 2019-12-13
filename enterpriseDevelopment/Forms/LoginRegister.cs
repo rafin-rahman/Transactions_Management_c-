@@ -118,14 +118,14 @@ namespace enterpriseDevelopment
             return true;
         }
 
-        private void loginBtn_Click(object sender, EventArgs e)
+        private async void loginBtn_Click(object sender, EventArgs e)
         {
             userNameLog = usernameLogTxt.Text;
             pwdLog = passwordLogTxt.Text;
 
             if (!LoginValidation()) return;
 
-            UserAccount userAccount = userRepositoryObj.GetUserByUsername(userNameLog);
+            UserAccount userAccount = await Task.Run(() => userRepositoryObj.GetUserByUsername(userNameLog));
             if (!CheckUserForLogin(userAccount)) return;
 
             if (!CheckPwdForLogin(userAccount)) return;
@@ -186,7 +186,7 @@ namespace enterpriseDevelopment
             pwdReg = bcrypt.HashPassword("hEllo" + pwdReg + "woRld", bcrypt.GenerateSalt());
         }
 
-        private void RegisterBtn_Click(object sender, EventArgs e)
+        private async void RegisterBtn_Click(object sender, EventArgs e)
         {
             // These are private string already declared at the beginning of the page
             fullNameReg = fullNameRegTxt.Text;
@@ -202,7 +202,7 @@ namespace enterpriseDevelopment
 
 
             // using an anonymus object which is not saved anywhere, is passes the values straight to method AddUserAccount
-            bool check = userRepositoryObj.AddUserAccount(new UserAccount { UserFName = fullNameReg, Username = usernameReg, UserPwd = pwdReg });
+            bool check = await Task.Run(() => userRepositoryObj.AddUserAccount(new UserAccount { UserFName = fullNameReg, Username = usernameReg, UserPwd = pwdReg }));
             // checks if there was any error during the insertion of the user data into the database, AddUserAccount method returns tre of false 
             if (check)
             {
@@ -218,10 +218,10 @@ namespace enterpriseDevelopment
 
         }
 
-        private bool CheckIfUserExists()
+        private async bool CheckIfUserExists()
         {
 
-            UserAccount userAccount = userRepositoryObj.GetUserByUsername(usernameReg);
+            UserAccount userAccount = await Task.Run(() => userRepositoryObj.GetUserByUsername(usernameReg));
             // if the usernameReg already exist, it will pop up the error message
             if (userAccount.UserId > 0)
             {

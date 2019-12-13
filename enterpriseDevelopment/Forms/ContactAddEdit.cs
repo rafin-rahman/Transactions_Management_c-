@@ -30,7 +30,7 @@ namespace enterpriseDevelopment
             contactTxtBox.Text = contact.ContactName;
         }
 
-        private void actionBtn_Click(object sender, EventArgs e)
+        private async void actionBtn_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(contactTxtBox.Text))
             {
@@ -44,11 +44,11 @@ namespace enterpriseDevelopment
 
             if (c.ContactId > 0)
             {
-                x = contactRepository.EditContact(c);
+                x = await Task.Run(() => contactRepository.EditContact(c));
             }
             else
             {
-                int i = contactRepository.AddContact(c);
+                int i = await Task.Run(() => contactRepository.AddContact(c));
                 if (i > 0) x = true;
             }
 

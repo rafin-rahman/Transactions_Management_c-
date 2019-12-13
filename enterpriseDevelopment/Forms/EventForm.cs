@@ -61,11 +61,11 @@ namespace enterpriseDevelopment
             Dispose();
         }
 
-        private void EventForm_Activated(object sender, EventArgs e)
+        private async void EventForm_Activated(object sender, EventArgs e)
         {
             if (isRepeating)
             {
-                List<EventRepeat> eventsList = eventRecurringRepository.GetEvents(Instance.StaticUserAccount.UserId);
+                List<EventRepeat> eventsList = await Task.Run(() => eventRecurringRepository.GetEvents(Instance.StaticUserAccount.UserId));
                 listViewEvent.Items.Clear();
                 foreach (EventRepeat eventRepeat in eventsList)
                 {
@@ -86,7 +86,7 @@ namespace enterpriseDevelopment
             }
             else
             {
-                List<Event> eventsList = eventRepository.GetEvents(Instance.StaticUserAccount.UserId);
+                List<Event> eventsList = await Task.Run(() => eventRepository.GetEvents(Instance.StaticUserAccount.UserId));
                 listViewEvent.Items.Clear();
                 foreach (Event eventObj in eventsList)
                 {
@@ -125,7 +125,7 @@ namespace enterpriseDevelopment
 
         }
 
-        private void deleteBtn_Click(object sender, EventArgs e)
+        private async void deleteBtn_Click(object sender, EventArgs e)
         {
             if (isRepeating)
             {
@@ -134,7 +134,7 @@ namespace enterpriseDevelopment
                 DialogResult dialogResult = MessageBox.Show("Do you want do delete the event?", "Confirm", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    bool x = eventRecurringRepository.deleteEvent(eventRepeat);
+                    bool x = await Task.Run(() => eventRecurringRepository.deleteEvent(eventRepeat));
                     if (x)
                     {
                         MessageBox.Show("Event deleted");
@@ -152,7 +152,7 @@ namespace enterpriseDevelopment
                 DialogResult dialogResult = MessageBox.Show("Do you want do delete the Event?", "Confirm", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    bool x = eventRepository.DeleteEvent(eventObj);
+                    bool x = await Task.Run(() => eventRepository.DeleteEvent(eventObj));
                     if (x)
                     {
                         MessageBox.Show("Event deleted");

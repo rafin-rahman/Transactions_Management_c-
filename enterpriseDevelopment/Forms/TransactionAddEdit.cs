@@ -26,7 +26,7 @@ namespace enterpriseDevelopment.Forms
             Text = "Add transaction";
             t = new Transaction { userIdFk = Instance.StaticUserAccount.UserId };
         }
-
+         
         public TransactionAddEdit(Transaction transaction)
         {
             InitializeComponent();
@@ -136,10 +136,10 @@ namespace enterpriseDevelopment.Forms
             }
         }
 
-        private void TransactionAddEdit_Load(object sender, EventArgs e)
+        private async void TransactionAddEdit_Load(object sender, EventArgs e)
         {
             ContactRepository contactRepository = new ContactRepository();
-            List<Contact> list = contactRepository.GetContacts(Instance.StaticUserAccount.UserId);
+            List<Contact> list = await Task.Run(() => contactRepository.GetContacts(Instance.StaticUserAccount.UserId));
             contactComboBox.DataSource = list;
             contactComboBox.DisplayMember = "ContactName";
 
@@ -166,7 +166,7 @@ namespace enterpriseDevelopment.Forms
 
         }
 
-        private void addEditNormTransaction()
+        private async void addEditNormTransaction()
         {
             t.transactionCategory = categoryTxt.Text;
             t.transactionAmount = transactionAmountNum.Value;
@@ -181,7 +181,7 @@ namespace enterpriseDevelopment.Forms
                 else
                 {
                     ContactRepository contactsRepository = new ContactRepository();
-                    t.contactIdFk = contactsRepository.AddContact(new Contact { ContactName = contactComboBox.Text, userIdFk = Instance.StaticUserAccount.UserId });
+                    t.contactIdFk = await Task.Run(() => contactsRepository.AddContact(new Contact { ContactName = contactComboBox.Text, userIdFk = Instance.StaticUserAccount.UserId }));
                 }
             }
             else
@@ -212,11 +212,11 @@ namespace enterpriseDevelopment.Forms
             bool x;
             if (t.transactionId > 0)
             {
-                x = transactionRepository.EditTransaction(t);
+                x = await Task.Run(() => transactionRepository.EditTransaction(t));
             }
             else
             {
-                x = transactionRepository.AddTransction(t);
+                x = await Task.Run(() => transactionRepository.AddTransction(t));
             }
 
             if (recurrCheck.Checked == true && t.transactionId == 0)
@@ -244,7 +244,7 @@ namespace enterpriseDevelopment.Forms
                 transactionRepeat.subscriptionPeriod = periodCombo.Text;
 
                 TransactionRecurringRepository transactionRecurringRepository = new TransactionRecurringRepository();
-                bool i = transactionRecurringRepository.AddTransction(transactionRepeat);
+                bool i = await Task.Run(() => transactionRecurringRepository.AddTransction(transactionRepeat));
                 if (i == false)
                 {
                     MessageBox.Show("Ops, something went wrong", "Error");
@@ -268,7 +268,7 @@ namespace enterpriseDevelopment.Forms
             Dispose();
         }
         
-        private void addEditransactionRepeat()
+        private async void addEditransactionRepeat()
         {
             tr.transactionCategory = categoryTxt.Text;
             tr.transactionAmount = transactionAmountNum.Value;
@@ -283,7 +283,7 @@ namespace enterpriseDevelopment.Forms
                 else
                 {
                     ContactRepository contactsRepository = new ContactRepository();
-                    tr.contactIdFk = contactsRepository.AddContact(new Contact { ContactName = contactComboBox.Text, userIdFk = Instance.StaticUserAccount.UserId });
+                    tr.contactIdFk = await Task.Run(() => contactsRepository.AddContact(new Contact { ContactName = contactComboBox.Text, userIdFk = Instance.StaticUserAccount.UserId }));
                 }
             }
             else
@@ -324,7 +324,7 @@ namespace enterpriseDevelopment.Forms
             }
             tr.subscriptionPeriod = periodCombo.Text;
 
-            x = transactionRepository.EditTransaction(tr);
+            x = await Task.Run(() => transactionRepository.EditTransaction(tr));
 
 
             if (tr .transactionId > 0 && x == true)

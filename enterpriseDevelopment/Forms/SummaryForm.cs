@@ -33,7 +33,7 @@ namespace enterpriseDevelopment.Forms
             Dispose();
         }
 
-        private void showSumBtn_Click(object sender, EventArgs e)
+        private async void showSumBtn_Click(object sender, EventArgs e)
         {
 
             // set time of the starting period from 12AM
@@ -51,7 +51,7 @@ namespace enterpriseDevelopment.Forms
 
             if (transactions == null)
             {
-                transactions = transactionRepository.GetTransactions(Instance.StaticUserAccount.UserId);
+                transactions = await Task.Run(() => transactionRepository.GetTransactions(Instance.StaticUserAccount.UserId));
 
             }
 
