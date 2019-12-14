@@ -51,6 +51,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Tulpep.NotificationWindow, Version=1.1.25.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Tulpep.NotificationWindow.1.1.25\lib\net40\Tulpep.NotificationWindow.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Forms\EventAddEdit.cs">
@@ -82,6 +85,12 @@
     </Compile>
     <Compile Include="Forms\financialPredictionForm.Designer.cs">
       <DependentUpon>financialPredictionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\NotificationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NotificationForm.Designer.cs">
+      <DependentUpon>NotificationForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\SummaryForm.cs">
       <SubType>Form</SubType>
@@ -148,6 +157,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginRegister.resx">
       <DependentUpon>LoginRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NotificationForm.resx">
+      <DependentUpon>NotificationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SummaryForm.resx">
       <DependentUpon>SummaryForm.cs</DependentUpon>

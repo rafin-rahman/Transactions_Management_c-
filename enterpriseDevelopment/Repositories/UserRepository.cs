@@ -106,5 +106,42 @@ namespace enterpriseDevelopment
             return u;
         }
 
+        public bool EditLogDate(UserAccount user)
+        {
+
+
+            string selectQuery = "UPDATE UserAccountsTbl SET [LogDate] = @accessDate WHERE [userId] = @id";
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
+                // userName parameter of his method
+                sqlCommand.Parameters.Add("@accessDate", SqlDbType.DateTime).Value = user.LogDate;
+                sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = user.UserId;
+                
+
+                connection.Open();
+                var x = sqlCommand.ExecuteNonQuery();
+                connection.Close();
+                if (x > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+                connection.Close();
+                return false;
+            }
+
+
+        }
+
     }
 }
