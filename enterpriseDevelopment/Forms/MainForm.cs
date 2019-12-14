@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Tulpep.NotificationWindow;
+
 
 namespace enterpriseDevelopment
 {
@@ -18,21 +18,29 @@ namespace enterpriseDevelopment
     {
         private bool checkIfFirst = true;
 
-
-       
-
+        TransactionRepository transactionRepository;
+        private List<Transaction> todaysTransaction;
+        Panel dashboardPanel;
         public MainForm()
         {
             InitializeComponent();
-
+            transactionRepository = new TransactionRepository();
+            todaysTransaction = new List<Transaction>();
             // set reference to Instance class
             Instance.MainForm = this;
-            
+            dashboardPanel = new Panel();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            if (Instance.StaticUserAccount == null)
+            {
+            }
+            else
+            {
+                
+                
+            }
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -47,7 +55,7 @@ namespace enterpriseDevelopment
             if (Instance.StaticUserAccount == null)
             {
                 Instance.StaticUserAccount = new UserAccount { UserId = 1, UserFName = "rafraf", LogDate = DateTime.Now.AddDays(-99).AddHours(5) };
-            } 
+            }
             //  hide the mainform if the StaticUserAccount is empty
             if (Instance.StaticUserAccount == null)
             {
@@ -58,9 +66,10 @@ namespace enterpriseDevelopment
             else
             {
                 if (!recurringBGWorker.IsBusy) recurringBGWorker.RunWorkerAsync();
+                GetTransactionList();
             }
 
-            
+
         }
 
 
@@ -76,7 +85,7 @@ namespace enterpriseDevelopment
         private void transactionClickMainForm(object sender, EventArgs e)
         {
 
-            
+
 
 
             TransactionForm transactionForm = new TransactionForm();
@@ -123,7 +132,7 @@ namespace enterpriseDevelopment
         //
         private void recurringBGWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            
+
             BackgroundWorker backgroundWorker = (BackgroundWorker)sender;
             while (!backgroundWorker.CancellationPending)
             {
@@ -146,7 +155,7 @@ namespace enterpriseDevelopment
             foreach (TransactionRepeat transactionRepeat in transactionRepeats)
             {
                 if (DateTime.Now > transactionRepeat.subscriptionEndTime && transactionRepeat.subscriptionEndTime != DateTime.MinValue) continue;
-                
+
 
                 DateTime accTime = Instance.StaticUserAccount.LogDate;
                 DateTime nowTime = DateTime.Now;
@@ -273,7 +282,7 @@ namespace enterpriseDevelopment
                             message = eventRepeat.message,
                             date = recTime
                         }));
-                        recurringBGWorker.ReportProgress(0,"New Event!");
+                        recurringBGWorker.ReportProgress(0, "New Event!");
                     }
                     recTime = recTime.AddDays(1);
                 }
@@ -377,6 +386,80 @@ namespace enterpriseDevelopment
 
         #endregion
 
-       
+        #region Show dinamically transaction for the current date
+
+        private async void GetTransactionList()
+        {
+            List<Transaction> transactions = await Task.Run(() => transactionRepository.GetTransactions(Instance.StaticUserAccount.UserId));
+
+            List<Transaction> tempTransactions = new List<Transaction>();
+
+            foreach (Transaction transaction in transactions)
+            {
+                if(transaction.dateTime.Date == DateTime.Now.Date)
+                    tempTransactions.Add(transaction);
+            }
+            
+            dashboardPanel.Dispose();
+            dashboardPanel = new Panel();
+            dashboardPanel.BackColor = Color.Green;
+            dashboardPanel.Size = new Size(400, 390);
+            dashboardPanel.Location = new Point(300, 100);
+            dashboardPanel.AutoScroll = true;
+            this.Controls.Add(dashboardPanel);
+
+
+            int count = 0;
+            foreach (Transaction transaction in tempTransactions)
+            {
+                count++;
+                Console.WriteLine("CHECK");
+                Panel internalPanel = new Panel();
+                internalPanel.BackColor = Color.White;
+                internalPanel.Size = new Size(280, 30);
+                internalPanel.Location = new Point(10, count*50);
+
+                dashboardPanel.Controls.Add(internalPanel);
+
+                Label incomeTypeLbl = new Label();
+                string typeTxt = "";
+                if (transaction.incomeExpense == true)
+                {
+                    typeTxt = "+";
+                }
+                else
+                {
+                    typeTxt = "-";
+                }
+
+                incomeTypeLbl.Text = typeTxt;
+                incomeTypeLbl.TextAlign = ContentAlignment.MiddleCenter;
+                incomeTypeLbl.Size = new Size(30, 15);
+                incomeTypeLbl.Location = new Point(10, 10);
+                incomeTypeLbl.BackColor = Color.GreenYellow;
+                internalPanel.Controls.Add(incomeTypeLbl);
+
+                Label amountLbl = new Label();
+                amountLbl.Text = "£" + transaction.transactionAmount;
+                amountLbl.Size = new Size(100, 15);
+                amountLbl.Location = new Point(40, 10);
+                amountLbl.TextAlign = ContentAlignment.MiddleCenter;
+                amountLbl.BackColor = Color.AliceBlue;
+
+                internalPanel.Controls.Add(amountLbl);
+
+                Label nameLbl = new Label();
+                nameLbl.Text = transaction.transactionCategory;
+                nameLbl.Size = new Size(100, 15);
+                nameLbl.Location = new Point(150, 10);
+                nameLbl.TextAlign = ContentAlignment.MiddleCenter;
+                nameLbl.BackColor = Color.LightPink;
+
+                internalPanel.Controls.Add(nameLbl);
+            }
+        }
+        
+
+        #endregion
     }
 }

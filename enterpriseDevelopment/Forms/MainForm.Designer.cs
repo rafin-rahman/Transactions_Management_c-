@@ -360,6 +360,8 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Controls.Add(this.panel3);
+            this.panel2.Controls.Add(this.eventsRepeatBtn);
+            this.panel2.Controls.Add(this.repeatBtn);
             this.panel2.Location = new System.Drawing.Point(284, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(740, 48);
@@ -379,7 +381,7 @@
             // 
             // repeatBtn
             // 
-            this.repeatBtn.Location = new System.Drawing.Point(334, 212);
+            this.repeatBtn.Location = new System.Drawing.Point(23, 11);
             this.repeatBtn.Margin = new System.Windows.Forms.Padding(2);
             this.repeatBtn.Name = "repeatBtn";
             this.repeatBtn.Size = new System.Drawing.Size(35, 28);
@@ -390,7 +392,7 @@
             // 
             // eventsRepeatBtn
             // 
-            this.eventsRepeatBtn.Location = new System.Drawing.Point(374, 212);
+            this.eventsRepeatBtn.Location = new System.Drawing.Point(87, 12);
             this.eventsRepeatBtn.Name = "eventsRepeatBtn";
             this.eventsRepeatBtn.Size = new System.Drawing.Size(34, 28);
             this.eventsRepeatBtn.TabIndex = 8;
@@ -412,8 +414,6 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1024, 600);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.eventsRepeatBtn);
-            this.Controls.Add(this.repeatBtn);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
