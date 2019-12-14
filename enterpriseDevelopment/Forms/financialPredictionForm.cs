@@ -192,5 +192,7 @@ namespace enterpriseDevelopment.Forms
                 resultLbl.Text = "The result is " + totalRecurring;
             }
         }
+
+     
     }
 }

@@ -7,11 +7,13 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
 using enterpriseDevelopment.Models;
+using NLog;
 
 namespace enterpriseDevelopment.Repositories
 {
     class TransactionRepository
     {
+        private Logger Logger = LogManager.GetCurrentClassLogger();
 
         public string databaseConn;
         SqlConnection connection;
@@ -91,7 +93,9 @@ namespace enterpriseDevelopment.Repositories
             }
             catch (Exception ex)
             {
+                Logger.Error(ex.Message);
                 connection.Close();
+
             }
 
             // u is the object created at the beginning of the this method 
@@ -125,6 +129,7 @@ namespace enterpriseDevelopment.Repositories
             }
             catch (Exception ex)
             {
+                Logger.Error(ex.Message);
                 connection.Close();
                 return false;
             }
@@ -168,6 +173,7 @@ namespace enterpriseDevelopment.Repositories
             }
             catch (Exception ex)
             {
+                Logger.Error(ex.Message);
                 connection.Close();
                 return false;
             }
@@ -214,6 +220,7 @@ namespace enterpriseDevelopment.Repositories
             }
             catch (Exception ex)
             {
+                Logger.Error(ex.Message);
                 connection.Close();
                 return false;
             }

@@ -17,12 +17,17 @@ namespace enterpriseDevelopment
     public partial class MainForm : Form
     {
         private bool checkIfFirst = true;
+
+
+       
+
         public MainForm()
         {
             InitializeComponent();
 
             // set reference to Instance class
             Instance.MainForm = this;
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -118,8 +123,7 @@ namespace enterpriseDevelopment
         //
         private void recurringBGWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-
-            bool checkIfFirst = true;
+            
             BackgroundWorker backgroundWorker = (BackgroundWorker)sender;
             while (!backgroundWorker.CancellationPending)
             {
@@ -134,11 +138,11 @@ namespace enterpriseDevelopment
             }
         }
         //
-        private void runRecurringTransaction()
+        private async void runRecurringTransaction()
         {
             TransactionRecurringRepository transactionRecurringRepository = new TransactionRecurringRepository();
             TransactionRepository transactionRepo = new TransactionRepository();
-            List<TransactionRepeat> transactionRepeats = transactionRecurringRepository.GetTransactions(Instance.StaticUserAccount.UserId);
+            List<TransactionRepeat> transactionRepeats = await Task.Run(() => transactionRecurringRepository.GetTransactions(Instance.StaticUserAccount.UserId));
             foreach (TransactionRepeat transactionRepeat in transactionRepeats)
             {
                 if (DateTime.Now > transactionRepeat.subscriptionEndTime && transactionRepeat.subscriptionEndTime != DateTime.MinValue) continue;
@@ -184,7 +188,7 @@ namespace enterpriseDevelopment
                     }
                     if (recTime > accTime && recTime <= nowTime && recTime > transactionRepeat.dateTime)
                     {
-                        transactionRepo.AddTransction(new Transaction
+                        bool check = await Task.Run(() => transactionRepo.AddTransction(new Transaction
                         {
                             transactionCategory = transactionRepeat.transactionCategory,
                             userIdFk = transactionRepeat.userIdFk,
@@ -194,8 +198,8 @@ namespace enterpriseDevelopment
                             transactionAmount = transactionRepeat.transactionAmount,
                             transactionMessage = transactionRepeat.transactionMessage,
                             dateTime = recTime
-                        });
-                        recurringBGWorker.ReportProgress(0);
+                        }));
+                        recurringBGWorker.ReportProgress(0, "New Transaction!");
                     }
                     recTime = recTime.AddDays(1);
                 }
@@ -208,11 +212,11 @@ namespace enterpriseDevelopment
 
         }
         // ExecuteRecurringEvent
-        private void runRecurringEvent()
+        private async void runRecurringEvent()
         {
             EventRecurringRepository eventRecurringRepository = new EventRecurringRepository();
             EventRepository eventRepository = new EventRepository();
-            List<EventRepeat> eventRepeats = eventRecurringRepository.GetEvents(Instance.StaticUserAccount.UserId);
+            List<EventRepeat> eventRepeats = await Task.Run(() => eventRecurringRepository.GetEvents(Instance.StaticUserAccount.UserId));
             foreach (EventRepeat eventRepeat in eventRepeats)
             {
                 if (DateTime.Now > eventRepeat.endDate && eventRepeat.endDate != DateTime.MinValue) continue;
@@ -258,7 +262,7 @@ namespace enterpriseDevelopment
                     }
                     if (recTime > accessTime && recTime <= currentTime && recTime > eventRepeat.date)
                     {
-                        eventRepository.AddEvent(new Event
+                        await Task.Run(() => eventRepository.AddEvent(new Event
                         {
                             title = eventRepeat.title,
                             userFK = eventRepeat.userFK,
@@ -268,8 +272,8 @@ namespace enterpriseDevelopment
                             location = eventRepeat.location,
                             message = eventRepeat.message,
                             date = recTime
-                        });
-                        recurringBGWorker.ReportProgress(0);
+                        }));
+                        recurringBGWorker.ReportProgress(0,"New Event!");
                     }
                     recTime = recTime.AddDays(1);
                 }
@@ -286,16 +290,93 @@ namespace enterpriseDevelopment
         {
             if (checkIfFirst == false)
             {
-                new NotificationForm().Show();
+                string text = (string)e.UserState;
+                new NotificationForm(text).Show();
             }
         }
 
-        private void notificationBtn_Click(object sender, EventArgs e)
-        {
-            NotificationForm notificationForm = new NotificationForm();
-            notificationForm.Activate();
-            notificationForm.Show();
+        #region Main page button hover animation
 
+        private void panel3_Click(object sender, EventArgs e)
+        {
+            // Close Dashboard
+            Close();
         }
+
+        private void mainBtn_MouseEnter(object sender, EventArgs e)
+        {
+            panel4.Visible = true;
+            pictureBox1.Visible = false;
+        }
+
+        private void mainBtn_MouseLeave(object sender, EventArgs e)
+        {
+            panel4.Visible = false;
+            pictureBox1.Visible = true;
+        }
+
+        private void predictBtn_MouseEnter(object sender, EventArgs e)
+        {
+            panel5.Visible = true;
+            pictureBox2.Visible = false;
+        }
+
+        private void predictBtn_MouseLeave(object sender, EventArgs e)
+        {
+            panel5.Visible = false;
+            pictureBox2.Visible = true;
+        }
+
+        private void eventsBtn_MouseEnter(object sender, EventArgs e)
+        {
+            panel11.Visible = true;
+            pictureBox3.Visible = false;
+        }
+
+        private void eventsBtn_MouseLeave(object sender, EventArgs e)
+        {
+            panel11.Visible = false;
+            pictureBox3.Visible = true;
+        }
+
+        private void transactionBtn_MouseLeave(object sender, EventArgs e)
+        {
+            panel7.Visible = false;
+            pictureBox4.Visible = true;
+        }
+
+        private void transactionBtn_MouseEnter(object sender, EventArgs e)
+        {
+            panel7.Visible = true;
+            pictureBox4.Visible = false;
+        }
+
+        private void summaryBtn_MouseEnter(object sender, EventArgs e)
+        {
+            panel8.Visible = true;
+            pictureBox5.Visible = false;
+        }
+
+        private void summaryBtn_MouseLeave(object sender, EventArgs e)
+        {
+            panel8.Visible = false;
+            pictureBox5.Visible = true;
+        }
+
+        private void ContactBtn_MouseEnter(object sender, EventArgs e)
+        {
+            panel10.Visible = true;
+            pictureBox6.Visible = false;
+        }
+
+        private void ContactBtn_MouseLeave(object sender, EventArgs e)
+        {
+            panel10.Visible = false;
+            pictureBox6.Visible = true;
+        }
+
+        #endregion
+
+       
     }
 }

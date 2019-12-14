@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
+using NLog;
 
 namespace enterpriseDevelopment
 {
     class ContactRepository
     {
+
+        private Logger Logger =  LogManager.GetCurrentClassLogger();
         public string databaseConn;
         SqlConnection connection;
         public ContactRepository()
@@ -57,6 +60,7 @@ namespace enterpriseDevelopment
             }
             catch (Exception ex)
             {
+                Logger.Error(ex.Message);
                 connection.Close();
             }
 
@@ -92,6 +96,7 @@ namespace enterpriseDevelopment
             }
             catch (Exception ex)
             {
+                Logger.Error(ex.Message);
                 connection.Close();
                 return false;
             }
@@ -130,6 +135,7 @@ namespace enterpriseDevelopment
             }
             catch (Exception ex)
             {
+                Logger.Error(ex.Message);
                 connection.Close();
                 return 0;
             }
@@ -167,6 +173,7 @@ namespace enterpriseDevelopment
             }
             catch (Exception ex)
             {
+                Logger.Error(ex.Message);
                 connection.Close();
                 return false;
             }

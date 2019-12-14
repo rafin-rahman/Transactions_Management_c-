@@ -6,11 +6,13 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NLog; 
 
 namespace enterpriseDevelopment
 {
     class UserRepository
     {
+        private Logger Logger = LogManager.GetCurrentClassLogger();
         public string dbConn;
         SqlConnection connection;
         public UserRepository()
@@ -56,6 +58,8 @@ namespace enterpriseDevelopment
             }
             catch (Exception ex)
             {
+
+                Logger.Error(ex.Message);
                 connection.Close();
                 return false;
             }
@@ -99,6 +103,8 @@ namespace enterpriseDevelopment
             }
             catch (Exception ex)
             {
+
+                Logger.Error(ex.Message);
                 connection.Close();
             }
 
@@ -136,6 +142,7 @@ namespace enterpriseDevelopment
             }
             catch (Exception ex)
             {
+                Logger.Error(ex.Message);
                 connection.Close();
                 return false;
             }

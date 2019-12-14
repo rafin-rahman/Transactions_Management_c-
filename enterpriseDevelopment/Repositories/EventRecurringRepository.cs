@@ -7,11 +7,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 using System.Data;
+using NLog;
 
 namespace enterpriseDevelopment.Repositories
 {
     class EventRecurringRepository
     {
+
+
+        private Logger Logger = LogManager.GetCurrentClassLogger();
         public string databaseConn;
         SqlConnection connection;
 
@@ -151,6 +155,7 @@ namespace enterpriseDevelopment.Repositories
             }
             catch (Exception ex)
             {
+                Logger.Error(ex.Message);
                 connection.Close();
                 return false;
             }
@@ -201,6 +206,7 @@ namespace enterpriseDevelopment.Repositories
             }
             catch (Exception ex)
             {
+                Logger.Error(ex.Message);
                 connection.Close();
                 return false;
             }
@@ -235,6 +241,7 @@ namespace enterpriseDevelopment.Repositories
             }
             catch (Exception ex)
             {
+                Logger.Error(ex.Message);
                 connection.Close();
                 return false;
             }

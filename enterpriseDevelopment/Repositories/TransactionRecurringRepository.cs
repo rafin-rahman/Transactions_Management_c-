@@ -7,12 +7,13 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NLog;
 
 namespace enterpriseDevelopment.Repositories
 {
     class TransactionRecurringRepository
     {
-
+        private Logger Logger = LogManager.GetCurrentClassLogger();
         public string databaseConn;
         SqlConnection connection;
 
@@ -103,6 +104,8 @@ namespace enterpriseDevelopment.Repositories
             }
             catch (Exception ex)
             {
+
+                Logger.Error(ex.Message);
                 connection.Close();
             }
 
@@ -153,6 +156,8 @@ namespace enterpriseDevelopment.Repositories
             }
             catch (Exception ex)
             {
+
+                Logger.Error(ex.Message);
                 connection.Close();
                 return false;
             }
@@ -205,6 +210,8 @@ namespace enterpriseDevelopment.Repositories
             }
             catch (Exception ex)
             {
+
+                Logger.Error(ex.Message);
                 connection.Close();
                 return false;
             }
@@ -241,6 +248,8 @@ namespace enterpriseDevelopment.Repositories
             }
             catch (Exception ex)
             {
+
+                Logger.Error(ex.Message);
                 connection.Close();
                 return false;
             }

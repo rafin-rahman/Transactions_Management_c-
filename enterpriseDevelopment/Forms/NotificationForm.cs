@@ -13,7 +13,7 @@ namespace enterpriseDevelopment.Forms
 {
     public partial class NotificationForm : Form
     {
-        public NotificationForm()
+        public NotificationForm(string text)
         {
             InitializeComponent();
 
@@ -21,6 +21,8 @@ namespace enterpriseDevelopment.Forms
             Rectangle size = Screen.PrimaryScreen.WorkingArea;
             Location = new Point(10 , size.Height - Height- 10);
             bgWorkerNotification.RunWorkerAsync();
+            labelNewTrans.Text = text;
+
         }
 
         private void notificationClose_Click(object sender, EventArgs e)

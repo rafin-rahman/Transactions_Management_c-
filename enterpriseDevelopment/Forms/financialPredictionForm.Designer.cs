@@ -75,12 +75,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1490, 1144);
+            this.ClientSize = new System.Drawing.Size(2022, 1083);
             this.Controls.Add(this.resultLbl);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.predictBtn);
             this.Controls.Add(this.datePicker);
             this.Name = "financialPredictionForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "financialPredictionForm";
             this.ResumeLayout(false);
             this.PerformLayout();
