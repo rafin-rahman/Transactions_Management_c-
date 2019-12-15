@@ -41,9 +41,10 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(43, 30);
+            this.label1.Location = new System.Drawing.Point(22, 16);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 67);
+            this.label1.Size = new System.Drawing.Size(36, 36);
             this.label1.TabIndex = 0;
             this.label1.Text = "X";
             this.label1.Click += new System.EventHandler(this.notificationClose_Click);
@@ -53,9 +54,10 @@
             this.panel1.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(695, 0);
+            this.panel1.Location = new System.Drawing.Point(347, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(138, 132);
+            this.panel1.Size = new System.Drawing.Size(69, 69);
             this.panel1.TabIndex = 1;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -64,9 +66,10 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label2.Location = new System.Drawing.Point(3, 30);
+            this.label2.Location = new System.Drawing.Point(2, 16);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(196, 67);
+            this.label2.Size = new System.Drawing.Size(99, 36);
             this.label2.TabIndex = 2;
             this.label2.Text = "OPEN";
             this.label2.Visible = false;
@@ -83,24 +86,27 @@
             this.labelNewTrans.AutoSize = true;
             this.labelNewTrans.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNewTrans.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.labelNewTrans.Location = new System.Drawing.Point(205, 38);
+            this.labelNewTrans.Location = new System.Drawing.Point(102, 20);
+            this.labelNewTrans.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelNewTrans.Name = "labelNewTrans";
-            this.labelNewTrans.Size = new System.Drawing.Size(431, 59);
+            this.labelNewTrans.Size = new System.Drawing.Size(218, 29);
             this.labelNewTrans.TabIndex = 3;
             this.labelNewTrans.Text = "NEW TRANSACTION!";
             // 
             // NotificationForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.ClientSize = new System.Drawing.Size(833, 132);
+            this.ClientSize = new System.Drawing.Size(416, 69);
             this.Controls.Add(this.labelNewTrans);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "NotificationForm";
             this.Text = "NotificationForm";
+            this.Load += new System.EventHandler(this.NotificationForm_Load);
             this.MouseEnter += new System.EventHandler(this.NotificationForm_MouseEnter);
             this.MouseLeave += new System.EventHandler(this.NotificationForm_MouseLeave);
             this.MouseHover += new System.EventHandler(this.NotificationForm_MouseHover);

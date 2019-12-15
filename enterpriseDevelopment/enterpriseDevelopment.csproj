@@ -141,6 +141,10 @@
     <Compile Include="Repositories\TransactionRecurringRepository.cs" />
     <Compile Include="Repositories\TransactionRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
+    <None Include="Resources\recurrentIcon.png" />
+    <None Include="Resources\notification.wav" />
+    <None Include="Resources\closeNewIcon.png" />
+    <None Include="Resources\closeHoverIcon.png" />
     <EmbeddedResource Include="Forms\ContactAddEdit.resx">
       <DependentUpon>ContactAddEdit.cs</DependentUpon>
     </EmbeddedResource>

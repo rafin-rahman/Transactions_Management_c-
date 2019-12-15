@@ -104,6 +104,7 @@ namespace enterpriseDevelopment.Repositories
 
         public bool DeleteTransaction(Transaction transaction)
         {
+            int x = 0;
             string selectQuery = "DELETE FROM TransactionsTbl WHERE [TransactionId] = @transactionID AND [userIdFk] = @userId";
             try
             {
@@ -113,16 +114,7 @@ namespace enterpriseDevelopment.Repositories
                 sqlCommand.Parameters.Add("@userId", SqlDbType.Int).Value = transaction.userIdFk;
 
                 connection.Open();
-                var x = sqlCommand.ExecuteNonQuery();
-                connection.Close();
-                if (x > 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                x = sqlCommand.ExecuteNonQuery();
 
 
 
@@ -130,7 +122,18 @@ namespace enterpriseDevelopment.Repositories
             catch (Exception ex)
             {
                 Logger.Error(ex.Message);
+                return false;
+            }
+            finally
+            {
                 connection.Close();
+            }
+            if (x > 0)
+            {
+                return true;
+            }
+            else
+            {
                 return false;
             }
 

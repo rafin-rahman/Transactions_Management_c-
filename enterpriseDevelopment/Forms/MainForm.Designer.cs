@@ -28,15 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.ContactBtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel11 = new System.Windows.Forms.Panel();
             this.panel12 = new System.Windows.Forms.Panel();
             this.panel13 = new System.Windows.Forms.Panel();
@@ -53,20 +49,32 @@
             this.transactionBtn = new System.Windows.Forms.Button();
             this.summaryBtn = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.repeatBtn = new System.Windows.Forms.Button();
-            this.eventsRepeatBtn = new System.Windows.Forms.Button();
             this.recurringBGWorker = new System.ComponentModel.BackgroundWorker();
+            this.recurringToggleBtn = new System.Windows.Forms.Button();
+            this.panelToggle1 = new System.Windows.Forms.Panel();
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.eventsRepeatBtn = new System.Windows.Forms.Button();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.closePanel = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
+            this.panel11.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panelToggle1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel11.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // ContactBtn
@@ -90,7 +98,9 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            this.panel1.BackColor = System.Drawing.Color.Gray;
+            this.panel1.Controls.Add(this.panel3);
+            this.panel1.Controls.Add(this.pictureBox7);
             this.panel1.Controls.Add(this.pictureBox6);
             this.panel1.Controls.Add(this.pictureBox5);
             this.panel1.Controls.Add(this.pictureBox4);
@@ -115,69 +125,17 @@
             this.panel1.Size = new System.Drawing.Size(284, 600);
             this.panel1.TabIndex = 1;
             // 
-            // pictureBox6
+            // panel3
             // 
-            this.pictureBox6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox6.BackgroundImage")));
-            this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox6.Location = new System.Drawing.Point(185, 535);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(55, 53);
-            this.pictureBox6.TabIndex = 24;
-            this.pictureBox6.TabStop = false;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox5.BackgroundImage")));
-            this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox5.Location = new System.Drawing.Point(195, 462);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(45, 51);
-            this.pictureBox5.TabIndex = 23;
-            this.pictureBox5.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.BackgroundImage")));
-            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox4.Location = new System.Drawing.Point(195, 376);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(51, 55);
-            this.pictureBox4.TabIndex = 22;
-            this.pictureBox4.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
-            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(187, 287);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(65, 53);
-            this.pictureBox3.TabIndex = 21;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(187, 195);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(65, 66);
-            this.pictureBox2.TabIndex = 20;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(195, 122);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(51, 47);
-            this.pictureBox1.TabIndex = 19;
-            this.pictureBox1.TabStop = false;
+            this.panel3.BackColor = System.Drawing.Color.DimGray;
+            this.panel3.Location = new System.Drawing.Point(0, 109);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(284, 5);
+            this.panel3.TabIndex = 3;
             // 
             // panel11
             // 
-            this.panel11.BackColor = System.Drawing.Color.SlateGray;
+            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
             this.panel11.Controls.Add(this.panel12);
             this.panel11.Controls.Add(this.panel13);
             this.panel11.Location = new System.Drawing.Point(185, 272);
@@ -202,7 +160,7 @@
             // 
             // panel10
             // 
-            this.panel10.BackColor = System.Drawing.Color.SlateGray;
+            this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
             this.panel10.Location = new System.Drawing.Point(185, 518);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(99, 82);
@@ -211,7 +169,7 @@
             // 
             // panel8
             // 
-            this.panel8.BackColor = System.Drawing.Color.SlateGray;
+            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
             this.panel8.Location = new System.Drawing.Point(185, 436);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(99, 82);
@@ -220,7 +178,7 @@
             // 
             // panel7
             // 
-            this.panel7.BackColor = System.Drawing.Color.SlateGray;
+            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
             this.panel7.Location = new System.Drawing.Point(185, 354);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(99, 82);
@@ -229,7 +187,7 @@
             // 
             // panel5
             // 
-            this.panel5.BackColor = System.Drawing.Color.SlateGray;
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
             this.panel5.Controls.Add(this.panel9);
             this.panel5.Controls.Add(this.panel6);
             this.panel5.Location = new System.Drawing.Point(185, 190);
@@ -254,7 +212,7 @@
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.Color.SlateGray;
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
             this.panel4.Location = new System.Drawing.Point(185, 108);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(99, 82);
@@ -358,47 +316,25 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.Controls.Add(this.panel3);
-            this.panel2.Controls.Add(this.eventsRepeatBtn);
+            this.panel2.BackColor = System.Drawing.Color.LavenderBlush;
             this.panel2.Controls.Add(this.repeatBtn);
+            this.panel2.Controls.Add(this.closePanel);
+            this.panel2.ImeMode = System.Windows.Forms.ImeMode.On;
             this.panel2.Location = new System.Drawing.Point(284, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(740, 48);
             this.panel2.TabIndex = 2;
             // 
-            // panel3
-            // 
-            this.panel3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel3.BackgroundImage")));
-            this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel3.Location = new System.Drawing.Point(704, 18);
-            this.panel3.Margin = new System.Windows.Forms.Padding(15, 16, 15, 16);
-            this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(5);
-            this.panel3.Size = new System.Drawing.Size(12, 14);
-            this.panel3.TabIndex = 0;
-            this.panel3.Click += new System.EventHandler(this.panel3_Click);
-            // 
             // repeatBtn
             // 
-            this.repeatBtn.Location = new System.Drawing.Point(23, 11);
+            this.repeatBtn.Location = new System.Drawing.Point(199, 2);
             this.repeatBtn.Margin = new System.Windows.Forms.Padding(2);
             this.repeatBtn.Name = "repeatBtn";
-            this.repeatBtn.Size = new System.Drawing.Size(35, 28);
+            this.repeatBtn.Size = new System.Drawing.Size(39, 37);
             this.repeatBtn.TabIndex = 7;
             this.repeatBtn.Text = "RT";
             this.repeatBtn.UseVisualStyleBackColor = true;
             this.repeatBtn.Click += new System.EventHandler(this.repeatBtn_Click);
-            // 
-            // eventsRepeatBtn
-            // 
-            this.eventsRepeatBtn.Location = new System.Drawing.Point(87, 12);
-            this.eventsRepeatBtn.Name = "eventsRepeatBtn";
-            this.eventsRepeatBtn.Size = new System.Drawing.Size(34, 28);
-            this.eventsRepeatBtn.TabIndex = 8;
-            this.eventsRepeatBtn.Text = "RE";
-            this.eventsRepeatBtn.UseVisualStyleBackColor = true;
-            this.eventsRepeatBtn.Click += new System.EventHandler(this.eventRecurring_Click);
             // 
             // recurringBGWorker
             // 
@@ -407,12 +343,148 @@
             this.recurringBGWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.recurringBGWorker_DoWork);
             this.recurringBGWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.recurringBGWorker_ProgressChanged);
             // 
+            // recurringToggleBtn
+            // 
+            this.recurringToggleBtn.BackColor = System.Drawing.Color.Gray;
+            this.recurringToggleBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.recurringToggleBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.recurringToggleBtn.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recurringToggleBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.recurringToggleBtn.Image = ((System.Drawing.Image)(resources.GetObject("recurringToggleBtn.Image")));
+            this.recurringToggleBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.recurringToggleBtn.Location = new System.Drawing.Point(0, 0);
+            this.recurringToggleBtn.Name = "recurringToggleBtn";
+            this.recurringToggleBtn.Size = new System.Drawing.Size(200, 39);
+            this.recurringToggleBtn.TabIndex = 3;
+            this.recurringToggleBtn.Text = "All transactions";
+            this.recurringToggleBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.recurringToggleBtn.UseVisualStyleBackColor = false;
+            this.recurringToggleBtn.Click += new System.EventHandler(this.recurringToggleBtn_Click);
+            // 
+            // panelToggle1
+            // 
+            this.panelToggle1.Controls.Add(this.eventsRepeatBtn);
+            this.panelToggle1.Controls.Add(this.recurringToggleBtn);
+            this.panelToggle1.Location = new System.Drawing.Point(290, 354);
+            this.panelToggle1.Name = "panelToggle1";
+            this.panelToggle1.Size = new System.Drawing.Size(200, 82);
+            this.panelToggle1.TabIndex = 9;
+            // 
+            // timer
+            // 
+            this.timer.Interval = 15;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
+            // eventsRepeatBtn
+            // 
+            this.eventsRepeatBtn.BackColor = System.Drawing.Color.Gray;
+            this.eventsRepeatBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.eventsRepeatBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.eventsRepeatBtn.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.eventsRepeatBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.eventsRepeatBtn.Image = ((System.Drawing.Image)(resources.GetObject("eventsRepeatBtn.Image")));
+            this.eventsRepeatBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.eventsRepeatBtn.Location = new System.Drawing.Point(0, 39);
+            this.eventsRepeatBtn.Name = "eventsRepeatBtn";
+            this.eventsRepeatBtn.Size = new System.Drawing.Size(200, 43);
+            this.eventsRepeatBtn.TabIndex = 8;
+            this.eventsRepeatBtn.Text = "Periodic ";
+            this.eventsRepeatBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.eventsRepeatBtn.UseVisualStyleBackColor = false;
+            this.eventsRepeatBtn.Click += new System.EventHandler(this.eventRecurring_Click);
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
+            this.pictureBox7.Location = new System.Drawing.Point(-14, 1);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(266, 102);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox7.TabIndex = 25;
+            this.pictureBox7.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox6.BackgroundImage")));
+            this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox6.Location = new System.Drawing.Point(185, 535);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(55, 53);
+            this.pictureBox6.TabIndex = 24;
+            this.pictureBox6.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox5.BackgroundImage")));
+            this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox5.Location = new System.Drawing.Point(195, 462);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(45, 51);
+            this.pictureBox5.TabIndex = 23;
+            this.pictureBox5.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.BackgroundImage")));
+            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox4.Location = new System.Drawing.Point(195, 376);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(51, 55);
+            this.pictureBox4.TabIndex = 22;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox3.Location = new System.Drawing.Point(187, 287);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(65, 53);
+            this.pictureBox3.TabIndex = 21;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox2.Location = new System.Drawing.Point(187, 195);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(65, 66);
+            this.pictureBox2.TabIndex = 20;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(195, 122);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(51, 47);
+            this.pictureBox1.TabIndex = 19;
+            this.pictureBox1.TabStop = false;
+            // 
+            // closePanel
+            // 
+            this.closePanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("closePanel.BackgroundImage")));
+            this.closePanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.closePanel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.closePanel.Location = new System.Drawing.Point(684, 9);
+            this.closePanel.Margin = new System.Windows.Forms.Padding(15, 16, 15, 16);
+            this.closePanel.Name = "closePanel";
+            this.closePanel.Padding = new System.Windows.Forms.Padding(5);
+            this.closePanel.Size = new System.Drawing.Size(32, 30);
+            this.closePanel.TabIndex = 0;
+            this.closePanel.Click += new System.EventHandler(this.closePanel_Click);
+            this.closePanel.MouseEnter += new System.EventHandler(this.closePanel_MouseEnter);
+            this.closePanel.MouseLeave += new System.EventHandler(this.closePanel_MouseLeave);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.MistyRose;
             this.ClientSize = new System.Drawing.Size(1024, 600);
+            this.Controls.Add(this.panelToggle1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -423,15 +495,17 @@
             this.Activated += new System.EventHandler(this.MainForm_Activated);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
+            this.panel11.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panelToggle1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel11.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -448,7 +522,7 @@
         private System.Windows.Forms.Button summaryBtn;
         private System.Windows.Forms.Button predictBtn;
         private System.ComponentModel.BackgroundWorker recurringBGWorker;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel closePanel;
         private System.Windows.Forms.Button mainBtn;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Panel panel12;
@@ -466,6 +540,11 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button recurringToggleBtn;
+        private System.Windows.Forms.Panel panelToggle1;
+        private System.Windows.Forms.Timer timer;
     }
 }
 

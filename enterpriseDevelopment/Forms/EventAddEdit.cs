@@ -40,7 +40,7 @@ namespace enterpriseDevelopment.Forms
             dateTimePick.Value = eventObj.date;
             locationTxt.Text = eventObj.location;
             groupBox1.Visible = false;
-            recurrCheck.Visible = false;
+            recurrCheck.Visible = true;
         }
 
 

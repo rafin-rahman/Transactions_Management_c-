@@ -133,7 +133,7 @@ namespace enterpriseDevelopment
             Instance.StaticUserAccount = userAccount;
             Close();
         }
-        
+
         private bool CheckUserForLogin(UserAccount userAccount)
         {
 
@@ -158,10 +158,93 @@ namespace enterpriseDevelopment
 
 
             }
-            else {
+            else
+            {
                 MessageBox.Show("Logged in successfully");
             }
             return true;
+        }
+
+        private void usernameLogTxt_MouseClick(object sender, MouseEventArgs e)
+        {
+            usernameLogTxt.Text = "";
+            if (passwordLogTxt.Text == "")
+            {
+                passwordLogTxt.Text = "Your Password...";
+                passwordLogTxt.UseSystemPasswordChar = false;
+            }
+
+
+        }
+
+        private void usernameLogTxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void passwordLogTxt_MouseClick(object sender, MouseEventArgs e)
+        {
+            passwordLogTxt.Text = "";
+
+            if (passwordLogTxt.Text == "") passwordLogTxt.UseSystemPasswordChar = true;
+            if (usernameLogTxt.Text == "") usernameLogTxt.Text = "Type username...";
+        }
+
+       
+        // Close form
+        private void closeBtn_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+        #region Toogle login / register view
+        // Register here link
+        private void label2_Click(object sender, EventArgs e)
+        {
+            // Show register elements in the UI
+            panel2.Visible = true;
+            panel5.Visible = true;
+            panel7.Visible = true;
+            panel9.Visible = true;
+            registerBtn.Visible = true;
+            label3.Visible = true;
+            label4.Visible = true;
+            registerIcon.Visible = true;
+
+            // Hide login  elements in the UI
+            panel1.Visible = false;
+            panel3.Visible = false;
+            loginBtn.Visible = false;
+            label1.Visible = false;
+            label2.Visible = false;
+            loginIcon.Visible = false;
+        }
+        // Login here link
+        private void label4_Click(object sender, EventArgs e)
+        {
+            panel2.Visible = false;
+            panel5.Visible = false;
+            panel7.Visible = false;
+            panel9.Visible = false;
+            registerBtn.Visible = false;
+            label3.Visible = false;
+            label4.Visible = false;
+            registerIcon.Visible = false;
+
+            panel1.Visible = true;
+            panel3.Visible = true;
+            loginBtn.Visible = true;
+            label1.Visible = true;
+            label2.Visible = true;
+            loginIcon.Visible = true;
+        }
+        #endregion
+
+        private void LoginRegister_Activated(object sender, EventArgs e)
+        {
+            if (loginIcon.Visible == true)
+            {
+                registerIcon.Visible = false;
+            }
         }
 
         private void LoginRegister_FormClosed(object sender, FormClosedEventArgs e)
@@ -231,6 +314,6 @@ namespace enterpriseDevelopment
             return true;
         }
 
-       
+
     }
 }

@@ -17,6 +17,7 @@ namespace enterpriseDevelopment
     public partial class MainForm : Form
     {
         private bool checkIfFirst = true;
+        private bool isCollapsed = true;
 
         TransactionRepository transactionRepository;
         private List<Transaction> todaysTransaction;
@@ -38,10 +39,10 @@ namespace enterpriseDevelopment
             }
             else
             {
-                
-                
             }
         }
+
+
 
         private void label2_Click(object sender, EventArgs e)
         {
@@ -65,8 +66,8 @@ namespace enterpriseDevelopment
             }
             else
             {
-                if (!recurringBGWorker.IsBusy) recurringBGWorker.RunWorkerAsync();
                 GetTransactionList();
+                if (!recurringBGWorker.IsBusy) recurringBGWorker.RunWorkerAsync();
             }
 
 
@@ -86,11 +87,9 @@ namespace enterpriseDevelopment
         {
 
 
+            timer.Start();
 
-
-            TransactionForm transactionForm = new TransactionForm();
-            transactionForm.Activate();
-            transactionForm.Show();
+            
 
         }
 
@@ -306,9 +305,18 @@ namespace enterpriseDevelopment
 
         #region Main page button hover animation
 
-        private void panel3_Click(object sender, EventArgs e)
+        private void closePanel_MouseEnter(object sender, EventArgs e)
         {
-            // Close Dashboard
+            this.closePanel.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.closeNewIcon));
+        }
+
+        private void closePanel_MouseLeave(object sender, EventArgs e)
+        {
+            this.closePanel.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.closeHoverIcon));
+        }
+
+        private void closePanel_Click(object sender, EventArgs e)
+        {
             Close();
         }
 
@@ -316,72 +324,99 @@ namespace enterpriseDevelopment
         {
             panel4.Visible = true;
             pictureBox1.Visible = false;
+            mainBtn.Font = new Font(mainBtn.Font, FontStyle.Bold);
+            mainBtn.ForeColor = Color.MistyRose;
         }
 
         private void mainBtn_MouseLeave(object sender, EventArgs e)
         {
             panel4.Visible = false;
             pictureBox1.Visible = true;
+            mainBtn.Font = new Font(mainBtn.Font, FontStyle.Regular);
+            mainBtn.ForeColor = Color.LavenderBlush;
         }
 
         private void predictBtn_MouseEnter(object sender, EventArgs e)
         {
             panel5.Visible = true;
             pictureBox2.Visible = false;
+            predictBtn.Font = new Font(predictBtn.Font, FontStyle.Bold);
+            predictBtn.ForeColor = Color.MistyRose;
+
         }
 
         private void predictBtn_MouseLeave(object sender, EventArgs e)
         {
             panel5.Visible = false;
             pictureBox2.Visible = true;
+            predictBtn.Font = new Font(predictBtn.Font, FontStyle.Regular);
+            predictBtn.ForeColor = Color.LavenderBlush;
+
         }
 
         private void eventsBtn_MouseEnter(object sender, EventArgs e)
         {
             panel11.Visible = true;
             pictureBox3.Visible = false;
+            eventsBtn.Font = new Font(eventsBtn.Font, FontStyle.Bold);
+            eventsBtn.ForeColor = Color.MistyRose;
+
         }
 
         private void eventsBtn_MouseLeave(object sender, EventArgs e)
         {
             panel11.Visible = false;
             pictureBox3.Visible = true;
-        }
-
-        private void transactionBtn_MouseLeave(object sender, EventArgs e)
-        {
-            panel7.Visible = false;
-            pictureBox4.Visible = true;
+            eventsBtn.Font = new Font(eventsBtn.Font, FontStyle.Regular);
+            eventsBtn.ForeColor = Color.LavenderBlush;
         }
 
         private void transactionBtn_MouseEnter(object sender, EventArgs e)
         {
             panel7.Visible = true;
             pictureBox4.Visible = false;
+            transactionBtn.Font = new Font(transactionBtn.Font, FontStyle.Bold);
+            transactionBtn.ForeColor = Color.MistyRose;
+        }
+
+        private void transactionBtn_MouseLeave(object sender, EventArgs e)
+        {
+            panel7.Visible = false;
+            pictureBox4.Visible = true;
+            transactionBtn.Font = new Font(transactionBtn.Font, FontStyle.Regular);
+            transactionBtn.ForeColor = Color.MistyRose;
         }
 
         private void summaryBtn_MouseEnter(object sender, EventArgs e)
         {
             panel8.Visible = true;
             pictureBox5.Visible = false;
+            summaryBtn.Font = new Font(summaryBtn.Font, FontStyle.Bold);
+            summaryBtn.ForeColor = Color.MistyRose;
         }
 
         private void summaryBtn_MouseLeave(object sender, EventArgs e)
         {
             panel8.Visible = false;
             pictureBox5.Visible = true;
+            summaryBtn.Font = new Font(summaryBtn.Font, FontStyle.Regular);
+            summaryBtn.ForeColor = Color.LavenderBlush;
         }
 
         private void ContactBtn_MouseEnter(object sender, EventArgs e)
         {
             panel10.Visible = true;
             pictureBox6.Visible = false;
+            ContactBtn.Font = new Font(ContactBtn.Font, FontStyle.Bold);
+            ContactBtn.ForeColor = Color.MistyRose;
         }
 
         private void ContactBtn_MouseLeave(object sender, EventArgs e)
         {
             panel10.Visible = false;
             pictureBox6.Visible = true;
+            ContactBtn.Font = new Font(ContactBtn.Font, FontStyle.Regular);
+            ContactBtn.ForeColor = Color.LavenderBlush;
         }
 
         #endregion
@@ -396,13 +431,13 @@ namespace enterpriseDevelopment
 
             foreach (Transaction transaction in transactions)
             {
-                if(transaction.dateTime.Date == DateTime.Now.Date)
+                if (transaction.dateTime.Date == DateTime.Now.Date)
                     tempTransactions.Add(transaction);
             }
-            
+
             dashboardPanel.Dispose();
             dashboardPanel = new Panel();
-            dashboardPanel.BackColor = Color.Green;
+            dashboardPanel.BackColor = Color.MistyRose;
             dashboardPanel.Size = new Size(400, 390);
             dashboardPanel.Location = new Point(300, 100);
             dashboardPanel.AutoScroll = true;
@@ -413,36 +448,40 @@ namespace enterpriseDevelopment
             foreach (Transaction transaction in tempTransactions)
             {
                 count++;
-                Console.WriteLine("CHECK");
+
                 Panel internalPanel = new Panel();
-                internalPanel.BackColor = Color.White;
+                internalPanel.BackColor = Color.MistyRose;
                 internalPanel.Size = new Size(280, 30);
-                internalPanel.Location = new Point(10, count*50);
+                internalPanel.Location = new Point(10, count * 50);
 
                 dashboardPanel.Controls.Add(internalPanel);
 
                 Label incomeTypeLbl = new Label();
+                Label amountLbl = new Label();
                 string typeTxt = "";
                 if (transaction.incomeExpense == true)
                 {
                     typeTxt = "+";
+                    amountLbl.ForeColor = Color.Green;
                 }
                 else
                 {
                     typeTxt = "-";
+                    amountLbl.ForeColor = Color.Red;
                 }
 
                 incomeTypeLbl.Text = typeTxt;
                 incomeTypeLbl.TextAlign = ContentAlignment.MiddleCenter;
-                incomeTypeLbl.Size = new Size(30, 15);
+                incomeTypeLbl.Size = new Size(10, 15);
                 incomeTypeLbl.Location = new Point(10, 10);
-                incomeTypeLbl.BackColor = Color.GreenYellow;
+                //incomeTypeLbl.BackColor = Color.GreenYellow;
                 internalPanel.Controls.Add(incomeTypeLbl);
+                internalPanel.Font = new Font("Calibri", 10, FontStyle.Bold);
 
-                Label amountLbl = new Label();
+
                 amountLbl.Text = "£" + transaction.transactionAmount;
-                amountLbl.Size = new Size(100, 15);
-                amountLbl.Location = new Point(40, 10);
+                amountLbl.Size = new Size(70, 15);
+                amountLbl.Location = new Point(30, 10);
                 amountLbl.TextAlign = ContentAlignment.MiddleCenter;
                 amountLbl.BackColor = Color.AliceBlue;
 
@@ -451,15 +490,49 @@ namespace enterpriseDevelopment
                 Label nameLbl = new Label();
                 nameLbl.Text = transaction.transactionCategory;
                 nameLbl.Size = new Size(100, 15);
-                nameLbl.Location = new Point(150, 10);
+                nameLbl.Location = new Point(90, 10);
                 nameLbl.TextAlign = ContentAlignment.MiddleCenter;
                 nameLbl.BackColor = Color.LightPink;
 
                 internalPanel.Controls.Add(nameLbl);
             }
         }
-        
+
+
+
 
         #endregion
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            if (isCollapsed)
+            {
+                panelToggle1.Width += 20;
+                if (panelToggle1.Size == panelToggle1.MaximumSize)
+                {
+                  
+                    timer.Stop();
+                    isCollapsed = false;
+                }
+            }
+            else
+            {
+                panelToggle1.Width -= 20;
+                if (panelToggle1.Size == panelToggle1.MinimumSize)
+                {
+                    timer.Stop();
+                    isCollapsed = true;
+                }
+            }
+        }
+
+        private void recurringToggleBtn_Click(object sender, EventArgs e)
+        {
+
+            TransactionForm transactionForm = new TransactionForm();
+            transactionForm.Activate();
+            transactionForm.Show();
+
+        }
     }
 }
