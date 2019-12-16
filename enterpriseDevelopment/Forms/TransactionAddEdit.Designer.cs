@@ -280,6 +280,9 @@
             this.closePanel.Padding = new System.Windows.Forms.Padding(5);
             this.closePanel.Size = new System.Drawing.Size(32, 30);
             this.closePanel.TabIndex = 0;
+            this.closePanel.Click += new System.EventHandler(this.closePanel_Click);
+            this.closePanel.MouseEnter += new System.EventHandler(this.closePanel_MouseEnter);
+            this.closePanel.MouseLeave += new System.EventHandler(this.closePanel_MouseLeave);
             // 
             // actionBtn
             // 

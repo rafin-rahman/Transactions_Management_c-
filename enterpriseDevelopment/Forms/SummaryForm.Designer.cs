@@ -542,6 +542,7 @@
             this.Text = " ";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SummaryForm_FormClosed);
             this.Load += new System.EventHandler(this.SummaryForm_Load);
+            this.Click += new System.EventHandler(this.SummaryForm_Click);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();

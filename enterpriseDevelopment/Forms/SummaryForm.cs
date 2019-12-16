@@ -307,5 +307,12 @@ namespace enterpriseDevelopment.Forms
         {
 
         }
+
+        private void SummaryForm_Click(object sender, EventArgs e)
+        {
+            ContactsForm contactsForm = new ContactsForm();
+            contactsForm.Activate();
+            contactsForm.Show();
+        }
     }
 }

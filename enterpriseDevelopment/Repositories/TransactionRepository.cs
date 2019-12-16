@@ -102,6 +102,78 @@ namespace enterpriseDevelopment.Repositories
             return u;
         }
 
+        public List<Transaction> GetTransactions(DateTime date ,int id)
+        {
+
+            // object u
+            List<Transaction> u = new List<Transaction>();
+
+            string selectQuery = "SELECT * FROM TransactionsTbl WHERE userIdFk = @userID AND CONVERT(Date, dateTime,1) BETWEEN @StartDate AND @EndDate";
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
+                // userName parameter of his method
+                sqlCommand.Parameters.Add("@userID", SqlDbType.Int).Value = id;
+                sqlCommand.Parameters.Add("@StartDate", SqlDbType.DateTime).Value = date.AddDays(-30).ToShortDateString();
+                sqlCommand.Parameters.Add("@EndDate", SqlDbType.DateTime).Value = date.ToShortDateString();
+
+                connection.Open();
+                // Ask to retrieve all the  row
+                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+
+
+
+                while (sqlDataReader.Read())
+                {
+                    Transaction temp = new Transaction
+                    {
+                        transactionId = (int)sqlDataReader["TransactionId"],
+                        transactionCategory = sqlDataReader["TransactionCategory"].ToString(),
+                        transactionAmount = (decimal)sqlDataReader["TransactionAmount"],
+                        dateTime = (DateTime)sqlDataReader["dateTime"],
+                        transactionMessage = sqlDataReader["TransactionMessage"].ToString(),
+                        incomeExpense = (bool)sqlDataReader["IncomeExpense"],
+                        userIdFk = (int)sqlDataReader["userIdFk"]
+                    };
+
+                    if (temp.incomeExpense == true)
+                    {
+                        temp.typeValue = "Income";
+                    }
+                    else
+                    {
+                        temp.typeValue = "Expense";
+                    }
+
+
+                    if (sqlDataReader["contactIdFk"] == DBNull.Value)
+                    {
+                        temp.contactIdFk = 0;
+                    }
+                    else
+                    {
+                        temp.contactIdFk = (int)sqlDataReader["contactIdFk"];
+                    }
+                   
+                    u.Add(temp);
+
+
+
+                }
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex.Message);
+                connection.Close();
+
+            }
+
+            // u is the object created at the beginning of the this method 
+            return u;
+        }
+
+
         public bool DeleteTransaction(Transaction transaction)
         {
             int x = 0;

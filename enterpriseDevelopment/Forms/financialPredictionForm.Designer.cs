@@ -58,9 +58,11 @@
             this.summaryBtn = new System.Windows.Forms.Button();
             this.ContactBtn = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
             this.closePanel = new System.Windows.Forms.Panel();
             this.predictBtn = new System.Windows.Forms.Button();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -99,10 +101,11 @@
             // resultLbl
             // 
             this.resultLbl.AutoSize = true;
-            this.resultLbl.Location = new System.Drawing.Point(620, 498);
+            this.resultLbl.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Bold);
+            this.resultLbl.Location = new System.Drawing.Point(521, 485);
             this.resultLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.resultLbl.Name = "resultLbl";
-            this.resultLbl.Size = new System.Drawing.Size(62, 13);
+            this.resultLbl.Size = new System.Drawing.Size(148, 33);
             this.resultLbl.TabIndex = 3;
             this.resultLbl.Text = "Your results";
             // 
@@ -405,16 +408,29 @@
             this.ContactBtn.Text = "  Contact";
             this.ContactBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ContactBtn.UseVisualStyleBackColor = true;
+            this.ContactBtn.Click += new System.EventHandler(this.ContactBtn_Click);
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.panel2.Controls.Add(this.label9);
             this.panel2.Controls.Add(this.closePanel);
             this.panel2.ImeMode = System.Windows.Forms.ImeMode.On;
             this.panel2.Location = new System.Drawing.Point(280, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(747, 48);
             this.panel2.TabIndex = 5;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Cambria", 24F, System.Drawing.FontStyle.Bold);
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label9.Location = new System.Drawing.Point(200, 1);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(348, 37);
+            this.label9.TabIndex = 23;
+            this.label9.Text = "FINACIAL PREDICTION";
             // 
             // closePanel
             // 
@@ -456,11 +472,18 @@
             this.pictureBox8.TabIndex = 22;
             this.pictureBox8.TabStop = false;
             // 
+            // monthCalendar1
+            // 
+            this.monthCalendar1.Location = new System.Drawing.Point(775, 299);
+            this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.TabIndex = 23;
+            // 
             // financialPredictionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1025, 597);
+            this.Controls.Add(this.monthCalendar1);
             this.Controls.Add(this.pictureBox8);
             this.Controls.Add(this.predictBtn);
             this.Controls.Add(this.panel2);
@@ -486,6 +509,7 @@
             this.panel11.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -526,5 +550,7 @@
         private System.Windows.Forms.Panel closePanel;
         private System.Windows.Forms.Button predictBtn;
         private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.MonthCalendar monthCalendar1;
     }
 }

@@ -30,6 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.ContactBtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -66,6 +69,7 @@
             this.panelToogle2 = new System.Windows.Forms.Panel();
             this.allEventBtn = new System.Windows.Forms.Button();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.PieChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -79,6 +83,7 @@
             this.panel2.SuspendLayout();
             this.panelToggle1.SuspendLayout();
             this.panelToogle2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PieChart)).BeginInit();
             this.SuspendLayout();
             // 
             // ContactBtn
@@ -529,12 +534,32 @@
             this.timer2.Interval = 15;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
+            // PieChart
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.PieChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.PieChart.Legends.Add(legend1);
+            this.PieChart.Location = new System.Drawing.Point(688, 84);
+            this.PieChart.Name = "PieChart";
+            this.PieChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Legend = "Legend1";
+            series1.Name = "MonthlyTransaction";
+            this.PieChart.Series.Add(series1);
+            this.PieChart.Size = new System.Drawing.Size(300, 300);
+            this.PieChart.TabIndex = 11;
+            this.PieChart.Text = "chart1";
+            this.PieChart.Click += new System.EventHandler(this.PieChart_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
             this.ClientSize = new System.Drawing.Size(1025, 597);
+            this.Controls.Add(this.PieChart);
             this.Controls.Add(this.panelToogle2);
             this.Controls.Add(this.panelToggle1);
             this.Controls.Add(this.panel1);
@@ -560,6 +585,7 @@
             this.panel2.ResumeLayout(false);
             this.panelToggle1.ResumeLayout(false);
             this.panelToogle2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PieChart)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -602,6 +628,7 @@
         private System.Windows.Forms.Button allEventBtn;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.DataVisualization.Charting.Chart PieChart;
     }
 }
 

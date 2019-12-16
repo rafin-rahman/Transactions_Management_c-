@@ -69,6 +69,7 @@ namespace enterpriseDevelopment
             else
             {
                 GetTransactionList();
+                creatGraph();
                 if (!recurringBGWorker.IsBusy) recurringBGWorker.RunWorkerAsync();
             }
 
@@ -586,6 +587,43 @@ namespace enterpriseDevelopment
         }
 
         private void closePanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void creatGraph() {
+            TransactionRepository transactionRepository = new TransactionRepository();
+            List<Transaction> transactionList = transactionRepository.GetTransactions(DateTime.Now, Instance.StaticUserAccount.UserId);
+
+            decimal totalExpense = 0;
+            decimal totalIncome = 0;
+
+            foreach(Transaction transaction in transactionList)
+            {
+                if(transaction.incomeExpense)
+                {
+                    totalIncome += transaction.transactionAmount;
+                }
+                else
+                {
+                    totalExpense += transaction.transactionAmount;
+                }
+            }
+
+
+
+            PieChart.Series["MonthlyTransaction"].Points.Clear();
+            PieChart.Series["MonthlyTransaction"].IsValueShownAsLabel = true;
+            PieChart.Series["MonthlyTransaction"].Points.AddXY("Income", totalIncome.ToString("0.00"));
+            PieChart.Series["MonthlyTransaction"].Points[0].Color = Color.FromArgb(30, 39, 46) ;
+            PieChart.Series["MonthlyTransaction"].Points.AddXY("Expense", totalExpense.ToString("0.00"));
+            PieChart.Series["MonthlyTransaction"].Points[1].Color = Color.Gray;
+            PieChart.Series["MonthlyTransaction"].Points[1].Font = new Font("Calibri", 10, FontStyle.Bold);
+            PieChart.Series["MonthlyTransaction"].Font = new Font("Calibri", 20, FontStyle.Bold);
+           
+        }
+
+        private void PieChart_Click(object sender, EventArgs e)
         {
 
         }

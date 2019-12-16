@@ -233,5 +233,12 @@ namespace enterpriseDevelopment.Forms
             summaryForm.Activate();
             summaryForm.Show();
         }
+
+        private void ContactBtn_Click(object sender, EventArgs e)
+        {
+            ContactsForm contactsForm = new ContactsForm();
+            contactsForm.Activate();
+            contactsForm.Show();
+        }
     }
 }

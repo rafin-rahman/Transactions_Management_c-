@@ -137,11 +137,11 @@
             this.label4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label4.Font = new System.Drawing.Font("Cambria", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label4.Location = new System.Drawing.Point(188, 7);
+            this.label4.Location = new System.Drawing.Point(104, 7);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(394, 37);
+            this.label4.Size = new System.Drawing.Size(490, 37);
             this.label4.TabIndex = 1;
-            this.label4.Text = "Planned events and  tasks";
+            this.label4.Text = "PLANED TASKS / APPOINTMENT";
             // 
             // panel1
             // 
@@ -457,6 +457,7 @@
             this.ContactBtn.Text = "  Contact";
             this.ContactBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ContactBtn.UseVisualStyleBackColor = true;
+            this.ContactBtn.Click += new System.EventHandler(this.ContactBtn_Click);
             // 
             // label1
             // 

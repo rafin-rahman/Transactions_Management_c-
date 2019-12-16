@@ -456,6 +456,8 @@
             this.ContactBtn.Text = "  Contact";
             this.ContactBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ContactBtn.UseVisualStyleBackColor = true;
+            this.ContactBtn.Click += new System.EventHandler(this.ContactBtn_Click);
+            this.ContactBtn.ChangeUICues += new System.Windows.Forms.UICuesEventHandler(this.ContactBtn_ChangeUICues);
             // 
             // label3
             // 
@@ -486,9 +488,9 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
             this.label1.Location = new System.Drawing.Point(383, 469);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(150, 23);
+            this.label1.Size = new System.Drawing.Size(135, 23);
             this.label1.TabIndex = 10;
-            this.label1.Text = "Add event or task";
+            this.label1.Text = "Add transaction";
             // 
             // listViewTransaction
             // 
@@ -500,10 +502,9 @@
             this.columnHeader4,
             this.columnHeader5});
             this.listViewTransaction.Depth = 0;
-            this.listViewTransaction.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
+            this.listViewTransaction.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.listViewTransaction.FullRowSelect = true;
             this.listViewTransaction.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.listViewTransaction.HideSelection = false;
             this.listViewTransaction.Location = new System.Drawing.Point(306, 86);
             this.listViewTransaction.MouseLocation = new System.Drawing.Point(-1, -1);
             this.listViewTransaction.MouseState = MaterialSkin.MouseState.OUT;
