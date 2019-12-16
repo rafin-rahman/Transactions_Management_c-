@@ -57,7 +57,6 @@ namespace enterpriseDevelopment
         {
             Instance.MainForm.Activate();
             Instance.MainForm.Show();
-
             Dispose();
         }
 
@@ -182,7 +181,7 @@ namespace enterpriseDevelopment
 
         private void panel1_Click(object sender, EventArgs e)
         {
-            Dispose();
+            Instance.MainForm.Dispose();
           
         }
 
@@ -194,6 +193,16 @@ namespace enterpriseDevelopment
         private void panel1_MouseLeave(object sender, EventArgs e)
         {
             this.panel1.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.close));
+        }
+
+       
+
+        private void mainBtn_Click_1(object sender, EventArgs e)
+        {
+            MainForm mainForm = new MainForm();
+            mainForm.Activate();
+            mainForm.Show();
+            Close();
         }
     }
 }

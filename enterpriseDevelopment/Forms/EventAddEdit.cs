@@ -22,7 +22,7 @@ namespace enterpriseDevelopment.Forms
         public EventAddEdit()
         {
             InitializeComponent();
-            actionBtn.Text = "Add";
+            actionBtn.Text = "ADD EVENT / TASK";
             Text = "Add event";
             ev = new Event { userFK = Instance.StaticUserAccount.UserId };
 
@@ -314,6 +314,46 @@ namespace enterpriseDevelopment.Forms
             {
                 dateTimePicker1.Enabled = true;
             }
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void closePanel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void messageRichTxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxEvent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

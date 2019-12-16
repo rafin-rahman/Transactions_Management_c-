@@ -97,9 +97,9 @@ namespace enterpriseDevelopment
 
         private void repeatBtn_Click(object sender, EventArgs e)
         {
-            TransactionForm transactionForm = new TransactionForm(true);
-            transactionForm.Activate();
-            transactionForm.Show();
+            EventForm eventForm = new EventForm(true);
+            eventForm.Activate();
+            eventForm.Show();
         }
         private void event_Click(object sender, EventArgs e)
         {
@@ -109,9 +109,12 @@ namespace enterpriseDevelopment
         private void eventRecurring_Click(object sender, EventArgs e)
         {
 
-            EventForm eventForm = new EventForm(true);
-            eventForm.Activate();
-            eventForm.Show();
+            
+
+            TransactionForm transactionForm = new TransactionForm(true);
+            transactionForm.Activate();
+            transactionForm.Show();
+
 
         }
 
