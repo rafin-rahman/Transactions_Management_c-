@@ -67,6 +67,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.summaryBtn = new System.Windows.Forms.Button();
             this.ContactBtn = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
@@ -135,34 +138,40 @@
             // 
             // addBtn
             // 
-            this.addBtn.Location = new System.Drawing.Point(463, 394);
+            this.addBtn.FlatAppearance.BorderSize = 0;
+            this.addBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addBtn.Image = ((System.Drawing.Image)(resources.GetObject("addBtn.Image")));
+            this.addBtn.Location = new System.Drawing.Point(425, 391);
             this.addBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.addBtn.Name = "addBtn";
-            this.addBtn.Size = new System.Drawing.Size(96, 54);
+            this.addBtn.Size = new System.Drawing.Size(60, 60);
             this.addBtn.TabIndex = 1;
-            this.addBtn.Text = "Add";
             this.addBtn.UseVisualStyleBackColor = true;
             this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
             // 
             // editBtn
             // 
-            this.editBtn.Location = new System.Drawing.Point(604, 394);
+            this.editBtn.FlatAppearance.BorderSize = 0;
+            this.editBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.editBtn.Image = ((System.Drawing.Image)(resources.GetObject("editBtn.Image")));
+            this.editBtn.Location = new System.Drawing.Point(627, 391);
             this.editBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.editBtn.Name = "editBtn";
-            this.editBtn.Size = new System.Drawing.Size(96, 54);
+            this.editBtn.Size = new System.Drawing.Size(60, 60);
             this.editBtn.TabIndex = 2;
-            this.editBtn.Text = "Edit";
             this.editBtn.UseVisualStyleBackColor = true;
             this.editBtn.Click += new System.EventHandler(this.editBtn_Click);
             // 
             // deleteBtn
             // 
-            this.deleteBtn.Location = new System.Drawing.Point(774, 394);
+            this.deleteBtn.FlatAppearance.BorderSize = 0;
+            this.deleteBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.deleteBtn.Image = ((System.Drawing.Image)(resources.GetObject("deleteBtn.Image")));
+            this.deleteBtn.Location = new System.Drawing.Point(816, 391);
             this.deleteBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.deleteBtn.Name = "deleteBtn";
-            this.deleteBtn.Size = new System.Drawing.Size(96, 54);
+            this.deleteBtn.Size = new System.Drawing.Size(60, 60);
             this.deleteBtn.TabIndex = 3;
-            this.deleteBtn.Text = "Delete";
             this.deleteBtn.UseVisualStyleBackColor = true;
             this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
             // 
@@ -498,11 +507,50 @@
             this.ContactBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ContactBtn.UseVisualStyleBackColor = true;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.label3.Location = new System.Drawing.Point(780, 469);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(140, 23);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Delete selection";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.label2.Location = new System.Drawing.Point(595, 469);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(117, 23);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Edit selection";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.label1.Location = new System.Drawing.Point(383, 469);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(150, 23);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Add event or task";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
             // TransactionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1025, 597);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.deleteBtn);
@@ -530,6 +578,7 @@
             this.panel11.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -573,5 +622,8 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button summaryBtn;
         private System.Windows.Forms.Button ContactBtn;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }
