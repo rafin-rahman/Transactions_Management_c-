@@ -28,7 +28,6 @@ namespace enterpriseDevelopment
             InitializeComponent();
             transactionRepository = new TransactionRepository();
             todaysTransaction = new List<Transaction>();
-            // set reference to Instance class
             Instance.MainForm = this;
             dashboardPanel = new Panel();
         }
@@ -50,14 +49,14 @@ namespace enterpriseDevelopment
         {
 
         }
-        //
+        
         private void MainForm_Activated(object sender, EventArgs e)
         {
 
-            // comment to auto login
+            
             if (Instance.StaticUserAccount == null)
-            {
-                Instance.StaticUserAccount = new UserAccount { UserId = 1, UserFName = "rafraf", LogDate = DateTime.Now.AddDays(-99).AddHours(5) };
+            {// comment to auto login. uncomment to manually login
+                // Instance.StaticUserAccount = new UserAccount { UserId = 1, UserFName = "rafraf", LogDate = DateTime.Now.AddDays(-99).AddHours(5) };
             }
             //  hide the mainform if the StaticUserAccount is empty
             if (Instance.StaticUserAccount == null)
@@ -92,7 +91,7 @@ namespace enterpriseDevelopment
 
             timer.Start();
 
-            
+
 
         }
 
@@ -110,7 +109,7 @@ namespace enterpriseDevelopment
         private void eventRecurring_Click(object sender, EventArgs e)
         {
 
-            
+
 
             TransactionForm transactionForm = new TransactionForm(true);
             transactionForm.Activate();
@@ -128,12 +127,12 @@ namespace enterpriseDevelopment
 
         private void predictBtn_Click(object sender, EventArgs e)
         {
-           
+
             financialPredictionForm financialPredictionForm = new financialPredictionForm();
             financialPredictionForm.Activate();
             financialPredictionForm.Show();
         }
-        //
+        
         private void recurringBGWorker_DoWork(object sender, DoWorkEventArgs e)
         {
 
@@ -150,7 +149,7 @@ namespace enterpriseDevelopment
                 new UserRepository().EditLogDate(Instance.StaticUserAccount);
             }
         }
-        //
+        
         private async void runRecurringTransaction()
         {
             TransactionRecurringRepository transactionRecurringRepository = new TransactionRecurringRepository();
@@ -427,7 +426,7 @@ namespace enterpriseDevelopment
         #endregion
 
         #region Show dinamically transaction for the current date
-
+        // Dynamic transaction view on the dashboard
         private async void GetTransactionList()
         {
             List<Transaction> transactions = await Task.Run(() => transactionRepository.GetTransactions(Instance.StaticUserAccount.UserId));
@@ -443,7 +442,7 @@ namespace enterpriseDevelopment
             dashboardPanel.Dispose();
             dashboardPanel = new Panel();
             dashboardPanel.BackColor = Color.White;//FromArgb(245, 246, 250);
-            
+
             dashboardPanel.Size = new Size(300, 390);
             dashboardPanel.Location = new Point(300, 100);
             dashboardPanel.AutoScroll = true;
@@ -463,7 +462,6 @@ namespace enterpriseDevelopment
             foreach (Transaction transaction in tempTransactions)
             {
                 count++;
-
                 Panel internalPanel = new Panel();
                 Panel bottomLine = new Panel();
                 bottomLine.BackColor = Color.Black; //FromArgb(245, 246, 250);
@@ -500,11 +498,11 @@ namespace enterpriseDevelopment
                 internalPanel.Font = new Font("Calibri", 10, FontStyle.Bold);
 
 
-                amountLbl.Text = "£" + transaction.transactionAmount;
+                amountLbl.Text = "£" + transaction.transactionAmount.ToString("0.00");
                 amountLbl.Size = new Size(70, 15);
                 amountLbl.Location = new Point(30, 10);
                 amountLbl.TextAlign = ContentAlignment.MiddleCenter;
-               // amountLbl.BackColor = Color.AliceBlue;
+                // amountLbl.BackColor = Color.AliceBlue;
 
                 internalPanel.Controls.Add(amountLbl);
 
@@ -513,7 +511,7 @@ namespace enterpriseDevelopment
                 nameLbl.Size = new Size(100, 15);
                 nameLbl.Location = new Point(150, 10);
                 nameLbl.TextAlign = ContentAlignment.MiddleCenter;
-               // nameLbl.BackColor = Color.LightPink;
+                // nameLbl.BackColor = Color.LightPink;
 
                 internalPanel.Controls.Add(nameLbl);
             }
@@ -531,7 +529,7 @@ namespace enterpriseDevelopment
                 panelToggle1.Width += 20;
                 if (panelToggle1.Size == panelToggle1.MaximumSize)
                 {
-                  
+
                     timer.Stop();
                     isCollapsed = false;
                 }
@@ -591,16 +589,17 @@ namespace enterpriseDevelopment
 
         }
 
-        private void creatGraph() {
+        private void creatGraph()
+        {
             TransactionRepository transactionRepository = new TransactionRepository();
             List<Transaction> transactionList = transactionRepository.GetTransactions(DateTime.Now, Instance.StaticUserAccount.UserId);
 
             decimal totalExpense = 0;
             decimal totalIncome = 0;
 
-            foreach(Transaction transaction in transactionList)
+            foreach (Transaction transaction in transactionList)
             {
-                if(transaction.incomeExpense)
+                if (transaction.incomeExpense)
                 {
                     totalIncome += transaction.transactionAmount;
                 }
@@ -615,12 +614,12 @@ namespace enterpriseDevelopment
             PieChart.Series["MonthlyTransaction"].Points.Clear();
             PieChart.Series["MonthlyTransaction"].IsValueShownAsLabel = true;
             PieChart.Series["MonthlyTransaction"].Points.AddXY("Income", totalIncome.ToString("0.00"));
-            PieChart.Series["MonthlyTransaction"].Points[0].Color = Color.FromArgb(30, 39, 46) ;
+            PieChart.Series["MonthlyTransaction"].Points[0].Color = Color.FromArgb(30, 39, 46);
             PieChart.Series["MonthlyTransaction"].Points.AddXY("Expense", totalExpense.ToString("0.00"));
             PieChart.Series["MonthlyTransaction"].Points[1].Color = Color.Gray;
             PieChart.Series["MonthlyTransaction"].Points[1].Font = new Font("Calibri", 10, FontStyle.Bold);
             PieChart.Series["MonthlyTransaction"].Font = new Font("Calibri", 20, FontStyle.Bold);
-           
+
         }
 
         private void PieChart_Click(object sender, EventArgs e)

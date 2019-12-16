@@ -22,7 +22,7 @@ namespace enterpriseDevelopment.Forms
         {
             InitializeComponent();
             actionBtn.Text = "Add";
-            //Text is the window name in the top left corner 
+          
             Text = "Add transaction";
             t = new Transaction { userIdFk = Instance.StaticUserAccount.UserId };
         }
@@ -32,7 +32,7 @@ namespace enterpriseDevelopment.Forms
             InitializeComponent();
             t = transaction;
             actionBtn.Text = "Edit ";
-            //Text is the window name in the top left corner 
+           
             Text = "Edit transaction";
             categoryTxt.Text = transaction.transactionCategory;
             transactionAmountNum.Value = transaction.transactionAmount;
@@ -53,15 +53,14 @@ namespace enterpriseDevelopment.Forms
             recurrCheck.Visible = false;
 
         }
-        // Edit ONLY recurrring transaction
-        //Constructor
+        
         public TransactionAddEdit(TransactionRepeat transaction)
         {
             InitializeComponent();
             isRepeat = true;
             tr = transaction;
             actionBtn.Text = "Edit ";
-            //Text is the window name in the top left corner 
+           
             Text = "Edit recurring transaction";
             categoryTxt.Text = transaction.transactionCategory;
             transactionAmountNum.Value = transaction.transactionAmount;

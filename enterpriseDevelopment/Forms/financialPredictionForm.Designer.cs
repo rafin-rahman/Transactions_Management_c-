@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(financialPredictionForm));
-            this.datePicker = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.resultLbl = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -62,7 +61,7 @@
             this.closePanel = new System.Windows.Forms.Panel();
             this.predictBtn = new System.Windows.Forms.Button();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.datePicker = new System.Windows.Forms.MonthCalendar();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -77,21 +76,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.SuspendLayout();
             // 
-            // datePicker
-            // 
-            this.datePicker.CustomFormat = "dd/MM/yyyy";
-            this.datePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.datePicker.Location = new System.Drawing.Point(596, 336);
-            this.datePicker.Margin = new System.Windows.Forms.Padding(2);
-            this.datePicker.Name = "datePicker";
-            this.datePicker.Size = new System.Drawing.Size(102, 20);
-            this.datePicker.TabIndex = 0;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(510, 374);
+            this.label1.Location = new System.Drawing.Point(347, 344);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(241, 33);
@@ -102,7 +91,7 @@
             // 
             this.resultLbl.AutoSize = true;
             this.resultLbl.Font = new System.Drawing.Font("Calibri", 20F, System.Drawing.FontStyle.Bold);
-            this.resultLbl.Location = new System.Drawing.Point(521, 485);
+            this.resultLbl.Location = new System.Drawing.Point(347, 462);
             this.resultLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.resultLbl.Name = "resultLbl";
             this.resultLbl.Size = new System.Drawing.Size(148, 33);
@@ -454,7 +443,7 @@
             this.predictBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.predictBtn.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.predictBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.predictBtn.Location = new System.Drawing.Point(504, 415);
+            this.predictBtn.Location = new System.Drawing.Point(341, 385);
             this.predictBtn.Name = "predictBtn";
             this.predictBtn.Size = new System.Drawing.Size(259, 51);
             this.predictBtn.TabIndex = 21;
@@ -465,32 +454,31 @@
             // pictureBox8
             // 
             this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
-            this.pictureBox8.Location = new System.Drawing.Point(504, 104);
+            this.pictureBox8.Location = new System.Drawing.Point(693, 104);
             this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(259, 215);
+            this.pictureBox8.Size = new System.Drawing.Size(280, 312);
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox8.TabIndex = 22;
             this.pictureBox8.TabStop = false;
             // 
-            // monthCalendar1
+            // datePicker
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(775, 299);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 23;
+            this.datePicker.Location = new System.Drawing.Point(361, 123);
+            this.datePicker.Name = "datePicker";
+            this.datePicker.TabIndex = 23;
             // 
             // financialPredictionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1025, 597);
-            this.Controls.Add(this.monthCalendar1);
+            this.Controls.Add(this.datePicker);
             this.Controls.Add(this.pictureBox8);
             this.Controls.Add(this.predictBtn);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.resultLbl);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.datePicker);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -517,8 +505,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.DateTimePicker datePicker;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label resultLbl;
         private System.Windows.Forms.Panel panel1;
@@ -551,6 +537,6 @@
         private System.Windows.Forms.Button predictBtn;
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.MonthCalendar monthCalendar1;
+        private System.Windows.Forms.MonthCalendar datePicker;
     }
 }

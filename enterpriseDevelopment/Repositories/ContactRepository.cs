@@ -26,19 +26,19 @@ namespace enterpriseDevelopment
         public List<Contact> GetContacts(int id)
         {
 
-            // object u
+            
             List<Contact> u = new List<Contact>();
 
             string selectQuery = "SELECT * FROM ContactsTbl WHERE [userIdFk] = @userID";
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
-                // userName parameter of his method
+                
                 sqlCommand.Parameters.Add("@userID", SqlDbType.Int).Value = id;
 
 
                 connection.Open();
-                // Ask to retrieve all the  row
+                
                 SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
 
 
@@ -64,7 +64,7 @@ namespace enterpriseDevelopment
                 connection.Close();
             }
 
-            // u is the object created at the beginning of the this method 
+           
             return u;
         }
 
@@ -76,7 +76,7 @@ namespace enterpriseDevelopment
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
-                // userName parameter of his method
+                
                 sqlCommand.Parameters.Add("@userID", SqlDbType.Int).Value = contact.userIdFk;
                 sqlCommand.Parameters.Add("@contactID", SqlDbType.Int).Value = contact.ContactId;
 
@@ -112,7 +112,7 @@ namespace enterpriseDevelopment
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
-                // userName parameter of his method
+                
                 sqlCommand.Parameters.Add("@userID", SqlDbType.Int).Value = contact.userIdFk;
                 sqlCommand.Parameters.Add("@name", SqlDbType.NVarChar).Value = contact.ContactName;
 
@@ -151,7 +151,7 @@ namespace enterpriseDevelopment
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
-                // userName parameter of his method
+                
                 sqlCommand.Parameters.Add("@userID", SqlDbType.Int).Value = contact.userIdFk;
                 sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = contact.ContactId;
                 sqlCommand.Parameters.Add("@name", SqlDbType.NVarChar).Value = contact.ContactName;

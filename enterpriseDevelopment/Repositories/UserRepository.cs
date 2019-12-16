@@ -17,13 +17,13 @@ namespace enterpriseDevelopment
         SqlConnection connection;
         public UserRepository()
         {
-            // connection string such as names, password ecc
+           
             dbConn = ConfigurationManager.ConnectionStrings["Conn"].ConnectionString;
-            // database connection
+
             connection = new SqlConnection(dbConn);
         }
 
-        // User = instance of UserAccount class
+        
         public bool AddUserAccount(UserAccount userObj)
         {
 
@@ -32,8 +32,7 @@ namespace enterpriseDevelopment
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(addUserQuery, connection);
-                // SqlDbType => converts string from c# to varchar for Sql || userObj.[[table column name]]
-                // This line will take user input and store it to @UserName and convert into Sql varchar and send it to Username column in UserAccountsTbl
+                
                 sqlCommand.Parameters.Add("@UserName", SqlDbType.Text).Value = userObj.Username;
                 sqlCommand.Parameters.Add("@UserPwd", SqlDbType.Text).Value = userObj.UserPwd;
                 sqlCommand.Parameters.Add("@UserFName", SqlDbType.Text).Value = userObj.UserFName;
@@ -70,20 +69,20 @@ namespace enterpriseDevelopment
         public UserAccount GetUserByUsername(string userName)
         {
 
-            // object u
+           
             UserAccount u = new UserAccount();
-            // UserAccountsTbl is the table name
+           
             string selectQuery = "SELECT * FROM UserAccountsTbl WHERE [Username] = @Username";
             dbConn = ConfigurationManager.ConnectionStrings["Conn"].ConnectionString;
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
-                // userName parameter of his method
+               
                 sqlCommand.Parameters.Add("@Username", SqlDbType.NVarChar).Value = userName;
 
 
                 connection.Open();
-                // Ask to retrieve only ONE row
+               
                 SqlDataReader sqlDataReader = sqlCommand.ExecuteReader(CommandBehavior.SingleRow);
 
                 
@@ -108,7 +107,7 @@ namespace enterpriseDevelopment
                 connection.Close();
             }
 
-            // u is the object created at the beginning of the this method 
+            
             return u;
         }
 
@@ -120,7 +119,7 @@ namespace enterpriseDevelopment
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
-                // userName parameter of his method
+                
                 sqlCommand.Parameters.Add("@accessDate", SqlDbType.DateTime).Value = user.LogDate;
                 sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = user.UserId;
                 

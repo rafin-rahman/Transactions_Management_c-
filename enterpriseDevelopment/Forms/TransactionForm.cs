@@ -22,7 +22,7 @@ namespace enterpriseDevelopment.Forms
         {
             InitializeComponent();
             transactionRepository = new TransactionRepository();
-            // When this form in opened, main form will be hidden
+           
             Instance.MainForm.Hide();
         }
 
@@ -39,7 +39,7 @@ namespace enterpriseDevelopment.Forms
             }
             
             transactionRepository = new TransactionRepository();
-            // When this form in opened, main form will be hidden
+            
             Instance.MainForm.Hide();
         }
 

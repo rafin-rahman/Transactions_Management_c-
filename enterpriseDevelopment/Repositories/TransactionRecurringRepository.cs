@@ -27,17 +27,17 @@ namespace enterpriseDevelopment.Repositories
         public List<TransactionRepeat> GetTransactions(int id)
         {
 
-            // object u
+            
             List<TransactionRepeat> u = new List<TransactionRepeat>();
 
             string selectQuery = "SELECT TransactionsRepeatTbl.*, ContactsTbl.ContactName AS ContactName FROM TransactionsRepeatTbl LEFT JOIN ContactsTbl ON ContactsTbl.ContactId = TransactionsRepeatTbl.contactIdFk WHERE TransactionsRepeatTbl.userIdFk = @userID";
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
-                // userName parameter of his method
+             
                 sqlCommand.Parameters.Add("@userID", SqlDbType.Int).Value = id;
                 connection.Open();
-                // Ask to retrieve all the  row
+                
                 SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
 
 
@@ -109,7 +109,7 @@ namespace enterpriseDevelopment.Repositories
                 connection.Close();
             }
 
-            // u is the object created at the beginning of the this method 
+            
             return u;
         }
 
@@ -131,7 +131,7 @@ namespace enterpriseDevelopment.Repositories
                 sqlCommand.Parameters.Add("@IncomeExpense", SqlDbType.Bit).Value = transactionRepeat.incomeExpense;
                 sqlCommand.Parameters.Add("@subscriptionPeriod", SqlDbType.VarChar).Value = transactionRepeat.subscriptionPeriod;
                
-                // to avoid storing contact id as 0
+               
                 SqlParameter sqlParameter = new SqlParameter("@contactIdFk", SqlDbType.Int);
                 if (transactionRepeat.contactIdFk == 0) sqlParameter.Value = DBNull.Value;
                 else sqlParameter.Value = transactionRepeat.contactIdFk;
@@ -227,7 +227,7 @@ namespace enterpriseDevelopment.Repositories
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
-                // userName parameter of his method
+                
                 sqlCommand.Parameters.Add("@transactionID", SqlDbType.Int).Value = transactionRepeat.transactionId;
                 sqlCommand.Parameters.Add("@userId", SqlDbType.Int).Value = transactionRepeat.userIdFk;
 

@@ -27,19 +27,19 @@ namespace enterpriseDevelopment.Repositories
         public List<Transaction> GetTransactions(int id)
         {
 
-            // object u
+            
             List<Transaction> u = new List<Transaction>();
 
             string selectQuery = "SELECT TransactionsTbl.*, ContactsTbl.ContactName AS ContactName FROM TransactionsTbl LEFT JOIN ContactsTbl ON ContactsTbl.ContactId = TransactionsTbl.contactIdFk WHERE TransactionsTbl.userIdFk = @userID";
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
-                // userName parameter of his method
+                
                 sqlCommand.Parameters.Add("@userID", SqlDbType.Int).Value = id;
 
 
                 connection.Open();
-                // Ask to retrieve all the  row
+                
                 SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
 
 
@@ -98,27 +98,27 @@ namespace enterpriseDevelopment.Repositories
 
             }
 
-            // u is the object created at the beginning of the this method 
+            
             return u;
         }
 
         public List<Transaction> GetTransactions(DateTime date ,int id)
         {
 
-            // object u
+            
             List<Transaction> u = new List<Transaction>();
 
             string selectQuery = "SELECT * FROM TransactionsTbl WHERE userIdFk = @userID AND CONVERT(Date, dateTime,1) BETWEEN @StartDate AND @EndDate";
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
-                // userName parameter of his method
+               
                 sqlCommand.Parameters.Add("@userID", SqlDbType.Int).Value = id;
                 sqlCommand.Parameters.Add("@StartDate", SqlDbType.DateTime).Value = date.AddDays(-30).ToShortDateString();
                 sqlCommand.Parameters.Add("@EndDate", SqlDbType.DateTime).Value = date.ToShortDateString();
 
                 connection.Open();
-                // Ask to retrieve all the  row
+                
                 SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
 
 
@@ -169,7 +169,7 @@ namespace enterpriseDevelopment.Repositories
 
             }
 
-            // u is the object created at the beginning of the this method 
+            
             return u;
         }
 
@@ -181,7 +181,7 @@ namespace enterpriseDevelopment.Repositories
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
-                // userName parameter of his method
+                
                 sqlCommand.Parameters.Add("@transactionID", SqlDbType.Int).Value = transaction.transactionId;
                 sqlCommand.Parameters.Add("@userId", SqlDbType.Int).Value = transaction.userIdFk;
 
@@ -228,7 +228,7 @@ namespace enterpriseDevelopment.Repositories
                 sqlCommand.Parameters.Add("@dateTime", SqlDbType.DateTime).Value = transaction.dateTime;
                 sqlCommand.Parameters.Add("@TransactionMessage", SqlDbType.VarChar).Value = transaction.transactionMessage;
                 sqlCommand.Parameters.Add("@IncomeExpense", SqlDbType.Bit).Value = transaction.incomeExpense;
-                // to avoid storing contact id as 0
+                
                 SqlParameter sqlParameter = new SqlParameter("@contactIdFk", SqlDbType.Int);
                 if (transaction.contactIdFk == 0) sqlParameter.Value = DBNull.Value;
                 else sqlParameter.Value = transaction.contactIdFk;
@@ -272,7 +272,7 @@ namespace enterpriseDevelopment.Repositories
                 sqlCommand.Parameters.Add("@userID", SqlDbType.Int).Value = transaction.userIdFk;
                 sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = transaction.transactionId;
 
-                // to avoid storing contact id as 0
+             
                 SqlParameter sqlParameter = new SqlParameter("@contactIdFk", SqlDbType.Int);
                 if (transaction.contactIdFk == 0) sqlParameter.Value = DBNull.Value;
                 else sqlParameter.Value = transaction.contactIdFk;

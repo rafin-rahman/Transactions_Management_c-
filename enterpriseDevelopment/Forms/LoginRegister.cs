@@ -21,7 +21,7 @@ namespace enterpriseDevelopment
         {
             InitializeComponent();
             userRepositoryObj = new UserRepository();
-            // When this form in opened, main form will be hidden
+            
             Instance.MainForm.Hide();
         }
 
@@ -191,7 +191,7 @@ namespace enterpriseDevelopment
         }
 
        
-        // Close form
+        
         private void closeBtn_Click(object sender, EventArgs e)
         {
             Close();
@@ -249,7 +249,7 @@ namespace enterpriseDevelopment
 
         private void LoginRegister_FormClosed(object sender, FormClosedEventArgs e)
         {
-            // If used is not logged in, 
+            // If user is not logged in, 
             if (Instance.StaticUserAccount == null)
             {
                 Instance.MainForm.Close();
@@ -271,20 +271,20 @@ namespace enterpriseDevelopment
 
         private async void RegisterBtn_Click(object sender, EventArgs e)
         {
-            // These are private string already declared at the beginning of the page
+            
             fullNameReg = fullNameRegTxt.Text;
             usernameReg = usernameRegTxt.Text;
             pwdReg = passwordRegTxt.Text;
             pwd2Reg = password2RegTxt.Text;
 
-            // if the RegistrationValidation not true then - >return  
+           
             if (!RegistrationValidation()) return;
             if (!await CheckIfUserExists()) return;
             EncryptPwd();
 
 
 
-            // using an anonymus object which is not saved anywhere, is passes the values straight to method AddUserAccount
+            
             bool check = await Task.Run(() => userRepositoryObj.AddUserAccount(new UserAccount { UserFName = fullNameReg, Username = usernameReg, UserPwd = pwdReg }));
             // checks if there was any error during the insertion of the user data into the database, AddUserAccount method returns tre of false 
             if (check)

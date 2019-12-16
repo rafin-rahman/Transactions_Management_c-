@@ -12,7 +12,7 @@ namespace enterpriseDevelopment.Forms
 {
     public partial class ContactsForm : Form
     {
-        // Instance of contact repository
+        
         private ContactRepository contactRepository;
         public ContactsForm()
         {

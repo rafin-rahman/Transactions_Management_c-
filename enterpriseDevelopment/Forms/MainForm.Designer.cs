@@ -540,7 +540,7 @@
             this.PieChart.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.PieChart.Legends.Add(legend1);
-            this.PieChart.Location = new System.Drawing.Point(688, 84);
+            this.PieChart.Location = new System.Drawing.Point(658, 108);
             this.PieChart.Name = "PieChart";
             this.PieChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
             series1.ChartArea = "ChartArea1";

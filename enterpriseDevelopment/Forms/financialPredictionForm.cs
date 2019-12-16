@@ -29,7 +29,7 @@ namespace enterpriseDevelopment.Forms
             List<DateTime> datesOfMonth = new List<DateTime>();
             List<DateTime> datesOfLastMonth = new List<DateTime>();
 
-            DateTime predicDate = datePicker.Value.Date;
+            DateTime predicDate = datePicker.SelectionRange.Start;
             DateTime lastMonth = predicDate.AddMonths(-1);
 
             foreach (Transaction t in transactions)
@@ -98,7 +98,7 @@ namespace enterpriseDevelopment.Forms
         private decimal GetRecurringAmount()
         {
             decimal totRecurring = 0;
-            DateTime predicDate = datePicker.Value.Date;
+            DateTime predicDate = datePicker.SelectionRange.Start;
             foreach (TransactionRepeat transactionRepeat in transactionRepeats)
             {
                 string tDateString = transactionRepeat.dateTime.ToString("dd/MM");
