@@ -164,5 +164,36 @@ namespace enterpriseDevelopment
                 }
             }
         }
+
+        private void listViewEvent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mainBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel1_Click(object sender, EventArgs e)
+        {
+            Dispose();
+          
+        }
+
+        private void panel1_MouseEnter(object sender, EventArgs e)
+        {
+           this.panel1.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.closeHover));
+        }
+
+        private void panel1_MouseLeave(object sender, EventArgs e)
+        {
+            this.panel1.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.close));
+        }
     }
 }

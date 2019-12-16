@@ -120,6 +120,11 @@
     <Compile Include="Models\EventRepeat.cs" />
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="Models\TransactionRepeat.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\ContactRepository.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
@@ -141,10 +146,9 @@
     <Compile Include="Repositories\TransactionRecurringRepository.cs" />
     <Compile Include="Repositories\TransactionRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
-    <None Include="Resources\recurrentIcon.png" />
+    <None Include="Resources\closeHover.png" />
+    <None Include="Resources\close.png" />
     <None Include="Resources\notification.wav" />
-    <None Include="Resources\closeNewIcon.png" />
-    <None Include="Resources\closeHoverIcon.png" />
     <EmbeddedResource Include="Forms\ContactAddEdit.resx">
       <DependentUpon>ContactAddEdit.cs</DependentUpon>
     </EmbeddedResource>
@@ -180,14 +184,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Content Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -207,9 +206,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
