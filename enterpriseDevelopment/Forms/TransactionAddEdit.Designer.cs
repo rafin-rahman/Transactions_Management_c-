@@ -50,9 +50,14 @@
             this.label6 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.noTimeLimit = new System.Windows.Forms.CheckBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.closePanel = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.transactionAmountNum)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // expenseRadio
@@ -71,7 +76,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(96, 23);
+            this.label1.Location = new System.Drawing.Point(265, 106);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 13);
@@ -82,7 +87,7 @@
             // 
             this.categoryTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.categoryTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.categoryTxt.Location = new System.Drawing.Point(98, 45);
+            this.categoryTxt.Location = new System.Drawing.Point(267, 128);
             this.categoryTxt.Margin = new System.Windows.Forms.Padding(2);
             this.categoryTxt.Name = "categoryTxt";
             this.categoryTxt.Size = new System.Drawing.Size(52, 13);
@@ -91,7 +96,7 @@
             // amountLbl
             // 
             this.amountLbl.AutoSize = true;
-            this.amountLbl.Location = new System.Drawing.Point(100, 86);
+            this.amountLbl.Location = new System.Drawing.Point(269, 169);
             this.amountLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.amountLbl.Name = "amountLbl";
             this.amountLbl.Size = new System.Drawing.Size(43, 13);
@@ -101,7 +106,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(98, 159);
+            this.label2.Location = new System.Drawing.Point(267, 242);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(115, 13);
@@ -112,7 +117,7 @@
             // 
             this.transDateTime.CustomFormat = "dd/MM/yyyy HH:mm";
             this.transDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.transDateTime.Location = new System.Drawing.Point(98, 186);
+            this.transDateTime.Location = new System.Drawing.Point(267, 269);
             this.transDateTime.Margin = new System.Windows.Forms.Padding(2);
             this.transDateTime.MaxDate = new System.DateTime(2200, 12, 31, 0, 0, 0, 0);
             this.transDateTime.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
@@ -123,7 +128,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(206, 86);
+            this.label3.Location = new System.Drawing.Point(375, 169);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(107, 13);
@@ -147,7 +152,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(100, 223);
+            this.label4.Location = new System.Drawing.Point(269, 306);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(60, 13);
@@ -158,7 +163,7 @@
             // 
             this.messageRichTetx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.messageRichTetx.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.messageRichTetx.Location = new System.Drawing.Point(100, 252);
+            this.messageRichTetx.Location = new System.Drawing.Point(269, 335);
             this.messageRichTetx.Margin = new System.Windows.Forms.Padding(2);
             this.messageRichTetx.Name = "messageRichTetx";
             this.messageRichTetx.Size = new System.Drawing.Size(234, 73);
@@ -167,7 +172,7 @@
             // 
             // actionBtn
             // 
-            this.actionBtn.Location = new System.Drawing.Point(100, 339);
+            this.actionBtn.Location = new System.Drawing.Point(269, 422);
             this.actionBtn.Margin = new System.Windows.Forms.Padding(2);
             this.actionBtn.Name = "actionBtn";
             this.actionBtn.Size = new System.Drawing.Size(73, 43);
@@ -179,7 +184,7 @@
             // transactionAmountNum
             // 
             this.transactionAmountNum.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.transactionAmountNum.Location = new System.Drawing.Point(98, 115);
+            this.transactionAmountNum.Location = new System.Drawing.Point(267, 198);
             this.transactionAmountNum.Margin = new System.Windows.Forms.Padding(2);
             this.transactionAmountNum.Name = "transactionAmountNum";
             this.transactionAmountNum.Size = new System.Drawing.Size(60, 16);
@@ -193,7 +198,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(219, 23);
+            this.label5.Location = new System.Drawing.Point(388, 106);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(89, 13);
@@ -204,7 +209,7 @@
             // 
             this.contactComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.contactComboBox.FormattingEnabled = true;
-            this.contactComboBox.Location = new System.Drawing.Point(222, 44);
+            this.contactComboBox.Location = new System.Drawing.Point(391, 127);
             this.contactComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.contactComboBox.Name = "contactComboBox";
             this.contactComboBox.Size = new System.Drawing.Size(62, 21);
@@ -214,7 +219,7 @@
             // 
             this.panel1.Controls.Add(this.incomeRadio);
             this.panel1.Controls.Add(this.expenseRadio);
-            this.panel1.Location = new System.Drawing.Point(196, 115);
+            this.panel1.Location = new System.Drawing.Point(365, 198);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(172, 52);
             this.panel1.TabIndex = 16;
@@ -222,7 +227,7 @@
             // recurrCheck
             // 
             this.recurrCheck.AutoSize = true;
-            this.recurrCheck.Location = new System.Drawing.Point(238, 188);
+            this.recurrCheck.Location = new System.Drawing.Point(407, 271);
             this.recurrCheck.Margin = new System.Windows.Forms.Padding(2);
             this.recurrCheck.Name = "recurrCheck";
             this.recurrCheck.Size = new System.Drawing.Size(131, 17);
@@ -238,7 +243,7 @@
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.dateTimePicker1);
             this.groupBox1.Controls.Add(this.noTimeLimit);
-            this.groupBox1.Location = new System.Drawing.Point(376, 184);
+            this.groupBox1.Location = new System.Drawing.Point(545, 267);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
@@ -306,12 +311,63 @@
             this.noTimeLimit.UseVisualStyleBackColor = true;
             this.noTimeLimit.CheckedChanged += new System.EventHandler(this.noTimeLimit_CheckedChanged);
             // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.panel2.Controls.Add(this.label9);
+            this.panel2.Controls.Add(this.closePanel);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1009, 48);
+            this.panel2.TabIndex = 19;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Cambria", 24F, System.Drawing.FontStyle.Bold);
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label9.Location = new System.Drawing.Point(357, 7);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(295, 37);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "ADD A NEW EVENT";
+            // 
+            // closePanel
+            // 
+            this.closePanel.BackgroundImage = global::enterpriseDevelopment.Properties.Resources.close;
+            this.closePanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.closePanel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.closePanel.Location = new System.Drawing.Point(970, 7);
+            this.closePanel.Margin = new System.Windows.Forms.Padding(15, 16, 15, 16);
+            this.closePanel.Name = "closePanel";
+            this.closePanel.Padding = new System.Windows.Forms.Padding(5);
+            this.closePanel.Size = new System.Drawing.Size(32, 30);
+            this.closePanel.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.button1.Location = new System.Drawing.Point(31, 481);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(932, 51);
+            this.button1.TabIndex = 20;
+            this.button1.Text = "Action";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
             // TransactionAddEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1009, 558);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.recurrCheck);
             this.Controls.Add(this.panel1);
@@ -338,6 +394,8 @@
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -367,5 +425,9 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.CheckBox noTimeLimit;
         private System.Windows.Forms.ComboBox periodCombo;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Panel closePanel;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -50,8 +50,8 @@
             this.periodCombo = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.closePanel = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
+            this.closePanel = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -139,15 +139,17 @@
             // 
             // actionBtn
             // 
+            this.actionBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.actionBtn.FlatAppearance.BorderSize = 0;
+            this.actionBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.actionBtn.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.actionBtn.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.actionBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
             this.actionBtn.Location = new System.Drawing.Point(49, 466);
             this.actionBtn.Name = "actionBtn";
             this.actionBtn.Size = new System.Drawing.Size(932, 51);
             this.actionBtn.TabIndex = 8;
             this.actionBtn.Text = "Action";
-            this.actionBtn.UseVisualStyleBackColor = true;
+            this.actionBtn.UseVisualStyleBackColor = false;
             this.actionBtn.Click += new System.EventHandler(this.actionBtn_Click);
             // 
             // label5
@@ -189,9 +191,9 @@
             this.statusComboBox.FormattingEnabled = true;
             this.statusComboBox.Items.AddRange(new object[] {
             "Task",
-            "Event"});
+            "Appointment"});
             this.statusComboBox.Location = new System.Drawing.Point(48, 119);
-            this.statusComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.statusComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.statusComboBox.Name = "statusComboBox";
             this.statusComboBox.Size = new System.Drawing.Size(143, 21);
             this.statusComboBox.TabIndex = 13;
@@ -203,7 +205,7 @@
             this.recurrCheck.AutoSize = true;
             this.recurrCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.recurrCheck.Location = new System.Drawing.Point(402, 170);
-            this.recurrCheck.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.recurrCheck.Margin = new System.Windows.Forms.Padding(2);
             this.recurrCheck.Name = "recurrCheck";
             this.recurrCheck.Size = new System.Drawing.Size(128, 17);
             this.recurrCheck.TabIndex = 14;
@@ -220,9 +222,9 @@
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.groupBox1.Location = new System.Drawing.Point(364, 191);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(236, 226);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
@@ -234,7 +236,7 @@
             this.noTimeLimit.AutoSize = true;
             this.noTimeLimit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.noTimeLimit.Location = new System.Drawing.Point(38, 162);
-            this.noTimeLimit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.noTimeLimit.Margin = new System.Windows.Forms.Padding(2);
             this.noTimeLimit.Name = "noTimeLimit";
             this.noTimeLimit.Size = new System.Drawing.Size(163, 23);
             this.noTimeLimit.TabIndex = 4;
@@ -247,7 +249,7 @@
             this.dateTimePicker1.CustomFormat = "dd/MM/yyyy HH:mm";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker1.Location = new System.Drawing.Point(58, 115);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(122, 27);
             this.dateTimePicker1.TabIndex = 3;
@@ -273,7 +275,7 @@
             "Monthly",
             "Yearly"});
             this.periodCombo.Location = new System.Drawing.Point(89, 51);
-            this.periodCombo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.periodCombo.Margin = new System.Windows.Forms.Padding(2);
             this.periodCombo.Name = "periodCombo";
             this.periodCombo.Size = new System.Drawing.Size(62, 27);
             this.periodCombo.TabIndex = 1;
@@ -303,6 +305,17 @@
             this.panel2.Size = new System.Drawing.Size(1025, 48);
             this.panel2.TabIndex = 16;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Cambria", 24F, System.Drawing.FontStyle.Bold);
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label9.Location = new System.Drawing.Point(357, 7);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(295, 37);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "ADD A NEW EVENT";
+            // 
             // closePanel
             // 
             this.closePanel.BackgroundImage = global::enterpriseDevelopment.Properties.Resources.close;
@@ -315,17 +328,6 @@
             this.closePanel.Size = new System.Drawing.Size(32, 30);
             this.closePanel.TabIndex = 0;
             this.closePanel.Click += new System.EventHandler(this.closePanel_Click);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Cambria", 24F, System.Drawing.FontStyle.Bold);
-            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label9.Location = new System.Drawing.Point(301, 7);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(427, 37);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "ADD A NEW EVENT OR TASK";
             // 
             // pictureBox1
             // 
