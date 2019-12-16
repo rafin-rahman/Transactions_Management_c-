@@ -61,7 +61,7 @@
             this.expenseRadio.FlatAppearance.BorderSize = 3;
             this.expenseRadio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.expenseRadio.Location = new System.Drawing.Point(90, 18);
-            this.expenseRadio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.expenseRadio.Margin = new System.Windows.Forms.Padding(2);
             this.expenseRadio.Name = "expenseRadio";
             this.expenseRadio.Size = new System.Drawing.Size(65, 17);
             this.expenseRadio.TabIndex = 8;
@@ -83,7 +83,7 @@
             this.categoryTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.categoryTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.categoryTxt.Location = new System.Drawing.Point(98, 45);
-            this.categoryTxt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.categoryTxt.Margin = new System.Windows.Forms.Padding(2);
             this.categoryTxt.Name = "categoryTxt";
             this.categoryTxt.Size = new System.Drawing.Size(52, 13);
             this.categoryTxt.TabIndex = 1;
@@ -113,7 +113,7 @@
             this.transDateTime.CustomFormat = "dd/MM/yyyy HH:mm";
             this.transDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.transDateTime.Location = new System.Drawing.Point(98, 186);
-            this.transDateTime.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.transDateTime.Margin = new System.Windows.Forms.Padding(2);
             this.transDateTime.MaxDate = new System.DateTime(2200, 12, 31, 0, 0, 0, 0);
             this.transDateTime.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.transDateTime.Name = "transDateTime";
@@ -136,7 +136,7 @@
             this.incomeRadio.Checked = true;
             this.incomeRadio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.incomeRadio.Location = new System.Drawing.Point(17, 18);
-            this.incomeRadio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.incomeRadio.Margin = new System.Windows.Forms.Padding(2);
             this.incomeRadio.Name = "incomeRadio";
             this.incomeRadio.Size = new System.Drawing.Size(59, 17);
             this.incomeRadio.TabIndex = 7;
@@ -159,7 +159,7 @@
             this.messageRichTetx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.messageRichTetx.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.messageRichTetx.Location = new System.Drawing.Point(100, 252);
-            this.messageRichTetx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.messageRichTetx.Margin = new System.Windows.Forms.Padding(2);
             this.messageRichTetx.Name = "messageRichTetx";
             this.messageRichTetx.Size = new System.Drawing.Size(234, 73);
             this.messageRichTetx.TabIndex = 10;
@@ -168,7 +168,7 @@
             // actionBtn
             // 
             this.actionBtn.Location = new System.Drawing.Point(100, 339);
-            this.actionBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.actionBtn.Margin = new System.Windows.Forms.Padding(2);
             this.actionBtn.Name = "actionBtn";
             this.actionBtn.Size = new System.Drawing.Size(73, 43);
             this.actionBtn.TabIndex = 11;
@@ -180,7 +180,7 @@
             // 
             this.transactionAmountNum.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.transactionAmountNum.Location = new System.Drawing.Point(98, 115);
-            this.transactionAmountNum.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.transactionAmountNum.Margin = new System.Windows.Forms.Padding(2);
             this.transactionAmountNum.Name = "transactionAmountNum";
             this.transactionAmountNum.Size = new System.Drawing.Size(60, 16);
             this.transactionAmountNum.TabIndex = 12;
@@ -205,7 +205,7 @@
             this.contactComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.contactComboBox.FormattingEnabled = true;
             this.contactComboBox.Location = new System.Drawing.Point(222, 44);
-            this.contactComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.contactComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.contactComboBox.Name = "contactComboBox";
             this.contactComboBox.Size = new System.Drawing.Size(62, 21);
             this.contactComboBox.TabIndex = 15;
@@ -223,7 +223,7 @@
             // 
             this.recurrCheck.AutoSize = true;
             this.recurrCheck.Location = new System.Drawing.Point(238, 188);
-            this.recurrCheck.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.recurrCheck.Margin = new System.Windows.Forms.Padding(2);
             this.recurrCheck.Name = "recurrCheck";
             this.recurrCheck.Size = new System.Drawing.Size(131, 17);
             this.recurrCheck.TabIndex = 17;
@@ -239,9 +239,9 @@
             this.groupBox1.Controls.Add(this.dateTimePicker1);
             this.groupBox1.Controls.Add(this.noTimeLimit);
             this.groupBox1.Location = new System.Drawing.Point(376, 184);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(188, 156);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
@@ -257,7 +257,7 @@
             "Monthly",
             "Yearly"});
             this.periodCombo.Location = new System.Drawing.Point(54, 35);
-            this.periodCombo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.periodCombo.Margin = new System.Windows.Forms.Padding(2);
             this.periodCombo.Name = "periodCombo";
             this.periodCombo.Size = new System.Drawing.Size(62, 21);
             this.periodCombo.TabIndex = 5;
@@ -288,7 +288,7 @@
             this.dateTimePicker1.CustomFormat = "dd/MM/yyyy HH:mm";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker1.Location = new System.Drawing.Point(21, 81);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker1.MaxDate = new System.DateTime(2200, 12, 31, 0, 0, 0, 0);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(156, 20);
@@ -298,7 +298,7 @@
             // 
             this.noTimeLimit.AutoSize = true;
             this.noTimeLimit.Location = new System.Drawing.Point(54, 127);
-            this.noTimeLimit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.noTimeLimit.Margin = new System.Windows.Forms.Padding(2);
             this.noTimeLimit.Name = "noTimeLimit";
             this.noTimeLimit.Size = new System.Drawing.Size(69, 17);
             this.noTimeLimit.TabIndex = 1;
@@ -327,7 +327,8 @@
             this.Controls.Add(this.amountLbl);
             this.Controls.Add(this.categoryTxt);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "TransactionAddEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TransactionAddEdit";

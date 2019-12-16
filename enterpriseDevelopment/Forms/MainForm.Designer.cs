@@ -90,7 +90,7 @@
             this.ContactBtn.Font = new System.Drawing.Font("Calibri", 22F);
             this.ContactBtn.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.ContactBtn.Location = new System.Drawing.Point(0, 518);
-            this.ContactBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ContactBtn.Margin = new System.Windows.Forms.Padding(2);
             this.ContactBtn.Name = "ContactBtn";
             this.ContactBtn.Size = new System.Drawing.Size(284, 82);
             this.ContactBtn.TabIndex = 0;
@@ -306,7 +306,7 @@
             this.mainBtn.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.mainBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.mainBtn.Location = new System.Drawing.Point(0, 107);
-            this.mainBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.mainBtn.Margin = new System.Windows.Forms.Padding(2);
             this.mainBtn.Name = "mainBtn";
             this.mainBtn.Size = new System.Drawing.Size(284, 82);
             this.mainBtn.TabIndex = 11;
@@ -325,7 +325,7 @@
             this.predictBtn.Font = new System.Drawing.Font("Calibri", 22F);
             this.predictBtn.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.predictBtn.Location = new System.Drawing.Point(0, 189);
-            this.predictBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.predictBtn.Margin = new System.Windows.Forms.Padding(2);
             this.predictBtn.Name = "predictBtn";
             this.predictBtn.Size = new System.Drawing.Size(284, 82);
             this.predictBtn.TabIndex = 10;
@@ -364,7 +364,7 @@
             this.transactionBtn.Font = new System.Drawing.Font("Calibri", 22F);
             this.transactionBtn.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.transactionBtn.Location = new System.Drawing.Point(0, 354);
-            this.transactionBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.transactionBtn.Margin = new System.Windows.Forms.Padding(2);
             this.transactionBtn.Name = "transactionBtn";
             this.transactionBtn.Size = new System.Drawing.Size(284, 82);
             this.transactionBtn.TabIndex = 5;
@@ -384,7 +384,7 @@
             this.summaryBtn.Font = new System.Drawing.Font("Calibri", 22F);
             this.summaryBtn.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.summaryBtn.Location = new System.Drawing.Point(0, 436);
-            this.summaryBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.summaryBtn.Margin = new System.Windows.Forms.Padding(2);
             this.summaryBtn.Name = "summaryBtn";
             this.summaryBtn.Size = new System.Drawing.Size(284, 82);
             this.summaryBtn.TabIndex = 9;
@@ -413,7 +413,7 @@
             this.closePanel.Location = new System.Drawing.Point(690, 7);
             this.closePanel.Margin = new System.Windows.Forms.Padding(15, 16, 15, 16);
             this.closePanel.Name = "closePanel";
-            this.closePanel.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.closePanel.Padding = new System.Windows.Forms.Padding(5);
             this.closePanel.Size = new System.Drawing.Size(32, 30);
             this.closePanel.TabIndex = 0;
             this.closePanel.Click += new System.EventHandler(this.closePanel_Click);
@@ -423,13 +423,13 @@
             // 
             // repeatBtn
             // 
-            this.repeatBtn.BackColor = System.Drawing.Color.Gray;
+            this.repeatBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
             this.repeatBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.repeatBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.repeatBtn.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
             this.repeatBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.repeatBtn.Location = new System.Drawing.Point(0, 39);
-            this.repeatBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.repeatBtn.Margin = new System.Windows.Forms.Padding(2);
             this.repeatBtn.Name = "repeatBtn";
             this.repeatBtn.Size = new System.Drawing.Size(0, 44);
             this.repeatBtn.TabIndex = 7;
@@ -447,7 +447,7 @@
             // 
             // recurringToggleBtn
             // 
-            this.recurringToggleBtn.BackColor = System.Drawing.Color.Gray;
+            this.recurringToggleBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
             this.recurringToggleBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.recurringToggleBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.recurringToggleBtn.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -464,6 +464,7 @@
             // 
             // panelToggle1
             // 
+            this.panelToggle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
             this.panelToggle1.Controls.Add(this.eventsRepeatBtn);
             this.panelToggle1.Controls.Add(this.recurringToggleBtn);
             this.panelToggle1.Location = new System.Drawing.Point(290, 354);
@@ -475,7 +476,7 @@
             // 
             // eventsRepeatBtn
             // 
-            this.eventsRepeatBtn.BackColor = System.Drawing.Color.Gray;
+            this.eventsRepeatBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
             this.eventsRepeatBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.eventsRepeatBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.eventsRepeatBtn.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -497,6 +498,7 @@
             // 
             // panelToogle2
             // 
+            this.panelToogle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
             this.panelToogle2.Controls.Add(this.repeatBtn);
             this.panelToogle2.Controls.Add(this.allEventBtn);
             this.panelToogle2.Location = new System.Drawing.Point(290, 272);
@@ -508,7 +510,7 @@
             // 
             // allEventBtn
             // 
-            this.allEventBtn.BackColor = System.Drawing.Color.Gray;
+            this.allEventBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
             this.allEventBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.allEventBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.allEventBtn.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
@@ -538,7 +540,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";

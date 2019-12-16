@@ -29,13 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TransactionForm));
-            this.listViewTransaction = new System.Windows.Forms.ListView();
-            this.amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.incomeExpense = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.category = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.contact = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.message = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.addBtn = new System.Windows.Forms.Button();
             this.editBtn = new System.Windows.Forms.Button();
             this.deleteBtn = new System.Windows.Forms.Button();
@@ -70,6 +63,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.listViewTransaction = new MaterialSkin.Controls.MaterialListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
@@ -83,66 +82,13 @@
             this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
-            // listViewTransaction
-            // 
-            this.listViewTransaction.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listViewTransaction.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.amount,
-            this.incomeExpense,
-            this.category,
-            this.date,
-            this.contact,
-            this.message});
-            this.listViewTransaction.FullRowSelect = true;
-            this.listViewTransaction.HideSelection = false;
-            this.listViewTransaction.Location = new System.Drawing.Point(306, 86);
-            this.listViewTransaction.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.listViewTransaction.MultiSelect = false;
-            this.listViewTransaction.Name = "listViewTransaction";
-            this.listViewTransaction.Size = new System.Drawing.Size(707, 277);
-            this.listViewTransaction.TabIndex = 0;
-            this.listViewTransaction.UseCompatibleStateImageBehavior = false;
-            this.listViewTransaction.View = System.Windows.Forms.View.Details;
-            // 
-            // amount
-            // 
-            this.amount.Text = "Amount";
-            this.amount.Width = 100;
-            // 
-            // incomeExpense
-            // 
-            this.incomeExpense.Text = "Income / Expense";
-            this.incomeExpense.Width = 250;
-            // 
-            // category
-            // 
-            this.category.Text = "Category";
-            this.category.Width = 100;
-            // 
-            // date
-            // 
-            this.date.Text = "Date";
-            this.date.Width = 100;
-            // 
-            // contact
-            // 
-            this.contact.DisplayIndex = 5;
-            this.contact.Text = "Contacts";
-            this.contact.Width = 173;
-            // 
-            // message
-            // 
-            this.message.DisplayIndex = 4;
-            this.message.Text = "Description";
-            this.message.Width = 300;
-            // 
             // addBtn
             // 
             this.addBtn.FlatAppearance.BorderSize = 0;
             this.addBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addBtn.Image = ((System.Drawing.Image)(resources.GetObject("addBtn.Image")));
             this.addBtn.Location = new System.Drawing.Point(425, 391);
-            this.addBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.addBtn.Margin = new System.Windows.Forms.Padding(2);
             this.addBtn.Name = "addBtn";
             this.addBtn.Size = new System.Drawing.Size(60, 60);
             this.addBtn.TabIndex = 1;
@@ -155,7 +101,7 @@
             this.editBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.editBtn.Image = ((System.Drawing.Image)(resources.GetObject("editBtn.Image")));
             this.editBtn.Location = new System.Drawing.Point(627, 391);
-            this.editBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.editBtn.Margin = new System.Windows.Forms.Padding(2);
             this.editBtn.Name = "editBtn";
             this.editBtn.Size = new System.Drawing.Size(60, 60);
             this.editBtn.TabIndex = 2;
@@ -168,7 +114,7 @@
             this.deleteBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.deleteBtn.Image = ((System.Drawing.Image)(resources.GetObject("deleteBtn.Image")));
             this.deleteBtn.Location = new System.Drawing.Point(816, 391);
-            this.deleteBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.deleteBtn.Margin = new System.Windows.Forms.Padding(2);
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.Size = new System.Drawing.Size(60, 60);
             this.deleteBtn.TabIndex = 3;
@@ -209,6 +155,7 @@
             this.panel1.Padding = new System.Windows.Forms.Padding(5);
             this.panel1.Size = new System.Drawing.Size(32, 30);
             this.panel1.TabIndex = 0;
+            this.panel1.Click += new System.EventHandler(this.panel1_Click);
             // 
             // panel3
             // 
@@ -517,7 +464,6 @@
             this.label3.Size = new System.Drawing.Size(140, 23);
             this.label3.TabIndex = 12;
             this.label3.Text = "Delete selection";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 
@@ -529,7 +475,6 @@
             this.label2.Size = new System.Drawing.Size(117, 23);
             this.label2.TabIndex = 11;
             this.label2.Text = "Edit selection";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
@@ -541,13 +486,61 @@
             this.label1.Size = new System.Drawing.Size(150, 23);
             this.label1.TabIndex = 10;
             this.label1.Text = "Add event or task";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // listViewTransaction
+            // 
+            this.listViewTransaction.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listViewTransaction.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5});
+            this.listViewTransaction.Depth = 0;
+            this.listViewTransaction.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.listViewTransaction.FullRowSelect = true;
+            this.listViewTransaction.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.listViewTransaction.HideSelection = false;
+            this.listViewTransaction.Location = new System.Drawing.Point(306, 86);
+            this.listViewTransaction.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.listViewTransaction.MouseState = MaterialSkin.MouseState.OUT;
+            this.listViewTransaction.Name = "listViewTransaction";
+            this.listViewTransaction.OwnerDraw = true;
+            this.listViewTransaction.Size = new System.Drawing.Size(707, 277);
+            this.listViewTransaction.TabIndex = 13;
+            this.listViewTransaction.UseCompatibleStateImageBehavior = false;
+            this.listViewTransaction.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Amount";
+            this.columnHeader1.Width = 101;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Income / Expese";
+            this.columnHeader2.Width = 141;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Category";
+            this.columnHeader3.Width = 90;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Date";
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Description";
+            this.columnHeader5.Width = 135;
             // 
             // TransactionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1025, 597);
+            this.Controls.Add(this.listViewTransaction);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -556,9 +549,8 @@
             this.Controls.Add(this.deleteBtn);
             this.Controls.Add(this.editBtn);
             this.Controls.Add(this.addBtn);
-            this.Controls.Add(this.listViewTransaction);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "TransactionForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TransactionForm";
@@ -583,17 +575,9 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ListView listViewTransaction;
         private System.Windows.Forms.Button addBtn;
         private System.Windows.Forms.Button editBtn;
         private System.Windows.Forms.Button deleteBtn;
-        private System.Windows.Forms.ColumnHeader incomeExpense;
-        private System.Windows.Forms.ColumnHeader amount;
-        private System.Windows.Forms.ColumnHeader category;
-        private System.Windows.Forms.ColumnHeader date;
-        private System.Windows.Forms.ColumnHeader message;
-        private System.Windows.Forms.ColumnHeader contact;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel1;
@@ -625,5 +609,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private MaterialSkin.Controls.MaterialListView listViewTransaction;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
     }
 }
