@@ -29,13 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EventForm));
-            this.listViewEvent = new System.Windows.Forms.ListView();
-            this.titleCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.statusCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.loactionCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.messageCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.contactName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.dateTimeCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.addBtn = new System.Windows.Forms.Button();
             this.editBtn = new System.Windows.Forms.Button();
             this.deleteBtn = new System.Windows.Forms.Button();
@@ -70,6 +63,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.listViewEvent = new MaterialSkin.Controls.MaterialListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
@@ -82,57 +82,6 @@
             this.panel11.SuspendLayout();
             this.panel5.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // listViewEvent
-            // 
-            this.listViewEvent.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listViewEvent.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.titleCol,
-            this.statusCol,
-            this.loactionCol,
-            this.messageCol,
-            this.contactName,
-            this.dateTimeCol});
-            this.listViewEvent.FullRowSelect = true;
-            this.listViewEvent.HideSelection = false;
-            this.listViewEvent.Location = new System.Drawing.Point(306, 86);
-            this.listViewEvent.MultiSelect = false;
-            this.listViewEvent.Name = "listViewEvent";
-            this.listViewEvent.Size = new System.Drawing.Size(707, 277);
-            this.listViewEvent.TabIndex = 0;
-            this.listViewEvent.UseCompatibleStateImageBehavior = false;
-            this.listViewEvent.View = System.Windows.Forms.View.Details;
-            this.listViewEvent.SelectedIndexChanged += new System.EventHandler(this.listViewEvent_SelectedIndexChanged);
-            // 
-            // titleCol
-            // 
-            this.titleCol.Text = "Title";
-            this.titleCol.Width = 100;
-            // 
-            // statusCol
-            // 
-            this.statusCol.Text = "Task / Event";
-            this.statusCol.Width = 180;
-            // 
-            // loactionCol
-            // 
-            this.loactionCol.Text = "Location";
-            this.loactionCol.Width = 100;
-            // 
-            // messageCol
-            // 
-            this.messageCol.Text = "Description";
-            this.messageCol.Width = 200;
-            // 
-            // contactName
-            // 
-            this.contactName.Text = "Contact";
-            this.contactName.Width = 126;
-            // 
-            // dateTimeCol
-            // 
-            this.dateTimeCol.Text = "Date and Time";
-            this.dateTimeCol.Width = 179;
             // 
             // addBtn
             // 
@@ -439,6 +388,7 @@
             this.predictBtn.Text = "  Prediction";
             this.predictBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.predictBtn.UseVisualStyleBackColor = true;
+            this.predictBtn.Click += new System.EventHandler(this.predictBtn_Click);
             // 
             // eventsBtn
             // 
@@ -489,6 +439,7 @@
             this.summaryBtn.Text = "  Summary";
             this.summaryBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.summaryBtn.UseVisualStyleBackColor = true;
+            this.summaryBtn.Click += new System.EventHandler(this.summaryBtn_Click);
             // 
             // ContactBtn
             // 
@@ -540,11 +491,66 @@
             this.label3.TabIndex = 9;
             this.label3.Text = "Delete selection";
             // 
+            // listViewEvent
+            // 
+            this.listViewEvent.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listViewEvent.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6});
+            this.listViewEvent.Depth = 0;
+            this.listViewEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
+            this.listViewEvent.FullRowSelect = true;
+            this.listViewEvent.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.listViewEvent.HideSelection = false;
+            this.listViewEvent.Location = new System.Drawing.Point(306, 86);
+            this.listViewEvent.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.listViewEvent.MouseState = MaterialSkin.MouseState.OUT;
+            this.listViewEvent.Name = "listViewEvent";
+            this.listViewEvent.OwnerDraw = true;
+            this.listViewEvent.Size = new System.Drawing.Size(707, 277);
+            this.listViewEvent.TabIndex = 10;
+            this.listViewEvent.UseCompatibleStateImageBehavior = false;
+            this.listViewEvent.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Title";
+            this.columnHeader1.Width = 62;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Task / Appointment";
+            this.columnHeader2.Width = 208;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Location";
+            this.columnHeader3.Width = 106;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Contact";
+            this.columnHeader4.Width = 116;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Description";
+            this.columnHeader5.Width = 151;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Date";
+            // 
             // EventForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1025, 597);
+            this.Controls.Add(this.listViewEvent);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -553,7 +559,6 @@
             this.Controls.Add(this.deleteBtn);
             this.Controls.Add(this.editBtn);
             this.Controls.Add(this.addBtn);
-            this.Controls.Add(this.listViewEvent);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "EventForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -579,17 +584,9 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ListView listViewEvent;
         private System.Windows.Forms.Button addBtn;
         private System.Windows.Forms.Button editBtn;
         private System.Windows.Forms.Button deleteBtn;
-        private System.Windows.Forms.ColumnHeader titleCol;
-        private System.Windows.Forms.ColumnHeader statusCol;
-        private System.Windows.Forms.ColumnHeader loactionCol;
-        private System.Windows.Forms.ColumnHeader messageCol;
-        private System.Windows.Forms.ColumnHeader dateTimeCol;
-        private System.Windows.Forms.ColumnHeader contactName;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
@@ -621,5 +618,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private MaterialSkin.Controls.MaterialListView listViewEvent;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
     }
 }

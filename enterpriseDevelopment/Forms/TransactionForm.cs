@@ -175,5 +175,26 @@ namespace enterpriseDevelopment.Forms
         {
             Instance.MainForm.Dispose();
         }
+
+        private void mainBtn_Click(object sender, EventArgs e)
+        {
+            Instance.MainForm.Show();
+
+            Close();
+        }
+
+        private void predictBtn_Click(object sender, EventArgs e)
+        {
+            financialPredictionForm financialPredictionForm = new financialPredictionForm();
+            financialPredictionForm.Activate();
+            financialPredictionForm.Show();
+        }
+
+        private void summaryBtn_Click(object sender, EventArgs e)
+        {
+            SummaryForm summaryForm = new SummaryForm();
+            summaryForm.Activate();
+            summaryForm.Show();
+        }
     }
 }

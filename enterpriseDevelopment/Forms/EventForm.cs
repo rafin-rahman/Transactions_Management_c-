@@ -171,7 +171,9 @@ namespace enterpriseDevelopment
 
         private void mainBtn_Click(object sender, EventArgs e)
         {
+            Instance.MainForm.Show();
 
+            Close();
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)
@@ -199,10 +201,23 @@ namespace enterpriseDevelopment
 
         private void mainBtn_Click_1(object sender, EventArgs e)
         {
-            MainForm mainForm = new MainForm();
-            mainForm.Activate();
-            mainForm.Show();
+            Instance.MainForm.Show();
+
             Close();
+        }
+
+        private void predictBtn_Click(object sender, EventArgs e)
+        {
+            financialPredictionForm financialPredictionForm = new financialPredictionForm();
+            financialPredictionForm.Activate();
+            financialPredictionForm.Show();
+        }
+
+        private void summaryBtn_Click(object sender, EventArgs e)
+        {
+            SummaryForm summaryForm = new SummaryForm();
+            summaryForm.Activate();
+            summaryForm.Show();
         }
     }
 }

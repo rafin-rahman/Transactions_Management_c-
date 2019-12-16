@@ -127,6 +127,7 @@ namespace enterpriseDevelopment
 
         private void predictBtn_Click(object sender, EventArgs e)
         {
+           
             financialPredictionForm financialPredictionForm = new financialPredictionForm();
             financialPredictionForm.Activate();
             financialPredictionForm.Show();

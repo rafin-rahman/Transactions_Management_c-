@@ -364,5 +364,10 @@ namespace enterpriseDevelopment.Forms
                 dateTimePicker1.Enabled = true;
             }
         }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

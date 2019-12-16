@@ -51,8 +51,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
-            this.closePanel = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.closePanel = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -235,7 +235,7 @@
             // 
             this.noTimeLimit.AutoSize = true;
             this.noTimeLimit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.noTimeLimit.Location = new System.Drawing.Point(38, 162);
+            this.noTimeLimit.Location = new System.Drawing.Point(35, 183);
             this.noTimeLimit.Margin = new System.Windows.Forms.Padding(2);
             this.noTimeLimit.Name = "noTimeLimit";
             this.noTimeLimit.Size = new System.Drawing.Size(163, 23);
@@ -248,7 +248,7 @@
             // 
             this.dateTimePicker1.CustomFormat = "dd/MM/yyyy HH:mm";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(58, 115);
+            this.dateTimePicker1.Location = new System.Drawing.Point(55, 136);
             this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(122, 27);
@@ -258,7 +258,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Calibri", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(56, 77);
+            this.label8.Location = new System.Drawing.Point(53, 98);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(124, 36);
@@ -316,6 +316,16 @@
             this.label9.TabIndex = 1;
             this.label9.Text = "ADD A NEW EVENT";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(633, 97);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(331, 354);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 17;
+            this.pictureBox1.TabStop = false;
+            // 
             // closePanel
             // 
             this.closePanel.BackgroundImage = global::enterpriseDevelopment.Properties.Resources.close;
@@ -328,16 +338,8 @@
             this.closePanel.Size = new System.Drawing.Size(32, 30);
             this.closePanel.TabIndex = 0;
             this.closePanel.Click += new System.EventHandler(this.closePanel_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(633, 97);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(331, 354);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 17;
-            this.pictureBox1.TabStop = false;
+            this.closePanel.MouseEnter += new System.EventHandler(this.closePanel_MouseEnter);
+            this.closePanel.MouseLeave += new System.EventHandler(this.closePanel_MouseLeave);
             // 
             // EventAddEdit
             // 
@@ -364,6 +366,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.titleTxt);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "EventAddEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EventAddEdit";

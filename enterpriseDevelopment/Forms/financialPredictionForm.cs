@@ -193,6 +193,45 @@ namespace enterpriseDevelopment.Forms
             }
         }
 
-     
+        private void financialPredictionForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void closePanel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void closePanel_MouseEnter(object sender, EventArgs e)
+        {
+            this.closePanel.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.closeHover));
+        }
+
+        private void closePanel_MouseLeave(object sender, EventArgs e)
+        {
+            this.closePanel.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.close));
+        }
+
+        private void mainBtn_Click(object sender, EventArgs e)
+        {
+            Instance.MainForm.Show();
+
+            Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            financialPredictionForm financialPredictionForm = new financialPredictionForm();
+            financialPredictionForm.Activate();
+            financialPredictionForm.Show();
+        }
+
+        private void summaryBtn_Click(object sender, EventArgs e)
+        {
+            SummaryForm summaryForm = new SummaryForm();
+            summaryForm.Activate();
+            summaryForm.Show();
+        }
     }
 }

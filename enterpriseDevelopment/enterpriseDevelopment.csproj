@@ -150,6 +150,8 @@
     <Compile Include="Repositories\TransactionRecurringRepository.cs" />
     <Compile Include="Repositories\TransactionRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
+    <None Include="Resources\backButtonHover.png" />
+    <None Include="Resources\backButton.png" />
     <None Include="Resources\closeHover.png" />
     <None Include="Resources\close.png" />
     <None Include="Resources\notification.wav" />

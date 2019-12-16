@@ -66,5 +66,20 @@ namespace enterpriseDevelopment
             Close();
             Dispose();
         }
+
+        private void closePanel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void closePanel_MouseEnter(object sender, EventArgs e)
+        {
+            this.closePanel.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.backButtonHover));
+        }
+
+        private void closePanel_MouseLeave(object sender, EventArgs e)
+        {
+            this.closePanel.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.backButton));
+        }
     }
 }

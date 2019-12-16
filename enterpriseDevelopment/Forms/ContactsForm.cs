@@ -93,7 +93,35 @@ namespace enterpriseDevelopment.Forms
 
         }
 
-        
-       
+        private void panel1_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void mainBtn_Click(object sender, EventArgs e)
+        {
+            Instance.MainForm.Show();
+
+            Close();
+        }
+
+        private void predictBtn_Click(object sender, EventArgs e)
+        {
+            financialPredictionForm financialPredictionForm = new financialPredictionForm();
+            financialPredictionForm.Activate();
+            financialPredictionForm.Show();
+        }
+
+        private void eventsBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void summaryBtn_Click(object sender, EventArgs e)
+        {
+            SummaryForm summaryForm = new SummaryForm();
+            summaryForm.Activate();
+            summaryForm.Show();
+        }
     }
 }

@@ -369,6 +369,7 @@
             this.mainBtn.Text = "  Main";
             this.mainBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.mainBtn.UseVisualStyleBackColor = true;
+            this.mainBtn.Click += new System.EventHandler(this.mainBtn_Click);
             // 
             // predictBtn
             // 
@@ -386,6 +387,7 @@
             this.predictBtn.Text = "  Prediction";
             this.predictBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.predictBtn.UseVisualStyleBackColor = true;
+            this.predictBtn.Click += new System.EventHandler(this.predictBtn_Click);
             // 
             // eventsBtn
             // 
@@ -436,6 +438,7 @@
             this.summaryBtn.Text = "  Summary";
             this.summaryBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.summaryBtn.UseVisualStyleBackColor = true;
+            this.summaryBtn.Click += new System.EventHandler(this.summaryBtn_Click);
             // 
             // ContactBtn
             // 
@@ -497,7 +500,7 @@
             this.columnHeader4,
             this.columnHeader5});
             this.listViewTransaction.Depth = 0;
-            this.listViewTransaction.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.listViewTransaction.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
             this.listViewTransaction.FullRowSelect = true;
             this.listViewTransaction.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listViewTransaction.HideSelection = false;
