@@ -40,11 +40,17 @@ namespace enterpriseDevelopment.Forms
             {
                 incomeRadio.Checked = true;
                 expenseRadio.Checked = false;
+                // Blue panel show / hide
+                incomeHighLight.Visible = true;
+                expenseHighLight.Visible = false;
             }
             else
             {
                 incomeRadio.Checked = false;
                 expenseRadio.Checked = true;
+                // Blue panel show / hide
+                incomeHighLight.Visible = false;
+                expenseHighLight.Visible = true;
             }
             transDateTime.Value = transaction.dateTime;
             messageRichTetx.Text = transaction.transactionMessage;
@@ -68,11 +74,18 @@ namespace enterpriseDevelopment.Forms
             {
                 incomeRadio.Checked = true;
                 expenseRadio.Checked = false;
+                // Blue panel show / hide
+                incomeHighLight.Visible = true;
+                expenseHighLight.Visible = false;
+
             }
             else
             {
                 incomeRadio.Checked = false;
                 expenseRadio.Checked = true;
+                // Blue panel show / hide
+                incomeHighLight.Visible = false;
+                expenseHighLight.Visible = true;
             }
             transDateTime.Value = transaction.dateTime;
             messageRichTetx.Text = transaction.transactionMessage;
@@ -180,7 +193,7 @@ namespace enterpriseDevelopment.Forms
                 else
                 {
                     ContactRepository contactsRepository = new ContactRepository();
-                    t.contactIdFk = await Task.Run(() => contactsRepository.AddContact(new Contact { ContactName = contactComboBox.Text, userIdFk = Instance.StaticUserAccount.UserId }));
+                    contactsRepository.AddContact(new Contact { ContactName = contactComboBox.Text, userIdFk = Instance.StaticUserAccount.UserId });
                 }
             }
             else
@@ -191,7 +204,8 @@ namespace enterpriseDevelopment.Forms
             if (incomeRadio.Checked == true)
             {
                 t.incomeExpense = true;
-
+                
+                
             }
             else if (expenseRadio.Checked == true)
             {
@@ -382,6 +396,30 @@ namespace enterpriseDevelopment.Forms
         private void closePanel_MouseLeave(object sender, EventArgs e)
         {
             this.closePanel.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.backButton));
+        }
+
+        private void incomeRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            if (incomeRadio.Checked) {
+                incomeHighLight.Visible = true;
+            }
+            else
+            {
+                incomeHighLight.Visible = false;
+            }
+        }
+
+        private void expenseRadio_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (expenseRadio.Checked)
+            {
+                expenseHighLight.Visible = true;
+            }
+            else
+            {
+                expenseHighLight.Visible = false;
+            }
         }
     }
 }

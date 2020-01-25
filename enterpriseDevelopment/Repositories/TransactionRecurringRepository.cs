@@ -58,40 +58,40 @@ namespace enterpriseDevelopment.Repositories
                     };
 
                     if (temp.incomeExpense == true)
-                    {
+                    
                         temp.typeValue = "Income";
-                    }
+                    
                     else
-                    {
+                    
                         temp.typeValue = "Expense";
-                    }
+                    
 
                     if (sqlDataReader["contactIdFk"] == DBNull.Value)
-                    {
+                    
                         temp.contactIdFk = 0;
-                    }
+                    
                     else
-                    {
+                    
                         temp.contactIdFk = (int)sqlDataReader["contactIdFk"];
-                    }
+                    
 
                     if (sqlDataReader["ContactName"] == DBNull.Value)
-                    {
+                    
                         temp.contactName = "";
-                    }
+                    
                     else
-                    {
+                    
                         temp.contactName = sqlDataReader["ContactName"].ToString();
-                    }
-
+                    
+            
                     if (sqlDataReader["subscriptionEndTime"] == DBNull.Value)
-                    {
+                    
                         temp.subscriptionEndTime = DateTime.MinValue;
-                    }
+                    
                     else
-                    {
+                    
                         temp.subscriptionEndTime = (DateTime)sqlDataReader["subscriptionEndTime"];
-                    }
+                    
 
 
 
@@ -100,16 +100,16 @@ namespace enterpriseDevelopment.Repositories
 
 
                 }
-                connection.Close();
             }
             catch (Exception ex)
             {
-
                 Logger.Error(ex.Message);
+            }
+            finally
+            {
                 connection.Close();
             }
 
-            
             return u;
         }
 
@@ -144,22 +144,24 @@ namespace enterpriseDevelopment.Repositories
 
                 connection.Open();
                 var x = sqlCommand.ExecuteNonQuery();
-                connection.Close();
+                
                 if (x > 0)
-                {
+                
                     return true;
-                }
+                
                 else
-                {
+                
                     return false;
-                }
+                
             }
             catch (Exception ex)
             {
-
                 Logger.Error(ex.Message);
-                connection.Close();
                 return false;
+            }
+            finally
+            {
+                connection.Close();
             }
         }
 
@@ -195,25 +197,27 @@ namespace enterpriseDevelopment.Repositories
 
                 connection.Open();
                 var x = sqlCommand.ExecuteNonQuery();
-                connection.Close();
+                
                 if (x > 0)
-                {
+                
                     return true;
-                }
+                
                 else
-                {
+                
                     return false;
-                }
+                
 
 
 
             }
             catch (Exception ex)
             {
-
                 Logger.Error(ex.Message);
-                connection.Close();
                 return false;
+            }
+            finally
+            {
+                connection.Close();
             }
 
 
@@ -233,25 +237,27 @@ namespace enterpriseDevelopment.Repositories
 
                 connection.Open();
                 var x = sqlCommand.ExecuteNonQuery();
-                connection.Close();
+                
                 if (x > 0)
-                {
+                
                     return true;
-                }
+                
                 else
-                {
+                
                     return false;
-                }
+                
 
 
 
             }
             catch (Exception ex)
             {
-
                 Logger.Error(ex.Message);
-                connection.Close();
                 return false;
+            }
+            finally
+            {
+                connection.Close();
             }
 
 

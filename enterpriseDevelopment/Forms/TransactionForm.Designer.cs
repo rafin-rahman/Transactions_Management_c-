@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TransactionForm));
             this.addBtn = new System.Windows.Forms.Button();
             this.editBtn = new System.Windows.Forms.Button();
@@ -57,7 +58,7 @@
             this.mainBtn = new System.Windows.Forms.Button();
             this.predictBtn = new System.Windows.Forms.Button();
             this.eventsBtn = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.transactionBtn = new System.Windows.Forms.Button();
             this.summaryBtn = new System.Windows.Forms.Button();
             this.ContactBtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -69,6 +70,9 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
@@ -177,7 +181,7 @@
             this.panel3.Controls.Add(this.mainBtn);
             this.panel3.Controls.Add(this.predictBtn);
             this.panel3.Controls.Add(this.eventsBtn);
-            this.panel3.Controls.Add(this.button1);
+            this.panel3.Controls.Add(this.transactionBtn);
             this.panel3.Controls.Add(this.summaryBtn);
             this.panel3.Controls.Add(this.ContactBtn);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
@@ -213,6 +217,8 @@
             this.pictureBox6.Size = new System.Drawing.Size(26, 25);
             this.pictureBox6.TabIndex = 24;
             this.pictureBox6.TabStop = false;
+            this.pictureBox6.MouseEnter += new System.EventHandler(this.ContactBtn_MouseEnter);
+            this.pictureBox6.MouseLeave += new System.EventHandler(this.ContactBtn_MouseLeave);
             // 
             // pictureBox5
             // 
@@ -223,6 +229,8 @@
             this.pictureBox5.Size = new System.Drawing.Size(37, 37);
             this.pictureBox5.TabIndex = 23;
             this.pictureBox5.TabStop = false;
+            this.pictureBox5.MouseEnter += new System.EventHandler(this.summaryBtn_MouseEnter);
+            this.pictureBox5.MouseLeave += new System.EventHandler(this.summaryBtn_MouseLeave);
             // 
             // pictureBox4
             // 
@@ -233,6 +241,8 @@
             this.pictureBox4.Size = new System.Drawing.Size(37, 25);
             this.pictureBox4.TabIndex = 22;
             this.pictureBox4.TabStop = false;
+            this.pictureBox4.MouseEnter += new System.EventHandler(this.transactionBtn_MouseEnter);
+            this.pictureBox4.MouseLeave += new System.EventHandler(this.transactionBtn_MouseLeave);
             // 
             // pictureBox3
             // 
@@ -243,6 +253,8 @@
             this.pictureBox3.Size = new System.Drawing.Size(37, 35);
             this.pictureBox3.TabIndex = 21;
             this.pictureBox3.TabStop = false;
+            this.pictureBox3.MouseEnter += new System.EventHandler(this.eventsBtn_MouseEnter);
+            this.pictureBox3.MouseLeave += new System.EventHandler(this.eventsBtn_MouseLeave);
             // 
             // pictureBox2
             // 
@@ -253,6 +265,8 @@
             this.pictureBox2.Size = new System.Drawing.Size(25, 30);
             this.pictureBox2.TabIndex = 20;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.MouseEnter += new System.EventHandler(this.predictBtn_MouseEnter);
+            this.pictureBox2.MouseLeave += new System.EventHandler(this.predictBtn_MouseLeave);
             // 
             // pictureBox1
             // 
@@ -264,6 +278,8 @@
             this.pictureBox1.Size = new System.Drawing.Size(25, 25);
             this.pictureBox1.TabIndex = 19;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseEnter += new System.EventHandler(this.mainBtn_MouseEnter);
+            this.pictureBox1.MouseLeave += new System.EventHandler(this.mainBtn_MouseLeave);
             // 
             // panel11
             // 
@@ -275,6 +291,8 @@
             this.panel11.Size = new System.Drawing.Size(99, 82);
             this.panel11.TabIndex = 18;
             this.panel11.Visible = false;
+            this.panel11.MouseEnter += new System.EventHandler(this.eventsBtn_MouseEnter);
+            this.panel11.MouseLeave += new System.EventHandler(this.eventsBtn_MouseLeave);
             // 
             // panel12
             // 
@@ -298,6 +316,8 @@
             this.panel10.Size = new System.Drawing.Size(99, 82);
             this.panel10.TabIndex = 17;
             this.panel10.Visible = false;
+            this.panel10.MouseEnter += new System.EventHandler(this.ContactBtn_MouseEnter);
+            this.panel10.MouseLeave += new System.EventHandler(this.ContactBtn_MouseLeave);
             // 
             // panel8
             // 
@@ -307,6 +327,8 @@
             this.panel8.Size = new System.Drawing.Size(99, 82);
             this.panel8.TabIndex = 16;
             this.panel8.Visible = false;
+            this.panel8.MouseEnter += new System.EventHandler(this.summaryBtn_MouseEnter);
+            this.panel8.MouseLeave += new System.EventHandler(this.summaryBtn_MouseLeave);
             // 
             // panel7
             // 
@@ -316,6 +338,8 @@
             this.panel7.Size = new System.Drawing.Size(99, 82);
             this.panel7.TabIndex = 15;
             this.panel7.Visible = false;
+            this.panel7.MouseEnter += new System.EventHandler(this.transactionBtn_MouseEnter);
+            this.panel7.MouseLeave += new System.EventHandler(this.transactionBtn_MouseLeave);
             // 
             // panel5
             // 
@@ -327,6 +351,8 @@
             this.panel5.Size = new System.Drawing.Size(99, 82);
             this.panel5.TabIndex = 13;
             this.panel5.Visible = false;
+            this.panel5.MouseEnter += new System.EventHandler(this.predictBtn_MouseEnter);
+            this.panel5.MouseLeave += new System.EventHandler(this.predictBtn_MouseLeave);
             // 
             // panel9
             // 
@@ -350,6 +376,8 @@
             this.panel14.Size = new System.Drawing.Size(99, 82);
             this.panel14.TabIndex = 12;
             this.panel14.Visible = false;
+            this.panel14.MouseEnter += new System.EventHandler(this.mainBtn_MouseEnter);
+            this.panel14.MouseLeave += new System.EventHandler(this.mainBtn_MouseLeave);
             // 
             // mainBtn
             // 
@@ -370,6 +398,8 @@
             this.mainBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.mainBtn.UseVisualStyleBackColor = true;
             this.mainBtn.Click += new System.EventHandler(this.mainBtn_Click);
+            this.mainBtn.MouseEnter += new System.EventHandler(this.mainBtn_MouseEnter);
+            this.mainBtn.MouseLeave += new System.EventHandler(this.mainBtn_MouseLeave);
             // 
             // predictBtn
             // 
@@ -388,6 +418,8 @@
             this.predictBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.predictBtn.UseVisualStyleBackColor = true;
             this.predictBtn.Click += new System.EventHandler(this.predictBtn_Click);
+            this.predictBtn.MouseEnter += new System.EventHandler(this.predictBtn_MouseEnter);
+            this.predictBtn.MouseLeave += new System.EventHandler(this.predictBtn_MouseLeave);
             // 
             // eventsBtn
             // 
@@ -404,23 +436,27 @@
             this.eventsBtn.Text = "  Events";
             this.eventsBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.eventsBtn.UseVisualStyleBackColor = true;
+            this.eventsBtn.MouseEnter += new System.EventHandler(this.eventsBtn_MouseEnter);
+            this.eventsBtn.MouseLeave += new System.EventHandler(this.eventsBtn_MouseLeave);
             // 
-            // button1
+            // transactionBtn
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.transactionBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Calibri", 22F);
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button1.Location = new System.Drawing.Point(0, 354);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(284, 82);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "  Transactions";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.UseVisualStyleBackColor = true;
+            this.transactionBtn.FlatAppearance.BorderSize = 0;
+            this.transactionBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.transactionBtn.Font = new System.Drawing.Font("Calibri", 22F);
+            this.transactionBtn.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.transactionBtn.Location = new System.Drawing.Point(0, 354);
+            this.transactionBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.transactionBtn.Name = "transactionBtn";
+            this.transactionBtn.Size = new System.Drawing.Size(284, 82);
+            this.transactionBtn.TabIndex = 5;
+            this.transactionBtn.Text = "  Transactions";
+            this.transactionBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.transactionBtn.UseVisualStyleBackColor = true;
+            this.transactionBtn.MouseEnter += new System.EventHandler(this.transactionBtn_MouseEnter);
+            this.transactionBtn.MouseLeave += new System.EventHandler(this.transactionBtn_MouseLeave);
             // 
             // summaryBtn
             // 
@@ -439,6 +475,8 @@
             this.summaryBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.summaryBtn.UseVisualStyleBackColor = true;
             this.summaryBtn.Click += new System.EventHandler(this.summaryBtn_Click);
+            this.summaryBtn.MouseEnter += new System.EventHandler(this.summaryBtn_MouseEnter);
+            this.summaryBtn.MouseLeave += new System.EventHandler(this.summaryBtn_MouseLeave);
             // 
             // ContactBtn
             // 
@@ -457,6 +495,8 @@
             this.ContactBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ContactBtn.UseVisualStyleBackColor = true;
             this.ContactBtn.Click += new System.EventHandler(this.ContactBtn_Click);
+            this.ContactBtn.MouseEnter += new System.EventHandler(this.ContactBtn_MouseEnter);
+            this.ContactBtn.MouseLeave += new System.EventHandler(this.ContactBtn_MouseLeave);
             this.ContactBtn.ChangeUICues += new System.Windows.Forms.UICuesEventHandler(this.ContactBtn_ChangeUICues);
             // 
             // label3
@@ -500,11 +540,13 @@
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
-            this.columnHeader5});
+            this.columnHeader5,
+            this.columnHeader6});
             this.listViewTransaction.Depth = 0;
-            this.listViewTransaction.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.listViewTransaction.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
             this.listViewTransaction.FullRowSelect = true;
             this.listViewTransaction.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.listViewTransaction.HideSelection = false;
             this.listViewTransaction.Location = new System.Drawing.Point(306, 86);
             this.listViewTransaction.MouseLocation = new System.Drawing.Point(-1, -1);
             this.listViewTransaction.MouseState = MaterialSkin.MouseState.OUT;
@@ -514,6 +556,7 @@
             this.listViewTransaction.TabIndex = 13;
             this.listViewTransaction.UseCompatibleStateImageBehavior = false;
             this.listViewTransaction.View = System.Windows.Forms.View.Details;
+            this.listViewTransaction.SizeChanged += new System.EventHandler(this.listViewTransaction_SizeChanged);
             // 
             // columnHeader1
             // 
@@ -528,16 +571,21 @@
             // columnHeader3
             // 
             this.columnHeader3.Text = "Category";
-            this.columnHeader3.Width = 90;
+            this.columnHeader3.Width = 141;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Date";
+            this.columnHeader4.Width = 116;
             // 
             // columnHeader5
             // 
             this.columnHeader5.Text = "Description";
             this.columnHeader5.Width = 135;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Contact Name";
             // 
             // TransactionForm
             // 
@@ -554,6 +602,7 @@
             this.Controls.Add(this.editBtn);
             this.Controls.Add(this.addBtn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "TransactionForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -607,7 +656,7 @@
         private System.Windows.Forms.Button mainBtn;
         private System.Windows.Forms.Button predictBtn;
         private System.Windows.Forms.Button eventsBtn;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button transactionBtn;
         private System.Windows.Forms.Button summaryBtn;
         private System.Windows.Forms.Button ContactBtn;
         private System.Windows.Forms.Label label3;
@@ -619,5 +668,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.Timer timer2;
     }
 }

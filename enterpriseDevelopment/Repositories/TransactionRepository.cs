@@ -58,54 +58,52 @@ namespace enterpriseDevelopment.Repositories
                     };
 
                     if (temp.incomeExpense == true)
-                    {
+                    
                         temp.typeValue = "Income";
-                    }
+                    
                     else
-                    {
+                    
                         temp.typeValue = "Expense";
-                    }
+                    
 
 
                     if (sqlDataReader["contactIdFk"] == DBNull.Value)
-                    {
+                    
                         temp.contactIdFk = 0;
-                    }
+                    
                     else
-                    {
+                    
                         temp.contactIdFk = (int)sqlDataReader["contactIdFk"];
-                    }
+                    
 
                     if (sqlDataReader["ContactName"] == DBNull.Value)
-                    {
+                    
                         temp.contactName = "";
-                    }
+                    
                     else
-                    {
+                    
                         temp.contactName = sqlDataReader["ContactName"].ToString();
-                    }
+                    
                     u.Add(temp);
 
 
 
                 }
-                connection.Close();
+                
             }
             catch (Exception ex)
             {
                 Logger.Error(ex.Message);
-                connection.Close();
-
             }
-
-            
+            finally
+            {
+                connection.Close();
+            }
             return u;
         }
 
         public List<Transaction> GetTransactions(DateTime date ,int id)
         {
-
-            
             List<Transaction> u = new List<Transaction>();
 
             string selectQuery = "SELECT * FROM TransactionsTbl WHERE userIdFk = @userID AND CONVERT(Date, dateTime,1) BETWEEN @StartDate AND @EndDate";
@@ -120,9 +118,7 @@ namespace enterpriseDevelopment.Repositories
                 connection.Open();
                 
                 SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
-
-
-
+                
                 while (sqlDataReader.Read())
                 {
                     Transaction temp = new Transaction
@@ -137,39 +133,34 @@ namespace enterpriseDevelopment.Repositories
                     };
 
                     if (temp.incomeExpense == true)
-                    {
+                    
                         temp.typeValue = "Income";
-                    }
+                    
                     else
-                    {
+                    
                         temp.typeValue = "Expense";
-                    }
+                    
 
 
                     if (sqlDataReader["contactIdFk"] == DBNull.Value)
-                    {
+                    
                         temp.contactIdFk = 0;
-                    }
+                    
                     else
-                    {
+                    
                         temp.contactIdFk = (int)sqlDataReader["contactIdFk"];
-                    }
-                   
                     u.Add(temp);
-
-
-
                 }
-                connection.Close();
+              
             }
             catch (Exception ex)
             {
                 Logger.Error(ex.Message);
-                connection.Close();
-
             }
-
-            
+            finally
+            {
+                connection.Close();
+            }
             return u;
         }
 
@@ -187,9 +178,6 @@ namespace enterpriseDevelopment.Repositories
 
                 connection.Open();
                 x = sqlCommand.ExecuteNonQuery();
-
-
-
             }
             catch (Exception ex)
             {
@@ -201,26 +189,20 @@ namespace enterpriseDevelopment.Repositories
                 connection.Close();
             }
             if (x > 0)
-            {
+            
                 return true;
-            }
+            
             else
-            {
+            
                 return false;
-            }
-
-
         }
 
         public bool AddTransction(Transaction transaction)
         {
-
-
             string selectQuery = "INSERT INTO TransactionsTbl  ([TransactionCategory], [TransactionAmount], [userIdFk], [contactIdFk], [dateTime], [TransactionMessage], [IncomeExpense]) VALUES (@TransactionCategory, @TransactionAmount, @userIdFk, @contactIdFk, @dateTime, @TransactionMessage, @IncomeExpense)";
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
-
 
                 sqlCommand.Parameters.Add("@TransactionCategory", SqlDbType.VarChar).Value = transaction.transactionCategory;
                 sqlCommand.Parameters.Add("@TransactionAmount", SqlDbType.Money).Value = transaction.transactionAmount;
@@ -236,34 +218,32 @@ namespace enterpriseDevelopment.Repositories
 
                 connection.Open();
                 var x = sqlCommand.ExecuteNonQuery();
-                connection.Close();
                 if (x > 0)
-                {
+                
                     return true;
-                }
+                
                 else
-                {
+                
                     return false;
-                }
             }
             catch (Exception ex)
             {
                 Logger.Error(ex.Message);
-                connection.Close();
                 return false;
+            }
+            finally
+            {
+                connection.Close();
             }
         }
 
         public bool EditTransaction(Transaction transaction)
         {
-
-
             string selectQuery = "UPDATE TransactionsTbl SET [TransactionCategory] = @transactionCategory, [TransactionAmount] = @transactionAmount, [dateTime] = @dateTime, [TransactionMessage] = @transactionMessage, [IncomeExpense] = @incomeExpense, [contactIdFk] = @contactIdFk WHERE [TransactionId] = @id AND [userIdFk] = @userID";
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
-
-
+                
                 sqlCommand.Parameters.Add("@transactionCategory", SqlDbType.NVarChar).Value = transaction.transactionCategory;
                 sqlCommand.Parameters.Add("@transactionAmount", SqlDbType.Money).Value = transaction.transactionAmount;
                 sqlCommand.Parameters.Add("@dateTime", SqlDbType.DateTime).Value = transaction.dateTime;
@@ -280,26 +260,23 @@ namespace enterpriseDevelopment.Repositories
 
                 connection.Open();
                 var x = sqlCommand.ExecuteNonQuery();
-                connection.Close();
                 if (x > 0)
-                {
+                
                     return true;
-                }
+                
                 else
-                {
+                
                     return false;
-                }
-
-
-
             }
             catch (Exception ex)
             {
                 Logger.Error(ex.Message);
-                connection.Close();
                 return false;
             }
-
+            finally
+            {
+                connection.Close();
+            }
 
         }
     }

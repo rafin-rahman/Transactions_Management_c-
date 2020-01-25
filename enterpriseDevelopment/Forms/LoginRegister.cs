@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using bcrypt = BCrypt.Net.BCrypt;
+using Messages = enterpriseDevelopment.Properties.Messages;
 
 namespace enterpriseDevelopment
 {
@@ -153,7 +154,7 @@ namespace enterpriseDevelopment
 
             if (!isMatched)
             {
-                MessageBox.Show("Error, invalid credentials");
+                MessageBox.Show(Messages.WrongCredentials);
                 return false;
 
 
@@ -165,30 +166,11 @@ namespace enterpriseDevelopment
             return true;
         }
 
-        private void usernameLogTxt_MouseClick(object sender, MouseEventArgs e)
-        {
-            usernameLogTxt.Text = "";
-            if (passwordLogTxt.Text == "")
-            {
-                passwordLogTxt.Text = "Your Password...";
-                passwordLogTxt.UseSystemPasswordChar = false;
-            }
+       
 
+ 
 
-        }
-
-        private void usernameLogTxt_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void passwordLogTxt_MouseClick(object sender, MouseEventArgs e)
-        {
-            passwordLogTxt.Text = "";
-
-            if (passwordLogTxt.Text == "") passwordLogTxt.UseSystemPasswordChar = true;
-            if (usernameLogTxt.Text == "") usernameLogTxt.Text = "Type username...";
-        }
+        
 
        
         
@@ -246,6 +228,125 @@ namespace enterpriseDevelopment
                 registerIcon.Visible = false;
             }
         }
+
+        #region Login / Register text field CLICK
+        // Login useername  Click
+        private void usernameLogTxt_MouseClick(object sender, MouseEventArgs e)
+        {
+            usernameLogTxt.Text = "";
+            if (passwordLogTxt.Text == "")
+            {
+                passwordLogTxt.Text = "Your Password";
+                passwordLogTxt.UseSystemPasswordChar = false;
+            }
+
+
+        }
+        // Login password Click
+        private void passwordLogTxt_MouseClick(object sender, MouseEventArgs e)
+        {
+            passwordLogTxt.Text = "";
+
+            if (passwordLogTxt.Text == "") passwordLogTxt.UseSystemPasswordChar = true;
+            if (usernameLogTxt.Text == "") usernameLogTxt.Text = "Type username...";
+        }
+        // registration name Click
+        private void fullNameRegTxt_MouseClick(object sender, MouseEventArgs e)
+        {
+            fullNameRegTxt.Text = "";
+            if (passwordRegTxt.Text == "")
+            {
+                passwordRegTxt.Text = "Create Password";
+                passwordRegTxt.UseSystemPasswordChar = false;
+            }
+
+            if (password2RegTxt.Text == "")
+            {
+                password2RegTxt.Text = "Type Password";
+                password2RegTxt.UseSystemPasswordChar = false;
+            }
+
+            if (usernameRegTxt.Text == "")
+            {
+                usernameRegTxt.Text = "Create username";
+                
+            }
+
+
+
+        }
+        // registration username Click
+        private void usernameRegTxt_MouseClick(object sender, MouseEventArgs e)
+        {
+            usernameRegTxt.Text = "";
+
+            if (passwordRegTxt.Text == "")
+            {
+                passwordRegTxt.Text = "Create Password";
+                passwordRegTxt.UseSystemPasswordChar = false;
+            }
+
+            if (password2RegTxt.Text == "")
+            {
+                password2RegTxt.Text = "Type Password";
+                password2RegTxt.UseSystemPasswordChar = false;
+            }
+
+            if (fullNameRegTxt.Text == "")
+            {
+                fullNameRegTxt.Text = "Your name";
+              
+            }
+        }
+        // registration password Click
+        private void passwordRegTxt_MouseClick(object sender, MouseEventArgs e)
+        {
+            passwordRegTxt.Text = "";
+            passwordRegTxt.UseSystemPasswordChar = true;
+
+            if (usernameRegTxt.Text == "")
+            {
+                usernameRegTxt.Text = "Create username";
+                
+            }
+
+            if (password2RegTxt.Text == "")
+            {
+                password2RegTxt.Text = "Type Password";
+                password2RegTxt.UseSystemPasswordChar = false;
+            }
+
+            if (fullNameRegTxt.Text == "")
+            {
+                fullNameRegTxt.Text = "Your name";
+               
+            }
+        }
+        // registration password 2 Click
+        private void password2RegTxt_MouseClick(object sender, MouseEventArgs e)
+        {
+            password2RegTxt.Text = "";
+            password2RegTxt.UseSystemPasswordChar = true;
+
+            if (usernameRegTxt.Text == "")
+            {
+                usernameRegTxt.Text = "Create username";
+
+            }
+
+            if (passwordRegTxt.Text == "")
+            {
+                passwordRegTxt.Text = "Create Password";
+                passwordRegTxt.UseSystemPasswordChar = false;
+            }
+
+            if (fullNameRegTxt.Text == "")
+            {
+                fullNameRegTxt.Text = "Your name";
+
+            }
+        }
+        #endregion
 
         private void LoginRegister_FormClosed(object sender, FormClosedEventArgs e)
         {

@@ -37,6 +37,8 @@
             this.transactionAmountNum = new System.Windows.Forms.NumericUpDown();
             this.contactComboBox = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.expenseHighLight = new System.Windows.Forms.Panel();
+            this.incomeHighLight = new System.Windows.Forms.Panel();
             this.recurrCheck = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.periodCombo = new System.Windows.Forms.ComboBox();
@@ -55,11 +57,15 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.transactionAmountNum)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // expenseRadio
@@ -74,12 +80,13 @@
             this.expenseRadio.TabIndex = 8;
             this.expenseRadio.Text = "Expense";
             this.expenseRadio.UseVisualStyleBackColor = true;
+            this.expenseRadio.CheckedChanged += new System.EventHandler(this.expenseRadio_CheckedChanged);
             // 
             // categoryTxt
             // 
             this.categoryTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.categoryTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.categoryTxt.Location = new System.Drawing.Point(287, 130);
+            this.categoryTxt.Location = new System.Drawing.Point(5, 12);
             this.categoryTxt.Margin = new System.Windows.Forms.Padding(2);
             this.categoryTxt.Name = "categoryTxt";
             this.categoryTxt.Size = new System.Drawing.Size(118, 13);
@@ -110,23 +117,31 @@
             this.incomeRadio.TabStop = true;
             this.incomeRadio.Text = "Income";
             this.incomeRadio.UseVisualStyleBackColor = true;
+            this.incomeRadio.CheckedChanged += new System.EventHandler(this.incomeRadio_CheckedChanged);
             // 
             // messageRichTetx
             // 
             this.messageRichTetx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.messageRichTetx.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.messageRichTetx.Location = new System.Drawing.Point(285, 347);
+            this.messageRichTetx.Location = new System.Drawing.Point(10, 10);
             this.messageRichTetx.Margin = new System.Windows.Forms.Padding(2);
             this.messageRichTetx.Name = "messageRichTetx";
-            this.messageRichTetx.Size = new System.Drawing.Size(393, 95);
+            this.messageRichTetx.Size = new System.Drawing.Size(340, 111);
             this.messageRichTetx.TabIndex = 10;
             this.messageRichTetx.Text = "";
             // 
             // transactionAmountNum
             // 
+            this.transactionAmountNum.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.transactionAmountNum.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.transactionAmountNum.DecimalPlaces = 2;
             this.transactionAmountNum.Location = new System.Drawing.Point(287, 204);
-            this.transactionAmountNum.Margin = new System.Windows.Forms.Padding(2);
+            this.transactionAmountNum.Margin = new System.Windows.Forms.Padding(5);
+            this.transactionAmountNum.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
             this.transactionAmountNum.Name = "transactionAmountNum";
             this.transactionAmountNum.Size = new System.Drawing.Size(121, 16);
             this.transactionAmountNum.TabIndex = 12;
@@ -138,22 +153,42 @@
             // 
             // contactComboBox
             // 
+            this.contactComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.contactComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.contactComboBox.FormattingEnabled = true;
-            this.contactComboBox.Location = new System.Drawing.Point(506, 127);
+            this.contactComboBox.Location = new System.Drawing.Point(506, 116);
             this.contactComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.contactComboBox.Name = "contactComboBox";
-            this.contactComboBox.Size = new System.Drawing.Size(138, 21);
+            this.contactComboBox.Size = new System.Drawing.Size(172, 21);
             this.contactComboBox.TabIndex = 15;
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.expenseHighLight);
+            this.panel1.Controls.Add(this.incomeHighLight);
             this.panel1.Controls.Add(this.incomeRadio);
             this.panel1.Controls.Add(this.expenseRadio);
             this.panel1.Location = new System.Drawing.Point(506, 204);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(172, 52);
             this.panel1.TabIndex = 16;
+            // 
+            // expenseHighLight
+            // 
+            this.expenseHighLight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.expenseHighLight.Location = new System.Drawing.Point(110, 40);
+            this.expenseHighLight.Name = "expenseHighLight";
+            this.expenseHighLight.Size = new System.Drawing.Size(36, 3);
+            this.expenseHighLight.TabIndex = 31;
+            this.expenseHighLight.Visible = false;
+            // 
+            // incomeHighLight
+            // 
+            this.incomeHighLight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.incomeHighLight.Location = new System.Drawing.Point(35, 40);
+            this.incomeHighLight.Name = "incomeHighLight";
+            this.incomeHighLight.Size = new System.Drawing.Size(36, 3);
+            this.incomeHighLight.TabIndex = 30;
             // 
             // recurrCheck
             // 
@@ -303,7 +338,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(283, 87);
+            this.label8.Location = new System.Drawing.Point(310, 87);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(70, 19);
@@ -315,7 +350,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(502, 87);
+            this.label1.Location = new System.Drawing.Point(537, 87);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(124, 19);
@@ -326,7 +361,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(283, 175);
+            this.label5.Location = new System.Drawing.Point(310, 175);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(65, 19);
@@ -376,12 +411,33 @@
             this.pictureBox1.TabIndex = 27;
             this.pictureBox1.TabStop = false;
             // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel3.Controls.Add(this.categoryTxt);
+            this.panel3.Location = new System.Drawing.Point(285, 115);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(130, 34);
+            this.panel3.TabIndex = 28;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel4.Controls.Add(this.messageRichTetx);
+            this.panel4.Location = new System.Drawing.Point(285, 344);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(358, 124);
+            this.panel4.TabIndex = 29;
+            // 
             // TransactionAddEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1009, 558);
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.contactComboBox);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
@@ -394,11 +450,8 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.recurrCheck);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.contactComboBox);
             this.Controls.Add(this.transactionAmountNum);
-            this.Controls.Add(this.messageRichTetx);
             this.Controls.Add(this.transDateTime);
-            this.Controls.Add(this.categoryTxt);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -414,6 +467,9 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -446,5 +502,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel expenseHighLight;
+        private System.Windows.Forms.Panel incomeHighLight;
     }
 }

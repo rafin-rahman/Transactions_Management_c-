@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.ContactBtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -44,7 +44,6 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel11 = new System.Windows.Forms.Panel();
-            this.panel12 = new System.Windows.Forms.Panel();
             this.panel13 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
@@ -97,7 +96,7 @@
             this.ContactBtn.Location = new System.Drawing.Point(0, 518);
             this.ContactBtn.Margin = new System.Windows.Forms.Padding(2);
             this.ContactBtn.Name = "ContactBtn";
-            this.ContactBtn.Size = new System.Drawing.Size(284, 82);
+            this.ContactBtn.Size = new System.Drawing.Size(284, 79);
             this.ContactBtn.TabIndex = 0;
             this.ContactBtn.Text = "  Contact";
             this.ContactBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -162,6 +161,8 @@
             this.pictureBox6.Size = new System.Drawing.Size(26, 25);
             this.pictureBox6.TabIndex = 24;
             this.pictureBox6.TabStop = false;
+            this.pictureBox6.MouseEnter += new System.EventHandler(this.ContactBtn_MouseEnter);
+            this.pictureBox6.MouseLeave += new System.EventHandler(this.ContactBtn_MouseLeave);
             // 
             // pictureBox5
             // 
@@ -172,6 +173,8 @@
             this.pictureBox5.Size = new System.Drawing.Size(37, 37);
             this.pictureBox5.TabIndex = 23;
             this.pictureBox5.TabStop = false;
+            this.pictureBox5.MouseEnter += new System.EventHandler(this.summaryBtn_MouseEnter);
+            this.pictureBox5.MouseLeave += new System.EventHandler(this.summaryBtn_MouseLeave);
             // 
             // pictureBox4
             // 
@@ -182,6 +185,8 @@
             this.pictureBox4.Size = new System.Drawing.Size(37, 25);
             this.pictureBox4.TabIndex = 22;
             this.pictureBox4.TabStop = false;
+            this.pictureBox4.MouseEnter += new System.EventHandler(this.transactionBtn_MouseEnter);
+            this.pictureBox4.MouseLeave += new System.EventHandler(this.transactionBtn_MouseLeave);
             // 
             // pictureBox3
             // 
@@ -192,6 +197,8 @@
             this.pictureBox3.Size = new System.Drawing.Size(37, 35);
             this.pictureBox3.TabIndex = 21;
             this.pictureBox3.TabStop = false;
+            this.pictureBox3.MouseEnter += new System.EventHandler(this.eventsBtn_MouseEnter);
+            this.pictureBox3.MouseLeave += new System.EventHandler(this.eventsBtn_MouseLeave);
             // 
             // pictureBox2
             // 
@@ -202,6 +209,8 @@
             this.pictureBox2.Size = new System.Drawing.Size(25, 30);
             this.pictureBox2.TabIndex = 20;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.MouseEnter += new System.EventHandler(this.predictBtn_MouseEnter);
+            this.pictureBox2.MouseLeave += new System.EventHandler(this.predictBtn_MouseLeave);
             // 
             // pictureBox1
             // 
@@ -213,24 +222,20 @@
             this.pictureBox1.Size = new System.Drawing.Size(25, 25);
             this.pictureBox1.TabIndex = 19;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseEnter += new System.EventHandler(this.mainBtn_MouseEnter);
+            this.pictureBox1.MouseLeave += new System.EventHandler(this.mainBtn_MouseLeave);
             // 
             // panel11
             // 
             this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel11.Controls.Add(this.panel12);
             this.panel11.Controls.Add(this.panel13);
             this.panel11.Location = new System.Drawing.Point(185, 272);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(99, 82);
             this.panel11.TabIndex = 18;
             this.panel11.Visible = false;
-            // 
-            // panel12
-            // 
-            this.panel12.Location = new System.Drawing.Point(0, 82);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(12, 82);
-            this.panel12.TabIndex = 17;
+            this.panel11.MouseEnter += new System.EventHandler(this.eventsBtn_MouseEnter);
+            this.panel11.MouseLeave += new System.EventHandler(this.eventsBtn_MouseLeave);
             // 
             // panel13
             // 
@@ -244,9 +249,11 @@
             this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel10.Location = new System.Drawing.Point(185, 518);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(99, 82);
+            this.panel10.Size = new System.Drawing.Size(99, 79);
             this.panel10.TabIndex = 17;
             this.panel10.Visible = false;
+            this.panel10.MouseEnter += new System.EventHandler(this.ContactBtn_MouseEnter);
+            this.panel10.MouseLeave += new System.EventHandler(this.ContactBtn_MouseLeave);
             // 
             // panel8
             // 
@@ -256,6 +263,8 @@
             this.panel8.Size = new System.Drawing.Size(99, 82);
             this.panel8.TabIndex = 16;
             this.panel8.Visible = false;
+            this.panel8.MouseEnter += new System.EventHandler(this.summaryBtn_MouseEnter);
+            this.panel8.MouseLeave += new System.EventHandler(this.summaryBtn_MouseLeave);
             // 
             // panel7
             // 
@@ -265,6 +274,8 @@
             this.panel7.Size = new System.Drawing.Size(99, 82);
             this.panel7.TabIndex = 15;
             this.panel7.Visible = false;
+            this.panel7.MouseEnter += new System.EventHandler(this.transactionBtn_MouseEnter);
+            this.panel7.MouseLeave += new System.EventHandler(this.transactionBtn_MouseLeave);
             // 
             // panel5
             // 
@@ -276,6 +287,8 @@
             this.panel5.Size = new System.Drawing.Size(99, 82);
             this.panel5.TabIndex = 13;
             this.panel5.Visible = false;
+            this.panel5.MouseEnter += new System.EventHandler(this.predictBtn_MouseEnter);
+            this.panel5.MouseLeave += new System.EventHandler(this.predictBtn_MouseLeave);
             // 
             // panel9
             // 
@@ -299,6 +312,8 @@
             this.panel4.Size = new System.Drawing.Size(99, 82);
             this.panel4.TabIndex = 12;
             this.panel4.Visible = false;
+            this.panel4.MouseEnter += new System.EventHandler(this.mainBtn_MouseEnter);
+            this.panel4.MouseLeave += new System.EventHandler(this.mainBtn_MouseLeave);
             // 
             // mainBtn
             // 
@@ -536,18 +551,18 @@
             // 
             // PieChart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.PieChart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.PieChart.Legends.Add(legend1);
+            chartArea8.Name = "ChartArea1";
+            this.PieChart.ChartAreas.Add(chartArea8);
+            legend8.Name = "Legend1";
+            this.PieChart.Legends.Add(legend8);
             this.PieChart.Location = new System.Drawing.Point(658, 108);
             this.PieChart.Name = "PieChart";
             this.PieChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series1.Legend = "Legend1";
-            series1.Name = "MonthlyTransaction";
-            this.PieChart.Series.Add(series1);
+            series8.ChartArea = "ChartArea1";
+            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series8.Legend = "Legend1";
+            series8.Name = "MonthlyTransaction";
+            this.PieChart.Series.Add(series8);
             this.PieChart.Size = new System.Drawing.Size(300, 300);
             this.PieChart.TabIndex = 11;
             this.PieChart.Text = "chart1";
@@ -605,7 +620,6 @@
         private System.Windows.Forms.Panel closePanel;
         private System.Windows.Forms.Button mainBtn;
         private System.Windows.Forms.Panel panel11;
-        private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Panel panel8;

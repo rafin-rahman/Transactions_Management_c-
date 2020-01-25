@@ -56,41 +56,22 @@ namespace enterpriseDevelopment.Repositories
                         userFK = (int)sqlDataReader["userIdFk"]
                     };
 
-                    if (sqlDataReader["contactIdFk"] == DBNull.Value)
-                    {
-                        temp.contactFk = 0;
-                    }
-                    else
-                    {
-                        temp.contactFk = (int)sqlDataReader["contactIdFk"];
-                    }
+                    if(sqlDataReader["contactIdFk"] == DBNull.Value) temp.contactFk = 0; else  temp.contactFk = (int)sqlDataReader["contactIdFk"];
 
-                    if (sqlDataReader["ContactName"] == DBNull.Value)
-                    {
-                        temp.contactName = "";
-                    }
-                    else
-                    {
-                        temp.contactName = sqlDataReader["ContactName"].ToString();
-                    }
+                    if(sqlDataReader["ContactName"] == DBNull.Value) temp.contactName = ""; else temp.contactName = sqlDataReader["ContactName"].ToString();
 
-                    if (sqlDataReader["EventPeriodEndDate"] == DBNull.Value)
-                    {
-                        temp.endDate = DateTime.MinValue;
-                    }
-                    else
-                    {
-                        temp.endDate = (DateTime)sqlDataReader["EventPeriodEndDate"];
-                    }
+                    if(sqlDataReader["EventPeriodEndDate"] == DBNull.Value)  temp.endDate = DateTime.MinValue; else temp.endDate = (DateTime)sqlDataReader["EventPeriodEndDate"];
 
                     u.Add(temp);
-
                 }
-                connection.Close();
+                
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                Logger.Error(ex.Message);
+            }
+            finally
+            {
                 connection.Close();
             }
             return u;
@@ -120,44 +101,30 @@ namespace enterpriseDevelopment.Repositories
 
                 // CONTACT ID
                 SqlParameter sqlParameter = new SqlParameter("@contactID", SqlDbType.Int);
-                if (eventRepeat.contactFk == 0)
-                {
-                    sqlParameter.Value = DBNull.Value;
-                }
-                else
-                {
-                    sqlParameter.Value = eventRepeat.contactFk;
-                }
+                if (eventRepeat.contactFk == 0)sqlParameter.Value = DBNull.Value; else sqlParameter.Value = eventRepeat.contactFk;
                 cmd.Parameters.Add(sqlParameter);
                 // End date time 
                 SqlParameter sql2 = new SqlParameter("@endDate", SqlDbType.DateTime);
                 if (eventRepeat.endDate == DateTime.MinValue)
-                {
                     sql2.Value = DBNull.Value;
-                }
                 else
-                {
                     sql2.Value = eventRepeat.endDate;
-                }
+                
                 cmd.Parameters.Add(sql2);
 
                 connection.Open();
                 var x = cmd.ExecuteNonQuery();
-                connection.Close();
-                if (x > 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                if (x > 0) return true;  else return false;
+                
             }
             catch (Exception ex)
             {
                 Logger.Error(ex.Message);
-                connection.Close();
                 return false;
+            }
+            finally
+            {
+                connection.Close();
             }
 
 
@@ -193,24 +160,23 @@ namespace enterpriseDevelopment.Repositories
 
                 connection.Open();
                 var x = cmd.ExecuteNonQuery();
-                connection.Close();
                 if (x > 0)
-                {
                     return true;
-                }
                 else
-                {
                     return false;
-                }
 
             }
             catch (Exception ex)
             {
                 Logger.Error(ex.Message);
-                connection.Close();
                 return false;
             }
+            finally
+            {
+                connection.Close();
+            }
             
+
         }
 
         public bool deleteEvent(EventRepeat eventRepeat)
@@ -226,24 +192,17 @@ namespace enterpriseDevelopment.Repositories
 
                 connection.Open();
                 var x = sqlCommand.ExecuteNonQuery();
-                connection.Close();
-                if (x > 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-
-
-
+                if (x > 0) return true; else return false;
             }
             catch (Exception ex)
             {
                 Logger.Error(ex.Message);
                 connection.Close();
                 return false;
+            }
+            finally
+            {
+                connection.Close();
             }
 
         }

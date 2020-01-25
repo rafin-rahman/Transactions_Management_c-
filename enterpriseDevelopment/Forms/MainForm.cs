@@ -55,8 +55,8 @@ namespace enterpriseDevelopment
 
             
             if (Instance.StaticUserAccount == null)
-            {// comment to auto login. uncomment to manually login
-                // Instance.StaticUserAccount = new UserAccount { UserId = 1, UserFName = "rafraf", LogDate = DateTime.Now.AddDays(-99).AddHours(5) };
+            {// Auto login
+                 Instance.StaticUserAccount = new UserAccount { UserId = 1, UserFName = "rafraf", LogDate = DateTime.Now.AddDays(-99).AddHours(5) };
             }
             //  hide the mainform if the StaticUserAccount is empty
             if (Instance.StaticUserAccount == null)
@@ -87,12 +87,7 @@ namespace enterpriseDevelopment
 
         private void transactionClickMainForm(object sender, EventArgs e)
         {
-
-
             timer.Start();
-
-
-
         }
 
         private void repeatBtn_Click(object sender, EventArgs e)
@@ -522,6 +517,8 @@ namespace enterpriseDevelopment
 
         #endregion
 
+
+        #region Timer
         private void timer_Tick(object sender, EventArgs e)
         {
             if (isCollapsed)
@@ -529,7 +526,6 @@ namespace enterpriseDevelopment
                 panelToggle1.Width += 20;
                 if (panelToggle1.Size == panelToggle1.MaximumSize)
                 {
-
                     timer.Stop();
                     isCollapsed = false;
                 }
@@ -544,16 +540,7 @@ namespace enterpriseDevelopment
                 }
             }
         }
-
-        private void recurringToggleBtn_Click(object sender, EventArgs e)
-        {
-
-            TransactionForm transactionForm = new TransactionForm();
-            transactionForm.Activate();
-            transactionForm.Show();
-
-        }
-
+        
         private void timer2_Tick(object sender, EventArgs e)
         {
             if (isCollapsed2)
@@ -561,7 +548,6 @@ namespace enterpriseDevelopment
                 panelToogle2.Width += 20;
                 if (panelToogle2.Size == panelToogle2.MaximumSize)
                 {
-
                     timer2.Stop();
                     isCollapsed2 = false;
                 }
@@ -576,7 +562,15 @@ namespace enterpriseDevelopment
                 }
             }
         }
+        #endregion
+        private void recurringToggleBtn_Click(object sender, EventArgs e)
+        {
 
+            TransactionForm transactionForm = new TransactionForm();
+            transactionForm.Activate();
+            transactionForm.Show();
+
+        }
         private void allEventBtn_Click(object sender, EventArgs e)
         {
             EventForm eventForm = new EventForm();

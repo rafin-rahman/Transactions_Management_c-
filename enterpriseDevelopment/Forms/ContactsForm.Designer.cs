@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ContactsForm));
             this.addBtn = new System.Windows.Forms.Button();
             this.deleteBtn = new System.Windows.Forms.Button();
@@ -65,6 +66,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.panelToogle2 = new System.Windows.Forms.Panel();
+            this.repeatBtn = new System.Windows.Forms.Button();
+            this.allEventBtn = new System.Windows.Forms.Button();
+            this.panelToggle1 = new System.Windows.Forms.Panel();
+            this.eventsRepeatBtn = new System.Windows.Forms.Button();
+            this.recurringToggleBtn = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
@@ -76,6 +85,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel11.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.panelToogle2.SuspendLayout();
+            this.panelToggle1.SuspendLayout();
             this.SuspendLayout();
             // 
             // addBtn
@@ -234,6 +245,8 @@
             this.pictureBox6.Size = new System.Drawing.Size(26, 25);
             this.pictureBox6.TabIndex = 24;
             this.pictureBox6.TabStop = false;
+            this.pictureBox6.MouseEnter += new System.EventHandler(this.ContactBtn_MouseEnter);
+            this.pictureBox6.MouseLeave += new System.EventHandler(this.ContactBtn_MouseLeave);
             // 
             // pictureBox5
             // 
@@ -244,6 +257,8 @@
             this.pictureBox5.Size = new System.Drawing.Size(37, 37);
             this.pictureBox5.TabIndex = 23;
             this.pictureBox5.TabStop = false;
+            this.pictureBox5.MouseEnter += new System.EventHandler(this.summaryBtn_MouseEnter);
+            this.pictureBox5.MouseLeave += new System.EventHandler(this.summaryBtn_MouseLeave);
             // 
             // pictureBox4
             // 
@@ -254,6 +269,9 @@
             this.pictureBox4.Size = new System.Drawing.Size(37, 25);
             this.pictureBox4.TabIndex = 22;
             this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
+            this.pictureBox4.MouseEnter += new System.EventHandler(this.transactionBtn_MouseEnter);
+            this.pictureBox4.MouseLeave += new System.EventHandler(this.transactionBtn_MouseLeave);
             // 
             // pictureBox3
             // 
@@ -264,6 +282,8 @@
             this.pictureBox3.Size = new System.Drawing.Size(37, 35);
             this.pictureBox3.TabIndex = 21;
             this.pictureBox3.TabStop = false;
+            this.pictureBox3.MouseEnter += new System.EventHandler(this.eventsBtn_MouseEnter);
+            this.pictureBox3.MouseLeave += new System.EventHandler(this.eventsBtn_MouseLeave);
             // 
             // pictureBox2
             // 
@@ -274,6 +294,8 @@
             this.pictureBox2.Size = new System.Drawing.Size(25, 30);
             this.pictureBox2.TabIndex = 20;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.MouseEnter += new System.EventHandler(this.predictBtn_MouseEnter);
+            this.pictureBox2.MouseLeave += new System.EventHandler(this.predictBtn_MouseLeave);
             // 
             // pictureBox1
             // 
@@ -285,6 +307,8 @@
             this.pictureBox1.Size = new System.Drawing.Size(25, 25);
             this.pictureBox1.TabIndex = 19;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseEnter += new System.EventHandler(this.mainBtn_MouseEnter);
+            this.pictureBox1.MouseLeave += new System.EventHandler(this.mainBtn_MouseLeave);
             // 
             // panel11
             // 
@@ -296,6 +320,8 @@
             this.panel11.Size = new System.Drawing.Size(99, 82);
             this.panel11.TabIndex = 18;
             this.panel11.Visible = false;
+            this.panel11.MouseEnter += new System.EventHandler(this.eventsBtn_MouseEnter);
+            this.panel11.MouseLeave += new System.EventHandler(this.eventsBtn_MouseLeave);
             // 
             // panel12
             // 
@@ -319,6 +345,8 @@
             this.panel10.Size = new System.Drawing.Size(99, 82);
             this.panel10.TabIndex = 17;
             this.panel10.Visible = false;
+            this.panel10.MouseEnter += new System.EventHandler(this.ContactBtn_MouseEnter);
+            this.panel10.MouseLeave += new System.EventHandler(this.ContactBtn_MouseLeave);
             // 
             // panel8
             // 
@@ -328,6 +356,8 @@
             this.panel8.Size = new System.Drawing.Size(99, 82);
             this.panel8.TabIndex = 16;
             this.panel8.Visible = false;
+            this.panel8.MouseEnter += new System.EventHandler(this.summaryBtn_MouseEnter);
+            this.panel8.MouseLeave += new System.EventHandler(this.summaryBtn_MouseLeave);
             // 
             // panel7
             // 
@@ -337,6 +367,8 @@
             this.panel7.Size = new System.Drawing.Size(99, 82);
             this.panel7.TabIndex = 15;
             this.panel7.Visible = false;
+            this.panel7.MouseEnter += new System.EventHandler(this.transactionBtn_MouseEnter);
+            this.panel7.MouseLeave += new System.EventHandler(this.transactionBtn_MouseLeave);
             // 
             // panel5
             // 
@@ -348,6 +380,8 @@
             this.panel5.Size = new System.Drawing.Size(99, 82);
             this.panel5.TabIndex = 13;
             this.panel5.Visible = false;
+            this.panel5.MouseEnter += new System.EventHandler(this.predictBtn_MouseEnter);
+            this.panel5.MouseLeave += new System.EventHandler(this.predictBtn_MouseLeave);
             // 
             // panel9
             // 
@@ -371,6 +405,8 @@
             this.panel14.Size = new System.Drawing.Size(99, 82);
             this.panel14.TabIndex = 12;
             this.panel14.Visible = false;
+            this.panel14.MouseEnter += new System.EventHandler(this.mainBtn_MouseEnter);
+            this.panel14.MouseLeave += new System.EventHandler(this.mainBtn_MouseLeave);
             // 
             // mainBtn
             // 
@@ -391,6 +427,8 @@
             this.mainBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.mainBtn.UseVisualStyleBackColor = true;
             this.mainBtn.Click += new System.EventHandler(this.mainBtn_Click);
+            this.mainBtn.MouseEnter += new System.EventHandler(this.mainBtn_MouseEnter);
+            this.mainBtn.MouseLeave += new System.EventHandler(this.mainBtn_MouseLeave);
             // 
             // predictBtn
             // 
@@ -409,6 +447,8 @@
             this.predictBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.predictBtn.UseVisualStyleBackColor = true;
             this.predictBtn.Click += new System.EventHandler(this.predictBtn_Click);
+            this.predictBtn.MouseEnter += new System.EventHandler(this.predictBtn_MouseEnter);
+            this.predictBtn.MouseLeave += new System.EventHandler(this.predictBtn_MouseLeave);
             // 
             // eventsBtn
             // 
@@ -426,6 +466,8 @@
             this.eventsBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.eventsBtn.UseVisualStyleBackColor = true;
             this.eventsBtn.Click += new System.EventHandler(this.eventsBtn_Click);
+            this.eventsBtn.MouseEnter += new System.EventHandler(this.eventsBtn_MouseEnter);
+            this.eventsBtn.MouseLeave += new System.EventHandler(this.eventsBtn_MouseLeave);
             // 
             // transactionBtn
             // 
@@ -443,6 +485,9 @@
             this.transactionBtn.Text = "  Transactions";
             this.transactionBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.transactionBtn.UseVisualStyleBackColor = true;
+            this.transactionBtn.Click += new System.EventHandler(this.transactionBtn_Click);
+            this.transactionBtn.MouseEnter += new System.EventHandler(this.transactionBtn_MouseEnter);
+            this.transactionBtn.MouseLeave += new System.EventHandler(this.transactionBtn_MouseLeave);
             // 
             // summaryBtn
             // 
@@ -461,6 +506,8 @@
             this.summaryBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.summaryBtn.UseVisualStyleBackColor = true;
             this.summaryBtn.Click += new System.EventHandler(this.summaryBtn_Click);
+            this.summaryBtn.MouseEnter += new System.EventHandler(this.summaryBtn_MouseEnter);
+            this.summaryBtn.MouseLeave += new System.EventHandler(this.summaryBtn_MouseLeave);
             // 
             // ContactBtn
             // 
@@ -479,6 +526,8 @@
             this.ContactBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ContactBtn.UseVisualStyleBackColor = true;
             this.ContactBtn.Click += new System.EventHandler(this.ContactBtn_Click);
+            this.ContactBtn.MouseEnter += new System.EventHandler(this.ContactBtn_MouseEnter);
+            this.ContactBtn.MouseLeave += new System.EventHandler(this.ContactBtn_MouseLeave);
             // 
             // label3
             // 
@@ -507,17 +556,116 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.label1.Location = new System.Drawing.Point(379, 462);
+            this.label1.Location = new System.Drawing.Point(398, 462);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(150, 23);
+            this.label1.Size = new System.Drawing.Size(109, 23);
             this.label1.TabIndex = 10;
-            this.label1.Text = "Add event or task";
+            this.label1.Text = "Add contact ";
+            // 
+            // timer
+            // 
+            this.timer.Interval = 15;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
+            // timer2
+            // 
+            this.timer2.Interval = 15;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
+            // panelToogle2
+            // 
+            this.panelToogle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
+            this.panelToogle2.Controls.Add(this.repeatBtn);
+            this.panelToogle2.Controls.Add(this.allEventBtn);
+            this.panelToogle2.Location = new System.Drawing.Point(290, 272);
+            this.panelToogle2.MaximumSize = new System.Drawing.Size(127, 82);
+            this.panelToogle2.MinimumSize = new System.Drawing.Size(0, 82);
+            this.panelToogle2.Name = "panelToogle2";
+            this.panelToogle2.Size = new System.Drawing.Size(0, 82);
+            this.panelToogle2.TabIndex = 13;
+            // 
+            // repeatBtn
+            // 
+            this.repeatBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
+            this.repeatBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.repeatBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.repeatBtn.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
+            this.repeatBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.repeatBtn.Location = new System.Drawing.Point(0, 39);
+            this.repeatBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.repeatBtn.Name = "repeatBtn";
+            this.repeatBtn.Size = new System.Drawing.Size(0, 44);
+            this.repeatBtn.TabIndex = 7;
+            this.repeatBtn.Text = "Periodic";
+            this.repeatBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.repeatBtn.UseVisualStyleBackColor = false;
+            // 
+            // allEventBtn
+            // 
+            this.allEventBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
+            this.allEventBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.allEventBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.allEventBtn.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
+            this.allEventBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.allEventBtn.Location = new System.Drawing.Point(0, 0);
+            this.allEventBtn.Name = "allEventBtn";
+            this.allEventBtn.Size = new System.Drawing.Size(0, 39);
+            this.allEventBtn.TabIndex = 11;
+            this.allEventBtn.Text = "All events";
+            this.allEventBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.allEventBtn.UseVisualStyleBackColor = false;
+            // 
+            // panelToggle1
+            // 
+            this.panelToggle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
+            this.panelToggle1.Controls.Add(this.eventsRepeatBtn);
+            this.panelToggle1.Controls.Add(this.recurringToggleBtn);
+            this.panelToggle1.Location = new System.Drawing.Point(287, 354);
+            this.panelToggle1.MaximumSize = new System.Drawing.Size(127, 82);
+            this.panelToggle1.MinimumSize = new System.Drawing.Size(0, 82);
+            this.panelToggle1.Name = "panelToggle1";
+            this.panelToggle1.Size = new System.Drawing.Size(0, 82);
+            this.panelToggle1.TabIndex = 14;
+            // 
+            // eventsRepeatBtn
+            // 
+            this.eventsRepeatBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
+            this.eventsRepeatBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.eventsRepeatBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.eventsRepeatBtn.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.eventsRepeatBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.eventsRepeatBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.eventsRepeatBtn.Location = new System.Drawing.Point(0, 39);
+            this.eventsRepeatBtn.Name = "eventsRepeatBtn";
+            this.eventsRepeatBtn.Size = new System.Drawing.Size(0, 43);
+            this.eventsRepeatBtn.TabIndex = 8;
+            this.eventsRepeatBtn.Text = "Periodic ";
+            this.eventsRepeatBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.eventsRepeatBtn.UseVisualStyleBackColor = false;
+            // 
+            // recurringToggleBtn
+            // 
+            this.recurringToggleBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
+            this.recurringToggleBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.recurringToggleBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.recurringToggleBtn.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recurringToggleBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.recurringToggleBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.recurringToggleBtn.Location = new System.Drawing.Point(0, 0);
+            this.recurringToggleBtn.Name = "recurringToggleBtn";
+            this.recurringToggleBtn.Size = new System.Drawing.Size(0, 39);
+            this.recurringToggleBtn.TabIndex = 3;
+            this.recurringToggleBtn.Text = "All transactions";
+            this.recurringToggleBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.recurringToggleBtn.UseVisualStyleBackColor = false;
             // 
             // ContactsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1025, 597);
+            this.Controls.Add(this.panelToggle1);
+            this.Controls.Add(this.panelToogle2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -528,6 +676,7 @@
             this.Controls.Add(this.deleteBtn);
             this.Controls.Add(this.addBtn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ContactsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -547,6 +696,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel11.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
+            this.panelToogle2.ResumeLayout(false);
+            this.panelToggle1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -589,5 +740,13 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Panel panelToogle2;
+        private System.Windows.Forms.Button repeatBtn;
+        private System.Windows.Forms.Button allEventBtn;
+        private System.Windows.Forms.Panel panelToggle1;
+        private System.Windows.Forms.Button eventsRepeatBtn;
+        private System.Windows.Forms.Button recurringToggleBtn;
     }
 }

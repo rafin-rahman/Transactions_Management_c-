@@ -53,31 +53,34 @@ namespace enterpriseDevelopment.Repositories
                     };
 
                     if (sqlDataReader["contactIdFk"] == DBNull.Value)
-                    {
+                    
                         temp.contactFk = 0;
-                    }
+                    
                     else
-                    {
+                    
                         temp.contactFk = (int)sqlDataReader["contactIdFk"];
-                    }
+                    
 
                     if (sqlDataReader["ContactName"] == DBNull.Value)
-                    {
+                    
                         temp.contactName = "";
-                    }
+                    
                     else
-                    {
+                    
                         temp.contactName = sqlDataReader["ContactName"].ToString();
-                    }
+                    
 
                     u.Add(temp);
 
                 }
-                connection.Close();
+               
             }
             catch (Exception ex)
             {
                 Logger.Error(ex.Message);
+            }
+            finally
+            {
                 connection.Close();
             }
             return u;
@@ -109,19 +112,22 @@ namespace enterpriseDevelopment.Repositories
                 var x = sqlCommand.ExecuteNonQuery();
                 connection.Close();
                 if (x > 0)
-                {
+                
                     return true;
-                }
+                
                 else
-                {
+                
                     return false;
-                }
+                
             }
             catch (Exception ex)
             {
                 Logger.Error(ex.Message);
-                connection.Close();
                 return false;
+            }
+            finally
+            {
+                connection.Close();
             }
         }
 
@@ -150,21 +156,25 @@ namespace enterpriseDevelopment.Repositories
 
                 connection.Open();
                 var x = sqlCommand.ExecuteNonQuery();
-                connection.Close();
+               
                 if (x > 0)
-                {
+                
                     return true;
-                }
+                
                 else
-                {
+                
                     return false;
-                }
+                
             }
             catch (Exception ex)
             {
                 Logger.Error(ex.Message);
-                connection.Close();
+                
                 return false;
+            }
+            finally
+            {
+                connection.Close();
             }
         }
 
@@ -179,20 +189,24 @@ namespace enterpriseDevelopment.Repositories
                 sqlcommand.Parameters.Add("@userId", SqlDbType.Int).Value = eventObj.userFK;
                 connection.Open();
                 var x = sqlcommand.ExecuteNonQuery();
-                connection.Close();
+                
                 if (x > 0)
-                {
+                
                     return true;
-                }
+                
                 else
-                {
+                
                     return false;
-                }
+                
             }
             catch (Exception)
             {
-                connection.Close();
+               
                 return false;
+            }
+            finally
+            {
+                connection.Close();
             }
         }
     }

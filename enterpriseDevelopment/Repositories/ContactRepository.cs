@@ -54,13 +54,16 @@ namespace enterpriseDevelopment
 
 
                 }
-                connection.Close();
 
 
             }
             catch (Exception ex)
             {
                 Logger.Error(ex.Message);
+                
+            }
+            finally
+            {
                 connection.Close();
             }
 
@@ -75,31 +78,30 @@ namespace enterpriseDevelopment
             string selectQuery = "DELETE FROM ContactsTbl WHERE [userIdFk] = @userID AND [ContactId] = @contactID";
             try
             {
-                SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
-                
+                connection.Open();
+
+                SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);              
                 sqlCommand.Parameters.Add("@userID", SqlDbType.Int).Value = contact.userIdFk;
                 sqlCommand.Parameters.Add("@contactID", SqlDbType.Int).Value = contact.ContactId;
-
-                connection.Open();
+                
                 var x = sqlCommand.ExecuteNonQuery();
                 connection.Close();
-                if (x > 0 )
-                {
-                    return true;
-                }else
-                {
+                if (x > 0 ) return true;
+                else
                     return false;
-                }
                 
-
-
             }
+
             catch (Exception ex)
             {
                 Logger.Error(ex.Message);
-                connection.Close();
                 return false;
             }
+            finally
+            {
+                connection.Close();
+            }
+
 
            
         }
@@ -136,8 +138,11 @@ namespace enterpriseDevelopment
             catch (Exception ex)
             {
                 Logger.Error(ex.Message);
-                connection.Close();
                 return 0;
+            }
+            finally
+            {
+                connection.Close();
             }
 
 
@@ -160,24 +165,19 @@ namespace enterpriseDevelopment
                 var x = sqlCommand.ExecuteNonQuery();
                 connection.Close();
                 if (x > 0)
-                {
                     return true;
-                }
                 else
-                {
                     return false;
-                }
-
-
-
             }
             catch (Exception ex)
             {
                 Logger.Error(ex.Message);
-                connection.Close();
                 return false;
             }
-
+            finally
+            {
+                connection.Close();
+            }
 
         }
     }

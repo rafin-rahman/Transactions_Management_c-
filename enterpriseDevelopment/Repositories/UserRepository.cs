@@ -17,9 +17,7 @@ namespace enterpriseDevelopment
         SqlConnection connection;
         public UserRepository()
         {
-           
             dbConn = ConfigurationManager.ConnectionStrings["Conn"].ConnectionString;
-
             connection = new SqlConnection(dbConn);
         }
 
@@ -42,25 +40,18 @@ namespace enterpriseDevelopment
                 var i = sqlCommand.ExecuteNonQuery();
                 
                 if (i > 0)
-                {
-                    connection.Close();
                     return true;
-                }
-
-                else
-                {
-                    connection.Close();
+                else  
                     return false;
-                }
-
-
             }
             catch (Exception ex)
             {
-
                 Logger.Error(ex.Message);
-                connection.Close();
                 return false;
+            }
+            finally
+            {
+                connection.Close();
             }
 
         }
@@ -68,8 +59,6 @@ namespace enterpriseDevelopment
 
         public UserAccount GetUserByUsername(string userName)
         {
-
-           
             UserAccount u = new UserAccount();
            
             string selectQuery = "SELECT * FROM UserAccountsTbl WHERE [Username] = @Username";
@@ -79,14 +68,11 @@ namespace enterpriseDevelopment
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
                
                 sqlCommand.Parameters.Add("@Username", SqlDbType.NVarChar).Value = userName;
-
-
+                
                 connection.Open();
                
                 SqlDataReader sqlDataReader = sqlCommand.ExecuteReader(CommandBehavior.SingleRow);
 
-                
-                
                 while(sqlDataReader.Read())
                 {
                     u.UserId = (int)sqlDataReader["UserId"];
@@ -96,25 +82,20 @@ namespace enterpriseDevelopment
                     u.LogDate = (DateTime)sqlDataReader["LogDate"];
 
                 }
-                connection.Close();
-
-                
             }
             catch (Exception ex)
             {
-
                 Logger.Error(ex.Message);
+            }
+            finally
+            {
                 connection.Close();
             }
-
-            
             return u;
         }
 
         public bool EditLogDate(UserAccount user)
         {
-
-
             string selectQuery = "UPDATE UserAccountsTbl SET [LogDate] = @accessDate WHERE [userId] = @id";
             try
             {
@@ -126,24 +107,22 @@ namespace enterpriseDevelopment
 
                 connection.Open();
                 var x = sqlCommand.ExecuteNonQuery();
-                connection.Close();
                 if (x > 0)
-                {
+                
                     return true;
-                }
+                
                 else
-                {
+                
                     return false;
-                }
-
-
-
             }
             catch (Exception ex)
             {
                 Logger.Error(ex.Message);
-                connection.Close();
                 return false;
+            }
+            finally
+            {
+                connection.Close();
             }
 
 

@@ -51,8 +51,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.closePanel = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -165,6 +165,7 @@
             // 
             // comboBoxEvent
             // 
+            this.comboBoxEvent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.comboBoxEvent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBoxEvent.FormattingEnabled = true;
             this.comboBoxEvent.Location = new System.Drawing.Point(364, 119);
@@ -187,6 +188,7 @@
             // 
             // statusComboBox
             // 
+            this.statusComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.statusComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.statusComboBox.FormattingEnabled = true;
             this.statusComboBox.Items.AddRange(new object[] {
@@ -316,16 +318,6 @@
             this.label9.TabIndex = 1;
             this.label9.Text = "ADD A NEW EVENT";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(633, 97);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(331, 354);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 17;
-            this.pictureBox1.TabStop = false;
-            // 
             // closePanel
             // 
             this.closePanel.BackgroundImage = global::enterpriseDevelopment.Properties.Resources.close;
@@ -340,6 +332,16 @@
             this.closePanel.Click += new System.EventHandler(this.closePanel_Click);
             this.closePanel.MouseEnter += new System.EventHandler(this.closePanel_MouseEnter);
             this.closePanel.MouseLeave += new System.EventHandler(this.closePanel_MouseLeave);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(633, 97);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(331, 354);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 17;
+            this.pictureBox1.TabStop = false;
             // 
             // EventAddEdit
             // 

@@ -108,7 +108,6 @@
             this.usernameLogTxt.TabIndex = 2;
             this.usernameLogTxt.Text = "Type username...";
             this.usernameLogTxt.MouseClick += new System.Windows.Forms.MouseEventHandler(this.usernameLogTxt_MouseClick);
-            this.usernameLogTxt.TextChanged += new System.EventHandler(this.usernameLogTxt_TextChanged);
             // 
             // passwordLogTxt
             // 
@@ -120,7 +119,7 @@
             this.passwordLogTxt.Name = "passwordLogTxt";
             this.passwordLogTxt.Size = new System.Drawing.Size(122, 19);
             this.passwordLogTxt.TabIndex = 3;
-            this.passwordLogTxt.Text = "Your password...";
+            this.passwordLogTxt.Text = "Your password";
             this.passwordLogTxt.MouseClick += new System.Windows.Forms.MouseEventHandler(this.passwordLogTxt_MouseClick);
             // 
             // fullNameRegTxt
@@ -135,6 +134,7 @@
             this.fullNameRegTxt.Size = new System.Drawing.Size(122, 19);
             this.fullNameRegTxt.TabIndex = 4;
             this.fullNameRegTxt.Text = "Your name";
+            this.fullNameRegTxt.MouseClick += new System.Windows.Forms.MouseEventHandler(this.fullNameRegTxt_MouseClick);
             // 
             // usernameRegTxt
             // 
@@ -146,7 +146,8 @@
             this.usernameRegTxt.Name = "usernameRegTxt";
             this.usernameRegTxt.Size = new System.Drawing.Size(122, 19);
             this.usernameRegTxt.TabIndex = 5;
-            this.usernameRegTxt.Text = "Create username..";
+            this.usernameRegTxt.Text = "Create username";
+            this.usernameRegTxt.MouseClick += new System.Windows.Forms.MouseEventHandler(this.usernameRegTxt_MouseClick);
             // 
             // passwordRegTxt
             // 
@@ -159,6 +160,7 @@
             this.passwordRegTxt.Size = new System.Drawing.Size(122, 19);
             this.passwordRegTxt.TabIndex = 6;
             this.passwordRegTxt.Text = "Create password..";
+            this.passwordRegTxt.MouseClick += new System.Windows.Forms.MouseEventHandler(this.passwordRegTxt_MouseClick);
             // 
             // password2RegTxt
             // 
@@ -171,6 +173,7 @@
             this.password2RegTxt.Size = new System.Drawing.Size(122, 19);
             this.password2RegTxt.TabIndex = 12;
             this.password2RegTxt.Text = "Your password";
+            this.password2RegTxt.MouseClick += new System.Windows.Forms.MouseEventHandler(this.password2RegTxt_MouseClick);
             // 
             // panel1
             // 
@@ -302,7 +305,7 @@
             this.panel5.BackColor = System.Drawing.SystemColors.Window;
             this.panel5.Controls.Add(this.panel6);
             this.panel5.Controls.Add(this.usernameRegTxt);
-            this.panel5.Location = new System.Drawing.Point(196, 225);
+            this.panel5.Location = new System.Drawing.Point(200, 224);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(149, 34);
             this.panel5.TabIndex = 17;
@@ -386,6 +389,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "LoginRegister";
             this.Opacity = 0.9D;
