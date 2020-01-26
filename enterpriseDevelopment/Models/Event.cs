@@ -8,16 +8,15 @@ namespace enterpriseDevelopment.Models
 {
     public class Event
     {
-        public int id { get; set; }
-        public string title { get; set; }
-        public string status { get; set; }
-        public string location { get; set; }
-        public string message { get; set; }
-        public DateTime date { get; set; }
-        public int userFK { get; set; }
-        public int contactFk { get; set; }
-        public string contactName { get; set; }
-       
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Status { get; set; }
+        public string Location { get; set; }
+        public string Message { get; set; }
+        public DateTime Date { get; set; }
+        public int UserFK { get; set; }
+        public int ContactFk { get; set; }
+        public string ContactName { get; set; }
     }
 
 }

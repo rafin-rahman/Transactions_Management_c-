@@ -8,17 +8,16 @@ namespace enterpriseDevelopment.Models
 {
      public class Transaction
     {
-
-        public int transactionId { get; set; }
-        public string transactionCategory { get; set; }
-        public decimal transactionAmount { get; set; }
-        public string transactionMessage { get; set; }
-        public bool incomeExpense { get; set; }
-        public string typeValue { get; set; }
-        public DateTime dateTime { get; set; }
-        public string contactName { get; set; }
-        public int userIdFk { get; set; }
-        public int contactIdFk { get; set; }
-
+        public int Id { get; set; }
+        public string Category { get; set; }
+        public decimal Amount { get; set; }
+        public string Description { get; set; }
+        public bool IncomeExpense { get; set; }
+        // TransactionType can be Income or Expense
+        public string TransactionType { get; set; }
+        public DateTime DateTime { get; set; }
+        public string ContactName { get; set; }
+        public int UserFk { get; set; }
+        public int ContactFk { get; set; }
     }
 }

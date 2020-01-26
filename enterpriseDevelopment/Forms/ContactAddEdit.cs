@@ -18,7 +18,7 @@ namespace enterpriseDevelopment
             InitializeComponent();
             actionBtn.Text = "Add";
             Text = "Add contact";
-            c = new Contact { userIdFk = Instance.StaticUserAccount.UserId };
+            c = new Contact { UserFk = Instance.StaticUserAccount.Id };
         }
 
         public ContactAddEdit(Contact contact)
@@ -27,7 +27,7 @@ namespace enterpriseDevelopment
             c = contact;
             actionBtn.Text = "Edit";
             Text = "Edit contact";
-            contactTxtBox.Text = contact.ContactName;
+            contactTxtBox.Text = contact.Name;
         }
 
         private async void actionBtn_Click(object sender, EventArgs e)
@@ -37,32 +37,26 @@ namespace enterpriseDevelopment
                 MessageBox.Show("Cannot leave empty field");
                 return;
             }
-            c.ContactName = contactTxtBox.Text;
+            c.Name = contactTxtBox.Text;
             ContactRepository contactRepository = new ContactRepository();
 
             bool x = false;
 
-            if (c.ContactId > 0)
-            {
+            if (c.Id > 0)
                 x = await Task.Run(() => contactRepository.EditContact(c));
-            }
             else
             {
                 int i = await Task.Run(() => contactRepository.AddContact(c));
                 if (i > 0) x = true;
             }
 
-            if (c.ContactId > 0 && x == true)
-            {
+            if (c.Id > 0 && x == true)
                 MessageBox.Show("Contact Edited!");
-            }
-            else if (x == true) {
+            else if (x == true)
                 MessageBox.Show("Contact Added!");
-            }
             else
-            {
                 MessageBox.Show("ops, Something went wrong");
-            }
+
             Close();
             Dispose();
         }

@@ -525,7 +525,6 @@
             this.ContactBtn.Text = "  Contact";
             this.ContactBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ContactBtn.UseVisualStyleBackColor = true;
-            this.ContactBtn.Click += new System.EventHandler(this.ContactBtn_Click);
             this.ContactBtn.MouseEnter += new System.EventHandler(this.ContactBtn_MouseEnter);
             this.ContactBtn.MouseLeave += new System.EventHandler(this.ContactBtn_MouseLeave);
             // 
@@ -599,6 +598,7 @@
             this.repeatBtn.Text = "Periodic";
             this.repeatBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.repeatBtn.UseVisualStyleBackColor = false;
+            this.repeatBtn.Click += new System.EventHandler(this.repeatBtn_Click);
             // 
             // allEventBtn
             // 
@@ -642,6 +642,7 @@
             this.eventsRepeatBtn.Text = "Periodic ";
             this.eventsRepeatBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.eventsRepeatBtn.UseVisualStyleBackColor = false;
+            this.eventsRepeatBtn.Click += new System.EventHandler(this.eventsRepeatBtn_Click);
             // 
             // recurringToggleBtn
             // 
@@ -658,6 +659,7 @@
             this.recurringToggleBtn.Text = "All transactions";
             this.recurringToggleBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.recurringToggleBtn.UseVisualStyleBackColor = false;
+            this.recurringToggleBtn.Click += new System.EventHandler(this.recurringToggleBtn_Click);
             // 
             // ContactsForm
             // 
@@ -683,7 +685,6 @@
             this.Text = "ContactsForm";
             this.Activated += new System.EventHandler(this.ContactsForm_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ContactsForm_FormClosed);
-            this.Load += new System.EventHandler(this.ContactsForm_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);

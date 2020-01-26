@@ -365,7 +365,6 @@
             this.predictBtn.Text = "  Prediction";
             this.predictBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.predictBtn.UseVisualStyleBackColor = true;
-            this.predictBtn.Click += new System.EventHandler(this.button1_Click);
             this.predictBtn.MouseEnter += new System.EventHandler(this.predictBtn_MouseEnter);
             this.predictBtn.MouseLeave += new System.EventHandler(this.predictBtn_MouseLeave);
             // 
@@ -553,6 +552,7 @@
             this.eventsRepeatBtn.Text = "Periodic ";
             this.eventsRepeatBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.eventsRepeatBtn.UseVisualStyleBackColor = false;
+            this.eventsRepeatBtn.Click += new System.EventHandler(this.eventsRepeatBtn_Click);
             // 
             // recurringToggleBtn
             // 
@@ -569,6 +569,7 @@
             this.recurringToggleBtn.Text = "All transactions";
             this.recurringToggleBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.recurringToggleBtn.UseVisualStyleBackColor = false;
+            this.recurringToggleBtn.Click += new System.EventHandler(this.recurringToggleBtn_Click);
             // 
             // panelToogle2
             // 
@@ -597,6 +598,7 @@
             this.repeatBtn.Text = "Periodic";
             this.repeatBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.repeatBtn.UseVisualStyleBackColor = false;
+            this.repeatBtn.Click += new System.EventHandler(this.repeatBtn_Click);
             // 
             // allEventBtn
             // 
@@ -612,6 +614,7 @@
             this.allEventBtn.Text = "All events";
             this.allEventBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.allEventBtn.UseVisualStyleBackColor = false;
+            this.allEventBtn.Click += new System.EventHandler(this.allEventBtn_Click);
             // 
             // financialPredictionForm
             // 
@@ -633,7 +636,6 @@
             this.Name = "financialPredictionForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "financialPredictionForm";
-            this.Load += new System.EventHandler(this.financialPredictionForm_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();

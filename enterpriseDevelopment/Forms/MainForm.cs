@@ -19,10 +19,10 @@ namespace enterpriseDevelopment
         private bool checkIfFirst = true;
         private bool isCollapsed = true;
         private bool isCollapsed2 = true;
-
         TransactionRepository transactionRepository;
         private List<Transaction> todaysTransaction;
         Panel dashboardPanel;
+
         public MainForm()
         {
             InitializeComponent();
@@ -31,32 +31,12 @@ namespace enterpriseDevelopment
             Instance.MainForm = this;
             dashboardPanel = new Panel();
         }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            if (Instance.StaticUserAccount == null)
-            {
-            }
-            else
-            {
-            }
-
-        }
-
-
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
         
         private void MainForm_Activated(object sender, EventArgs e)
         {
-
-            
             if (Instance.StaticUserAccount == null)
             {// Auto login
-                 Instance.StaticUserAccount = new UserAccount { UserId = 1, UserFName = "rafraf", LogDate = DateTime.Now.AddDays(-99).AddHours(5) };
+                 Instance.StaticUserAccount = new UserAccount { Id = 1, FullName = "rafraf", LogDate = DateTime.Now.AddDays(-99).AddHours(5) };
             }
             //  hide the mainform if the StaticUserAccount is empty
             if (Instance.StaticUserAccount == null)
@@ -71,14 +51,9 @@ namespace enterpriseDevelopment
                 creatGraph();
                 if (!recurringBGWorker.IsBusy) recurringBGWorker.RunWorkerAsync();
             }
-
-
         }
-
-
+        
         private void contactClickMainForm(object sender, EventArgs e)
-
-
         {
             ContactsForm contactsForm = new ContactsForm();
             contactsForm.Activate();
@@ -103,14 +78,9 @@ namespace enterpriseDevelopment
 
         private void eventRecurring_Click(object sender, EventArgs e)
         {
-
-
-
             TransactionForm transactionForm = new TransactionForm(true);
             transactionForm.Activate();
             transactionForm.Show();
-
-
         }
 
         private void summaryBtn_Click(object sender, EventArgs e)
@@ -122,7 +92,6 @@ namespace enterpriseDevelopment
 
         private void predictBtn_Click(object sender, EventArgs e)
         {
-
             financialPredictionForm financialPredictionForm = new financialPredictionForm();
             financialPredictionForm.Activate();
             financialPredictionForm.Show();
@@ -130,16 +99,15 @@ namespace enterpriseDevelopment
         
         private void recurringBGWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-
             BackgroundWorker backgroundWorker = (BackgroundWorker)sender;
             while (!backgroundWorker.CancellationPending)
             {
                 runRecurringTransaction();
                 runRecurringEvent();
+
                 if (checkIfFirst == true)
-                {
                     checkIfFirst = false;
-                }
+
                 Instance.StaticUserAccount.LogDate = DateTime.Now;
                 new UserRepository().EditLogDate(Instance.StaticUserAccount);
             }
@@ -149,148 +117,134 @@ namespace enterpriseDevelopment
         {
             TransactionRecurringRepository transactionRecurringRepository = new TransactionRecurringRepository();
             TransactionRepository transactionRepo = new TransactionRepository();
-            List<TransactionRepeat> transactionRepeats = await Task.Run(() => transactionRecurringRepository.GetTransactions(Instance.StaticUserAccount.UserId));
+            List<TransactionRepeat> transactionRepeats = await Task.Run(() => transactionRecurringRepository.GetTransactions(Instance.StaticUserAccount.Id));
             foreach (TransactionRepeat transactionRepeat in transactionRepeats)
             {
-                if (DateTime.Now > transactionRepeat.subscriptionEndTime && transactionRepeat.subscriptionEndTime != DateTime.MinValue) continue;
-
-
+                if (DateTime.Now > transactionRepeat.EndTime && transactionRepeat.EndTime != DateTime.MinValue)
+                    continue;
+                
                 DateTime accTime = Instance.StaticUserAccount.LogDate;
                 DateTime nowTime = DateTime.Now;
                 int days = (nowTime - accTime).Days;
                 DateTime recTime = Instance.StaticUserAccount.LogDate;
                 TimeSpan ts = new TimeSpan(
-                    transactionRepeat.dateTime.Hour,
-                    transactionRepeat.dateTime.Minute,
-                    transactionRepeat.dateTime.Second
+                    transactionRepeat.DateTime.Hour,
+                    transactionRepeat.DateTime.Minute,
+                    transactionRepeat.DateTime.Second
                     );
                 recTime = recTime.Date + ts;
                 for (int i = 0; i <= days; i++)
                 {
-                    if (transactionRepeat.subscriptionPeriod.Equals("Weekly"))
+                    if (transactionRepeat.Period.Equals("Weekly"))
                     {
-                        if (recTime.DayOfWeek != transactionRepeat.dateTime.DayOfWeek)
+                        if (recTime.DayOfWeek != transactionRepeat.DateTime.DayOfWeek)
                         {
                             recTime = recTime.AddDays(1);
                             continue;
                         }
                     }
-                    if (transactionRepeat.subscriptionPeriod.Equals("Monthly"))
+                    if (transactionRepeat.Period.Equals("Monthly"))
                     {
-                        if (recTime.Day != transactionRepeat.dateTime.Day)
+                        if (recTime.Day != transactionRepeat.DateTime.Day)
                         {
                             recTime = recTime.AddDays(1);
                             continue;
                         }
                     }
-                    if (transactionRepeat.subscriptionPeriod.Equals("Yearly"))
+                    if (transactionRepeat.Period.Equals("Yearly"))
                     {
                         string recTimeString = recTime.ToString("dd/MM");
-                        string createdDateString = transactionRepeat.dateTime.ToString("dd/MM");
+                        string createdDateString = transactionRepeat.DateTime.ToString("dd/MM");
                         if (!recTimeString.Equals(createdDateString))
                         {
                             recTime = recTime.AddDays(1);
                             continue;
                         }
                     }
-                    if (recTime > accTime && recTime <= nowTime && recTime > transactionRepeat.dateTime)
+                    if (recTime > accTime && recTime <= nowTime && recTime > transactionRepeat.DateTime)
                     {
                         bool check = await Task.Run(() => transactionRepo.AddTransction(new Transaction
                         {
-                            transactionCategory = transactionRepeat.transactionCategory,
-                            userIdFk = transactionRepeat.userIdFk,
-                            contactIdFk = transactionRepeat.contactIdFk,
-                            //
-                            incomeExpense = transactionRepeat.incomeExpense,
-                            transactionAmount = transactionRepeat.transactionAmount,
-                            transactionMessage = transactionRepeat.transactionMessage,
-                            dateTime = recTime
+                            Category = transactionRepeat.Category,
+                            UserFk = transactionRepeat.UserFk,
+                            ContactFk = transactionRepeat.ContactFk,
+                            IncomeExpense = transactionRepeat.IncomeExpense,
+                            Amount = transactionRepeat.Amount,
+                            Description = transactionRepeat.Description,
+                            DateTime = recTime
                         }));
                         recurringBGWorker.ReportProgress(0, "New Transaction!");
                     }
                     recTime = recTime.AddDays(1);
                 }
-
-
-
             }
-
-
-
         }
         // ExecuteRecurringEvent
         private async void runRecurringEvent()
         {
             EventRecurringRepository eventRecurringRepository = new EventRecurringRepository();
             EventRepository eventRepository = new EventRepository();
-            List<EventRepeat> eventRepeats = await Task.Run(() => eventRecurringRepository.GetEvents(Instance.StaticUserAccount.UserId));
+            List<EventRepeat> eventRepeats = await Task.Run(() => eventRecurringRepository.GetEvents(Instance.StaticUserAccount.Id));
             foreach (EventRepeat eventRepeat in eventRepeats)
             {
-                if (DateTime.Now > eventRepeat.endDate && eventRepeat.endDate != DateTime.MinValue) continue;
-
-
+                if (DateTime.Now > eventRepeat.EndDate && eventRepeat.EndDate != DateTime.MinValue)
+                    continue;
+                
                 DateTime accessTime = Instance.StaticUserAccount.LogDate;
                 DateTime currentTime = DateTime.Now;
                 int days = (currentTime - accessTime).Days;
                 DateTime recTime = Instance.StaticUserAccount.LogDate;
                 TimeSpan timespan = new TimeSpan(
-                    eventRepeat.date.Hour,
-                    eventRepeat.date.Minute,
-                    eventRepeat.date.Second
+                    eventRepeat.Date.Hour,
+                    eventRepeat.Date.Minute,
+                    eventRepeat.Date.Second
                     );
                 recTime = recTime.Date + timespan;
                 for (int i = 0; i <= days; i++)
                 {
-                    if (eventRepeat.period.Equals("Weekly"))
+                    if (eventRepeat.Period.Equals("Weekly"))
                     {
-                        if (recTime.DayOfWeek != eventRepeat.date.DayOfWeek)
+                        if (recTime.DayOfWeek != eventRepeat.Date.DayOfWeek)
                         {
                             recTime = recTime.AddDays(1);
                             continue;
                         }
                     }
-                    if (eventRepeat.period.Equals("Monthly"))
+                    if (eventRepeat.Period.Equals("Monthly"))
                     {
-                        if (recTime.Day != eventRepeat.date.Day)
+                        if (recTime.Day != eventRepeat.Date.Day)
                         {
                             recTime = recTime.AddDays(1);
                             continue;
                         }
                     }
-                    if (eventRepeat.period.Equals("Yearly"))
+                    if (eventRepeat.Period.Equals("Yearly"))
                     {
                         string recTimeString = recTime.ToString("dd/MM");
-                        string createdDateString = eventRepeat.date.ToString("dd/MM");
+                        string createdDateString = eventRepeat.Date.ToString("dd/MM");
                         if (!recTimeString.Equals(createdDateString))
                         {
                             recTime = recTime.AddDays(1);
                             continue;
                         }
                     }
-                    if (recTime > accessTime && recTime <= currentTime && recTime > eventRepeat.date)
+                    if (recTime > accessTime && recTime <= currentTime && recTime > eventRepeat.Date)
                     {
                         await Task.Run(() => eventRepository.AddEvent(new Event
                         {
-                            title = eventRepeat.title,
-                            userFK = eventRepeat.userFK,
-                            contactFk = eventRepeat.contactFk,
-                            //
-                            status = eventRepeat.status,
-                            location = eventRepeat.location,
-                            message = eventRepeat.message,
-                            date = recTime
+                            Title = eventRepeat.Title,
+                            UserFK = eventRepeat.UserFK,
+                            ContactFk = eventRepeat.ContactFk,
+                            Status = eventRepeat.Status,
+                            Location = eventRepeat.Location,
+                            Message = eventRepeat.Message,
+                            Date = recTime
                         }));
                         recurringBGWorker.ReportProgress(0, "New Event!");
                     }
                     recTime = recTime.AddDays(1);
                 }
-
-
-
             }
-
-
-
         }
 
         private void recurringBGWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -341,7 +295,6 @@ namespace enterpriseDevelopment
             pictureBox2.Visible = false;
             predictBtn.Font = new Font(predictBtn.Font, FontStyle.Bold);
             predictBtn.ForeColor = Color.White;
-
         }
 
         private void predictBtn_MouseLeave(object sender, EventArgs e)
@@ -350,7 +303,6 @@ namespace enterpriseDevelopment
             pictureBox2.Visible = true;
             predictBtn.Font = new Font(predictBtn.Font, FontStyle.Regular);
             predictBtn.ForeColor = Color.FromArgb(224, 224, 224);
-
         }
 
         private void eventsBtn_MouseEnter(object sender, EventArgs e)
@@ -424,26 +376,24 @@ namespace enterpriseDevelopment
         // Dynamic transaction view on the dashboard
         private async void GetTransactionList()
         {
-            List<Transaction> transactions = await Task.Run(() => transactionRepository.GetTransactions(Instance.StaticUserAccount.UserId));
+            List<Transaction> transactions = await Task.Run(() => transactionRepository.GetTransactions(Instance.StaticUserAccount.Id));
 
             List<Transaction> tempTransactions = new List<Transaction>();
 
             foreach (Transaction transaction in transactions)
             {
-                if (transaction.dateTime.Date == DateTime.Now.Date)
+                if (transaction.DateTime.Date == DateTime.Now.Date)
                     tempTransactions.Add(transaction);
             }
 
             dashboardPanel.Dispose();
             dashboardPanel = new Panel();
             dashboardPanel.BackColor = Color.White;//FromArgb(245, 246, 250);
-
             dashboardPanel.Size = new Size(300, 390);
             dashboardPanel.Location = new Point(300, 100);
             dashboardPanel.AutoScroll = true;
             this.Controls.Add(dashboardPanel);
-
-
+            
             int count = 0;
             // COLUMN HEADERS 
             Label listLabel = new Label();
@@ -463,17 +413,15 @@ namespace enterpriseDevelopment
                 bottomLine.Size = new Size(240, 2);
                 bottomLine.Location = new Point(10, count * 50);
                 dashboardPanel.Controls.Add(bottomLine);
-
                 internalPanel.BackColor = Color.White; //FromArgb(245, 246, 250);
                 internalPanel.Size = new Size(240, 30);
                 internalPanel.Location = new Point(10, count * 50);
-
                 dashboardPanel.Controls.Add(internalPanel);
 
                 Label incomeTypeLbl = new Label();
                 Label amountLbl = new Label();
                 string typeTxt = "";
-                if (transaction.incomeExpense == true)
+                if (transaction.IncomeExpense == true)
                 {
                     typeTxt = "+";
                     amountLbl.ForeColor = Color.Green;
@@ -488,36 +436,23 @@ namespace enterpriseDevelopment
                 incomeTypeLbl.TextAlign = ContentAlignment.MiddleCenter;
                 incomeTypeLbl.Size = new Size(10, 15);
                 incomeTypeLbl.Location = new Point(10, 10);
-                //incomeTypeLbl.BackColor = Color.GreenYellow;
                 internalPanel.Controls.Add(incomeTypeLbl);
                 internalPanel.Font = new Font("Calibri", 10, FontStyle.Bold);
-
-
-                amountLbl.Text = "£" + transaction.transactionAmount.ToString("0.00");
+                amountLbl.Text = "£" + transaction.Amount.ToString("0.00");
                 amountLbl.Size = new Size(70, 15);
                 amountLbl.Location = new Point(30, 10);
                 amountLbl.TextAlign = ContentAlignment.MiddleCenter;
-                // amountLbl.BackColor = Color.AliceBlue;
-
                 internalPanel.Controls.Add(amountLbl);
-
                 Label nameLbl = new Label();
-                nameLbl.Text = transaction.transactionCategory;
+                nameLbl.Text = transaction.Category;
                 nameLbl.Size = new Size(100, 15);
                 nameLbl.Location = new Point(150, 10);
                 nameLbl.TextAlign = ContentAlignment.MiddleCenter;
-                // nameLbl.BackColor = Color.LightPink;
-
                 internalPanel.Controls.Add(nameLbl);
             }
         }
-
-
-
-
         #endregion
-
-
+        
         #region Timer
         private void timer_Tick(object sender, EventArgs e)
         {
@@ -565,46 +500,32 @@ namespace enterpriseDevelopment
         #endregion
         private void recurringToggleBtn_Click(object sender, EventArgs e)
         {
-
             TransactionForm transactionForm = new TransactionForm();
             transactionForm.Activate();
             transactionForm.Show();
-
         }
+
         private void allEventBtn_Click(object sender, EventArgs e)
         {
             EventForm eventForm = new EventForm();
             eventForm.Activate();
             eventForm.Show();
         }
-
-        private void closePanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void creatGraph()
         {
             TransactionRepository transactionRepository = new TransactionRepository();
-            List<Transaction> transactionList = transactionRepository.GetTransactions(DateTime.Now, Instance.StaticUserAccount.UserId);
-
+            List<Transaction> transactionList = transactionRepository.GetTransactions(DateTime.Now, Instance.StaticUserAccount.Id);
             decimal totalExpense = 0;
             decimal totalIncome = 0;
 
             foreach (Transaction transaction in transactionList)
             {
-                if (transaction.incomeExpense)
-                {
-                    totalIncome += transaction.transactionAmount;
-                }
+                if (transaction.IncomeExpense)
+                    totalIncome += transaction.Amount;
                 else
-                {
-                    totalExpense += transaction.transactionAmount;
-                }
+                    totalExpense += transaction.Amount;
             }
-
-
-
+            
             PieChart.Series["MonthlyTransaction"].Points.Clear();
             PieChart.Series["MonthlyTransaction"].IsValueShownAsLabel = true;
             PieChart.Series["MonthlyTransaction"].Points.AddXY("Income", totalIncome.ToString("0.00"));
@@ -613,12 +534,6 @@ namespace enterpriseDevelopment
             PieChart.Series["MonthlyTransaction"].Points[1].Color = Color.Gray;
             PieChart.Series["MonthlyTransaction"].Points[1].Font = new Font("Calibri", 10, FontStyle.Bold);
             PieChart.Series["MonthlyTransaction"].Font = new Font("Calibri", 20, FontStyle.Bold);
-
-        }
-
-        private void PieChart_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

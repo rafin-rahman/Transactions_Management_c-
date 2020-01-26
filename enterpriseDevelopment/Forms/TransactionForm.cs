@@ -14,7 +14,8 @@ namespace enterpriseDevelopment.Forms
 {
     public partial class TransactionForm : Form
     {
-
+        private bool isCollapsed = true;
+        private bool isCollapsed2 = true;
         private TransactionRepository transactionRepository;
         private TransactionRecurringRepository TransactionRecurringRepository;
         private bool isRepeating = false;
@@ -22,7 +23,6 @@ namespace enterpriseDevelopment.Forms
         {
             InitializeComponent();
             transactionRepository = new TransactionRepository();
-           
             Instance.MainForm.Hide();
             listViewTransaction.HideSelection = true;
         }
@@ -33,15 +33,13 @@ namespace enterpriseDevelopment.Forms
             isRepeating = repeat;
             if (isRepeating == true)
             {
-
                 listViewTransaction.Columns.Add("Period");
                 listViewTransaction.Columns.Add("Ending date");
                 listViewTransaction.HideSelection = true;
                 TransactionRecurringRepository = new TransactionRecurringRepository();
             }
-            
+
             transactionRepository = new TransactionRepository();
-            
             Instance.MainForm.Hide();
         }
 
@@ -57,9 +55,6 @@ namespace enterpriseDevelopment.Forms
         {
             if (listViewTransaction.SelectedItems.Count > 0)
             {
-
-
-
                 if (isRepeating)
                 {
                     TransactionRepeat transaction = (TransactionRepeat)listViewTransaction.SelectedItems[0].Tag;
@@ -75,8 +70,6 @@ namespace enterpriseDevelopment.Forms
                     transactionAddEdit.Show();
                 }
             }
-
-         
         }
         #endregion
         private async void deleteBtn_Click(object sender, EventArgs e)
@@ -85,53 +78,40 @@ namespace enterpriseDevelopment.Forms
             {
                 if (isRepeating)
                 {
-                   TransactionRepeat transaction = (TransactionRepeat)listViewTransaction.SelectedItems[0].Tag;
-
+                    TransactionRepeat transaction = (TransactionRepeat)listViewTransaction.SelectedItems[0].Tag;
                     DialogResult dialogResult = MessageBox.Show("Do you want do delete the transaction?", "Confirm", MessageBoxButtons.YesNo);
+
                     if (dialogResult == DialogResult.Yes)
                     {
                         bool x = await Task.Run(() => TransactionRecurringRepository.DeleteTransaction(transaction));
+
                         if (x)
-                        {
                             MessageBox.Show("Transaction deleted");
-                        }
                         else
-                        {
                             MessageBox.Show("Transaction not deleted");
-                        }
                     }
                 }
                 else
                 {
                     Transaction transaction = (Transaction)listViewTransaction.SelectedItems[0].Tag;
-
                     DialogResult dialogResult = MessageBox.Show("Do you want do delete the transaction?", "Confirm", MessageBoxButtons.YesNo);
+
                     if (dialogResult == DialogResult.Yes)
                     {
                         bool x = await Task.Run(() => transactionRepository.DeleteTransaction(transaction));
                         if (x)
-                        {
                             MessageBox.Show("Transaction deleted");
-                        }
                         else
-                        {
                             MessageBox.Show("Transaction not deleted");
-                        }
                     }
                 }
             }
         }
 
-        private void TransactionForm_Load(object sender, EventArgs e)
-        {
-        }
-
         private void TransactionForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-
             Instance.MainForm.Activate();
             Instance.MainForm.Show();
-
             Dispose();
         }
 
@@ -139,23 +119,17 @@ namespace enterpriseDevelopment.Forms
         {
             if (isRepeating)
             {
-                List<TransactionRepeat> transactionsList = await Task.Run(() => TransactionRecurringRepository.GetTransactions(Instance.StaticUserAccount.UserId));
+                List<TransactionRepeat> transactionsList = await Task.Run(() => TransactionRecurringRepository.GetTransactions(Instance.StaticUserAccount.Id));
                 listViewTransaction.Items.Clear();
                 foreach (TransactionRepeat transactionRepeat in transactionsList)
                 {
                     string endDate = "";
-                    if (transactionRepeat.subscriptionEndTime == DateTime.MinValue)
-                    {
+                    if (transactionRepeat.EndTime == DateTime.MinValue)
                         endDate = "N/A";
-                    }
                     else
-                    {
-                        endDate = transactionRepeat.subscriptionEndTime.ToString();
-                    }
-                    ListViewItem listViewI = new ListViewItem(new string[] { transactionRepeat.transactionAmount.ToString("0.00"), transactionRepeat.typeValue, transactionRepeat.transactionCategory, transactionRepeat.dateTime.ToString(), transactionRepeat.contactName, transactionRepeat.transactionMessage, transactionRepeat.subscriptionPeriod, endDate });
+                        endDate = transactionRepeat.EndTime.ToString();
 
-                   
-
+                    ListViewItem listViewI = new ListViewItem(new string[] { transactionRepeat.Amount.ToString("0.00"), transactionRepeat.TransactionType, transactionRepeat.Category, transactionRepeat.DateTime.ToString(), transactionRepeat.ContactName, transactionRepeat.Description, transactionRepeat.Period, endDate });
 
                     listViewI.Tag = transactionRepeat;
                     listViewTransaction.Items.Add(listViewI);
@@ -163,18 +137,16 @@ namespace enterpriseDevelopment.Forms
             }
             else
             {
-                List<Transaction> transactionsList = await Task.Run(() => transactionRepository.GetTransactions(Instance.StaticUserAccount.UserId));
+                List<Transaction> transactionsList = await Task.Run(() => transactionRepository.GetTransactions(Instance.StaticUserAccount.Id));
                 listViewTransaction.Items.Clear();
                 foreach (Transaction transaction in transactionsList)
                 {
-                    ListViewItem listViewI = new ListViewItem(new string[] { transaction.transactionAmount.ToString("0.00"), transaction.typeValue, transaction.transactionCategory, transaction.dateTime.ToString(), transaction.contactName, transaction.transactionMessage });
+                    ListViewItem listViewI = new ListViewItem(new string[] { transaction.Amount.ToString("0.00"), transaction.TransactionType, transaction.Category, transaction.DateTime.ToString(), transaction.ContactName, transaction.Description });
                     listViewI.Tag = transaction;
                     listViewTransaction.Items.Add(listViewI);
                 }
             }
         }
-
-     
 
         private void panel1_Click(object sender, EventArgs e)
         {
@@ -184,7 +156,6 @@ namespace enterpriseDevelopment.Forms
         private void mainBtn_Click(object sender, EventArgs e)
         {
             Instance.MainForm.Show();
-
             Close();
         }
 
@@ -193,6 +164,7 @@ namespace enterpriseDevelopment.Forms
             financialPredictionForm financialPredictionForm = new financialPredictionForm();
             financialPredictionForm.Activate();
             financialPredictionForm.Show();
+            Close();
         }
 
         private void summaryBtn_Click(object sender, EventArgs e)
@@ -200,11 +172,7 @@ namespace enterpriseDevelopment.Forms
             SummaryForm summaryForm = new SummaryForm();
             summaryForm.Activate();
             summaryForm.Show();
-        }
-
-        private void ContactBtn_ChangeUICues(object sender, UICuesEventArgs e)
-        {
-
+            Close();
         }
 
         private void ContactBtn_Click(object sender, EventArgs e)
@@ -212,6 +180,7 @@ namespace enterpriseDevelopment.Forms
             ContactsForm contactsForm = new ContactsForm();
             contactsForm.Activate();
             contactsForm.Show();
+            Close();
         }
 
         private void listViewTransaction_SizeChanged(object sender, EventArgs e)
@@ -227,19 +196,11 @@ namespace enterpriseDevelopment.Forms
             for (int i = 0; i < count; i++)
             {
                 if (i == count - 1)
-                {
                     listViewTransaction.Columns[i].Width = last;
-                }
                 else if (i == 0)
-                {
                     listViewTransaction.Columns[i].Width = last;
-                }
                 else
-                {
                     listViewTransaction.Columns[i].Width = (int)(1.5 * size);
-                }
-
-
             }
         }
 
@@ -337,6 +298,92 @@ namespace enterpriseDevelopment.Forms
             pictureBox6.Visible = true;
             ContactBtn.Font = new Font(ContactBtn.Font, FontStyle.Regular);
             ContactBtn.ForeColor = Color.FromArgb(224, 224, 224);
+        }
+
+        private void eventsBtn_Click(object sender, EventArgs e)
+        {
+            timer2.Start();
+        }
+
+        private void transactionBtn_Click(object sender, EventArgs e)
+        {
+            timer.Start();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            if (isCollapsed)
+            {
+                panelToggle1.Width += 20;
+                if (panelToggle1.Size == panelToggle1.MaximumSize)
+                {
+                    timer.Stop();
+                    isCollapsed = false;
+                }
+            }
+            else
+            {
+                panelToggle1.Width -= 20;
+                if (panelToggle1.Size == panelToggle1.MinimumSize)
+                {
+                    timer.Stop();
+                    isCollapsed = true;
+                }
+            }
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            if (isCollapsed2)
+            {
+                panelToogle2.Width += 20;
+                if (panelToogle2.Size == panelToogle2.MaximumSize)
+                {
+                    timer2.Stop();
+                    isCollapsed2 = false;
+                }
+            }
+            else
+            {
+                panelToogle2.Width -= 20;
+                if (panelToogle2.Size == panelToogle2.MinimumSize)
+                {
+                    timer2.Stop();
+                    isCollapsed2 = true;
+                }
+            }
+        }
+
+        private void allEventBtn_Click(object sender, EventArgs e)
+        {
+            EventForm eventForm = new EventForm();
+            eventForm.Activate();
+            eventForm.Show();
+            Close();
+        }
+
+        private void repeatBtn_Click(object sender, EventArgs e)
+        {
+            EventForm eventForm = new EventForm(true);
+            eventForm.Activate();
+            eventForm.Show();
+            Close();
+        }
+
+        private void recurringToggleBtn_Click(object sender, EventArgs e)
+        {
+            TransactionForm transactionForm = new TransactionForm();
+            transactionForm.Activate();
+            transactionForm.Show();
+            Close();
+        }
+
+        private void eventsRepeatBtn_Click(object sender, EventArgs e)
+        {
+            TransactionForm transactionForm = new TransactionForm(true);
+            transactionForm.Activate();
+            transactionForm.Show();
+            Close();
         }
     }
 }

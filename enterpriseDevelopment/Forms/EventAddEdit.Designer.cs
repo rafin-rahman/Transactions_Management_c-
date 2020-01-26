@@ -76,7 +76,6 @@
             this.label1.Size = new System.Drawing.Size(79, 19);
             this.label1.TabIndex = 1;
             this.label1.Text = "Event title";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -97,7 +96,6 @@
             this.messageRichTxt.Size = new System.Drawing.Size(250, 96);
             this.messageRichTxt.TabIndex = 3;
             this.messageRichTxt.Text = "";
-            this.messageRichTxt.TextChanged += new System.EventHandler(this.messageRichTxt_TextChanged);
             // 
             // label3
             // 
@@ -161,7 +159,6 @@
             this.label5.Size = new System.Drawing.Size(253, 19);
             this.label5.TabIndex = 9;
             this.label5.Text = "Do you want to assign any contact?";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // comboBoxEvent
             // 
@@ -172,7 +169,6 @@
             this.comboBoxEvent.Name = "comboBoxEvent";
             this.comboBoxEvent.Size = new System.Drawing.Size(249, 21);
             this.comboBoxEvent.TabIndex = 10;
-            this.comboBoxEvent.SelectedIndexChanged += new System.EventHandler(this.comboBoxEvent_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -184,7 +180,6 @@
             this.label6.Size = new System.Drawing.Size(146, 19);
             this.label6.TabIndex = 11;
             this.label6.Text = "Is it a task or event?";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // statusComboBox
             // 
@@ -231,7 +226,6 @@
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Option";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // noTimeLimit
             // 
@@ -293,7 +287,6 @@
             this.label7.Size = new System.Drawing.Size(68, 26);
             this.label7.TabIndex = 0;
             this.label7.Text = "Period";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // panel2
             // 

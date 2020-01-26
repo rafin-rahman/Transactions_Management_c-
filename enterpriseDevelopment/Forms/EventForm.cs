@@ -51,11 +51,6 @@ namespace enterpriseDevelopment
             eventAddEdit.Show();
         }
 
-        private void EventForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void EventForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Instance.MainForm.Activate();
@@ -67,32 +62,28 @@ namespace enterpriseDevelopment
         {
             if (isRepeating)
             {
-                List<EventRepeat> eventsList = await Task.Run(() => eventRecurringRepository.GetEvents(Instance.StaticUserAccount.UserId));
+                List<EventRepeat> eventsList = await Task.Run(() => eventRecurringRepository.GetEvents(Instance.StaticUserAccount.Id));
                 listViewEvent.Items.Clear();
                 foreach (EventRepeat eventRepeat in eventsList)
                 {
                     string endDate = "";
-                    if (eventRepeat.endDate == DateTime.MinValue)
-                    {
+                    if (eventRepeat.EndDate == DateTime.MinValue)
                         endDate = "N/A";
-                    }
                     else
-                    {
-                        endDate = eventRepeat.endDate.ToString();
-                    }
+                        endDate = eventRepeat.EndDate.ToString();
 
-                    ListViewItem listViewI = new ListViewItem(new string[] { eventRepeat.title, eventRepeat.status, eventRepeat.location, eventRepeat.message, eventRepeat.contactName, eventRepeat.date.ToString(), eventRepeat.period, endDate });
+                    ListViewItem listViewI = new ListViewItem(new string[] { eventRepeat.Title, eventRepeat.Status, eventRepeat.Location, eventRepeat.Message, eventRepeat.ContactName, eventRepeat.Date.ToString(), eventRepeat.Period, endDate });
                     listViewI.Tag = eventRepeat;
                     listViewEvent.Items.Add(listViewI);
                 }
             }
             else
             {
-                List<Event> eventsList = await Task.Run(() => eventRepository.GetEvents(Instance.StaticUserAccount.UserId));
+                List<Event> eventsList = await Task.Run(() => eventRepository.GetEvents(Instance.StaticUserAccount.Id));
                 listViewEvent.Items.Clear();
                 foreach (Event eventObj in eventsList)
                 {
-                    ListViewItem listViewI = new ListViewItem(new string[] { eventObj.title, eventObj.status, eventObj.location, eventObj.message, eventObj.contactName, eventObj.date.ToString() });
+                    ListViewItem listViewI = new ListViewItem(new string[] { eventObj.Title, eventObj.Status, eventObj.Location, eventObj.Message, eventObj.ContactName, eventObj.Date.ToString() });
                     listViewI.Tag = eventObj;
                     listViewEvent.Items.Add(listViewI);
                 }
@@ -104,9 +95,6 @@ namespace enterpriseDevelopment
 
             if (listViewEvent.SelectedItems.Count > 0)
             {
-
-
-
                 if (isRepeating)
                 {
                     EventRepeat eventRepeat = (EventRepeat)listViewEvent.SelectedItems[0].Tag;
@@ -122,9 +110,6 @@ namespace enterpriseDevelopment
                     eventAddEdit.Show();
                 }
             }
-
-
-
         }
 
         private async void deleteBtn_Click(object sender, EventArgs e)
@@ -138,13 +123,9 @@ namespace enterpriseDevelopment
                 {
                     bool x = await Task.Run(() => eventRecurringRepository.deleteEvent(eventRepeat));
                     if (x)
-                    {
                         MessageBox.Show("Event deleted");
-                    }
                     else
-                    {
                         MessageBox.Show("Event not deleted");
-                    }
                 }
             }
             else
@@ -156,13 +137,9 @@ namespace enterpriseDevelopment
                 {
                     bool x = await Task.Run(() => eventRepository.DeleteEvent(eventObj));
                     if (x)
-                    {
                         MessageBox.Show("Event deleted");
-                    }
                     else
-                    {
                         MessageBox.Show("Event not deleted");
-                    }
                 }
             }
         }
@@ -178,7 +155,6 @@ namespace enterpriseDevelopment
         private void panel1_Click(object sender, EventArgs e)
         {
             Instance.MainForm.Dispose();
-          
         }
 
         private void panel1_MouseEnter(object sender, EventArgs e)
@@ -196,7 +172,6 @@ namespace enterpriseDevelopment
         private void mainBtn_Click_1(object sender, EventArgs e)
         {
             Instance.MainForm.Show();
-
             Close();
         }
 
@@ -205,6 +180,7 @@ namespace enterpriseDevelopment
             financialPredictionForm financialPredictionForm = new financialPredictionForm();
             financialPredictionForm.Activate();
             financialPredictionForm.Show();
+            Close();
         }
 
         private void summaryBtn_Click(object sender, EventArgs e)
@@ -212,6 +188,7 @@ namespace enterpriseDevelopment
             SummaryForm summaryForm = new SummaryForm();
             summaryForm.Activate();
             summaryForm.Show();
+            Close();
         }
 
         private void ContactBtn_Click(object sender, EventArgs e)
@@ -219,6 +196,7 @@ namespace enterpriseDevelopment
             ContactsForm contactsForm = new ContactsForm();
             contactsForm.Activate();
             contactsForm.Show();
+            Close();
         }
 
         private void listViewEvent_SizeChanged(object sender, EventArgs e)
@@ -235,17 +213,11 @@ namespace enterpriseDevelopment
             for (int i = 0; i < count; i++)
             {
                 if (i == count - 1)
-                {
                     listViewEvent.Columns[i].Width = last;
-                }
                 else if (i == 0)
-                {
                     listViewEvent.Columns[i].Width = last;
-                }
                 else
-                {
                     listViewEvent.Columns[i].Width = (int)(1.5 * size);
-                }
             }
         }
 
@@ -397,6 +369,30 @@ namespace enterpriseDevelopment
                     isCollapsed2 = true;
                 }
             }
+        }
+
+        private void allEventBtn_Click(object sender, EventArgs e)
+        {
+            EventForm eventForm = new EventForm();
+            eventForm.Activate();
+            eventForm.Show();
+            Close();
+        }
+
+        private void recurringToggleBtn_Click(object sender, EventArgs e)
+        {
+            TransactionForm transactionForm = new TransactionForm();
+            transactionForm.Activate();
+            transactionForm.Show();
+            Close();
+        }
+
+        private void eventsRepeatBtn_Click(object sender, EventArgs e)
+        {
+            TransactionForm transactionForm = new TransactionForm(true);
+            transactionForm.Activate();
+            transactionForm.Show();
+            Close();
         }
     }
 }

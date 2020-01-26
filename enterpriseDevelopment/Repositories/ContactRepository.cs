@@ -12,8 +12,7 @@ namespace enterpriseDevelopment
 {
     class ContactRepository
     {
-
-        private Logger Logger =  LogManager.GetCurrentClassLogger();
+        private Logger Logger = LogManager.GetCurrentClassLogger();
         public string databaseConn;
         SqlConnection connection;
         public ContactRepository()
@@ -22,74 +21,55 @@ namespace enterpriseDevelopment
             connection = new SqlConnection(databaseConn);
         }
 
-
         public List<Contact> GetContacts(int id)
         {
-
-            
             List<Contact> u = new List<Contact>();
 
             string selectQuery = "SELECT * FROM ContactsTbl WHERE [userIdFk] = @userID";
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
-                
                 sqlCommand.Parameters.Add("@userID", SqlDbType.Int).Value = id;
-
-
                 connection.Open();
-                
                 SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
-
-
 
                 while (sqlDataReader.Read())
                 {
                     u.Add(new Contact
                     {
-                        ContactId = (int)sqlDataReader["ContactId"],
-                        userIdFk = (int)sqlDataReader["userIdFk"],
-                        ContactName = sqlDataReader["Contactname"].ToString()
+                        Id = (int)sqlDataReader["ContactId"],
+                        UserFk = (int)sqlDataReader["userIdFk"],
+                        Name = sqlDataReader["Contactname"].ToString()
                     });
-
-
                 }
-
-
             }
             catch (Exception ex)
             {
                 Logger.Error(ex.Message);
-                
             }
             finally
             {
                 connection.Close();
             }
-
-           
             return u;
         }
 
         public bool DeleteContact(Contact contact)
         {
-            
-
             string selectQuery = "DELETE FROM ContactsTbl WHERE [userIdFk] = @userID AND [ContactId] = @contactID";
             try
             {
                 connection.Open();
 
-                SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);              
-                sqlCommand.Parameters.Add("@userID", SqlDbType.Int).Value = contact.userIdFk;
-                sqlCommand.Parameters.Add("@contactID", SqlDbType.Int).Value = contact.ContactId;
-                
+                SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
+                sqlCommand.Parameters.Add("@userID", SqlDbType.Int).Value = contact.UserFk;
+                sqlCommand.Parameters.Add("@contactID", SqlDbType.Int).Value = contact.Id;
+
                 var x = sqlCommand.ExecuteNonQuery();
                 connection.Close();
-                if (x > 0 ) return true;
+                if (x > 0) return true;
                 else
                     return false;
-                
             }
 
             catch (Exception ex)
@@ -101,22 +81,16 @@ namespace enterpriseDevelopment
             {
                 connection.Close();
             }
-
-
-           
         }
 
         public int AddContact(Contact contact)
         {
-
-
             string selectQuery = "INSERT INTO ContactsTbl  ([userIdFk], [Contactname]) OUTPUT INSERTED.ContactId VALUES (@userID, @name)";
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
-                
-                sqlCommand.Parameters.Add("@userID", SqlDbType.Int).Value = contact.userIdFk;
-                sqlCommand.Parameters.Add("@name", SqlDbType.NVarChar).Value = contact.ContactName;
+                sqlCommand.Parameters.Add("@userID", SqlDbType.Int).Value = contact.UserFk;
+                sqlCommand.Parameters.Add("@name", SqlDbType.NVarChar).Value = contact.Name;
 
                 connection.Open();
 
@@ -128,12 +102,6 @@ namespace enterpriseDevelopment
                 }
                 connection.Close();
                 return y;
-
-
-            
-
-
-
             }
             catch (Exception ex)
             {
@@ -144,22 +112,18 @@ namespace enterpriseDevelopment
             {
                 connection.Close();
             }
-
-
         }
 
         public bool EditContact(Contact contact)
         {
-
-
             string selectQuery = "UPDATE ContactsTbl SET [Contactname] = @name WHERE [ContactId] = @id AND [userIdFk] = @userID";
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
-                
-                sqlCommand.Parameters.Add("@userID", SqlDbType.Int).Value = contact.userIdFk;
-                sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = contact.ContactId;
-                sqlCommand.Parameters.Add("@name", SqlDbType.NVarChar).Value = contact.ContactName;
+
+                sqlCommand.Parameters.Add("@userID", SqlDbType.Int).Value = contact.UserFk;
+                sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = contact.Id;
+                sqlCommand.Parameters.Add("@name", SqlDbType.NVarChar).Value = contact.Name;
 
                 connection.Open();
                 var x = sqlCommand.ExecuteNonQuery();
@@ -178,8 +142,6 @@ namespace enterpriseDevelopment
             {
                 connection.Close();
             }
-
         }
     }
-
 }

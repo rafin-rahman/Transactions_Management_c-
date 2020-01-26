@@ -73,6 +73,12 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.panelToggle1 = new System.Windows.Forms.Panel();
+            this.eventsRepeatBtn = new System.Windows.Forms.Button();
+            this.recurringToggleBtn = new System.Windows.Forms.Button();
+            this.panelToogle2 = new System.Windows.Forms.Panel();
+            this.repeatBtn = new System.Windows.Forms.Button();
+            this.allEventBtn = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
@@ -84,6 +90,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel11.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.panelToggle1.SuspendLayout();
+            this.panelToogle2.SuspendLayout();
             this.SuspendLayout();
             // 
             // addBtn
@@ -436,6 +444,7 @@
             this.eventsBtn.Text = "  Events";
             this.eventsBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.eventsBtn.UseVisualStyleBackColor = true;
+            this.eventsBtn.Click += new System.EventHandler(this.eventsBtn_Click);
             this.eventsBtn.MouseEnter += new System.EventHandler(this.eventsBtn_MouseEnter);
             this.eventsBtn.MouseLeave += new System.EventHandler(this.eventsBtn_MouseLeave);
             // 
@@ -455,6 +464,7 @@
             this.transactionBtn.Text = "  Transactions";
             this.transactionBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.transactionBtn.UseVisualStyleBackColor = true;
+            this.transactionBtn.Click += new System.EventHandler(this.transactionBtn_Click);
             this.transactionBtn.MouseEnter += new System.EventHandler(this.transactionBtn_MouseEnter);
             this.transactionBtn.MouseLeave += new System.EventHandler(this.transactionBtn_MouseLeave);
             // 
@@ -497,7 +507,6 @@
             this.ContactBtn.Click += new System.EventHandler(this.ContactBtn_Click);
             this.ContactBtn.MouseEnter += new System.EventHandler(this.ContactBtn_MouseEnter);
             this.ContactBtn.MouseLeave += new System.EventHandler(this.ContactBtn_MouseLeave);
-            this.ContactBtn.ChangeUICues += new System.Windows.Forms.UICuesEventHandler(this.ContactBtn_ChangeUICues);
             // 
             // label3
             // 
@@ -587,11 +596,114 @@
             // 
             this.columnHeader6.Text = "Contact Name";
             // 
+            // timer
+            // 
+            this.timer.Interval = 15;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
+            // timer2
+            // 
+            this.timer2.Interval = 15;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
+            // panelToggle1
+            // 
+            this.panelToggle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
+            this.panelToggle1.Controls.Add(this.eventsRepeatBtn);
+            this.panelToggle1.Controls.Add(this.recurringToggleBtn);
+            this.panelToggle1.Location = new System.Drawing.Point(284, 354);
+            this.panelToggle1.MaximumSize = new System.Drawing.Size(127, 82);
+            this.panelToggle1.MinimumSize = new System.Drawing.Size(0, 82);
+            this.panelToggle1.Name = "panelToggle1";
+            this.panelToggle1.Size = new System.Drawing.Size(0, 82);
+            this.panelToggle1.TabIndex = 14;
+            // 
+            // eventsRepeatBtn
+            // 
+            this.eventsRepeatBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
+            this.eventsRepeatBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.eventsRepeatBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.eventsRepeatBtn.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.eventsRepeatBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.eventsRepeatBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.eventsRepeatBtn.Location = new System.Drawing.Point(0, 39);
+            this.eventsRepeatBtn.Name = "eventsRepeatBtn";
+            this.eventsRepeatBtn.Size = new System.Drawing.Size(0, 43);
+            this.eventsRepeatBtn.TabIndex = 8;
+            this.eventsRepeatBtn.Text = "Periodic ";
+            this.eventsRepeatBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.eventsRepeatBtn.UseVisualStyleBackColor = false;
+            this.eventsRepeatBtn.Click += new System.EventHandler(this.eventsRepeatBtn_Click);
+            // 
+            // recurringToggleBtn
+            // 
+            this.recurringToggleBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
+            this.recurringToggleBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.recurringToggleBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.recurringToggleBtn.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recurringToggleBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.recurringToggleBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.recurringToggleBtn.Location = new System.Drawing.Point(0, 0);
+            this.recurringToggleBtn.Name = "recurringToggleBtn";
+            this.recurringToggleBtn.Size = new System.Drawing.Size(0, 39);
+            this.recurringToggleBtn.TabIndex = 3;
+            this.recurringToggleBtn.Text = "All transactions";
+            this.recurringToggleBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.recurringToggleBtn.UseVisualStyleBackColor = false;
+            this.recurringToggleBtn.Click += new System.EventHandler(this.recurringToggleBtn_Click);
+            // 
+            // panelToogle2
+            // 
+            this.panelToogle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
+            this.panelToogle2.Controls.Add(this.repeatBtn);
+            this.panelToogle2.Controls.Add(this.allEventBtn);
+            this.panelToogle2.Location = new System.Drawing.Point(284, 269);
+            this.panelToogle2.MaximumSize = new System.Drawing.Size(127, 82);
+            this.panelToogle2.MinimumSize = new System.Drawing.Size(0, 82);
+            this.panelToogle2.Name = "panelToogle2";
+            this.panelToogle2.Size = new System.Drawing.Size(0, 82);
+            this.panelToogle2.TabIndex = 15;
+            // 
+            // repeatBtn
+            // 
+            this.repeatBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
+            this.repeatBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.repeatBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.repeatBtn.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
+            this.repeatBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.repeatBtn.Location = new System.Drawing.Point(0, 39);
+            this.repeatBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.repeatBtn.Name = "repeatBtn";
+            this.repeatBtn.Size = new System.Drawing.Size(0, 44);
+            this.repeatBtn.TabIndex = 7;
+            this.repeatBtn.Text = "Periodic";
+            this.repeatBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.repeatBtn.UseVisualStyleBackColor = false;
+            this.repeatBtn.Click += new System.EventHandler(this.repeatBtn_Click);
+            // 
+            // allEventBtn
+            // 
+            this.allEventBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
+            this.allEventBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.allEventBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.allEventBtn.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
+            this.allEventBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.allEventBtn.Location = new System.Drawing.Point(0, 0);
+            this.allEventBtn.Name = "allEventBtn";
+            this.allEventBtn.Size = new System.Drawing.Size(0, 39);
+            this.allEventBtn.TabIndex = 11;
+            this.allEventBtn.Text = "All events";
+            this.allEventBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.allEventBtn.UseVisualStyleBackColor = false;
+            this.allEventBtn.Click += new System.EventHandler(this.allEventBtn_Click);
+            // 
             // TransactionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1025, 597);
+            this.Controls.Add(this.panelToogle2);
+            this.Controls.Add(this.panelToggle1);
             this.Controls.Add(this.listViewTransaction);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -609,7 +721,6 @@
             this.Text = "TransactionForm";
             this.Activated += new System.EventHandler(this.TransactionForm_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.TransactionForm_FormClosed);
-            this.Load += new System.EventHandler(this.TransactionForm_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -622,6 +733,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel11.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
+            this.panelToggle1.ResumeLayout(false);
+            this.panelToogle2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -671,5 +784,11 @@
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Panel panelToggle1;
+        private System.Windows.Forms.Button eventsRepeatBtn;
+        private System.Windows.Forms.Button recurringToggleBtn;
+        private System.Windows.Forms.Panel panelToogle2;
+        private System.Windows.Forms.Button repeatBtn;
+        private System.Windows.Forms.Button allEventBtn;
     }
 }

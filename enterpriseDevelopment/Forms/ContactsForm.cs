@@ -41,24 +41,20 @@ namespace enterpriseDevelopment.Forms
                 {
                     bool x = await Task.Run(() => contactRepository.DeleteContact(contact));
                     if (x)
-                    {
                         MessageBox.Show("Contact deleted");
-                    }
                     else
-                    {
                         MessageBox.Show("Contact not deleted");
-                    }
                 }
             }
         }
 
         private async void ContactsForm_Activated(object sender, EventArgs e)
         {
-            List<Contact> ContactList = await Task.Run(() => contactRepository.GetContacts(Instance.StaticUserAccount.UserId));
+            List<Contact> ContactList = await Task.Run(() => contactRepository.GetContacts(Instance.StaticUserAccount.Id));
             listViewContact.Items.Clear();
             foreach (Contact contact in ContactList)
             {
-                ListViewItem lvi = new ListViewItem(new string[] { contact.ContactName });
+                ListViewItem lvi = new ListViewItem(new string[] { contact.Name });
                 lvi.Tag = contact;
                 listViewContact.Items.Add(lvi);
             }
@@ -68,7 +64,6 @@ namespace enterpriseDevelopment.Forms
         {
             if (listViewContact.SelectedItems.Count > 0 )
             {
-
                 Contact contact = (Contact)listViewContact.SelectedItems[0].Tag;
                 ContactAddEdit contactAddEdit = new ContactAddEdit(contact);
                 contactAddEdit.Activate();
@@ -78,18 +73,7 @@ namespace enterpriseDevelopment.Forms
 
         private void ContactsForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-           
             Dispose();
-        }
-
-        private void listViewContact_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ContactsForm_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void panel1_Click(object sender, EventArgs e)
@@ -101,8 +85,6 @@ namespace enterpriseDevelopment.Forms
         {
             Instance.MainForm.Show();
             Close();
-            
-            
         }
 
         private void predictBtn_Click(object sender, EventArgs e)
@@ -115,7 +97,6 @@ namespace enterpriseDevelopment.Forms
 
         private void eventsBtn_Click(object sender, EventArgs e)
         {
-           
             timer2.Start();
         }
 
@@ -126,14 +107,7 @@ namespace enterpriseDevelopment.Forms
             summaryForm.Show();
             Close();
         }
-
-        private void ContactBtn_Click(object sender, EventArgs e)
-        {
-            ContactsForm contactsForm = new ContactsForm();
-            contactsForm.Activate();
-            contactsForm.Show();
-        }
-
+        
         private void mainBtn_MouseEnter(object sender, EventArgs e)
         {
             panel14.Visible = true;
@@ -293,6 +267,30 @@ namespace enterpriseDevelopment.Forms
                     isCollapsed2 = true;
                 }
             }
+        }
+
+        private void repeatBtn_Click(object sender, EventArgs e)
+        {
+            EventForm eventForm = new EventForm(true);
+            eventForm.Activate();
+            eventForm.Show();
+            Close();
+        }
+
+        private void recurringToggleBtn_Click(object sender, EventArgs e)
+        {
+            TransactionForm transactionForm = new TransactionForm();
+            transactionForm.Activate();
+            transactionForm.Show();
+            Close();
+        }
+
+        private void eventsRepeatBtn_Click(object sender, EventArgs e)
+        {
+            TransactionForm transactionForm = new TransactionForm(true);
+            transactionForm.Activate();
+            transactionForm.Show();
+            Close();
         }
     }
 }

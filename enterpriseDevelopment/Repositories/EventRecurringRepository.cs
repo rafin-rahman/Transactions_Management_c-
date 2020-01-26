@@ -13,22 +13,18 @@ namespace enterpriseDevelopment.Repositories
 {
     class EventRecurringRepository
     {
-
-
         private Logger Logger = LogManager.GetCurrentClassLogger();
         public string databaseConn;
         SqlConnection connection;
 
-
         public EventRecurringRepository()
         {
             databaseConn = ConfigurationManager.ConnectionStrings["Conn"].ConnectionString;
-             connection = new SqlConnection(databaseConn);
+            connection = new SqlConnection(databaseConn);
         }
 
         public List<EventRepeat> GetEvents(int id)
         {
-
             List<EventRepeat> u = new List<EventRepeat>();
             string query =
                 "SELECT EventsRepeatTbl.*, ContactsTbl.ContactName AS ContactName " +
@@ -46,25 +42,24 @@ namespace enterpriseDevelopment.Repositories
                 {
                     EventRepeat temp = new EventRepeat
                     {
-                        id = (int)sqlDataReader["EventId"],
-                        title = sqlDataReader["EventTitle"].ToString(),
-                        status = sqlDataReader["EventStatus"].ToString(),
-                        location = sqlDataReader["Location"].ToString(),
-                        message = sqlDataReader["EventMessage"].ToString(),
-                        period = sqlDataReader["EventPeriod"].ToString(),
-                        date = (DateTime)sqlDataReader["dateTime"],
-                        userFK = (int)sqlDataReader["userIdFk"]
+                        Id = (int)sqlDataReader["EventId"],
+                        Title = sqlDataReader["EventTitle"].ToString(),
+                        Status = sqlDataReader["EventStatus"].ToString(),
+                        Location = sqlDataReader["Location"].ToString(),
+                        Message = sqlDataReader["EventMessage"].ToString(),
+                        Period = sqlDataReader["EventPeriod"].ToString(),
+                        Date = (DateTime)sqlDataReader["dateTime"],
+                        UserFK = (int)sqlDataReader["userIdFk"]
                     };
 
-                    if(sqlDataReader["contactIdFk"] == DBNull.Value) temp.contactFk = 0; else  temp.contactFk = (int)sqlDataReader["contactIdFk"];
+                    if (sqlDataReader["contactIdFk"] == DBNull.Value) temp.ContactFk = 0; else temp.ContactFk = (int)sqlDataReader["contactIdFk"];
 
-                    if(sqlDataReader["ContactName"] == DBNull.Value) temp.contactName = ""; else temp.contactName = sqlDataReader["ContactName"].ToString();
+                    if (sqlDataReader["ContactName"] == DBNull.Value) temp.ContactName = ""; else temp.ContactName = sqlDataReader["ContactName"].ToString();
 
-                    if(sqlDataReader["EventPeriodEndDate"] == DBNull.Value)  temp.endDate = DateTime.MinValue; else temp.endDate = (DateTime)sqlDataReader["EventPeriodEndDate"];
+                    if (sqlDataReader["EventPeriodEndDate"] == DBNull.Value) temp.EndDate = DateTime.MinValue; else temp.EndDate = (DateTime)sqlDataReader["EventPeriodEndDate"];
 
                     u.Add(temp);
                 }
-                
             }
             catch (Exception ex)
             {
@@ -75,8 +70,6 @@ namespace enterpriseDevelopment.Repositories
                 connection.Close();
             }
             return u;
-
-
         }
 
         public bool AddEvent(EventRepeat eventRepeat)
@@ -88,34 +81,31 @@ namespace enterpriseDevelopment.Repositories
             {
                 SqlCommand cmd = new SqlCommand(query, connection);
 
-                cmd.Parameters.Add("@title", SqlDbType.NVarChar).Value = eventRepeat.title;
-                cmd.Parameters.Add("@status", SqlDbType.NChar).Value = eventRepeat.status;
-                cmd.Parameters.Add("@location", SqlDbType.VarChar).Value = eventRepeat.location;
-                cmd.Parameters.Add("@message", SqlDbType.VarChar).Value = eventRepeat.message;
-                cmd.Parameters.Add("@period", SqlDbType.VarChar).Value = eventRepeat.period;
-                cmd.Parameters.Add("@dateTime", SqlDbType.DateTime).Value = eventRepeat.date;
-                // cmd.Parameters.Add("@endDate", SqlDbType.VarChar).Value = eventRepeat.endDate;
-                cmd.Parameters.Add("@userID", SqlDbType.Int).Value = eventRepeat.userFK;
-                // cmd.Parameters.Add("@contactID", SqlDbType.Int).Value = eventRepeat.status;
-
+                cmd.Parameters.Add("@title", SqlDbType.NVarChar).Value = eventRepeat.Title;
+                cmd.Parameters.Add("@status", SqlDbType.NChar).Value = eventRepeat.Status;
+                cmd.Parameters.Add("@location", SqlDbType.VarChar).Value = eventRepeat.Location;
+                cmd.Parameters.Add("@message", SqlDbType.VarChar).Value = eventRepeat.Message;
+                cmd.Parameters.Add("@period", SqlDbType.VarChar).Value = eventRepeat.Period;
+                cmd.Parameters.Add("@dateTime", SqlDbType.DateTime).Value = eventRepeat.Date;
+                cmd.Parameters.Add("@userID", SqlDbType.Int).Value = eventRepeat.UserFK;
 
                 // CONTACT ID
                 SqlParameter sqlParameter = new SqlParameter("@contactID", SqlDbType.Int);
-                if (eventRepeat.contactFk == 0)sqlParameter.Value = DBNull.Value; else sqlParameter.Value = eventRepeat.contactFk;
+                if (eventRepeat.ContactFk == 0) sqlParameter.Value = DBNull.Value; else sqlParameter.Value = eventRepeat.ContactFk;
                 cmd.Parameters.Add(sqlParameter);
                 // End date time 
                 SqlParameter sql2 = new SqlParameter("@endDate", SqlDbType.DateTime);
-                if (eventRepeat.endDate == DateTime.MinValue)
+                if (eventRepeat.EndDate == DateTime.MinValue)
                     sql2.Value = DBNull.Value;
                 else
-                    sql2.Value = eventRepeat.endDate;
-                
+                    sql2.Value = eventRepeat.EndDate;
+
                 cmd.Parameters.Add(sql2);
 
                 connection.Open();
                 var x = cmd.ExecuteNonQuery();
-                if (x > 0) return true;  else return false;
-                
+                if (x > 0) return true; else return false;
+
             }
             catch (Exception ex)
             {
@@ -126,36 +116,31 @@ namespace enterpriseDevelopment.Repositories
             {
                 connection.Close();
             }
-
-
-
         }
 
         public bool editEvent(EventRepeat eventRepeat)
         {
-
             string query = "UPDATE EventsRepeatTbl SET [EventTitle] = @title, [EventStatus] = @status, [Location] = @location, [EventMessage] = @message, [EventPeriod] = @period, [dateTime] = @dateTime, [EventPeriodEndDate] = @endDate, [userIdFk] = @userID, [contactIdFk] = @contactID ";
 
             try
             {
                 SqlCommand cmd = new SqlCommand(query, connection);
-                cmd.Parameters.Add("@title", SqlDbType.NVarChar).Value = eventRepeat.title;
-                cmd.Parameters.Add("@status", SqlDbType.NChar).Value = eventRepeat.status;
-                cmd.Parameters.Add("@period", SqlDbType.NVarChar).Value = eventRepeat.period;
-                cmd.Parameters.Add("@location", SqlDbType.NVarChar).Value = eventRepeat.location;
-                cmd.Parameters.Add("@message", SqlDbType.NVarChar).Value = eventRepeat.message;
-                cmd.Parameters.Add("@dateTime", SqlDbType.DateTime).Value = eventRepeat.date;
-                cmd.Parameters.Add("@userID", SqlDbType.Int).Value = eventRepeat.userFK;
-
+                cmd.Parameters.Add("@title", SqlDbType.NVarChar).Value = eventRepeat.Title;
+                cmd.Parameters.Add("@status", SqlDbType.NChar).Value = eventRepeat.Status;
+                cmd.Parameters.Add("@period", SqlDbType.NVarChar).Value = eventRepeat.Period;
+                cmd.Parameters.Add("@location", SqlDbType.NVarChar).Value = eventRepeat.Location;
+                cmd.Parameters.Add("@message", SqlDbType.NVarChar).Value = eventRepeat.Message;
+                cmd.Parameters.Add("@dateTime", SqlDbType.DateTime).Value = eventRepeat.Date;
+                cmd.Parameters.Add("@userID", SqlDbType.Int).Value = eventRepeat.UserFK;
 
                 SqlParameter sqlParameter = new SqlParameter("@contactID", SqlDbType.Int);
-                if (eventRepeat.contactFk == 0) sqlParameter.Value = DBNull.Value;
-                else sqlParameter.Value = eventRepeat.contactFk;
+                if (eventRepeat.ContactFk == 0) sqlParameter.Value = DBNull.Value;
+                else sqlParameter.Value = eventRepeat.ContactFk;
                 cmd.Parameters.Add(sqlParameter);
 
                 SqlParameter sqlParameter2 = new SqlParameter("@endDate", SqlDbType.DateTime);
-                if (eventRepeat.endDate == DateTime.MinValue) sqlParameter2.Value = DBNull.Value;
-                else sqlParameter2.Value = eventRepeat.endDate;
+                if (eventRepeat.EndDate == DateTime.MinValue) sqlParameter2.Value = DBNull.Value;
+                else sqlParameter2.Value = eventRepeat.EndDate;
                 cmd.Parameters.Add(sqlParameter2);
 
                 connection.Open();
@@ -164,7 +149,6 @@ namespace enterpriseDevelopment.Repositories
                     return true;
                 else
                     return false;
-
             }
             catch (Exception ex)
             {
@@ -175,20 +159,16 @@ namespace enterpriseDevelopment.Repositories
             {
                 connection.Close();
             }
-            
-
         }
 
         public bool deleteEvent(EventRepeat eventRepeat)
         {
-
             string selectQuery = "DELETE FROM EventsRepeatTbl WHERE [EventId] = @id AND [userIdFk] = @userId";
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
-              
-                sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = eventRepeat.id;
-                sqlCommand.Parameters.Add("@userId", SqlDbType.Int).Value = eventRepeat.userFK;
+                sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = eventRepeat.Id;
+                sqlCommand.Parameters.Add("@userId", SqlDbType.Int).Value = eventRepeat.UserFK;
 
                 connection.Open();
                 var x = sqlCommand.ExecuteNonQuery();
@@ -204,7 +184,6 @@ namespace enterpriseDevelopment.Repositories
             {
                 connection.Close();
             }
-
         }
     }
 }

@@ -453,6 +453,7 @@
             this.eventsBtn.Text = "  Events";
             this.eventsBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.eventsBtn.UseVisualStyleBackColor = true;
+            this.eventsBtn.Click += new System.EventHandler(this.eventsBtn_Click);
             this.eventsBtn.MouseEnter += new System.EventHandler(this.eventsBtn_MouseEnter);
             this.eventsBtn.MouseLeave += new System.EventHandler(this.eventsBtn_MouseLeave);
             // 
@@ -472,6 +473,7 @@
             this.transactionBtn.Text = "  Transactions";
             this.transactionBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.transactionBtn.UseVisualStyleBackColor = true;
+            this.transactionBtn.Click += new System.EventHandler(this.transactionBtn_Click);
             this.transactionBtn.MouseEnter += new System.EventHandler(this.transactionBtn_MouseEnter);
             this.transactionBtn.MouseLeave += new System.EventHandler(this.transactionBtn_MouseLeave);
             // 
@@ -491,7 +493,6 @@
             this.summaryBtn.Text = "  Summary";
             this.summaryBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.summaryBtn.UseVisualStyleBackColor = true;
-            this.summaryBtn.Click += new System.EventHandler(this.summaryBtn_Click);
             this.summaryBtn.MouseEnter += new System.EventHandler(this.summaryBtn_MouseEnter);
             this.summaryBtn.MouseLeave += new System.EventHandler(this.summaryBtn_MouseLeave);
             // 
@@ -511,6 +512,7 @@
             this.ContactBtn.Text = "  Contact";
             this.ContactBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ContactBtn.UseVisualStyleBackColor = true;
+            this.ContactBtn.Click += new System.EventHandler(this.ContactBtn_Click);
             this.ContactBtn.MouseEnter += new System.EventHandler(this.ContactBtn_MouseEnter);
             this.ContactBtn.MouseLeave += new System.EventHandler(this.ContactBtn_MouseLeave);
             // 
@@ -603,6 +605,7 @@
             this.eventsRepeatBtn.Text = "Periodic ";
             this.eventsRepeatBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.eventsRepeatBtn.UseVisualStyleBackColor = false;
+            this.eventsRepeatBtn.Click += new System.EventHandler(this.eventsRepeatBtn_Click);
             // 
             // recurringToggleBtn
             // 
@@ -619,6 +622,7 @@
             this.recurringToggleBtn.Text = "All transactions";
             this.recurringToggleBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.recurringToggleBtn.UseVisualStyleBackColor = false;
+            this.recurringToggleBtn.Click += new System.EventHandler(this.recurringToggleBtn_Click);
             // 
             // panelToogle2
             // 
@@ -647,6 +651,7 @@
             this.repeatBtn.Text = "Periodic";
             this.repeatBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.repeatBtn.UseVisualStyleBackColor = false;
+            this.repeatBtn.Click += new System.EventHandler(this.repeatBtn_Click);
             // 
             // allEventBtn
             // 
@@ -662,6 +667,7 @@
             this.allEventBtn.Text = "All events";
             this.allEventBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.allEventBtn.UseVisualStyleBackColor = false;
+            this.allEventBtn.Click += new System.EventHandler(this.allEventBtn_Click);
             // 
             // SummaryForm
             // 
@@ -688,7 +694,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " ";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SummaryForm_FormClosed);
-            this.Load += new System.EventHandler(this.SummaryForm_Load);
             this.Click += new System.EventHandler(this.SummaryForm_Click);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();

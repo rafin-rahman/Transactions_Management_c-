@@ -8,9 +8,7 @@ namespace enterpriseDevelopment.Models
 {
   public class TransactionRepeat : Transaction  
     {
-        public string subscriptionPeriod { get; set; }
-        public DateTime subscriptionEndTime { get; set; }
-
-        
+        public string Period { get; set; }
+        public DateTime EndTime { get; set; } 
     }
 }

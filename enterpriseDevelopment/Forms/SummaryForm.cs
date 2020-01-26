@@ -14,6 +14,8 @@ namespace enterpriseDevelopment.Forms
 {
     public partial class SummaryForm : Form
     {
+        private bool isCollapsed = true;
+        private bool isCollapsed2 = true;
         private TransactionRepository transactionRepository;
         private List<Transaction> transactions;
         public SummaryForm()
@@ -23,8 +25,6 @@ namespace enterpriseDevelopment.Forms
             transactionRepository = new TransactionRepository();
             // it will select the first index instead of having empty sting in the design
             showByCB.SelectedIndex = 0;
-
-
         }
         private void SummaryForm_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -35,7 +35,6 @@ namespace enterpriseDevelopment.Forms
 
         private async void showSumBtn_Click(object sender, EventArgs e)
         {
-
             // set time of the starting period from 12AM
             dateCountStart.Value = dateCountStart.Value.Date + new TimeSpan();
             // set time of the end of the day  from 
@@ -50,32 +49,20 @@ namespace enterpriseDevelopment.Forms
 
 
             if (transactions == null)
-            {
-                transactions = await Task.Run(() => transactionRepository.GetTransactions(Instance.StaticUserAccount.UserId));
-
-            }
+                transactions = await Task.Run(() => transactionRepository.GetTransactions(Instance.StaticUserAccount.Id));
 
             listVSummary.Items.Clear();
-
-
             List<Transaction> tempList = new List<Transaction>();
 
             for (int i = 0; i < transactions.Count; i++)
             {
                 // if the starting date is smaller than the date allocated to transaction OR ending date is bigger than transaction allocated date it will  be removed
-                if (transactions[i].dateTime >= dateCountStart.Value && transactions[i].dateTime <= dateCountEnd.Value)
-                {
+                if (transactions[i].DateTime >= dateCountStart.Value && transactions[i].DateTime <= dateCountEnd.Value)
                     tempList.Add(transactions[i]);
-
-
-                }
-
-
             }
 
             if (showByCB.Text.Equals("Transactions"))
             {
-
                 listVSummary.Columns.Clear();
                 listVSummary.Columns.Add("Category", 110);
                 listVSummary.Columns.Add("Amount", 110);
@@ -83,22 +70,16 @@ namespace enterpriseDevelopment.Forms
                 listVSummary.Columns.Add("Date", 110);
                 listVSummary.Columns.Add("Contact", 110);
 
-
                 foreach (Transaction transaction in tempList)
                 {
-                    ListViewItem listViewToString = new ListViewItem(new string[] { transaction.transactionCategory.ToString(), transaction.transactionAmount.ToString("0.00"), transaction.typeValue.ToString(), transaction.dateTime.ToString(), transaction.contactName.ToString() });
+                    ListViewItem listViewToString = new ListViewItem(new string[] { transaction.Category.ToString(), transaction.Amount.ToString("0.00"), transaction.TransactionType.ToString(), transaction.DateTime.ToString(), transaction.ContactName.ToString() });
                     listVSummary.Items.Add(listViewToString);
                 }
-
-
             }
             // DAYS
             else if (showByCB.Text.Equals("Days"))
             {
                 listVSummary.Columns.Clear();
-            
-
-
                 List<DateTime> dateList = new List<DateTime>();
                 List<decimal> incomeList = new List<decimal>();
                 List<decimal> expenseList = new List<decimal>();
@@ -108,7 +89,7 @@ namespace enterpriseDevelopment.Forms
 
                     for (int x = 0; x < dateList.Count; x++)
                     {
-                        if (dateList[x].Date == transaction.dateTime.Date)
+                        if (dateList[x].Date == transaction.DateTime.Date)
                         {
                             y = x;
                             break;
@@ -117,18 +98,18 @@ namespace enterpriseDevelopment.Forms
 
                     if (y == -1)
                     {
-                        dateList.Add(transaction.dateTime);
+                        dateList.Add(transaction.DateTime);
                          expenseList.Add(0);
                         incomeList.Add(0);
                         y = dateList.Count - 1;
                     }
-                    if (transaction.incomeExpense)
+                    if (transaction.IncomeExpense)
                     {
-                        expenseList[y] += transaction.transactionAmount;
+                        expenseList[y] += transaction.Amount;
                     }
                     else
                     {
-                        incomeList[y] += transaction.transactionAmount;
+                        incomeList[y] += transaction.Amount;
                     }
                 }
 
@@ -145,15 +126,12 @@ namespace enterpriseDevelopment.Forms
                     });
                     listVSummary.Items.Add(listViewItem);
                 }
-
-
             }
 
             // MONTHS
             else if (showByCB.Text.Equals("Months"))
             {
                 listVSummary.Columns.Clear();
-
                 List<string> monthList = new List<string>();
                 List<decimal> incomeList = new List<decimal>();
                 List<decimal> expenseList = new List<decimal>();
@@ -163,7 +141,7 @@ namespace enterpriseDevelopment.Forms
 
                     for (int x = 0; x < monthList.Count; x++)
                     {
-                        if (monthList[x].Equals(transaction.dateTime.ToString("MM/yyyy")))
+                        if (monthList[x].Equals(transaction.DateTime.ToString("MM/yyyy")))
                         {
                             y = x;
                             break;
@@ -172,19 +150,15 @@ namespace enterpriseDevelopment.Forms
 
                     if (y == -1)
                     {
-                        monthList.Add(transaction.dateTime.ToString("MM/yyyy"));
+                        monthList.Add(transaction.DateTime.ToString("MM/yyyy"));
                         expenseList.Add(0);
                         incomeList.Add(0);
                         y = monthList.Count - 1;
                     }
-                    if (transaction.incomeExpense)
-                    {
-                        expenseList[y] += transaction.transactionAmount;
-                    }
+                    if (transaction.IncomeExpense)
+                        expenseList[y] += transaction.Amount;
                     else
-                    {
-                        incomeList[y] += transaction.transactionAmount;
-                    }
+                        incomeList[y] += transaction.Amount;
                 }
 
                 listVSummary.Columns.Add("Date", 100);
@@ -200,14 +174,12 @@ namespace enterpriseDevelopment.Forms
                     });
                     listVSummary.Items.Add(listViewItem);
                 }
-
             }
 
             // YEARS
             else if (showByCB.Text.Equals("Years"))
             {
                 listVSummary.Columns.Clear();
-
                 List<string> yearList = new List<string>();
                 List<decimal> incomeList = new List<decimal>();
                 List<decimal> expenseList = new List<decimal>();
@@ -217,7 +189,7 @@ namespace enterpriseDevelopment.Forms
 
                     for (int x = 0; x < yearList.Count; x++)
                     {
-                        if (yearList[x].Equals(transaction.dateTime.ToString("yyyy")))
+                        if (yearList[x].Equals(transaction.DateTime.ToString("yyyy")))
                         {
                             y = x;
                             break;
@@ -226,19 +198,15 @@ namespace enterpriseDevelopment.Forms
 
                     if (y == -1)
                     {
-                        yearList.Add(transaction.dateTime.ToString("yyyy"));
+                        yearList.Add(transaction.DateTime.ToString("yyyy"));
                         expenseList.Add(0);
                         incomeList.Add(0);
                         y = yearList.Count - 1;
                     }
-                    if (transaction.incomeExpense)
-                    {
-                        expenseList[y] += transaction.transactionAmount;
-                    }
+                    if (transaction.IncomeExpense)
+                        expenseList[y] += transaction.Amount;
                     else
-                    {
-                        incomeList[y] += transaction.transactionAmount;
-                    }
+                        incomeList[y] += transaction.Amount;
                 }
 
                 listVSummary.Columns.Add("Date", 100);
@@ -256,22 +224,7 @@ namespace enterpriseDevelopment.Forms
                 }
             }
             else
-            {
                 MessageBox.Show("Something went wrong while showing items", "Error");
-            }
-
-
-
-
-
-
-
-
-        }
-
-        private void SummaryForm_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void closePanel_Click(object sender, EventArgs e)
@@ -292,7 +245,6 @@ namespace enterpriseDevelopment.Forms
         private void mainBtn_Click(object sender, EventArgs e)
         {
             Instance.MainForm.Show();
-           
             Close();
         }
 
@@ -301,13 +253,9 @@ namespace enterpriseDevelopment.Forms
             financialPredictionForm financialPredictionForm = new financialPredictionForm();
             financialPredictionForm.Activate();
             financialPredictionForm.Show();
+            Close();
         }
-
-        private void summaryBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        
         private void SummaryForm_Click(object sender, EventArgs e)
         {
             ContactsForm contactsForm = new ContactsForm();
@@ -329,19 +277,12 @@ namespace enterpriseDevelopment.Forms
             for (int i = 0; i < count; i++)
             {
                 if (i == count - 1)
-                {
                     listVSummary.Columns[i].Width = last;
-                }
+
                 else if (i == 0)
-                {
                     listVSummary.Columns[i].Width = last;
-                }
                 else
-                {
                     listVSummary.Columns[i].Width = (int)(1.5 * size);
-                }
-
-
             }
         }
 
@@ -483,6 +424,56 @@ namespace enterpriseDevelopment.Forms
                     isCollapsed2 = true;
                 }
             }
+        }
+
+        private void eventsBtn_Click(object sender, EventArgs e)
+        {
+            timer2.Start();
+        }
+
+        private void transactionBtn_Click(object sender, EventArgs e)
+        {
+            timer.Start();
+        }
+
+        private void allEventBtn_Click(object sender, EventArgs e)
+        {
+            EventForm eventForm = new EventForm();
+            eventForm.Activate();
+            eventForm.Show();
+            Close();
+        }
+
+        private void repeatBtn_Click(object sender, EventArgs e)
+        {
+            EventForm eventForm = new EventForm(true);
+            eventForm.Activate();
+            eventForm.Show();
+            Close();
+        }
+
+        private void recurringToggleBtn_Click(object sender, EventArgs e)
+        {
+            TransactionForm transactionForm = new TransactionForm();
+            transactionForm.Activate();
+            transactionForm.Show();
+            Close();
+        }
+
+        private void eventsRepeatBtn_Click(object sender, EventArgs e)
+        {
+            TransactionForm transactionForm = new TransactionForm(true);
+            transactionForm.Activate();
+            transactionForm.Show();
+            Close();
+        }
+
+        private void ContactBtn_Click(object sender, EventArgs e)
+        {
+            ContactsForm contactsForm = new ContactsForm();
+            contactsForm.Activate();
+            contactsForm.Show();
+            Close();
         }
     }
 }

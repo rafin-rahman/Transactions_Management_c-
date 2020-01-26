@@ -24,8 +24,7 @@ namespace enterpriseDevelopment.Forms
             InitializeComponent();
             actionBtn.Text = "ADD EVENT / TASK";
             Text = "Add event";
-            ev = new Event { userFK = Instance.StaticUserAccount.UserId };
-
+            ev = new Event { UserFK = Instance.StaticUserAccount.Id };
         }
 
         public EventAddEdit(Event eventObj)
@@ -34,11 +33,11 @@ namespace enterpriseDevelopment.Forms
             ev = eventObj;
             actionBtn.Text = "Edit";
             Text = "Edit event";
-            titleTxt.Text = eventObj.title;
-            messageRichTxt.Text = eventObj.message;
-            statusComboBox.SelectedItem = eventObj.status;
-            dateTimePick.Value = eventObj.date;
-            locationTxt.Text = eventObj.location;
+            titleTxt.Text = eventObj.Title;
+            messageRichTxt.Text = eventObj.Message;
+            statusComboBox.SelectedItem = eventObj.Status;
+            dateTimePick.Value = eventObj.Date;
+            locationTxt.Text = eventObj.Location;
             groupBox1.Visible = false;
             recurrCheck.Visible = true;
         }
@@ -51,41 +50,37 @@ namespace enterpriseDevelopment.Forms
             er = eventRepeat;
             actionBtn.Text = "Edit";
             Text = "Edit recurring event";
-            titleTxt.Text = eventRepeat.title;
-            messageRichTxt.Text = eventRepeat.message;
-            statusComboBox.SelectedItem = eventRepeat.status;
-            dateTimePick.Value = eventRepeat.date;
-            locationTxt.Text = eventRepeat.location;
+            titleTxt.Text = eventRepeat.Title;
+            messageRichTxt.Text = eventRepeat.Message;
+            statusComboBox.SelectedItem = eventRepeat.Status;
+            dateTimePick.Value = eventRepeat.Date;
+            locationTxt.Text = eventRepeat.Location;
             groupBox1.Visible = true;
             recurrCheck.Visible = false;
 
-            if (er.endDate == DateTime.MinValue)
+            if (er.EndDate == DateTime.MinValue)
             {
                 dateTimePicker1.Enabled = false;
                 noTimeLimit.Checked = true;
             }
             else
             {
-                dateTimePicker1.Value = er.endDate;
+                dateTimePicker1.Value = er.EndDate;
             }
         }
 
         private void setEventContact(List<Contact> list)
         {
-            if (ev.id > 0)
+            if (ev.Id > 0)
             {
-                if (ev.contactFk == 0)
-                {
+                if (ev.ContactFk == 0)
                     comboBoxEvent.Text = "";
-                }
                 else
                 {
                     for (int x = 0; x < list.Count; x++)
                     {
-                        if (ev.contactFk == list[x].ContactId)
-                        {
+                        if (ev.ContactFk == list[x].Id)
                             comboBoxEvent.SelectedItem = comboBoxEvent.Items[x];
-                        }
                     }
                 }
             }
@@ -93,20 +88,16 @@ namespace enterpriseDevelopment.Forms
 
         private void setEventRepeatContact(List<Contact> list)
         {
-            if (er.id > 0)
+            if (er.Id > 0)
             {
-                if (er.contactFk == 0)
-                {
+                if (er.ContactFk == 0)
                     comboBoxEvent.Text = "";
-                }
                 else
                 {
                     for (int x = 0; x < list.Count; x++)
                     {
-                        if (er.contactFk == list[x].ContactId)
-                        {
+                        if (er.ContactFk == list[x].Id)
                             comboBoxEvent.SelectedItem = comboBoxEvent.Items[x];
-                        }
                     }
                 }
             }
@@ -115,97 +106,76 @@ namespace enterpriseDevelopment.Forms
         private async void EventAddEdit_Load(object sender, EventArgs e)
         {
             ContactRepository contactRepository = new ContactRepository();
-            List<Contact> list = await Task.Run(() => contactRepository.GetContacts(Instance.StaticUserAccount.UserId));
+            List<Contact> list = await Task.Run(() => contactRepository.GetContacts(Instance.StaticUserAccount.Id));
             comboBoxEvent.DataSource = list;
             comboBoxEvent.DisplayMember = "ContactName";
 
             if (isRepeat)
-            {
                 setEventRepeatContact(list);
-            }
             else
-            {
                 setEventContact(list);
-            }
         }
 
         private void actionBtn_Click(object sender, EventArgs e)
         {
 
             if (isRepeat)
-            {
                 addEditEventRepeat();
-            } else
-            {
+            else
                 addEditNormEvent();
-            }
-
         }
-       
+
 
         private async void addEditNormEvent()
         {
-            ev.title = titleTxt.Text;
-            ev.message = messageRichTxt.Text;
+            ev.Title = titleTxt.Text;
+            ev.Message = messageRichTxt.Text;
 
             Contact contact = (Contact)comboBoxEvent.SelectedItem;
             if (contact == null)
             {
                 if (string.IsNullOrWhiteSpace(comboBoxEvent.Text))
-                {
-                    ev.contactFk = 0;
-                }
+                    ev.ContactFk = 0;
                 else
                 {
                     ContactRepository contactsRepository = new ContactRepository();
-                    ev.contactFk = await Task.Run(() => contactsRepository.AddContact(new Contact { ContactName = comboBoxEvent.Text, userIdFk = Instance.StaticUserAccount.UserId }));
+                    ev.ContactFk = await Task.Run(() => contactsRepository.AddContact(new Contact { Name = comboBoxEvent.Text, UserFk = Instance.StaticUserAccount.Id }));
                 }
             }
             else
-            {
-                ev.contactFk = contact.ContactId;
-            }
-            ev.date = dateTimePick.Value;
-            ev.location = locationTxt.Text;
+                ev.ContactFk = contact.Id;
 
-            ev.status = statusComboBox.Text;
+            ev.Date = dateTimePick.Value;
+            ev.Location = locationTxt.Text;
+            ev.Status = statusComboBox.Text;
 
             EventRepository eventRepository = new EventRepository();
 
-
             bool x;
-            if (ev.id > 0)
-            {
+            if (ev.Id > 0)
                 x = await Task.Run(() => eventRepository.EditEvent(ev));
-            }
             else
-            {
                 x = await Task.Run(() => eventRepository.AddEvent(ev));
-            }
 
-            if (recurrCheck.Checked == true && ev.id == 0)
+            if (recurrCheck.Checked == true && ev.Id == 0)
             {
                 EventRepeat eventRepeat = new EventRepeat
                 {
-                    title = ev.title,
-                    message = ev.message,
-                    userFK = ev.userFK,
-                    status = ev.status,
-                    date = ev.date,
-                    contactFk = ev.contactFk,
-                    location = ev.location
+                    Title = ev.Title,
+                    Message = ev.Message,
+                    UserFK = ev.UserFK,
+                    Status = ev.Status,
+                    Date = ev.Date,
+                    ContactFk = ev.ContactFk,
+                    Location = ev.Location
                 };
 
-
                 if (noTimeLimit.Checked)
-                {
-                    eventRepeat.endDate = DateTime.MinValue;
-                }
+                    eventRepeat.EndDate = DateTime.MinValue;
                 else
-                {
-                    eventRepeat.endDate = dateTimePicker1.Value;
-                }
-                eventRepeat.period = periodCombo.Text;
+                    eventRepeat.EndDate = dateTimePicker1.Value;
+
+                eventRepeat.Period = periodCombo.Text;
 
                 EventRecurringRepository eventRecurringRepository = new EventRecurringRepository();
                 bool i = await Task.Run(() => eventRecurringRepository.AddEvent(eventRepeat));
@@ -216,78 +186,58 @@ namespace enterpriseDevelopment.Forms
                 }
             }
 
-            if (ev.id > 0 && x == true)
-            {
+            if (ev.Id > 0 && x == true)
                 MessageBox.Show("Event Edited!");
-            }
             else if (x == true)
-            {
                 MessageBox.Show("Event Added!");
-            }
             else
-            {
                 MessageBox.Show("ops, Something went wrong");
-            }
+
             Close();
             Dispose();
         }
 
         private async void addEditEventRepeat()
         {
-            er.title = titleTxt.Text;
-            er.message = messageRichTxt.Text;
+            er.Title = titleTxt.Text;
+            er.Message = messageRichTxt.Text;
 
             Contact contact = (Contact)comboBoxEvent.SelectedItem;
             if (contact == null)
             {
                 if (string.IsNullOrWhiteSpace(comboBoxEvent.Text))
-                {
-                    er.contactFk = 0;
-                }
+                    er.ContactFk = 0;
                 else
                 {
                     ContactRepository contactsRepository = new ContactRepository();
-                    er.contactFk = await Task.Run(() => contactsRepository.AddContact(new Contact { ContactName = comboBoxEvent.Text, userIdFk = Instance.StaticUserAccount.UserId }));
+                    er.ContactFk = await Task.Run(() => contactsRepository.AddContact(new Contact { Name = comboBoxEvent.Text, UserFk = Instance.StaticUserAccount.Id }));
                 }
             }
             else
-            {
-                er.contactFk = contact.ContactId;
-            }
+                er.ContactFk = contact.Id;
 
-           
 
-            er.date = dateTimePick.Value;
-            er.location = locationTxt.Text;
+
+            er.Date = dateTimePick.Value;
+            er.Location = locationTxt.Text;
 
             EventRecurringRepository eventRecurringRepository = new EventRecurringRepository();
-
-
+            
             bool x;
-
-
+            
             if (noTimeLimit.Checked)
-            {
-                er.endDate = DateTime.MinValue;
-            }
+                er.EndDate = DateTime.MinValue;
             else
-            {
-                er.endDate = dateTimePicker1.Value;
-            }
-            er.period = periodCombo.Text;
+                er.EndDate = dateTimePicker1.Value;
+            er.Period = periodCombo.Text;
 
             x = await Task.Run(() => eventRecurringRepository.editEvent(er));
-
-
-            if (er.id > 0 && x == true)
-            {
+            
+            if (er.Id > 0 && x == true)
                 MessageBox.Show("Event Edited!");
-            }
-
             else
-            {
                 MessageBox.Show("ops, Something went wrong");
-            }
+
             Close();
             Dispose();
         }
@@ -295,65 +245,22 @@ namespace enterpriseDevelopment.Forms
         private void recurrCheck_CheckedChanged(object sender, EventArgs e)
         {
             if (recurrCheck.Checked == true)
-            {
                 groupBox1.Visible = true;
-            }
             else
-            {
                 groupBox1.Visible = false;
-            }
         }
 
         private void noTimeLimit_CheckedChanged(object sender, EventArgs e)
         {
             if (noTimeLimit.Checked == true)
-            {
                 dateTimePicker1.Enabled = false;
-            }
             else
-            {
                 dateTimePicker1.Enabled = true;
-            }
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
         }
 
         private void closePanel_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void messageRichTxt_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBoxEvent_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void closePanel_MouseEnter(object sender, EventArgs e)

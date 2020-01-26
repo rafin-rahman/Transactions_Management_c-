@@ -7,13 +7,9 @@ using System.Threading.Tasks;
 namespace enterpriseDevelopment
 {
     public class Contact
-
     {
-        public int ContactId { get; set; }
-        public string ContactName { get; set; }
-        public int userIdFk { get; set; }
-        
-
-
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int UserFk { get; set; }
     }
 }

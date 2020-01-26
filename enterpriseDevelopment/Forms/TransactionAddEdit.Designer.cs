@@ -344,7 +344,6 @@
             this.label8.Size = new System.Drawing.Size(70, 19);
             this.label8.TabIndex = 21;
             this.label8.Text = "Category";
-            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // label1
             // 

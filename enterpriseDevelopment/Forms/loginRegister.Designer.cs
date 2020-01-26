@@ -133,7 +133,7 @@
             this.fullNameRegTxt.Name = "fullNameRegTxt";
             this.fullNameRegTxt.Size = new System.Drawing.Size(122, 19);
             this.fullNameRegTxt.TabIndex = 4;
-            this.fullNameRegTxt.Text = "Your name";
+            this.fullNameRegTxt.Text = "Type full name";
             this.fullNameRegTxt.MouseClick += new System.Windows.Forms.MouseEventHandler(this.fullNameRegTxt_MouseClick);
             // 
             // usernameRegTxt
@@ -146,7 +146,7 @@
             this.usernameRegTxt.Name = "usernameRegTxt";
             this.usernameRegTxt.Size = new System.Drawing.Size(122, 19);
             this.usernameRegTxt.TabIndex = 5;
-            this.usernameRegTxt.Text = "Create username";
+            this.usernameRegTxt.Text = "Type username";
             this.usernameRegTxt.MouseClick += new System.Windows.Forms.MouseEventHandler(this.usernameRegTxt_MouseClick);
             // 
             // passwordRegTxt
@@ -159,7 +159,7 @@
             this.passwordRegTxt.Name = "passwordRegTxt";
             this.passwordRegTxt.Size = new System.Drawing.Size(122, 19);
             this.passwordRegTxt.TabIndex = 6;
-            this.passwordRegTxt.Text = "Create password..";
+            this.passwordRegTxt.Text = "Type password";
             this.passwordRegTxt.MouseClick += new System.Windows.Forms.MouseEventHandler(this.passwordRegTxt_MouseClick);
             // 
             // password2RegTxt
@@ -170,9 +170,9 @@
             this.password2RegTxt.Location = new System.Drawing.Point(11, 9);
             this.password2RegTxt.Margin = new System.Windows.Forms.Padding(2);
             this.password2RegTxt.Name = "password2RegTxt";
-            this.password2RegTxt.Size = new System.Drawing.Size(122, 19);
+            this.password2RegTxt.Size = new System.Drawing.Size(136, 19);
             this.password2RegTxt.TabIndex = 12;
-            this.password2RegTxt.Text = "Your password";
+            this.password2RegTxt.Text = "Confirm password";
             this.password2RegTxt.MouseClick += new System.Windows.Forms.MouseEventHandler(this.password2RegTxt_MouseClick);
             // 
             // panel1

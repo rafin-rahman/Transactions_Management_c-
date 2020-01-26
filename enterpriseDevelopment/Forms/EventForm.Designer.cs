@@ -632,6 +632,7 @@
             this.eventsRepeatBtn.Text = "Periodic ";
             this.eventsRepeatBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.eventsRepeatBtn.UseVisualStyleBackColor = false;
+            this.eventsRepeatBtn.Click += new System.EventHandler(this.eventsRepeatBtn_Click);
             // 
             // recurringToggleBtn
             // 
@@ -648,6 +649,7 @@
             this.recurringToggleBtn.Text = "All transactions";
             this.recurringToggleBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.recurringToggleBtn.UseVisualStyleBackColor = false;
+            this.recurringToggleBtn.Click += new System.EventHandler(this.recurringToggleBtn_Click);
             // 
             // panelToogle2
             // 
@@ -691,6 +693,7 @@
             this.allEventBtn.Text = "All events";
             this.allEventBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.allEventBtn.UseVisualStyleBackColor = false;
+            this.allEventBtn.Click += new System.EventHandler(this.allEventBtn_Click);
             // 
             // EventForm
             // 
@@ -715,7 +718,6 @@
             this.Text = "EventForm";
             this.Activated += new System.EventHandler(this.EventForm_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.EventForm_FormClosed);
-            this.Load += new System.EventHandler(this.EventForm_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);

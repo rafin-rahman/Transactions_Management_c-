@@ -8,13 +8,10 @@ namespace enterpriseDevelopment
 {
     class UserAccount
     {
-
-        public int UserId { get; set; }
+        public int Id { get; set; }
         public string Username { get; set; }
-        public string UserPwd { get; set; }
-        public string UserFName { get; set; }
+        public string Password { get; set; }
+        public string FullName { get; set; }
         public DateTime LogDate { get; set; }
-
-
     }
 }

@@ -14,7 +14,6 @@ namespace enterpriseDevelopment
 {
     public partial class LoginRegister : Form
     {
-
         private string fullNameReg, usernameReg, pwdReg, pwd2Reg;
         private string userNameLog, pwdLog;
         UserRepository userRepositoryObj;
@@ -22,20 +21,17 @@ namespace enterpriseDevelopment
         {
             InitializeComponent();
             userRepositoryObj = new UserRepository();
-            
             Instance.MainForm.Hide();
         }
 
         // function for registration validations
         private bool RegistrationValidation()
         {
-
             if (String.IsNullOrEmpty(fullNameReg))
             {
                 MessageBox.Show("Full name cannot be empty");
                 return false;
             }
-
 
             if (fullNameReg.Length < 3)
             {
@@ -75,8 +71,6 @@ namespace enterpriseDevelopment
                 return false;
             }
 
-
-
             if (String.IsNullOrWhiteSpace(pwdReg))
             {
                 MessageBox.Show("Your pasword cannot be empty or contain spaces");
@@ -94,7 +88,6 @@ namespace enterpriseDevelopment
                 MessageBox.Show("Password is too long, you can use up to 100 character");
                 return false;
             }
-
 
             if (!pwdReg.Equals(pwd2Reg))
             {
@@ -128,7 +121,6 @@ namespace enterpriseDevelopment
 
             UserAccount userAccount = await Task.Run(() => userRepositoryObj.GetUserByUsername(userNameLog));
             if (!CheckUserForLogin(userAccount)) return;
-
             if (!CheckPwdForLogin(userAccount)) return;
             // if login is successful, it will store login user data into the static class
             Instance.StaticUserAccount = userAccount;
@@ -137,8 +129,7 @@ namespace enterpriseDevelopment
 
         private bool CheckUserForLogin(UserAccount userAccount)
         {
-
-            if (!(userAccount.UserId > 0))
+            if (!(userAccount.Id > 0))
             {
                 MessageBox.Show("Username or Password is incorrect, please try again", "Alert");
                 return false;
@@ -147,33 +138,19 @@ namespace enterpriseDevelopment
         }
 
         private bool CheckPwdForLogin(UserAccount userAccount)
-
         {
-
-            bool isMatched = bcrypt.Verify("hEllo" + pwdLog + "woRld", userAccount.UserPwd);
+            bool isMatched = bcrypt.Verify("hEllo" + pwdLog + "woRld", userAccount.Password);
 
             if (!isMatched)
             {
                 MessageBox.Show(Messages.WrongCredentials);
                 return false;
-
-
             }
             else
-            {
                 MessageBox.Show("Logged in successfully");
-            }
             return true;
         }
 
-       
-
- 
-
-        
-
-       
-        
         private void closeBtn_Click(object sender, EventArgs e)
         {
             Close();
@@ -211,7 +188,6 @@ namespace enterpriseDevelopment
             label3.Visible = false;
             label4.Visible = false;
             registerIcon.Visible = false;
-
             panel1.Visible = true;
             panel3.Visible = true;
             loginBtn.Visible = true;
@@ -239,112 +215,99 @@ namespace enterpriseDevelopment
                 passwordLogTxt.Text = "Your Password";
                 passwordLogTxt.UseSystemPasswordChar = false;
             }
-
-
         }
         // Login password Click
         private void passwordLogTxt_MouseClick(object sender, MouseEventArgs e)
         {
             passwordLogTxt.Text = "";
-
             if (passwordLogTxt.Text == "") passwordLogTxt.UseSystemPasswordChar = true;
             if (usernameLogTxt.Text == "") usernameLogTxt.Text = "Type username...";
         }
         // registration name Click
         private void fullNameRegTxt_MouseClick(object sender, MouseEventArgs e)
         {
-            fullNameRegTxt.Text = "";
+            if (fullNameRegTxt.Text == "Type full name")
+                fullNameRegTxt.Text = "";
+
             if (passwordRegTxt.Text == "")
             {
-                passwordRegTxt.Text = "Create Password";
+                passwordRegTxt.Text = "Type password";
                 passwordRegTxt.UseSystemPasswordChar = false;
             }
 
             if (password2RegTxt.Text == "")
             {
-                password2RegTxt.Text = "Type Password";
+                password2RegTxt.Text = "Confirm password";
                 password2RegTxt.UseSystemPasswordChar = false;
             }
 
             if (usernameRegTxt.Text == "")
-            {
-                usernameRegTxt.Text = "Create username";
-                
-            }
-
-
-
+                usernameRegTxt.Text = "Type username";
         }
+
         // registration username Click
         private void usernameRegTxt_MouseClick(object sender, MouseEventArgs e)
         {
-            usernameRegTxt.Text = "";
+            if (usernameRegTxt.Text == "Type username")
+                usernameRegTxt.Text = "";
 
             if (passwordRegTxt.Text == "")
             {
-                passwordRegTxt.Text = "Create Password";
+                passwordRegTxt.Text = "Type password";
                 passwordRegTxt.UseSystemPasswordChar = false;
             }
 
             if (password2RegTxt.Text == "")
             {
-                password2RegTxt.Text = "Type Password";
+                password2RegTxt.Text = "Confirm password";
                 password2RegTxt.UseSystemPasswordChar = false;
             }
 
             if (fullNameRegTxt.Text == "")
-            {
-                fullNameRegTxt.Text = "Your name";
-              
-            }
+                fullNameRegTxt.Text = "Type full name";
         }
+
         // registration password Click
         private void passwordRegTxt_MouseClick(object sender, MouseEventArgs e)
         {
-            passwordRegTxt.Text = "";
-            passwordRegTxt.UseSystemPasswordChar = true;
+            if (passwordRegTxt.Text == "Type password")
+            {
+                passwordRegTxt.Text = "";
+                passwordRegTxt.UseSystemPasswordChar = true;
+            }
 
             if (usernameRegTxt.Text == "")
-            {
-                usernameRegTxt.Text = "Create username";
-                
-            }
+                usernameRegTxt.Text = "Type username";
 
             if (password2RegTxt.Text == "")
             {
-                password2RegTxt.Text = "Type Password";
+                password2RegTxt.Text = "Confirm password";
                 password2RegTxt.UseSystemPasswordChar = false;
             }
 
             if (fullNameRegTxt.Text == "")
-            {
-                fullNameRegTxt.Text = "Your name";
-               
-            }
+                fullNameRegTxt.Text = "Type full name";
         }
         // registration password 2 Click
         private void password2RegTxt_MouseClick(object sender, MouseEventArgs e)
         {
-            password2RegTxt.Text = "";
-            password2RegTxt.UseSystemPasswordChar = true;
-
-            if (usernameRegTxt.Text == "")
+            if (password2RegTxt.Text == "Confirm password")
             {
-                usernameRegTxt.Text = "Create username";
-
+                password2RegTxt.Text = "";
+                password2RegTxt.UseSystemPasswordChar = true;
             }
+            
+            if (usernameRegTxt.Text == "")
+                usernameRegTxt.Text = "Type username";
 
             if (passwordRegTxt.Text == "")
             {
-                passwordRegTxt.Text = "Create Password";
+                passwordRegTxt.Text = "Type password";
                 passwordRegTxt.UseSystemPasswordChar = false;
             }
 
             if (fullNameRegTxt.Text == "")
-            {
-                fullNameRegTxt.Text = "Your name";
-
-            }
+                fullNameRegTxt.Text = "Type full name";
         }
         #endregion
 
@@ -366,55 +329,38 @@ namespace enterpriseDevelopment
 
         private void EncryptPwd()
         {
-
             pwdReg = bcrypt.HashPassword("hEllo" + pwdReg + "woRld", bcrypt.GenerateSalt());
         }
 
         private async void RegisterBtn_Click(object sender, EventArgs e)
         {
-            
             fullNameReg = fullNameRegTxt.Text;
             usernameReg = usernameRegTxt.Text;
             pwdReg = passwordRegTxt.Text;
             pwd2Reg = password2RegTxt.Text;
-
-           
+            
             if (!RegistrationValidation()) return;
             if (!await CheckIfUserExists()) return;
             EncryptPwd();
-
-
-
             
-            bool check = await Task.Run(() => userRepositoryObj.AddUserAccount(new UserAccount { UserFName = fullNameReg, Username = usernameReg, UserPwd = pwdReg }));
+            bool check = await Task.Run(() => userRepositoryObj.AddUserAccount(new UserAccount { FullName = fullNameReg, Username = usernameReg, Password = pwdReg }));
             // checks if there was any error during the insertion of the user data into the database, AddUserAccount method returns tre of false 
             if (check)
-            {
                 MessageBox.Show("Account successfully created");
-            }
             else
-            {
                 MessageBox.Show("Error,account not created. Try again.");
-            }
-
-
-
-
         }
 
         private async Task<bool> CheckIfUserExists()
         {
-
             UserAccount userAccount = await Task.Run(() => userRepositoryObj.GetUserByUsername(usernameReg));
             // if the usernameReg already exist, it will pop up the error message
-            if (userAccount.UserId > 0)
+            if (userAccount.Id > 0)
             {
                 MessageBox.Show("Username already in use, please try with different name", "Alert");
                 return false;
             }
             return true;
         }
-
-
     }
 }

@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend11 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.ContactBtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -437,7 +437,6 @@
             this.closePanel.Size = new System.Drawing.Size(32, 30);
             this.closePanel.TabIndex = 0;
             this.closePanel.Click += new System.EventHandler(this.closePanel_Click);
-            this.closePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.closePanel_Paint);
             this.closePanel.MouseEnter += new System.EventHandler(this.closePanel_MouseEnter);
             this.closePanel.MouseLeave += new System.EventHandler(this.closePanel_MouseLeave);
             // 
@@ -551,22 +550,21 @@
             // 
             // PieChart
             // 
-            chartArea8.Name = "ChartArea1";
-            this.PieChart.ChartAreas.Add(chartArea8);
-            legend8.Name = "Legend1";
-            this.PieChart.Legends.Add(legend8);
+            chartArea11.Name = "ChartArea1";
+            this.PieChart.ChartAreas.Add(chartArea11);
+            legend11.Name = "Legend1";
+            this.PieChart.Legends.Add(legend11);
             this.PieChart.Location = new System.Drawing.Point(658, 108);
             this.PieChart.Name = "PieChart";
             this.PieChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series8.ChartArea = "ChartArea1";
-            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series8.Legend = "Legend1";
-            series8.Name = "MonthlyTransaction";
-            this.PieChart.Series.Add(series8);
+            series11.ChartArea = "ChartArea1";
+            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series11.Legend = "Legend1";
+            series11.Name = "MonthlyTransaction";
+            this.PieChart.Series.Add(series11);
             this.PieChart.Size = new System.Drawing.Size(300, 300);
             this.PieChart.TabIndex = 11;
             this.PieChart.Text = "chart1";
-            this.PieChart.Click += new System.EventHandler(this.PieChart_Click);
             // 
             // MainForm
             // 
@@ -586,7 +584,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Activated += new System.EventHandler(this.MainForm_Activated);
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();

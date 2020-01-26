@@ -22,9 +22,8 @@ namespace enterpriseDevelopment.Forms
         {
             InitializeComponent();
             actionBtn.Text = "Add";
-          
             Text = "Add transaction";
-            t = new Transaction { userIdFk = Instance.StaticUserAccount.UserId };
+            t = new Transaction { UserFk = Instance.StaticUserAccount.Id };
         }
          
         public TransactionAddEdit(Transaction transaction)
@@ -32,11 +31,10 @@ namespace enterpriseDevelopment.Forms
             InitializeComponent();
             t = transaction;
             actionBtn.Text = "Edit ";
-           
             Text = "Edit transaction";
-            categoryTxt.Text = transaction.transactionCategory;
-            transactionAmountNum.Value = transaction.transactionAmount;
-            if (transaction.incomeExpense == true)
+            categoryTxt.Text = transaction.Category;
+            transactionAmountNum.Value = transaction.Amount;
+            if (transaction.IncomeExpense == true)
             {
                 incomeRadio.Checked = true;
                 expenseRadio.Checked = false;
@@ -52,12 +50,10 @@ namespace enterpriseDevelopment.Forms
                 incomeHighLight.Visible = false;
                 expenseHighLight.Visible = true;
             }
-            transDateTime.Value = transaction.dateTime;
-            messageRichTetx.Text = transaction.transactionMessage;
-
+            transDateTime.Value = transaction.DateTime;
+            messageRichTetx.Text = transaction.Description;
             groupBox1.Visible = false;
             recurrCheck.Visible = false;
-
         }
         
         public TransactionAddEdit(TransactionRepeat transaction)
@@ -66,18 +62,16 @@ namespace enterpriseDevelopment.Forms
             isRepeat = true;
             tr = transaction;
             actionBtn.Text = "Edit ";
-           
             Text = "Edit recurring transaction";
-            categoryTxt.Text = transaction.transactionCategory;
-            transactionAmountNum.Value = transaction.transactionAmount;
-            if (transaction.incomeExpense == true)
+            categoryTxt.Text = transaction.Category;
+            transactionAmountNum.Value = transaction.Amount;
+            if (transaction.IncomeExpense == true)
             {
                 incomeRadio.Checked = true;
                 expenseRadio.Checked = false;
                 // Blue panel show / hide
                 incomeHighLight.Visible = true;
                 expenseHighLight.Visible = false;
-
             }
             else
             {
@@ -87,41 +81,37 @@ namespace enterpriseDevelopment.Forms
                 incomeHighLight.Visible = false;
                 expenseHighLight.Visible = true;
             }
-            transDateTime.Value = transaction.dateTime;
-            messageRichTetx.Text = transaction.transactionMessage;
-            periodCombo.Text = tr.subscriptionPeriod;
-            if (tr.subscriptionEndTime == DateTime.MinValue)
+
+            transDateTime.Value = transaction.DateTime;
+            messageRichTetx.Text = transaction.Description;
+            periodCombo.Text = tr.Period;
+
+            if (tr.EndTime == DateTime.MinValue)
             {
                 dateTimePicker1.Enabled = false;
                 noTimeLimit.Checked = true;
             }
             else
             {
-                dateTimePicker1.Value = tr.subscriptionEndTime;
+                dateTimePicker1.Value = tr.EndTime;
             }
-
-
+            
             groupBox1.Visible = true;
             recurrCheck.Visible = false;
-
         }
 
         private void setTransContact(List<Contact> list)
         {
-            if (t.transactionId > 0)
+            if (t.Id > 0)
             {
-                if (t.contactIdFk == 0)
-                {
+                if (t.ContactFk == 0)
                     contactComboBox.Text = "";
-                }
                 else
                 {
                     for (int x = 0; x < list.Count; x++)
                     {
-                        if (t.contactIdFk == list[x].ContactId)
-                        {
+                        if (t.ContactFk == list[x].Id)
                             contactComboBox.SelectedItem = contactComboBox.Items[x];
-                        }
                     }
                 }
             }
@@ -129,20 +119,16 @@ namespace enterpriseDevelopment.Forms
 
         private void setTransRepeatContact(List<Contact> list)
         {
-            if (tr.transactionId > 0)
+            if (tr.Id > 0)
             {
-                if (tr.contactIdFk == 0)
-                {
+                if (tr.ContactFk == 0)
                     contactComboBox.Text = "";
-                }
                 else
                 {
                     for (int x = 0; x < list.Count; x++)
                     {
-                        if (tr.contactIdFk == list[x].ContactId)
-                        {
+                        if (tr.ContactFk == list[x].Id)
                             contactComboBox.SelectedItem = contactComboBox.Items[x];
-                        }
                     }
                 }
             }
@@ -151,112 +137,80 @@ namespace enterpriseDevelopment.Forms
         private async void TransactionAddEdit_Load(object sender, EventArgs e)
         {
             ContactRepository contactRepository = new ContactRepository();
-            List<Contact> list = await Task.Run(() => contactRepository.GetContacts(Instance.StaticUserAccount.UserId));
+            List<Contact> list = await Task.Run(() => contactRepository.GetContacts(Instance.StaticUserAccount.Id));
             contactComboBox.DataSource = list;
             contactComboBox.DisplayMember = "ContactName";
 
             if (isRepeat)
-            {
                 setTransRepeatContact(list);
-            }
             else
-            {
                 setTransContact(list);
-            }
         }
         
         private void actionBtn_Click(object sender, EventArgs e)
         {
             if (isRepeat)
-            {
                 addEditransactionRepeat();
-            }
             else
-            {
                 addEditNormTransaction();
-            }
-
         }
 
         private async void addEditNormTransaction()
         {
-            t.transactionCategory = categoryTxt.Text;
-            t.transactionAmount = transactionAmountNum.Value;
-
+            t.Category = categoryTxt.Text;
+            t.Amount = transactionAmountNum.Value;
             Contact contact = (Contact)contactComboBox.SelectedItem;
+
             if (contact == null)
             {
                 if (string.IsNullOrWhiteSpace(contactComboBox.Text))
-                {
-                    t.contactIdFk = 0;
-                }
+                    t.ContactFk = 0;
                 else
                 {
                     ContactRepository contactsRepository = new ContactRepository();
-                    contactsRepository.AddContact(new Contact { ContactName = contactComboBox.Text, userIdFk = Instance.StaticUserAccount.UserId });
+                    contactsRepository.AddContact(new Contact { Name = contactComboBox.Text, UserFk = Instance.StaticUserAccount.Id });
                 }
             }
             else
-            {
-                t.contactIdFk = contact.ContactId;
-            }
+                t.ContactFk = contact.Id;
 
             if (incomeRadio.Checked == true)
-            {
-                t.incomeExpense = true;
-                
-                
-            }
+                t.IncomeExpense = true;
             else if (expenseRadio.Checked == true)
-            {
-                t.incomeExpense = false;
-            }
+                t.IncomeExpense = false;
             else
-            {
                 MessageBox.Show("Choose transaction type");
-            }
 
-            t.dateTime = transDateTime.Value;
-            t.transactionMessage = messageRichTetx.Text;
-
+            t.DateTime = transDateTime.Value;
+            t.Description = messageRichTetx.Text;
             TransactionRepository transactionRepository = new TransactionRepository();
-
-
+            
             bool x;
-            if (t.transactionId > 0)
-            {
+            if (t.Id > 0)
                 x = await Task.Run(() => transactionRepository.EditTransaction(t));
-            }
             else
-            {
                 x = await Task.Run(() => transactionRepository.AddTransction(t));
-            }
 
-            if (recurrCheck.Checked == true && t.transactionId == 0)
+            if (recurrCheck.Checked == true && t.Id == 0)
             {
                 TransactionRepeat transactionRepeat = new TransactionRepeat
                 {
-                    transactionCategory = t.transactionCategory,
-                    transactionAmount = t.transactionAmount,
-                    userIdFk = t.userIdFk,
-                    typeValue = t.typeValue,
-                    dateTime = t.dateTime,
-                    transactionMessage = t.transactionMessage,
-                    contactIdFk = t.contactIdFk,
-                    incomeExpense = t.incomeExpense
+                    Category = t.Category,
+                    Amount = t.Amount,
+                    UserFk = t.UserFk,
+                    TransactionType = t.TransactionType,
+                    DateTime = t.DateTime,
+                    Description = t.Description,
+                    ContactFk = t.ContactFk,
+                    IncomeExpense = t.IncomeExpense
                 };
-
-
+                
                 if (noTimeLimit.Checked)
-                {
-                    transactionRepeat.subscriptionEndTime = DateTime.MinValue;
-                }
+                    transactionRepeat.EndTime = DateTime.MinValue;
                 else
-                {
-                    transactionRepeat.subscriptionEndTime = dateTimePicker1.Value;
-                }
-                transactionRepeat.subscriptionPeriod = periodCombo.Text;
+                    transactionRepeat.EndTime = dateTimePicker1.Value;
 
+                transactionRepeat.Period = periodCombo.Text;
                 TransactionRecurringRepository transactionRecurringRepository = new TransactionRecurringRepository();
                 bool i = await Task.Run(() => transactionRecurringRepository.AddTransction(transactionRepeat));
                 if (i == false)
@@ -266,90 +220,63 @@ namespace enterpriseDevelopment.Forms
                 }
             }
 
-            if (t.transactionId > 0 && x == true)
-            {
+            if (t.Id > 0 && x == true)
                 MessageBox.Show("Transaction Edited!");
-            }
             else if (x == true)
-            {
                 MessageBox.Show("Transaction Added!");
-            }
             else
-            {
                 MessageBox.Show("ops, Something went wrong");
-            }
+
             Close();
             Dispose();
         }
         
         private async void addEditransactionRepeat()
         {
-            tr.transactionCategory = categoryTxt.Text;
-            tr.transactionAmount = transactionAmountNum.Value;
+            tr.Category = categoryTxt.Text;
+            tr.Amount = transactionAmountNum.Value;
 
             Contact contact = (Contact)contactComboBox.SelectedItem;
             if (contact == null)
             {
                 if (string.IsNullOrWhiteSpace(contactComboBox.Text))
-                {
-                    tr.contactIdFk = 0;
-                }
+                    tr.ContactFk = 0;
                 else
                 {
                     ContactRepository contactsRepository = new ContactRepository();
-                    tr.contactIdFk = await Task.Run(() => contactsRepository.AddContact(new Contact { ContactName = contactComboBox.Text, userIdFk = Instance.StaticUserAccount.UserId }));
+                    tr.ContactFk = await Task.Run(() => contactsRepository.AddContact(new Contact { Name = contactComboBox.Text, UserFk = Instance.StaticUserAccount.Id }));
                 }
             }
+
             else
-            {
-                tr.contactIdFk = contact.ContactId;
-            }
+                tr.ContactFk = contact.Id;
 
             if (incomeRadio.Checked == true)
-            {
-                tr.incomeExpense = true;
-
-            }
+                tr.IncomeExpense = true;
             else if (expenseRadio.Checked == true)
-            {
-                tr.incomeExpense = false;
-            }
+                tr.IncomeExpense = false;
             else
-            {
                 MessageBox.Show("Choose transaction type");
-            }
 
-            tr.dateTime = transDateTime.Value;
-            tr.transactionMessage = messageRichTetx.Text;
-
+            tr.DateTime = transDateTime.Value;
+            tr.Description = messageRichTetx.Text;
             TransactionRecurringRepository transactionRepository = new TransactionRecurringRepository();
-
-
+            
             bool x;
-
-
+            
             if (noTimeLimit.Checked)
-            {
-                tr.subscriptionEndTime = DateTime.MinValue;
-            }
+                tr.EndTime = DateTime.MinValue;
             else
-            {
-                tr.subscriptionEndTime = dateTimePicker1.Value;
-            }
-            tr.subscriptionPeriod = periodCombo.Text;
+                tr.EndTime = dateTimePicker1.Value;
 
+            tr.Period = periodCombo.Text;
             x = await Task.Run(() => transactionRepository.EditTransaction(tr));
-
-
-            if (tr .transactionId > 0 && x == true)
-            {
+            
+            if (tr .Id > 0 && x == true)
                 MessageBox.Show("Transaction Edited!");
-            }
-           
             else
-            {
                 MessageBox.Show("ops, Something went wrong");
-            }
+
             Close();
             Dispose();
         }
@@ -357,30 +284,17 @@ namespace enterpriseDevelopment.Forms
         private void recurrCheck_CheckedChanged(object sender, EventArgs e)
         {
             if (recurrCheck.Checked == true)
-            {
                 groupBox1.Visible = true;
-            }
             else
-            {
                 groupBox1.Visible = false;
-            }
         }
 
         private void noTimeLimit_CheckedChanged(object sender, EventArgs e)
         {
             if (noTimeLimit.Checked == true)
-            {
                 dateTimePicker1.Enabled = false;
-            }
             else
-            {
                 dateTimePicker1.Enabled = true;
-            }
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void closePanel_Click(object sender, EventArgs e)
@@ -400,26 +314,18 @@ namespace enterpriseDevelopment.Forms
 
         private void incomeRadio_CheckedChanged(object sender, EventArgs e)
         {
-            if (incomeRadio.Checked) {
+            if (incomeRadio.Checked)
                 incomeHighLight.Visible = true;
-            }
             else
-            {
                 incomeHighLight.Visible = false;
-            }
         }
 
         private void expenseRadio_CheckedChanged(object sender, EventArgs e)
         {
-
             if (expenseRadio.Checked)
-            {
                 expenseHighLight.Visible = true;
-            }
             else
-            {
                 expenseHighLight.Visible = false;
-            }
         }
     }
 }

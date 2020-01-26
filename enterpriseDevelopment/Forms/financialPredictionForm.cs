@@ -35,38 +35,30 @@ namespace enterpriseDevelopment.Forms
 
             foreach (Transaction t in transactions)
             {
-                if (t.dateTime.DayOfWeek == predicDate.DayOfWeek)
+                if (t.DateTime.DayOfWeek == predicDate.DayOfWeek)
                 {
-                    sumDayOfWeek += t.transactionAmount;
-                    if (!datesOfWeek.Contains(t.dateTime.Date))
-                    {
-                        datesOfWeek.Add(t.dateTime.Date);
-                    }
+                    sumDayOfWeek += t.Amount;
+                    if (!datesOfWeek.Contains(t.DateTime.Date))
+                        datesOfWeek.Add(t.DateTime.Date);
                 }
 
-                if (t.dateTime.Day == predicDate.Day)
+                if (t.DateTime.Day == predicDate.Day)
                 {
-                    sumDayOfMonth += t.transactionAmount;
-                    if (!datesOfWeek.Contains(t.dateTime.Date))
-                    {
-                        datesOfWeek.Add(t.dateTime.Date);
-                    }
+                    sumDayOfMonth += t.Amount;
+                    if (!datesOfWeek.Contains(t.DateTime.Date))
+                        datesOfWeek.Add(t.DateTime.Date);
                 }
 
-                if (t.dateTime >= lastMonth)
+                if (t.DateTime >= lastMonth)
                 {
-                    sumLastMonth += t.transactionAmount;
-                    if (!datesOfLastMonth.Contains(t.dateTime.Date))
-                    {
-                        datesOfLastMonth.Add(t.dateTime.Date);
-                    }
+                    sumLastMonth += t.Amount;
+                    if (!datesOfLastMonth.Contains(t.DateTime.Date))
+                        datesOfLastMonth.Add(t.DateTime.Date);
                 }
             }
-
-      
+            
             decimal sumOfAvg = 0;
             
-
             int n = 0;
             if (datesOfWeek.Count > 0)
             {
@@ -86,58 +78,43 @@ namespace enterpriseDevelopment.Forms
                 sumOfAvg += sumLastMonth / datesOfLastMonth.Count;
             }
             
-
             decimal average = 0;
 
             if (n > 0)
-            {
                 average = sumOfAvg / n;
-            }
 
             return average;
         }
+
         private decimal GetRecurringAmount()
         {
             decimal totRecurring = 0;
             DateTime predicDate = datePicker.SelectionRange.Start;
             foreach (TransactionRepeat transactionRepeat in transactionRepeats)
             {
-                string tDateString = transactionRepeat.dateTime.ToString("dd/MM");
+                string tDateString = transactionRepeat.DateTime.ToString("dd/MM");
                 string predictDateString = predicDate.ToString("dd/MM");
-                if (transactionRepeat.subscriptionPeriod.Equals("Yearly"))
+                if (transactionRepeat.Period.Equals("Yearly"))
                 {
                     if (tDateString.Equals(predictDateString))
-                    {
-                        totRecurring += transactionRepeat.transactionAmount;
-                    }
+                        totRecurring += transactionRepeat.Amount;
                 }
 
-                if (transactionRepeat.subscriptionPeriod.Equals("Monthly"))
+                if (transactionRepeat.Period.Equals("Monthly"))
                 {
-                    if (transactionRepeat.dateTime.Day == predicDate.Day)
-                    {
-                        totRecurring += transactionRepeat.transactionAmount;
-                    }
+                    if (transactionRepeat.DateTime.Day == predicDate.Day)
+                        totRecurring += transactionRepeat.Amount;
                 }
 
-                if (transactionRepeat.subscriptionPeriod.Equals("Weekly"))
+                if (transactionRepeat.Period.Equals("Weekly"))
                 {
-                    if (transactionRepeat.dateTime.DayOfWeek == predicDate.DayOfWeek)
-                    {
-                        totRecurring += transactionRepeat.transactionAmount;
-                    }
+                    if (transactionRepeat.DateTime.DayOfWeek == predicDate.DayOfWeek)
+                        totRecurring += transactionRepeat.Amount;
                 }
-
-
-                if (transactionRepeat.subscriptionPeriod.Equals("Daily"))
-                {
-                    totRecurring += transactionRepeat.transactionAmount;
-
-                }
-
-
+                
+                if (transactionRepeat.Period.Equals("Daily"))
+                    totRecurring += transactionRepeat.Amount;
             }
-
             return totRecurring;
         }
 
@@ -148,57 +125,41 @@ namespace enterpriseDevelopment.Forms
             transactionRecurringRepository = new TransactionRecurringRepository();
         }
 
-
-
         private async void predictBtn_Click(object sender, EventArgs e)
         {
             if (transactions == null)
             {
-                transactions = await Task.Run(() => transactionRepository.GetTransactions(Instance.StaticUserAccount.UserId));
+                transactions = await Task.Run(() => transactionRepository.GetTransactions(Instance.StaticUserAccount.Id));
                 List<Transaction> tempTransactions = new List<Transaction>();
                 foreach (Transaction transaction in transactions)
                 {
-                    if (transaction.incomeExpense == false)
-                    {
+                    if (transaction.IncomeExpense == false)
                         tempTransactions.Add(transaction);
-                    }
                 }
                 transactions = tempTransactions;
             }
 
             if (transactionRepeats == null)
             {
-                transactionRepeats = await Task.Run(() => transactionRecurringRepository.GetTransactions(Instance.StaticUserAccount.UserId));
+                transactionRepeats = await Task.Run(() => transactionRecurringRepository.GetTransactions(Instance.StaticUserAccount.Id));
                 List<TransactionRepeat> tempTransactions = new List<TransactionRepeat>();
                 foreach (TransactionRepeat transaction in transactionRepeats)
                 {
-                    if (transaction.incomeExpense == false)
-                    {
+                    if (transaction.IncomeExpense == false)
                         tempTransactions.Add(transaction);
-                    }
                 }
                 transactionRepeats = tempTransactions;
             }
 
             decimal average = GetAvg();
-
             decimal totalRecurring = GetRecurringAmount();
 
             if (average > totalRecurring)
-            {
                 resultLbl.Text = "The result is " + average;
-            }
             else
-            {
                 resultLbl.Text = "The result is " + totalRecurring;
-            }
         }
-
-        private void financialPredictionForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
+        
         private void closePanel_Click(object sender, EventArgs e)
         {
             Instance.MainForm.Dispose();
@@ -217,22 +178,15 @@ namespace enterpriseDevelopment.Forms
         private void mainBtn_Click(object sender, EventArgs e)
         {
             Instance.MainForm.Show();
-
             Close();
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            financialPredictionForm financialPredictionForm = new financialPredictionForm();
-            financialPredictionForm.Activate();
-            financialPredictionForm.Show();
-        }
-
+        
         private void summaryBtn_Click(object sender, EventArgs e)
         {
             SummaryForm summaryForm = new SummaryForm();
             summaryForm.Activate();
             summaryForm.Show();
+            Close();
         }
 
         private void ContactBtn_Click(object sender, EventArgs e)
@@ -240,6 +194,7 @@ namespace enterpriseDevelopment.Forms
             ContactsForm contactsForm = new ContactsForm();
             contactsForm.Activate();
             contactsForm.Show();
+            Close();
         }
 
         private void mainBtn_MouseEnter(object sender, EventArgs e)
@@ -406,6 +361,38 @@ namespace enterpriseDevelopment.Forms
         private void transactionBtn_Click(object sender, EventArgs e)
         {
             timer.Start();
+        }
+
+        private void allEventBtn_Click(object sender, EventArgs e)
+        {
+            EventForm eventForm = new EventForm();
+            eventForm.Activate();
+            eventForm.Show();
+            Close();
+        }
+
+        private void repeatBtn_Click(object sender, EventArgs e)
+        {
+            EventForm eventForm = new EventForm(true);
+            eventForm.Activate();
+            eventForm.Show();
+            Close();
+        }
+
+        private void recurringToggleBtn_Click(object sender, EventArgs e)
+        {
+            TransactionForm transactionForm = new TransactionForm();
+            transactionForm.Activate();
+            transactionForm.Show();
+            Close();
+        }
+
+        private void eventsRepeatBtn_Click(object sender, EventArgs e)
+        {
+            TransactionForm transactionForm = new TransactionForm(true);
+            transactionForm.Activate();
+            transactionForm.Show();
+            Close();
         }
     }
 }
