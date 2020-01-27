@@ -15,7 +15,7 @@ using System.Windows.Forms;
 namespace enterpriseDevelopment
 {
     public partial class MainForm : Form
-    {
+    {   // used for background worker
         private bool checkIfFirst = true;
         private bool isCollapsed = true;
         private bool isCollapsed2 = true;
@@ -23,6 +23,7 @@ namespace enterpriseDevelopment
         private List<Transaction> todaysTransaction;
         Panel dashboardPanel;
 
+        #region CONTRUCTOR
         public MainForm()
         {
             InitializeComponent();
@@ -31,15 +32,16 @@ namespace enterpriseDevelopment
             UserInstance.MainForm = this;
             dashboardPanel = new Panel();
         }
-        
+        #endregion
+
         private void MainForm_Activated(object sender, EventArgs e)
         {
-            //
+            
             if (UserInstance.StaticUserAccount == null)
             {// Auto login
                  UserInstance.StaticUserAccount = new UserAccount { Id = 1, FullName = "rafraf", LogDate = DateTime.Now.AddDays(-99).AddHours(5) };
             }
-            //  shows the login form if the StaticUserAccount is empty
+           
             if (UserInstance.StaticUserAccount == null)
             {
                 LoginRegister LoginRegisterObj = new LoginRegister();
@@ -49,35 +51,42 @@ namespace enterpriseDevelopment
             else
             {
                 GetTransactionList();
-                creatGraph();
-                if (!recurringBGWorker.IsBusy) recurringBGWorker.RunWorkerAsync();
+                createGraph();
+                if (!recurringBGWorker.IsBusy)
+                    recurringBGWorker.RunWorkerAsync();
             }
         }
+
+        #region NAVIGATION BUTTONS
+        private void predictBtn_Click(object sender, EventArgs e)
+        {
+            financialPredictionForm financialPredictionForm = new financialPredictionForm();
+            financialPredictionForm.Activate();
+            financialPredictionForm.Show();
+        }
         
-        private void contactClickMainForm(object sender, EventArgs e)
+        private void singleEventBtn_Click(object sender, EventArgs e)
         {
-            ContactsForm contactsForm = new ContactsForm();
-            contactsForm.Activate();
-            contactsForm.Show();
+            EventForm eventForm = new EventForm();
+            eventForm.Activate();
+            eventForm.Show();
         }
 
-        private void transactionClickMainForm(object sender, EventArgs e)
-        {
-            timer.Start();
-        }
-
-        private void repeatBtn_Click(object sender, EventArgs e)
+        private void recurringEventBtn_Click(object sender, EventArgs e)
         {
             EventForm eventForm = new EventForm(true);
             eventForm.Activate();
             eventForm.Show();
         }
-        private void event_Click(object sender, EventArgs e)
+
+        private void singleTransactionBtn_Click(object sender, EventArgs e)
         {
-            timer2.Start();
+            TransactionForm transactionForm = new TransactionForm();
+            transactionForm.Activate();
+            transactionForm.Show();
         }
 
-        private void eventRecurring_Click(object sender, EventArgs e)
+        private void recurringTransactionBtn_Click(object sender, EventArgs e)
         {
             TransactionForm transactionForm = new TransactionForm(true);
             transactionForm.Activate();
@@ -91,13 +100,14 @@ namespace enterpriseDevelopment
             summaryForm.Show();
         }
 
-        private void predictBtn_Click(object sender, EventArgs e)
+        private void contactBtn_Click(object sender, EventArgs e)
         {
-            financialPredictionForm financialPredictionForm = new financialPredictionForm();
-            financialPredictionForm.Activate();
-            financialPredictionForm.Show();
+            ContactsForm contactsForm = new ContactsForm();
+            contactsForm.Activate();
+            contactsForm.Show();
         }
-        
+        #endregion
+
         private void recurringBGWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker backgroundWorker = (BackgroundWorker)sender;
@@ -257,8 +267,104 @@ namespace enterpriseDevelopment
             }
         }
 
-        #region Main page button hover animation
+        #region BUTTONS HOVER ANIMATION
+        private void mainBtn_MouseEnter(object sender, EventArgs e)
+        {
+            mainBoxPanel.Visible = true;
+            mainIcon.Visible = false;
+            mainBtn.Font = new Font(mainBtn.Font, FontStyle.Bold);
+            mainBtn.ForeColor = Color.White;
+        }
 
+        private void mainBtn_MouseLeave(object sender, EventArgs e)
+        {
+            mainBoxPanel.Visible = false;
+            mainIcon.Visible = true;
+            mainBtn.Font = new Font(mainBtn.Font, FontStyle.Regular);
+            mainBtn.ForeColor = Color.FromArgb(224, 224, 224);
+        }
+
+        private void predictBtn_MouseEnter(object sender, EventArgs e)
+        {
+            predictionBoxPanel.Visible = true;
+            predictionIcon.Visible = false;
+            predictBtn.Font = new Font(predictBtn.Font, FontStyle.Bold);
+            predictBtn.ForeColor = Color.White;
+        }
+
+        private void predictBtn_MouseLeave(object sender, EventArgs e)
+        {
+            predictionBoxPanel.Visible = false;
+            predictionIcon.Visible = true;
+            predictBtn.Font = new Font(predictBtn.Font, FontStyle.Regular);
+            predictBtn.ForeColor = Color.FromArgb(224, 224, 224);
+        }
+
+        private void eventsBtn_MouseEnter(object sender, EventArgs e)
+        {
+            eventBoxPanel.Visible = true;
+            eventIcon.Visible = false;
+            eventsBtn.Font = new Font(eventsBtn.Font, FontStyle.Bold);
+            eventsBtn.ForeColor = Color.White;
+
+        }
+
+        private void eventsBtn_MouseLeave(object sender, EventArgs e)
+        {
+            eventBoxPanel.Visible = false;
+            eventIcon.Visible = true;
+            eventsBtn.Font = new Font(eventsBtn.Font, FontStyle.Regular);
+            eventsBtn.ForeColor = Color.FromArgb(224, 224, 224);
+        }
+
+        private void transactionBtn_MouseEnter(object sender, EventArgs e)
+        {
+            transactionBoxPanel.Visible = true;
+            transactionIcon.Visible = false;
+            transactionBtn.Font = new Font(transactionBtn.Font, FontStyle.Bold);
+            transactionBtn.ForeColor = Color.White;
+        }
+
+        private void transactionBtn_MouseLeave(object sender, EventArgs e)
+        {
+            transactionBoxPanel.Visible = false;
+            transactionIcon.Visible = true;
+            transactionBtn.Font = new Font(transactionBtn.Font, FontStyle.Regular);
+            transactionBtn.ForeColor = Color.FromArgb(224, 224, 224);
+        }
+
+        private void summaryBtn_MouseEnter(object sender, EventArgs e)
+        {
+            summaryBoxPanel.Visible = true;
+            summaryIcon.Visible = false;
+            summaryBtn.Font = new Font(summaryBtn.Font, FontStyle.Bold);
+            summaryBtn.ForeColor = Color.White;
+        }
+
+        private void summaryBtn_MouseLeave(object sender, EventArgs e)
+        {
+            summaryBoxPanel.Visible = false;
+            summaryIcon.Visible = true;
+            summaryBtn.Font = new Font(summaryBtn.Font, FontStyle.Regular);
+            summaryBtn.ForeColor = Color.FromArgb(224, 224, 224);
+        }
+
+        private void contactBtn_MouseEnter(object sender, EventArgs e)
+        {
+            contactBoxPanel.Visible = true;
+            contactIcon.Visible = false;
+            contactBtn.Font = new Font(contactBtn.Font, FontStyle.Bold);
+            contactBtn.ForeColor = Color.White;
+        }
+
+        private void contactBtn_MouseLeave(object sender, EventArgs e)
+        {
+            contactBoxPanel.Visible = false;
+            contactIcon.Visible = true;
+            contactBtn.Font = new Font(contactBtn.Font, FontStyle.Regular);
+            contactBtn.ForeColor = Color.FromArgb(224, 224, 224);
+        }
+        
         private void closePanel_MouseEnter(object sender, EventArgs e)
         {
             this.closePanel.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.closeHover));
@@ -268,112 +374,9 @@ namespace enterpriseDevelopment
         {
             this.closePanel.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.close));
         }
-
-        private void closePanel_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void mainBtn_MouseEnter(object sender, EventArgs e)
-        {
-            panel4.Visible = true;
-            pictureBox1.Visible = false;
-            mainBtn.Font = new Font(mainBtn.Font, FontStyle.Bold);
-            mainBtn.ForeColor = Color.White;
-        }
-
-        private void mainBtn_MouseLeave(object sender, EventArgs e)
-        {
-            panel4.Visible = false;
-            pictureBox1.Visible = true;
-            mainBtn.Font = new Font(mainBtn.Font, FontStyle.Regular);
-            mainBtn.ForeColor = Color.FromArgb(224, 224, 224);
-        }
-
-        private void predictBtn_MouseEnter(object sender, EventArgs e)
-        {
-            panel5.Visible = true;
-            pictureBox2.Visible = false;
-            predictBtn.Font = new Font(predictBtn.Font, FontStyle.Bold);
-            predictBtn.ForeColor = Color.White;
-        }
-
-        private void predictBtn_MouseLeave(object sender, EventArgs e)
-        {
-            panel5.Visible = false;
-            pictureBox2.Visible = true;
-            predictBtn.Font = new Font(predictBtn.Font, FontStyle.Regular);
-            predictBtn.ForeColor = Color.FromArgb(224, 224, 224);
-        }
-
-        private void eventsBtn_MouseEnter(object sender, EventArgs e)
-        {
-            panel11.Visible = true;
-            pictureBox3.Visible = false;
-            eventsBtn.Font = new Font(eventsBtn.Font, FontStyle.Bold);
-            eventsBtn.ForeColor = Color.White;
-
-        }
-
-        private void eventsBtn_MouseLeave(object sender, EventArgs e)
-        {
-            panel11.Visible = false;
-            pictureBox3.Visible = true;
-            eventsBtn.Font = new Font(eventsBtn.Font, FontStyle.Regular);
-            eventsBtn.ForeColor = Color.FromArgb(224, 224, 224);
-        }
-
-        private void transactionBtn_MouseEnter(object sender, EventArgs e)
-        {
-            panel7.Visible = true;
-            pictureBox4.Visible = false;
-            transactionBtn.Font = new Font(transactionBtn.Font, FontStyle.Bold);
-            transactionBtn.ForeColor = Color.White;
-        }
-
-        private void transactionBtn_MouseLeave(object sender, EventArgs e)
-        {
-            panel7.Visible = false;
-            pictureBox4.Visible = true;
-            transactionBtn.Font = new Font(transactionBtn.Font, FontStyle.Regular);
-            transactionBtn.ForeColor = Color.FromArgb(224, 224, 224);
-        }
-
-        private void summaryBtn_MouseEnter(object sender, EventArgs e)
-        {
-            panel8.Visible = true;
-            pictureBox5.Visible = false;
-            summaryBtn.Font = new Font(summaryBtn.Font, FontStyle.Bold);
-            summaryBtn.ForeColor = Color.White;
-        }
-
-        private void summaryBtn_MouseLeave(object sender, EventArgs e)
-        {
-            panel8.Visible = false;
-            pictureBox5.Visible = true;
-            summaryBtn.Font = new Font(summaryBtn.Font, FontStyle.Regular);
-            summaryBtn.ForeColor = Color.FromArgb(224, 224, 224);
-        }
-
-        private void ContactBtn_MouseEnter(object sender, EventArgs e)
-        {
-            panel10.Visible = true;
-            pictureBox6.Visible = false;
-            ContactBtn.Font = new Font(ContactBtn.Font, FontStyle.Bold);
-            ContactBtn.ForeColor = Color.White;
-        }
-
-        private void ContactBtn_MouseLeave(object sender, EventArgs e)
-        {
-            panel10.Visible = false;
-            pictureBox6.Visible = true;
-            ContactBtn.Font = new Font(ContactBtn.Font, FontStyle.Regular);
-            ContactBtn.ForeColor = Color.FromArgb(224, 224, 224);
-        }
-
         #endregion
-
-        #region Show dinamically transaction for the current date
+        
+        #region CURRENT DATE TRANSACTION SHOWN DYNAMICALLY
         // Dynamic transaction view on the dashboard
         private async void GetTransactionList()
         {
@@ -452,14 +455,19 @@ namespace enterpriseDevelopment
             }
         }
         #endregion
-        
-        #region Timer
+
+        #region ANIMATION TIMER
+        private void transactionBtn_Click(object sender, EventArgs e)
+        {
+            timer.Start();
+        }
+
         private void timer_Tick(object sender, EventArgs e)
         {
             if (isCollapsed)
             {
-                panelToggle1.Width += 20;
-                if (panelToggle1.Size == panelToggle1.MaximumSize)
+                transactionToggle.Width += 20;
+                if (transactionToggle.Size == transactionToggle.MaximumSize)
                 {
                     timer.Stop();
                     isCollapsed = false;
@@ -467,15 +475,20 @@ namespace enterpriseDevelopment
             }
             else
             {
-                panelToggle1.Width -= 20;
-                if (panelToggle1.Size == panelToggle1.MinimumSize)
+                transactionToggle.Width -= 20;
+                if (transactionToggle.Size == transactionToggle.MinimumSize)
                 {
                     timer.Stop();
                     isCollapsed = true;
                 }
             }
         }
-        
+
+        private void event_Click(object sender, EventArgs e)
+        {
+            timer2.Start();
+        }
+
         private void timer2_Tick(object sender, EventArgs e)
         {
             if (isCollapsed2)
@@ -498,20 +511,8 @@ namespace enterpriseDevelopment
             }
         }
         #endregion
-        private void recurringToggleBtn_Click(object sender, EventArgs e)
-        {
-            TransactionForm transactionForm = new TransactionForm();
-            transactionForm.Activate();
-            transactionForm.Show();
-        }
-
-        private void allEventBtn_Click(object sender, EventArgs e)
-        {
-            EventForm eventForm = new EventForm();
-            eventForm.Activate();
-            eventForm.Show();
-        }
-        private void creatGraph()
+        
+        private void createGraph()
         {
             TransactionRepository transactionRepository = new TransactionRepository();
             List<Transaction> transactionList = transactionRepository.GetTransactions(DateTime.Now, UserInstance.StaticUserAccount.Id);
@@ -526,14 +527,19 @@ namespace enterpriseDevelopment
                     totalExpense += transaction.Amount;
             }
             
-            PieChart.Series["MonthlyTransaction"].Points.Clear();
-            PieChart.Series["MonthlyTransaction"].IsValueShownAsLabel = true;
-            PieChart.Series["MonthlyTransaction"].Points.AddXY("Income", totalIncome.ToString("0.00"));
-            PieChart.Series["MonthlyTransaction"].Points[0].Color = Color.FromArgb(30, 39, 46);
-            PieChart.Series["MonthlyTransaction"].Points.AddXY("Expense", totalExpense.ToString("0.00"));
-            PieChart.Series["MonthlyTransaction"].Points[1].Color = Color.Gray;
-            PieChart.Series["MonthlyTransaction"].Points[1].Font = new Font("Calibri", 10, FontStyle.Bold);
-            PieChart.Series["MonthlyTransaction"].Font = new Font("Calibri", 20, FontStyle.Bold);
+            pieChart.Series["MonthlyTransaction"].Points.Clear();
+            pieChart.Series["MonthlyTransaction"].IsValueShownAsLabel = true;
+            pieChart.Series["MonthlyTransaction"].Points.AddXY("Income", totalIncome.ToString("0.00"));
+            pieChart.Series["MonthlyTransaction"].Points[0].Color = Color.FromArgb(30, 39, 46);
+            pieChart.Series["MonthlyTransaction"].Points.AddXY("Expense", totalExpense.ToString("0.00"));
+            pieChart.Series["MonthlyTransaction"].Points[1].Color = Color.Gray;
+            pieChart.Series["MonthlyTransaction"].Points[1].Font = new Font("Calibri", 10, FontStyle.Bold);
+            pieChart.Series["MonthlyTransaction"].Font = new Font("Calibri", 20, FontStyle.Bold);
+        }
+
+        private void closePanel_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

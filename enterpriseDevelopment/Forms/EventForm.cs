@@ -375,6 +375,7 @@ namespace enterpriseDevelopment
             SetListViewColumns();
         }
         #endregion
+
         private void EventForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             UserInstance.MainForm.Activate();
