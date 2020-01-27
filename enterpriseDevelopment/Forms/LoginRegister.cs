@@ -26,13 +26,13 @@ namespace enterpriseDevelopment
 
         // validations for registration text fields
         private bool RegistrationValidation()
-        {   
+        {
             if (String.IsNullOrEmpty(fullNameReg))
             {
                 MessageBox.Show("Full name cannot be empty");
                 return false;
             }
-            
+
             if (fullNameReg.Length < 3)
             {
                 MessageBox.Show("Name is too short, please use your full name");
@@ -44,21 +44,21 @@ namespace enterpriseDevelopment
                 MessageBox.Show("Name is too long, please try again");
                 return false;
             }
-            
+
             if (String.IsNullOrWhiteSpace(usernameReg))
             {
                 MessageBox.Show("Username cannot have empty spaces");
                 return false;
             }
             else
-            {   
+            {
                 if (usernameReg.Contains(" "))
                 {
                     MessageBox.Show("Username cannot have empty spaces");
                     return false;
                 }
             }
-            
+
             if (usernameReg.Length < 6)
             {
                 MessageBox.Show("Username is too short, please try again");
@@ -160,7 +160,7 @@ namespace enterpriseDevelopment
             Close();
         }
 
-        #region Toogle login / register view
+        #region TOOGLE LOGING & REGISTER VIEW
         // Register here link
         private void label2_Click(object sender, EventArgs e)
         {
@@ -209,10 +209,8 @@ namespace enterpriseDevelopment
             }
         }
         #endregion
-
-
-
-        #region Login / Register text field CLICK
+        
+        #region LOGIN / REGISTER CLEAR TEXT FIELDS ON CLICK
         // Login useername  Click
         private void usernameLogTxt_MouseClick(object sender, MouseEventArgs e)
         {
@@ -316,23 +314,30 @@ namespace enterpriseDevelopment
         }
         #endregion
 
-        private void LoginRegister_FormClosed(object sender, FormClosedEventArgs e)
+        #region LABERL HOVER COLOR CHANGE
+        // login label hover
+        private void loginHereLbl_MouseEnter(object sender, EventArgs e)
         {
-            // If user is not logged in
-            if (UserInstance.StaticUserAccount == null)
-            {
-                UserInstance.MainForm.Close();
-            }
-            else
-            {// if the user is logged in, show the main form
-                UserInstance.MainForm.Activate();
-                UserInstance.MainForm.Show();
-            }
-            
-            Dispose();
+            loginHereLbl.ForeColor = Color.LightCoral;
         }
 
-        private async Task<bool> CheckIfUserExists()
+        private void loginHereLbl_MouseLeave(object sender, EventArgs e)
+        {
+            loginHereLbl.ForeColor = Color.White;
+        }
+        // register label hover
+        private void registerHereLbl_MouseEnter(object sender, EventArgs e)
+        {
+            registerHereLbl.ForeColor = Color.LightCoral;
+        }
+
+        private void registerHereLbl_MouseLeave(object sender, EventArgs e)
+        {
+            registerHereLbl.ForeColor = Color.White;
+        }
+        #endregion
+        
+        private async Task<bool> CheckIfUsernameExists()
         {
             UserAccount userAccount = await Task.Run(() => userRepository.GetUserByUsername(usernameReg));
             // if the usernameReg already exist, it will pop up the error message
@@ -358,7 +363,7 @@ namespace enterpriseDevelopment
 
             if (!RegistrationValidation())
                 return;
-            if (!await CheckIfUserExists())
+            if (!await CheckIfUsernameExists())
                 return;
             EncryptPwd();
 
@@ -368,6 +373,22 @@ namespace enterpriseDevelopment
                 MessageBox.Show("Account successfully created");
             else
                 MessageBox.Show("Error,account not created. Try again.");
+        }
+
+        private void LoginRegister_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // If user is not logged in
+            if (UserInstance.StaticUserAccount == null)
+            {
+                UserInstance.MainForm.Close();
+            }
+            else
+            {// if the user is logged in, show the main form
+                UserInstance.MainForm.Activate();
+                UserInstance.MainForm.Show();
+            }
+
+            Dispose();
         }
     }
 }

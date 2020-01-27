@@ -35,7 +35,7 @@
             this.deleteBtn = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.closeBtn = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
@@ -99,7 +99,7 @@
             this.addBtn.FlatAppearance.BorderSize = 0;
             this.addBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addBtn.Image = ((System.Drawing.Image)(resources.GetObject("addBtn.Image")));
-            this.addBtn.Location = new System.Drawing.Point(425, 391);
+            this.addBtn.Location = new System.Drawing.Point(421, 462);
             this.addBtn.Name = "addBtn";
             this.addBtn.Size = new System.Drawing.Size(60, 60);
             this.addBtn.TabIndex = 1;
@@ -111,7 +111,7 @@
             this.editBtn.FlatAppearance.BorderSize = 0;
             this.editBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.editBtn.Image = ((System.Drawing.Image)(resources.GetObject("editBtn.Image")));
-            this.editBtn.Location = new System.Drawing.Point(627, 391);
+            this.editBtn.Location = new System.Drawing.Point(623, 462);
             this.editBtn.Name = "editBtn";
             this.editBtn.Size = new System.Drawing.Size(60, 60);
             this.editBtn.TabIndex = 2;
@@ -123,7 +123,7 @@
             this.deleteBtn.FlatAppearance.BorderSize = 0;
             this.deleteBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.deleteBtn.Image = ((System.Drawing.Image)(resources.GetObject("deleteBtn.Image")));
-            this.deleteBtn.Location = new System.Drawing.Point(816, 391);
+            this.deleteBtn.Location = new System.Drawing.Point(812, 462);
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.Size = new System.Drawing.Size(60, 60);
             this.deleteBtn.TabIndex = 3;
@@ -134,7 +134,7 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
             this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.panel1);
+            this.panel2.Controls.Add(this.closeBtn);
             this.panel2.ImeMode = System.Windows.Forms.ImeMode.On;
             this.panel2.Location = new System.Drawing.Point(282, 0);
             this.panel2.Name = "panel2";
@@ -153,20 +153,20 @@
             this.label4.TabIndex = 1;
             this.label4.Text = "PLANED TASKS / APPOINTMENT";
             // 
-            // panel1
+            // closeBtn
             // 
-            this.panel1.BackgroundImage = global::enterpriseDevelopment.Properties.Resources.close;
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.panel1.Location = new System.Drawing.Point(690, 7);
-            this.panel1.Margin = new System.Windows.Forms.Padding(15, 16, 15, 16);
-            this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(5);
-            this.panel1.Size = new System.Drawing.Size(32, 30);
-            this.panel1.TabIndex = 0;
-            this.panel1.Click += new System.EventHandler(this.panel1_Click);
-            this.panel1.MouseEnter += new System.EventHandler(this.panel1_MouseEnter);
-            this.panel1.MouseLeave += new System.EventHandler(this.panel1_MouseLeave);
+            this.closeBtn.BackgroundImage = global::enterpriseDevelopment.Properties.Resources.close;
+            this.closeBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.closeBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.closeBtn.Location = new System.Drawing.Point(690, 7);
+            this.closeBtn.Margin = new System.Windows.Forms.Padding(15, 16, 15, 16);
+            this.closeBtn.Name = "closeBtn";
+            this.closeBtn.Padding = new System.Windows.Forms.Padding(5);
+            this.closeBtn.Size = new System.Drawing.Size(32, 30);
+            this.closeBtn.TabIndex = 0;
+            this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
+            this.closeBtn.MouseEnter += new System.EventHandler(this.closeBtn_MouseEnter);
+            this.closeBtn.MouseLeave += new System.EventHandler(this.closeBtn_MouseLeave);
             // 
             // panel3
             // 
@@ -404,7 +404,7 @@
             this.mainBtn.Text = "  Main";
             this.mainBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.mainBtn.UseVisualStyleBackColor = true;
-            this.mainBtn.Click += new System.EventHandler(this.mainBtn_Click_1);
+            this.mainBtn.Click += new System.EventHandler(this.mainBtn_Click);
             this.mainBtn.MouseEnter += new System.EventHandler(this.mainBtn_MouseEnter);
             this.mainBtn.MouseLeave += new System.EventHandler(this.mainBtn_MouseLeave);
             // 
@@ -512,7 +512,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.label1.Location = new System.Drawing.Point(383, 469);
+            this.label1.Location = new System.Drawing.Point(379, 540);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(150, 23);
             this.label1.TabIndex = 7;
@@ -523,7 +523,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.label2.Location = new System.Drawing.Point(595, 469);
+            this.label2.Location = new System.Drawing.Point(591, 540);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(117, 23);
             this.label2.TabIndex = 8;
@@ -534,7 +534,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.label3.Location = new System.Drawing.Point(780, 469);
+            this.label3.Location = new System.Drawing.Point(776, 540);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(140, 23);
             this.label3.TabIndex = 9;
@@ -560,7 +560,7 @@
             this.listViewEvent.MouseState = MaterialSkin.MouseState.OUT;
             this.listViewEvent.Name = "listViewEvent";
             this.listViewEvent.OwnerDraw = true;
-            this.listViewEvent.Size = new System.Drawing.Size(707, 277);
+            this.listViewEvent.Size = new System.Drawing.Size(707, 350);
             this.listViewEvent.TabIndex = 10;
             this.listViewEvent.UseCompatibleStateImageBehavior = false;
             this.listViewEvent.View = System.Windows.Forms.View.Details;
@@ -742,7 +742,7 @@
         private System.Windows.Forms.Button editBtn;
         private System.Windows.Forms.Button deleteBtn;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel closeBtn;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.PictureBox pictureBox7;

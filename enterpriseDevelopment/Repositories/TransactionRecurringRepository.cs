@@ -25,7 +25,7 @@ namespace enterpriseDevelopment.Repositories
 
         public List<TransactionRecurring> GetTransactions(int id)
         {
-            List<TransactionRecurring> u = new List<TransactionRecurring>();
+            List<TransactionRecurring> recurringTransactions = new List<TransactionRecurring>();
 
             string selectQuery = "SELECT TransactionsRepeatTbl.*, ContactsTbl.ContactName AS ContactName FROM TransactionsRepeatTbl LEFT JOIN ContactsTbl ON ContactsTbl.ContactId = TransactionsRepeatTbl.contactIdFk WHERE TransactionsRepeatTbl.userIdFk = @userID";
             try
@@ -70,7 +70,7 @@ namespace enterpriseDevelopment.Repositories
                     else
                         temp.EndTime = (DateTime)sqlDataReader["subscriptionEndTime"];
 
-                    u.Add(temp);
+                    recurringTransactions.Add(temp);
                 }
             }
             catch (Exception ex)
@@ -81,7 +81,7 @@ namespace enterpriseDevelopment.Repositories
             {
                 connection.Close();
             }
-            return u;
+            return recurringTransactions;
         }
 
         public bool AddTransction(TransactionRecurring transactionRepeat)

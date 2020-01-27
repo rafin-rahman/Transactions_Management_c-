@@ -236,10 +236,11 @@
             // dontHaveAccLbl
             // 
             this.dontHaveAccLbl.AutoSize = true;
-            this.dontHaveAccLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.dontHaveAccLbl.Location = new System.Drawing.Point(83, 476);
+            this.dontHaveAccLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.dontHaveAccLbl.ForeColor = System.Drawing.Color.LightGray;
+            this.dontHaveAccLbl.Location = new System.Drawing.Point(37, 509);
             this.dontHaveAccLbl.Name = "dontHaveAccLbl";
-            this.dontHaveAccLbl.Size = new System.Drawing.Size(138, 15);
+            this.dontHaveAccLbl.Size = new System.Drawing.Size(181, 20);
             this.dontHaveAccLbl.TabIndex = 19;
             this.dontHaveAccLbl.Text = "Don\'t have an account? ";
             // 
@@ -247,22 +248,25 @@
             // 
             this.registerHereLbl.AutoSize = true;
             this.registerHereLbl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.registerHereLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.registerHereLbl.ForeColor = System.Drawing.Color.Brown;
-            this.registerHereLbl.Location = new System.Drawing.Point(216, 478);
+            this.registerHereLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.registerHereLbl.ForeColor = System.Drawing.Color.White;
+            this.registerHereLbl.Location = new System.Drawing.Point(215, 509);
             this.registerHereLbl.Name = "registerHereLbl";
-            this.registerHereLbl.Size = new System.Drawing.Size(83, 13);
+            this.registerHereLbl.Size = new System.Drawing.Size(118, 20);
             this.registerHereLbl.TabIndex = 20;
             this.registerHereLbl.Text = "Register here";
             this.registerHereLbl.Click += new System.EventHandler(this.label2_Click);
+            this.registerHereLbl.MouseEnter += new System.EventHandler(this.registerHereLbl_MouseEnter);
+            this.registerHereLbl.MouseLeave += new System.EventHandler(this.registerHereLbl_MouseLeave);
             // 
             // alreadyRegLbl
             // 
             this.alreadyRegLbl.AutoSize = true;
-            this.alreadyRegLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.alreadyRegLbl.Location = new System.Drawing.Point(83, 476);
+            this.alreadyRegLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.alreadyRegLbl.ForeColor = System.Drawing.Color.LightGray;
+            this.alreadyRegLbl.Location = new System.Drawing.Point(51, 509);
             this.alreadyRegLbl.Name = "alreadyRegLbl";
-            this.alreadyRegLbl.Size = new System.Drawing.Size(112, 15);
+            this.alreadyRegLbl.Size = new System.Drawing.Size(146, 20);
             this.alreadyRegLbl.TabIndex = 21;
             this.alreadyRegLbl.Text = "Already registered?";
             this.alreadyRegLbl.Visible = false;
@@ -271,15 +275,17 @@
             // 
             this.loginHereLbl.AutoSize = true;
             this.loginHereLbl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.loginHereLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loginHereLbl.ForeColor = System.Drawing.Color.Brown;
-            this.loginHereLbl.Location = new System.Drawing.Point(201, 478);
+            this.loginHereLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loginHereLbl.ForeColor = System.Drawing.Color.White;
+            this.loginHereLbl.Location = new System.Drawing.Point(203, 509);
             this.loginHereLbl.Name = "loginHereLbl";
-            this.loginHereLbl.Size = new System.Drawing.Size(69, 13);
+            this.loginHereLbl.Size = new System.Drawing.Size(97, 20);
             this.loginHereLbl.TabIndex = 22;
             this.loginHereLbl.Text = "Login Here";
             this.loginHereLbl.Visible = false;
             this.loginHereLbl.Click += new System.EventHandler(this.loginHereLbl_Click);
+            this.loginHereLbl.MouseEnter += new System.EventHandler(this.loginHereLbl_MouseEnter);
+            this.loginHereLbl.MouseLeave += new System.EventHandler(this.loginHereLbl_MouseLeave);
             // 
             // fullNamePanel
             // 
@@ -371,7 +377,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(177)))), ((int)(((byte)(160)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
             this.ClientSize = new System.Drawing.Size(373, 551);
             this.Controls.Add(this.registerIcon);
             this.Controls.Add(this.pwd2Panel);

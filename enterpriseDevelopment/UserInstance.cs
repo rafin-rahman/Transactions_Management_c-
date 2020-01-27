@@ -9,7 +9,7 @@ namespace enterpriseDevelopment
 {
     static class UserInstance
     {
-        // Creating reference to main form to use in other forms(windows)
+        // Creating reference to main form to use in other forms
         public static Form MainForm;
         public static UserAccount StaticUserAccount = null;
         

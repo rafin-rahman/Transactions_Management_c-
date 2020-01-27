@@ -16,6 +16,8 @@ namespace enterpriseDevelopment.Forms
         private bool isCollapsed = true;
         private bool isCollapsed2 = true;
         private ContactRepository contactRepository;
+
+        // constructor
         public ContactsForm()
         {
             InitializeComponent();
@@ -23,12 +25,37 @@ namespace enterpriseDevelopment.Forms
             UserInstance.MainForm.Hide();
             contactListView.HideSelection = true;
         }
-        
+
+        private async void ContactsForm_Activated(object sender, EventArgs e)
+        {
+            List<Contact> ContactList = await Task.Run(() => contactRepository.GetContacts(UserInstance.StaticUserAccount.Id));
+            contactListView.Items.Clear();
+            foreach (Contact contact in ContactList)
+            {
+                ListViewItem lvi = new ListViewItem(new string[] { contact.Name });
+                // Tag is useful when selecting the entire row, the whole contact object will be selected
+                lvi.Tag = contact;
+                contactListView.Items.Add(lvi);
+            }
+        }
+
+        #region ADD - EDIT - DELETE
         private void addBtn_Click(object sender, EventArgs e)
         {
             ContactAddEdit contactAddEdit = new ContactAddEdit();
             contactAddEdit.Activate();
             contactAddEdit.Show();
+        }
+        
+        private void editBtn_Click(object sender, EventArgs e)
+        {
+            if (contactListView.SelectedItems.Count > 0)
+            {
+                Contact contact = (Contact)contactListView.SelectedItems[0].Tag;
+                ContactAddEdit contactAddEdit = new ContactAddEdit(contact);
+                contactAddEdit.Activate();
+                contactAddEdit.Show();
+            }
         }
 
         private async void deleteBtn_Click(object sender, EventArgs e)
@@ -47,32 +74,10 @@ namespace enterpriseDevelopment.Forms
                 }
             }
         }
-
-        private async void ContactsForm_Activated(object sender, EventArgs e)
-        {
-            List<Contact> ContactList = await Task.Run(() => contactRepository.GetContacts(UserInstance.StaticUserAccount.Id));
-            contactListView.Items.Clear();
-            foreach (Contact contact in ContactList)
-            {
-                ListViewItem lvi = new ListViewItem(new string[] { contact.Name });
-                // Tag is useful when selecting the entire row, the whole contact object will be selected
-                lvi.Tag = contact;
-                contactListView.Items.Add(lvi);
-            }
-        }
-         
-        private void editBtn_Click(object sender, EventArgs e)
-        {
-            if (contactListView.SelectedItems.Count > 0 )
-            {
-                Contact contact = (Contact)contactListView.SelectedItems[0].Tag;
-                ContactAddEdit contactAddEdit = new ContactAddEdit(contact);
-                contactAddEdit.Activate();
-                contactAddEdit.Show();
-            }
-        }
+        #endregion
 
         #region NAVIGATION BUTTONS
+
         private void mainBtn_Click(object sender, EventArgs e)
         {
             UserInstance.MainForm.Show();
@@ -86,17 +91,7 @@ namespace enterpriseDevelopment.Forms
             financialPredictionForm.Show();
             Close();
         }
-
-        private void eventsBtn_Click(object sender, EventArgs e)
-        {
-            timer2.Start();
-        }
-
-        private void transactionBtn_Click(object sender, EventArgs e)
-        {
-            timer.Start();
-        }
-
+        
         private void summaryBtn_Click(object sender, EventArgs e)
         {
             SummaryForm summaryForm = new SummaryForm();
@@ -104,7 +99,42 @@ namespace enterpriseDevelopment.Forms
             summaryForm.Show();
             Close();
         }
+
+        // Animated buttons click
+        private void repeatBtn_Click(object sender, EventArgs e)
+        {
+            EventForm eventForm = new EventForm(true);
+            eventForm.Activate();
+            eventForm.Show();
+            Close();
+        }
+
+        private void recurringToggleBtn_Click(object sender, EventArgs e)
+        {
+            TransactionForm transactionForm = new TransactionForm();
+            transactionForm.Activate();
+            transactionForm.Show();
+            Close();
+        }
+
+        private void eventsRepeatBtn_Click(object sender, EventArgs e)
+        {
+            TransactionForm transactionForm = new TransactionForm(true);
+            transactionForm.Activate();
+            transactionForm.Show();
+            Close();
+        }
+
+        private void allEventBtn_Click(object sender, EventArgs e)
+        {
+            EventForm eventForm = new EventForm();
+            eventForm.Activate();
+            eventForm.Show();
+        }
+
         #endregion
+
+        #region NAVIGATION BUTTONS HOVER ANIMATION
         private void mainBtn_MouseEnter(object sender, EventArgs e)
         {
             mainBoxPanel.Visible = true;
@@ -120,35 +150,19 @@ namespace enterpriseDevelopment.Forms
             mainBtn.Font = new Font(mainBtn.Font, FontStyle.Regular);
             mainBtn.ForeColor = Color.FromArgb(224, 224, 224);
         }
-        
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-            TransactionForm transactionForm = new TransactionForm();
-            transactionForm.Activate();
-            transactionForm.Show();
-            Close();
-        }
 
         private void summaryBtn_MouseEnter(object sender, EventArgs e)
         {
-            panel8.Visible = true;
-            pictureBox5.Visible = false;
-            summaryBtn.Font = new Font(summaryBtn.Font, FontStyle.Bold);
-            summaryBtn.ForeColor = Color.White;
-        }
-
-        private void pictureBox5_MouseEnter(object sender, EventArgs e)
-        {
-            panel8.Visible = true;
-            pictureBox5.Visible = false;
+            summaryBoxPanel.Visible = true;
+            summaryIcon.Visible = false;
             summaryBtn.Font = new Font(summaryBtn.Font, FontStyle.Bold);
             summaryBtn.ForeColor = Color.White;
         }
 
         private void summaryBtn_MouseLeave(object sender, EventArgs e)
         {
-            panel8.Visible = false;
-            pictureBox5.Visible = true;
+            summaryBoxPanel.Visible = false;
+            summaryIcon.Visible = true;
             summaryBtn.Font = new Font(summaryBtn.Font, FontStyle.Regular);
             summaryBtn.ForeColor = Color.FromArgb(224, 224, 224);
         }
@@ -203,40 +217,25 @@ namespace enterpriseDevelopment.Forms
 
         private void ContactBtn_MouseEnter(object sender, EventArgs e)
         {
-            panel10.Visible = true;
-            pictureBox6.Visible = false;
+            contactBoxPanel.Visible = true;
+            contactIcon.Visible = false;
             ContactBtn.Font = new Font(ContactBtn.Font, FontStyle.Bold);
             ContactBtn.ForeColor = Color.White;
         }
 
         private void ContactBtn_MouseLeave(object sender, EventArgs e)
         {
-            panel10.Visible = false;
-            pictureBox6.Visible = true;
+            contactBoxPanel.Visible = false;
+            contactIcon.Visible = true;
             ContactBtn.Font = new Font(ContactBtn.Font, FontStyle.Regular);
             ContactBtn.ForeColor = Color.FromArgb(224, 224, 224);
         }
+        #endregion
 
-        private void timer_Tick(object sender, EventArgs e)
+        #region ANIMATION TIMER
+        private void eventsBtn_Click(object sender, EventArgs e)
         {
-            if (isCollapsed)
-            {
-                panelToggle1.Width += 20;
-                if (panelToggle1.Size == panelToggle1.MaximumSize)
-                {
-                    timer.Stop();
-                    isCollapsed = false;
-                }
-            }
-            else
-            {
-                panelToggle1.Width -= 20;
-                if (panelToggle1.Size == panelToggle1.MinimumSize)
-                {
-                    timer.Stop();
-                    isCollapsed = true;
-                }
-            }
+            timer2.Start();
         }
 
         private void timer2_Tick(object sender, EventArgs e)
@@ -261,30 +260,35 @@ namespace enterpriseDevelopment.Forms
             }
         }
 
-        private void repeatBtn_Click(object sender, EventArgs e)
+        private void transactionBtn_Click(object sender, EventArgs e)
         {
-            EventForm eventForm = new EventForm(true);
-            eventForm.Activate();
-            eventForm.Show();
-            Close();
+            timer.Start();
         }
 
-        private void recurringToggleBtn_Click(object sender, EventArgs e)
+        private void timer_Tick(object sender, EventArgs e)
         {
-            TransactionForm transactionForm = new TransactionForm();
-            transactionForm.Activate();
-            transactionForm.Show();
-            Close();
+            if (isCollapsed)
+            {
+                panelToggle1.Width += 20;
+                if (panelToggle1.Size == panelToggle1.MaximumSize)
+                {
+                    timer.Stop();
+                    isCollapsed = false;
+                }
+            }
+            else
+            {
+                panelToggle1.Width -= 20;
+                if (panelToggle1.Size == panelToggle1.MinimumSize)
+                {
+                    timer.Stop();
+                    isCollapsed = true;
+                }
+            }
         }
-
-        private void eventsRepeatBtn_Click(object sender, EventArgs e)
-        {
-            TransactionForm transactionForm = new TransactionForm(true);
-            transactionForm.Activate();
-            transactionForm.Show();
-            Close();
-        }
-
+        
+        #endregion
+        
         private void ContactsForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Dispose();

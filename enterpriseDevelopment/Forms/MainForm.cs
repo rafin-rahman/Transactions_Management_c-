@@ -37,7 +37,7 @@ namespace enterpriseDevelopment
             //
             if (UserInstance.StaticUserAccount == null)
             {// Auto login
-               //  UserInstance.StaticUserAccount = new UserAccount { Id = 1, FullName = "rafraf", LogDate = DateTime.Now.AddDays(-99).AddHours(5) };
+                 UserInstance.StaticUserAccount = new UserAccount { Id = 1, FullName = "rafraf", LogDate = DateTime.Now.AddDays(-99).AddHours(5) };
             }
             //  shows the login form if the StaticUserAccount is empty
             if (UserInstance.StaticUserAccount == null)

@@ -20,6 +20,7 @@ namespace enterpriseDevelopment.Forms
         private List<TransactionRecurring> transactionRepeats;
         private TransactionRepository transactionRepository;
         private TransactionRecurringRepository transactionRecurringRepository;
+
         private decimal GetAvg()
         {
             decimal sumDayOfWeek = 0;

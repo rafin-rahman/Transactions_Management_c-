@@ -99,7 +99,7 @@
             this.addBtn.FlatAppearance.BorderSize = 0;
             this.addBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addBtn.Image = ((System.Drawing.Image)(resources.GetObject("addBtn.Image")));
-            this.addBtn.Location = new System.Drawing.Point(425, 391);
+            this.addBtn.Location = new System.Drawing.Point(419, 462);
             this.addBtn.Margin = new System.Windows.Forms.Padding(2);
             this.addBtn.Name = "addBtn";
             this.addBtn.Size = new System.Drawing.Size(60, 60);
@@ -112,7 +112,7 @@
             this.editBtn.FlatAppearance.BorderSize = 0;
             this.editBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.editBtn.Image = ((System.Drawing.Image)(resources.GetObject("editBtn.Image")));
-            this.editBtn.Location = new System.Drawing.Point(627, 391);
+            this.editBtn.Location = new System.Drawing.Point(621, 462);
             this.editBtn.Margin = new System.Windows.Forms.Padding(2);
             this.editBtn.Name = "editBtn";
             this.editBtn.Size = new System.Drawing.Size(60, 60);
@@ -125,7 +125,7 @@
             this.deleteBtn.FlatAppearance.BorderSize = 0;
             this.deleteBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.deleteBtn.Image = ((System.Drawing.Image)(resources.GetObject("deleteBtn.Image")));
-            this.deleteBtn.Location = new System.Drawing.Point(816, 391);
+            this.deleteBtn.Location = new System.Drawing.Point(810, 462);
             this.deleteBtn.Margin = new System.Windows.Forms.Padding(2);
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.Size = new System.Drawing.Size(60, 60);
@@ -513,7 +513,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.label3.Location = new System.Drawing.Point(780, 469);
+            this.label3.Location = new System.Drawing.Point(774, 540);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(140, 23);
             this.label3.TabIndex = 12;
@@ -524,7 +524,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.label2.Location = new System.Drawing.Point(595, 469);
+            this.label2.Location = new System.Drawing.Point(589, 540);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(117, 23);
             this.label2.TabIndex = 11;
@@ -535,7 +535,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.label1.Location = new System.Drawing.Point(383, 469);
+            this.label1.Location = new System.Drawing.Point(377, 540);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(135, 23);
             this.label1.TabIndex = 10;
@@ -561,7 +561,7 @@
             this.listViewTransaction.MouseState = MaterialSkin.MouseState.OUT;
             this.listViewTransaction.Name = "listViewTransaction";
             this.listViewTransaction.OwnerDraw = true;
-            this.listViewTransaction.Size = new System.Drawing.Size(707, 277);
+            this.listViewTransaction.Size = new System.Drawing.Size(707, 350);
             this.listViewTransaction.TabIndex = 13;
             this.listViewTransaction.UseCompatibleStateImageBehavior = false;
             this.listViewTransaction.View = System.Windows.Forms.View.Details;

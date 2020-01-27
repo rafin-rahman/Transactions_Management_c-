@@ -92,7 +92,7 @@
             // dateCountStart
             // 
             this.dateCountStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateCountStart.Location = new System.Drawing.Point(443, 428);
+            this.dateCountStart.Location = new System.Drawing.Point(429, 441);
             this.dateCountStart.Margin = new System.Windows.Forms.Padding(2);
             this.dateCountStart.MaxDate = new System.DateTime(2500, 12, 31, 0, 0, 0, 0);
             this.dateCountStart.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
@@ -103,7 +103,7 @@
             // dateCountEnd
             // 
             this.dateCountEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateCountEnd.Location = new System.Drawing.Point(619, 428);
+            this.dateCountEnd.Location = new System.Drawing.Point(605, 441);
             this.dateCountEnd.Margin = new System.Windows.Forms.Padding(2);
             this.dateCountEnd.MaxDate = new System.DateTime(2500, 12, 31, 0, 0, 0, 0);
             this.dateCountEnd.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
@@ -114,33 +114,33 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(457, 390);
+            this.label1.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold);
+            this.label1.Location = new System.Drawing.Point(424, 407);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 19);
+            this.label1.Size = new System.Drawing.Size(111, 29);
             this.label1.TabIndex = 5;
             this.label1.Text = "Start date";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(633, 390);
+            this.label2.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold);
+            this.label2.Location = new System.Drawing.Point(606, 407);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 19);
+            this.label2.Size = new System.Drawing.Size(101, 29);
             this.label2.TabIndex = 6;
             this.label2.Text = "End date";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(809, 390);
+            this.label4.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold);
+            this.label4.Location = new System.Drawing.Point(794, 407);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 19);
+            this.label4.Size = new System.Drawing.Size(97, 29);
             this.label4.TabIndex = 9;
             this.label4.Text = "Show by";
             // 
@@ -152,7 +152,7 @@
             "Days",
             "Months",
             "Years"});
-            this.showByCB.Location = new System.Drawing.Point(795, 428);
+            this.showByCB.Location = new System.Drawing.Point(799, 440);
             this.showByCB.Margin = new System.Windows.Forms.Padding(2);
             this.showByCB.Name = "showByCB";
             this.showByCB.Size = new System.Drawing.Size(82, 21);
@@ -172,7 +172,7 @@
             this.listVSummary.MouseState = MaterialSkin.MouseState.OUT;
             this.listVSummary.Name = "listVSummary";
             this.listVSummary.OwnerDraw = true;
-            this.listVSummary.Size = new System.Drawing.Size(642, 267);
+            this.listVSummary.Size = new System.Drawing.Size(680, 267);
             this.listVSummary.TabIndex = 12;
             this.listVSummary.UseCompatibleStateImageBehavior = false;
             this.listVSummary.View = System.Windows.Forms.View.Details;
@@ -555,14 +555,14 @@
             // 
             // showSumBtn
             // 
-            this.showSumBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.showSumBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
             this.showSumBtn.FlatAppearance.BorderSize = 0;
             this.showSumBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.showSumBtn.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.showSumBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.showSumBtn.Location = new System.Drawing.Point(309, 477);
+            this.showSumBtn.ForeColor = System.Drawing.Color.White;
+            this.showSumBtn.Location = new System.Drawing.Point(309, 518);
             this.showSumBtn.Name = "showSumBtn";
-            this.showSumBtn.Size = new System.Drawing.Size(642, 51);
+            this.showSumBtn.Size = new System.Drawing.Size(680, 51);
             this.showSumBtn.TabIndex = 21;
             this.showSumBtn.Text = "Action";
             this.showSumBtn.UseVisualStyleBackColor = false;
