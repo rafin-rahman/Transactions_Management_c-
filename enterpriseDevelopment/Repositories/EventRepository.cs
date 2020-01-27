@@ -28,7 +28,8 @@ namespace enterpriseDevelopment.Repositories
 
         public List<Event> GetEvents(int id)
         {
-            List<Event> u = new List<Event>();
+            List<Event> events = new List<Event>();
+            // It joins contact with event if a contact is assigned for an event
             string selectQuery = "SELECT EventsTbl.*, ContactsTbl.ContactName AS ContactName FROM EventsTbl LEFT JOIN ContactsTbl ON ContactsTbl.ContactId = EventsTbl.contactIdFk WHERE EventsTbl.userIdFk = @userID";
             try
             {
@@ -39,7 +40,7 @@ namespace enterpriseDevelopment.Repositories
                 SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
                 while (sqlDataReader.Read())
                 {
-                    Event temp = new Event
+                    Event tempEvent = new Event
                     {
                         Id = (int)sqlDataReader["EventId"],
                         Title = sqlDataReader["EventTitle"].ToString(),
@@ -51,16 +52,16 @@ namespace enterpriseDevelopment.Repositories
                     };
 
                     if (sqlDataReader["contactIdFk"] == DBNull.Value)
-                        temp.ContactFk = 0;
+                        tempEvent.ContactFk = 0;
                     else
-                        temp.ContactFk = (int)sqlDataReader["contactIdFk"];
+                        tempEvent.ContactFk = (int)sqlDataReader["contactIdFk"];
 
                     if (sqlDataReader["ContactName"] == DBNull.Value)
-                        temp.ContactName = "";
+                        tempEvent.ContactName = "";
                     else
-                        temp.ContactName = sqlDataReader["ContactName"].ToString();
+                        tempEvent.ContactName = sqlDataReader["ContactName"].ToString();
 
-                    u.Add(temp);
+                    events.Add(tempEvent);
                 }
             }
             catch (Exception ex)
@@ -71,10 +72,10 @@ namespace enterpriseDevelopment.Repositories
             {
                 connection.Close();
             }
-            return u;
+            return events;
         }
 
-        // Store events into DB
+        
         public bool AddEvent(Event eventObj)
         {
             string addQuery = "INSERT INTO EventsTbl ([EventTitle],[EventStatus],[Location],[EventMessage],[dateTime],[userIdFk],[contactIdFk]) VALUES (@title, @status, @location, @message, @datetime, @userFk, @contactFk)";
@@ -90,8 +91,11 @@ namespace enterpriseDevelopment.Repositories
 
                 // to avoid storing contact Id as 0
                 SqlParameter sqlParameter = new SqlParameter("@contactFk", SqlDbType.Int);
-                if (eventObj.ContactFk == 0) sqlParameter.Value = DBNull.Value;
-                else sqlParameter.Value = eventObj.ContactFk;
+                if (eventObj.ContactFk == 0)
+                    // saves contactId in the db as NULL instead of 0
+                    sqlParameter.Value = DBNull.Value;
+                else
+                    sqlParameter.Value = eventObj.ContactFk;
                 sqlCommand.Parameters.Add(sqlParameter);
 
                 connection.Open();
@@ -112,25 +116,29 @@ namespace enterpriseDevelopment.Repositories
             }
         }
 
-        public bool EditEvent(Event eventObj)
+        public bool EditEvent(Event editEvent)
         {
             string editQuery = "UPDATE EventsTbl SET [EventTitle] = @title, [EventStatus] = @status, [Location] = @location, [EventMessage] = @message, [dateTime] = @dateTime, [contactIdFk] = @contactFk WHERE [EventId] = @id AND [userIdFk] = @userID";
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(editQuery, connection);
-                sqlCommand.Parameters.Add("@title", SqlDbType.NVarChar).Value = eventObj.Title;
-                sqlCommand.Parameters.Add("@status", SqlDbType.NVarChar).Value = eventObj.Status;
-                sqlCommand.Parameters.Add("@location", SqlDbType.NVarChar).Value = eventObj.Location;
-                sqlCommand.Parameters.Add("@message", SqlDbType.NVarChar).Value = eventObj.Message;
-                sqlCommand.Parameters.Add("@dateTime", SqlDbType.DateTime).Value = eventObj.Date;
-                sqlCommand.Parameters.Add("@userID", SqlDbType.Int).Value = eventObj.UserFK;
-                sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = eventObj.Id;
+                sqlCommand.Parameters.Add("@title", SqlDbType.NVarChar).Value = editEvent.Title;
+                sqlCommand.Parameters.Add("@status", SqlDbType.NVarChar).Value = editEvent.Status;
+                sqlCommand.Parameters.Add("@location", SqlDbType.NVarChar).Value = editEvent.Location;
+                sqlCommand.Parameters.Add("@message", SqlDbType.NVarChar).Value = editEvent.Message;
+                sqlCommand.Parameters.Add("@dateTime", SqlDbType.DateTime).Value = editEvent.Date;
+                sqlCommand.Parameters.Add("@userID", SqlDbType.Int).Value = editEvent.UserFK;
+                sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = editEvent.Id;
 
 
                 // to avoid storing contact Id as 0
                 SqlParameter sqlParameter = new SqlParameter("@contactFk", SqlDbType.Int);
-                if (eventObj.ContactFk == 0) sqlParameter.Value = DBNull.Value;
-                else sqlParameter.Value = eventObj.ContactFk;
+                if (editEvent.ContactFk == 0)
+                    // saves contactId in the db as NULL instead of 0
+                    sqlParameter.Value = DBNull.Value;
+                else
+                    sqlParameter.Value = editEvent.ContactFk;
+
                 sqlCommand.Parameters.Add(sqlParameter);
 
                 connection.Open();

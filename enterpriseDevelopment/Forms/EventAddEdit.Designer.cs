@@ -137,12 +137,12 @@
             // 
             // actionBtn
             // 
-            this.actionBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.actionBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
             this.actionBtn.FlatAppearance.BorderSize = 0;
             this.actionBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.actionBtn.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.actionBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.actionBtn.Location = new System.Drawing.Point(49, 466);
+            this.actionBtn.ForeColor = System.Drawing.Color.White;
+            this.actionBtn.Location = new System.Drawing.Point(48, 487);
             this.actionBtn.Name = "actionBtn";
             this.actionBtn.Size = new System.Drawing.Size(932, 51);
             this.actionBtn.TabIndex = 8;

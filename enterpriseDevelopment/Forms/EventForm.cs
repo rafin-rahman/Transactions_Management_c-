@@ -24,7 +24,7 @@ namespace enterpriseDevelopment
         {
             InitializeComponent();
             eventRepository = new EventRepository();
-            Instance.MainForm.Hide();
+            UserInstance.MainForm.Hide();
             listViewEvent.HideSelection = true;
         }
 
@@ -41,7 +41,7 @@ namespace enterpriseDevelopment
             }
 
             eventRecurringRepository = new EventRecurringRepository();
-            Instance.MainForm.Hide();
+            UserInstance.MainForm.Hide();
         }
 
         private void addBtn_Click(object sender, EventArgs e)
@@ -53,8 +53,8 @@ namespace enterpriseDevelopment
 
         private void EventForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Instance.MainForm.Activate();
-            Instance.MainForm.Show();
+            UserInstance.MainForm.Activate();
+            UserInstance.MainForm.Show();
             Dispose();
         }
 
@@ -62,9 +62,9 @@ namespace enterpriseDevelopment
         {
             if (isRepeating)
             {
-                List<EventRepeat> eventsList = await Task.Run(() => eventRecurringRepository.GetEvents(Instance.StaticUserAccount.Id));
+                List<EventRecurring> eventsList = await Task.Run(() => eventRecurringRepository.GetEvents(UserInstance.StaticUserAccount.Id));
                 listViewEvent.Items.Clear();
-                foreach (EventRepeat eventRepeat in eventsList)
+                foreach (EventRecurring eventRepeat in eventsList)
                 {
                     string endDate = "";
                     if (eventRepeat.EndDate == DateTime.MinValue)
@@ -79,7 +79,7 @@ namespace enterpriseDevelopment
             }
             else
             {
-                List<Event> eventsList = await Task.Run(() => eventRepository.GetEvents(Instance.StaticUserAccount.Id));
+                List<Event> eventsList = await Task.Run(() => eventRepository.GetEvents(UserInstance.StaticUserAccount.Id));
                 listViewEvent.Items.Clear();
                 foreach (Event eventObj in eventsList)
                 {
@@ -97,7 +97,7 @@ namespace enterpriseDevelopment
             {
                 if (isRepeating)
                 {
-                    EventRepeat eventRepeat = (EventRepeat)listViewEvent.SelectedItems[0].Tag;
+                    EventRecurring eventRepeat = (EventRecurring)listViewEvent.SelectedItems[0].Tag;
                     EventAddEdit eventAddEdit = new EventAddEdit(eventRepeat);
                     eventAddEdit.Activate();
                     eventAddEdit.Show();
@@ -116,7 +116,7 @@ namespace enterpriseDevelopment
         {
             if (isRepeating)
             {
-                EventRepeat eventRepeat = (EventRepeat)listViewEvent.SelectedItems[0].Tag;
+                EventRecurring eventRepeat = (EventRecurring)listViewEvent.SelectedItems[0].Tag;
 
                 DialogResult dialogResult = MessageBox.Show("Do you want do delete the event?", "Confirm", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
@@ -146,7 +146,7 @@ namespace enterpriseDevelopment
 
         private void mainBtn_Click(object sender, EventArgs e)
         {
-            Instance.MainForm.Show();
+            UserInstance.MainForm.Show();
             Close();
         }
 
@@ -154,7 +154,7 @@ namespace enterpriseDevelopment
 
         private void panel1_Click(object sender, EventArgs e)
         {
-            Instance.MainForm.Dispose();
+            UserInstance.MainForm.Dispose();
         }
 
         private void panel1_MouseEnter(object sender, EventArgs e)
@@ -171,7 +171,7 @@ namespace enterpriseDevelopment
 
         private void mainBtn_Click_1(object sender, EventArgs e)
         {
-            Instance.MainForm.Show();
+            UserInstance.MainForm.Show();
             Close();
         }
 

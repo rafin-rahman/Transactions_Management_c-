@@ -23,7 +23,7 @@ namespace enterpriseDevelopment.Forms
         {
             InitializeComponent();
             transactionRepository = new TransactionRepository();
-            Instance.MainForm.Hide();
+            UserInstance.MainForm.Hide();
             listViewTransaction.HideSelection = true;
         }
 
@@ -40,7 +40,7 @@ namespace enterpriseDevelopment.Forms
             }
 
             transactionRepository = new TransactionRepository();
-            Instance.MainForm.Hide();
+            UserInstance.MainForm.Hide();
         }
 
         #region Button click events
@@ -57,7 +57,7 @@ namespace enterpriseDevelopment.Forms
             {
                 if (isRepeating)
                 {
-                    TransactionRepeat transaction = (TransactionRepeat)listViewTransaction.SelectedItems[0].Tag;
+                    TransactionRecurring transaction = (TransactionRecurring)listViewTransaction.SelectedItems[0].Tag;
                     TransactionAddEdit transactionAddEdit = new TransactionAddEdit(transaction);
                     transactionAddEdit.Activate();
                     transactionAddEdit.Show();
@@ -78,7 +78,7 @@ namespace enterpriseDevelopment.Forms
             {
                 if (isRepeating)
                 {
-                    TransactionRepeat transaction = (TransactionRepeat)listViewTransaction.SelectedItems[0].Tag;
+                    TransactionRecurring transaction = (TransactionRecurring)listViewTransaction.SelectedItems[0].Tag;
                     DialogResult dialogResult = MessageBox.Show("Do you want do delete the transaction?", "Confirm", MessageBoxButtons.YesNo);
 
                     if (dialogResult == DialogResult.Yes)
@@ -110,8 +110,8 @@ namespace enterpriseDevelopment.Forms
 
         private void TransactionForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Instance.MainForm.Activate();
-            Instance.MainForm.Show();
+            UserInstance.MainForm.Activate();
+            UserInstance.MainForm.Show();
             Dispose();
         }
 
@@ -119,9 +119,9 @@ namespace enterpriseDevelopment.Forms
         {
             if (isRepeating)
             {
-                List<TransactionRepeat> transactionsList = await Task.Run(() => TransactionRecurringRepository.GetTransactions(Instance.StaticUserAccount.Id));
+                List<TransactionRecurring> transactionsList = await Task.Run(() => TransactionRecurringRepository.GetTransactions(UserInstance.StaticUserAccount.Id));
                 listViewTransaction.Items.Clear();
-                foreach (TransactionRepeat transactionRepeat in transactionsList)
+                foreach (TransactionRecurring transactionRepeat in transactionsList)
                 {
                     string endDate = "";
                     if (transactionRepeat.EndTime == DateTime.MinValue)
@@ -137,7 +137,7 @@ namespace enterpriseDevelopment.Forms
             }
             else
             {
-                List<Transaction> transactionsList = await Task.Run(() => transactionRepository.GetTransactions(Instance.StaticUserAccount.Id));
+                List<Transaction> transactionsList = await Task.Run(() => transactionRepository.GetTransactions(UserInstance.StaticUserAccount.Id));
                 listViewTransaction.Items.Clear();
                 foreach (Transaction transaction in transactionsList)
                 {
@@ -150,12 +150,12 @@ namespace enterpriseDevelopment.Forms
 
         private void panel1_Click(object sender, EventArgs e)
         {
-            Instance.MainForm.Dispose();
+            UserInstance.MainForm.Dispose();
         }
 
         private void mainBtn_Click(object sender, EventArgs e)
         {
-            Instance.MainForm.Show();
+            UserInstance.MainForm.Show();
             Close();
         }
 

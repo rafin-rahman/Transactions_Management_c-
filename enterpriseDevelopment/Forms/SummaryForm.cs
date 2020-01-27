@@ -21,15 +21,15 @@ namespace enterpriseDevelopment.Forms
         public SummaryForm()
         {
             InitializeComponent();
-            Instance.MainForm.Hide();
+            UserInstance.MainForm.Hide();
             transactionRepository = new TransactionRepository();
             // it will select the first index instead of having empty sting in the design
             showByCB.SelectedIndex = 0;
         }
         private void SummaryForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Instance.MainForm.Activate();
-            Instance.MainForm.Show();
+            UserInstance.MainForm.Activate();
+            UserInstance.MainForm.Show();
             Dispose();
         }
 
@@ -49,7 +49,7 @@ namespace enterpriseDevelopment.Forms
 
 
             if (transactions == null)
-                transactions = await Task.Run(() => transactionRepository.GetTransactions(Instance.StaticUserAccount.Id));
+                transactions = await Task.Run(() => transactionRepository.GetTransactions(UserInstance.StaticUserAccount.Id));
 
             listVSummary.Items.Clear();
             List<Transaction> tempList = new List<Transaction>();
@@ -229,7 +229,7 @@ namespace enterpriseDevelopment.Forms
 
         private void closePanel_Click(object sender, EventArgs e)
         {
-            Instance.MainForm.Dispose();
+            UserInstance.MainForm.Dispose();
         }
 
         private void closePanel_MouseEnter(object sender, EventArgs e)
@@ -244,7 +244,7 @@ namespace enterpriseDevelopment.Forms
 
         private void mainBtn_Click(object sender, EventArgs e)
         {
-            Instance.MainForm.Show();
+            UserInstance.MainForm.Show();
             Close();
         }
 

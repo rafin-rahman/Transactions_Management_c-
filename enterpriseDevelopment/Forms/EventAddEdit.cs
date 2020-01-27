@@ -16,7 +16,7 @@ namespace enterpriseDevelopment.Forms
     {
 
         private Event ev;
-        private EventRepeat er;
+        private EventRecurring er;
         private bool isRepeat = false;
 
         public EventAddEdit()
@@ -24,7 +24,7 @@ namespace enterpriseDevelopment.Forms
             InitializeComponent();
             actionBtn.Text = "ADD EVENT / TASK";
             Text = "Add event";
-            ev = new Event { UserFK = Instance.StaticUserAccount.Id };
+            ev = new Event { UserFK = UserInstance.StaticUserAccount.Id };
         }
 
         public EventAddEdit(Event eventObj)
@@ -43,7 +43,7 @@ namespace enterpriseDevelopment.Forms
         }
 
 
-        public EventAddEdit(EventRepeat eventRepeat)
+        public EventAddEdit(EventRecurring eventRepeat)
         {
             InitializeComponent();
             isRepeat = true;
@@ -106,7 +106,7 @@ namespace enterpriseDevelopment.Forms
         private async void EventAddEdit_Load(object sender, EventArgs e)
         {
             ContactRepository contactRepository = new ContactRepository();
-            List<Contact> list = await Task.Run(() => contactRepository.GetContacts(Instance.StaticUserAccount.Id));
+            List<Contact> list = await Task.Run(() => contactRepository.GetContacts(UserInstance.StaticUserAccount.Id));
             comboBoxEvent.DataSource = list;
             comboBoxEvent.DisplayMember = "ContactName";
 
@@ -139,7 +139,7 @@ namespace enterpriseDevelopment.Forms
                 else
                 {
                     ContactRepository contactsRepository = new ContactRepository();
-                    ev.ContactFk = await Task.Run(() => contactsRepository.AddContact(new Contact { Name = comboBoxEvent.Text, UserFk = Instance.StaticUserAccount.Id }));
+                    ev.ContactFk = await Task.Run(() => contactsRepository.AddContact(new Contact { Name = comboBoxEvent.Text, UserFk = UserInstance.StaticUserAccount.Id }));
                 }
             }
             else
@@ -159,7 +159,7 @@ namespace enterpriseDevelopment.Forms
 
             if (recurrCheck.Checked == true && ev.Id == 0)
             {
-                EventRepeat eventRepeat = new EventRepeat
+                EventRecurring eventRepeat = new EventRecurring
                 {
                     Title = ev.Title,
                     Message = ev.Message,
@@ -210,7 +210,7 @@ namespace enterpriseDevelopment.Forms
                 else
                 {
                     ContactRepository contactsRepository = new ContactRepository();
-                    er.ContactFk = await Task.Run(() => contactsRepository.AddContact(new Contact { Name = comboBoxEvent.Text, UserFk = Instance.StaticUserAccount.Id }));
+                    er.ContactFk = await Task.Run(() => contactsRepository.AddContact(new Contact { Name = comboBoxEvent.Text, UserFk = UserInstance.StaticUserAccount.Id }));
                 }
             }
             else

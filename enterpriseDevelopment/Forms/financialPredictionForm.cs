@@ -17,7 +17,7 @@ namespace enterpriseDevelopment.Forms
         private bool isCollapsed = true;
         private bool isCollapsed2 = true;
         private List<Transaction> transactions;
-        private List<TransactionRepeat> transactionRepeats;
+        private List<TransactionRecurring> transactionRepeats;
         private TransactionRepository transactionRepository;
         private TransactionRecurringRepository transactionRecurringRepository;
         private decimal GetAvg()
@@ -90,7 +90,7 @@ namespace enterpriseDevelopment.Forms
         {
             decimal totRecurring = 0;
             DateTime predicDate = datePicker.SelectionRange.Start;
-            foreach (TransactionRepeat transactionRepeat in transactionRepeats)
+            foreach (TransactionRecurring transactionRepeat in transactionRepeats)
             {
                 string tDateString = transactionRepeat.DateTime.ToString("dd/MM");
                 string predictDateString = predicDate.ToString("dd/MM");
@@ -129,7 +129,7 @@ namespace enterpriseDevelopment.Forms
         {
             if (transactions == null)
             {
-                transactions = await Task.Run(() => transactionRepository.GetTransactions(Instance.StaticUserAccount.Id));
+                transactions = await Task.Run(() => transactionRepository.GetTransactions(UserInstance.StaticUserAccount.Id));
                 List<Transaction> tempTransactions = new List<Transaction>();
                 foreach (Transaction transaction in transactions)
                 {
@@ -141,9 +141,9 @@ namespace enterpriseDevelopment.Forms
 
             if (transactionRepeats == null)
             {
-                transactionRepeats = await Task.Run(() => transactionRecurringRepository.GetTransactions(Instance.StaticUserAccount.Id));
-                List<TransactionRepeat> tempTransactions = new List<TransactionRepeat>();
-                foreach (TransactionRepeat transaction in transactionRepeats)
+                transactionRepeats = await Task.Run(() => transactionRecurringRepository.GetTransactions(UserInstance.StaticUserAccount.Id));
+                List<TransactionRecurring> tempTransactions = new List<TransactionRecurring>();
+                foreach (TransactionRecurring transaction in transactionRepeats)
                 {
                     if (transaction.IncomeExpense == false)
                         tempTransactions.Add(transaction);
@@ -162,7 +162,7 @@ namespace enterpriseDevelopment.Forms
         
         private void closePanel_Click(object sender, EventArgs e)
         {
-            Instance.MainForm.Dispose();
+            UserInstance.MainForm.Dispose();
         }
 
         private void closePanel_MouseEnter(object sender, EventArgs e)
@@ -177,7 +177,7 @@ namespace enterpriseDevelopment.Forms
 
         private void mainBtn_Click(object sender, EventArgs e)
         {
-            Instance.MainForm.Show();
+            UserInstance.MainForm.Show();
             Close();
         }
         

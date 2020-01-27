@@ -12,19 +12,19 @@ namespace enterpriseDevelopment
 {
     public partial class ContactAddEdit : Form
     {
-        private Contact c;
+        private Contact contact;
         public ContactAddEdit()
         {
             InitializeComponent();
             actionBtn.Text = "Add";
             Text = "Add contact";
-            c = new Contact { UserFk = Instance.StaticUserAccount.Id };
+            contact = new Contact { UserFk = UserInstance.StaticUserAccount.Id };
         }
 
         public ContactAddEdit(Contact contact)
         {
             InitializeComponent();
-            c = contact;
+            this.contact = contact;
             actionBtn.Text = "Edit";
             Text = "Edit contact";
             contactTxtBox.Text = contact.Name;
@@ -37,20 +37,20 @@ namespace enterpriseDevelopment
                 MessageBox.Show("Cannot leave empty field");
                 return;
             }
-            c.Name = contactTxtBox.Text;
+            contact.Name = contactTxtBox.Text;
             ContactRepository contactRepository = new ContactRepository();
 
             bool x = false;
 
-            if (c.Id > 0)
-                x = await Task.Run(() => contactRepository.EditContact(c));
+            if (contact.Id > 0)
+                x = await Task.Run(() => contactRepository.EditContact(contact));
             else
             {
-                int i = await Task.Run(() => contactRepository.AddContact(c));
+                int i = await Task.Run(() => contactRepository.AddContact(contact));
                 if (i > 0) x = true;
             }
 
-            if (c.Id > 0 && x == true)
+            if (contact.Id > 0 && x == true)
                 MessageBox.Show("Contact Edited!");
             else if (x == true)
                 MessageBox.Show("Contact Added!");

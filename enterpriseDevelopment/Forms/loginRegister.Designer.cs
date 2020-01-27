@@ -38,32 +38,32 @@
             this.usernameRegTxt = new System.Windows.Forms.TextBox();
             this.passwordRegTxt = new System.Windows.Forms.TextBox();
             this.password2RegTxt = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.loginPanel = new System.Windows.Forms.Panel();
             this.thinLineOne = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.logPwdPanel = new System.Windows.Forms.Panel();
             this.thinLinetwo = new System.Windows.Forms.Panel();
             this.loginIcon = new System.Windows.Forms.PictureBox();
             this.closeBtn = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.panel10 = new System.Windows.Forms.Panel();
+            this.dontHaveAccLbl = new System.Windows.Forms.Label();
+            this.registerHereLbl = new System.Windows.Forms.Label();
+            this.alreadyRegLbl = new System.Windows.Forms.Label();
+            this.loginHereLbl = new System.Windows.Forms.Label();
+            this.fullNamePanel = new System.Windows.Forms.Panel();
+            this.bottomLineP1 = new System.Windows.Forms.Panel();
+            this.usernamePanel = new System.Windows.Forms.Panel();
+            this.bottomLineP2 = new System.Windows.Forms.Panel();
+            this.pwdPanel = new System.Windows.Forms.Panel();
+            this.bottomLineP3 = new System.Windows.Forms.Panel();
+            this.pwd2Panel = new System.Windows.Forms.Panel();
+            this.bottomLineP14 = new System.Windows.Forms.Panel();
             this.registerIcon = new System.Windows.Forms.PictureBox();
-            this.panel1.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.loginPanel.SuspendLayout();
+            this.logPwdPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loginIcon)).BeginInit();
-            this.panel2.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.panel7.SuspendLayout();
-            this.panel9.SuspendLayout();
+            this.fullNamePanel.SuspendLayout();
+            this.usernamePanel.SuspendLayout();
+            this.pwdPanel.SuspendLayout();
+            this.pwd2Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.registerIcon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -175,15 +175,15 @@
             this.password2RegTxt.Text = "Confirm password";
             this.password2RegTxt.MouseClick += new System.Windows.Forms.MouseEventHandler(this.password2RegTxt_MouseClick);
             // 
-            // panel1
+            // loginPanel
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.Window;
-            this.panel1.Controls.Add(this.thinLineOne);
-            this.panel1.Controls.Add(this.usernameLogTxt);
-            this.panel1.Location = new System.Drawing.Point(122, 231);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(149, 34);
-            this.panel1.TabIndex = 14;
+            this.loginPanel.BackColor = System.Drawing.SystemColors.Window;
+            this.loginPanel.Controls.Add(this.thinLineOne);
+            this.loginPanel.Controls.Add(this.usernameLogTxt);
+            this.loginPanel.Location = new System.Drawing.Point(122, 231);
+            this.loginPanel.Name = "loginPanel";
+            this.loginPanel.Size = new System.Drawing.Size(149, 34);
+            this.loginPanel.TabIndex = 14;
             // 
             // thinLineOne
             // 
@@ -193,15 +193,15 @@
             this.thinLineOne.Size = new System.Drawing.Size(149, 1);
             this.thinLineOne.TabIndex = 15;
             // 
-            // panel3
+            // logPwdPanel
             // 
-            this.panel3.BackColor = System.Drawing.SystemColors.Window;
-            this.panel3.Controls.Add(this.passwordLogTxt);
-            this.panel3.Controls.Add(this.thinLinetwo);
-            this.panel3.Location = new System.Drawing.Point(122, 302);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(149, 34);
-            this.panel3.TabIndex = 15;
+            this.logPwdPanel.BackColor = System.Drawing.SystemColors.Window;
+            this.logPwdPanel.Controls.Add(this.passwordLogTxt);
+            this.logPwdPanel.Controls.Add(this.thinLinetwo);
+            this.logPwdPanel.Location = new System.Drawing.Point(122, 302);
+            this.logPwdPanel.Name = "logPwdPanel";
+            this.logPwdPanel.Size = new System.Drawing.Size(149, 34);
+            this.logPwdPanel.TabIndex = 15;
             // 
             // thinLinetwo
             // 
@@ -233,129 +233,129 @@
             this.closeBtn.TabIndex = 18;
             this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
             // 
-            // label1
+            // dontHaveAccLbl
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label1.Location = new System.Drawing.Point(83, 476);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(138, 15);
-            this.label1.TabIndex = 19;
-            this.label1.Text = "Don\'t have an account? ";
+            this.dontHaveAccLbl.AutoSize = true;
+            this.dontHaveAccLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.dontHaveAccLbl.Location = new System.Drawing.Point(83, 476);
+            this.dontHaveAccLbl.Name = "dontHaveAccLbl";
+            this.dontHaveAccLbl.Size = new System.Drawing.Size(138, 15);
+            this.dontHaveAccLbl.TabIndex = 19;
+            this.dontHaveAccLbl.Text = "Don\'t have an account? ";
             // 
-            // label2
+            // registerHereLbl
             // 
-            this.label2.AutoSize = true;
-            this.label2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Brown;
-            this.label2.Location = new System.Drawing.Point(216, 478);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 13);
-            this.label2.TabIndex = 20;
-            this.label2.Text = "Register here";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.registerHereLbl.AutoSize = true;
+            this.registerHereLbl.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.registerHereLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.registerHereLbl.ForeColor = System.Drawing.Color.Brown;
+            this.registerHereLbl.Location = new System.Drawing.Point(216, 478);
+            this.registerHereLbl.Name = "registerHereLbl";
+            this.registerHereLbl.Size = new System.Drawing.Size(83, 13);
+            this.registerHereLbl.TabIndex = 20;
+            this.registerHereLbl.Text = "Register here";
+            this.registerHereLbl.Click += new System.EventHandler(this.label2_Click);
             // 
-            // label3
+            // alreadyRegLbl
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label3.Location = new System.Drawing.Point(83, 476);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(112, 15);
-            this.label3.TabIndex = 21;
-            this.label3.Text = "Already registered?";
-            this.label3.Visible = false;
+            this.alreadyRegLbl.AutoSize = true;
+            this.alreadyRegLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.alreadyRegLbl.Location = new System.Drawing.Point(83, 476);
+            this.alreadyRegLbl.Name = "alreadyRegLbl";
+            this.alreadyRegLbl.Size = new System.Drawing.Size(112, 15);
+            this.alreadyRegLbl.TabIndex = 21;
+            this.alreadyRegLbl.Text = "Already registered?";
+            this.alreadyRegLbl.Visible = false;
             // 
-            // label4
+            // loginHereLbl
             // 
-            this.label4.AutoSize = true;
-            this.label4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Brown;
-            this.label4.Location = new System.Drawing.Point(201, 478);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(69, 13);
-            this.label4.TabIndex = 22;
-            this.label4.Text = "Login Here";
-            this.label4.Visible = false;
-            this.label4.Click += new System.EventHandler(this.label4_Click);
+            this.loginHereLbl.AutoSize = true;
+            this.loginHereLbl.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.loginHereLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loginHereLbl.ForeColor = System.Drawing.Color.Brown;
+            this.loginHereLbl.Location = new System.Drawing.Point(201, 478);
+            this.loginHereLbl.Name = "loginHereLbl";
+            this.loginHereLbl.Size = new System.Drawing.Size(69, 13);
+            this.loginHereLbl.TabIndex = 22;
+            this.loginHereLbl.Text = "Login Here";
+            this.loginHereLbl.Visible = false;
+            this.loginHereLbl.Click += new System.EventHandler(this.loginHereLbl_Click);
             // 
-            // panel2
+            // fullNamePanel
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.Window;
-            this.panel2.Controls.Add(this.panel4);
-            this.panel2.Controls.Add(this.fullNameRegTxt);
-            this.panel2.Location = new System.Drawing.Point(41, 224);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(149, 34);
-            this.panel2.TabIndex = 16;
-            this.panel2.Visible = false;
+            this.fullNamePanel.BackColor = System.Drawing.SystemColors.Window;
+            this.fullNamePanel.Controls.Add(this.bottomLineP1);
+            this.fullNamePanel.Controls.Add(this.fullNameRegTxt);
+            this.fullNamePanel.Location = new System.Drawing.Point(41, 224);
+            this.fullNamePanel.Name = "fullNamePanel";
+            this.fullNamePanel.Size = new System.Drawing.Size(149, 34);
+            this.fullNamePanel.TabIndex = 16;
+            this.fullNamePanel.Visible = false;
             // 
-            // panel4
+            // bottomLineP1
             // 
-            this.panel4.BackColor = System.Drawing.Color.DarkGray;
-            this.panel4.Location = new System.Drawing.Point(0, 33);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(149, 1);
-            this.panel4.TabIndex = 15;
+            this.bottomLineP1.BackColor = System.Drawing.Color.DarkGray;
+            this.bottomLineP1.Location = new System.Drawing.Point(0, 33);
+            this.bottomLineP1.Name = "bottomLineP1";
+            this.bottomLineP1.Size = new System.Drawing.Size(149, 1);
+            this.bottomLineP1.TabIndex = 15;
             // 
-            // panel5
+            // usernamePanel
             // 
-            this.panel5.BackColor = System.Drawing.SystemColors.Window;
-            this.panel5.Controls.Add(this.panel6);
-            this.panel5.Controls.Add(this.usernameRegTxt);
-            this.panel5.Location = new System.Drawing.Point(200, 224);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(149, 34);
-            this.panel5.TabIndex = 17;
-            this.panel5.Visible = false;
+            this.usernamePanel.BackColor = System.Drawing.SystemColors.Window;
+            this.usernamePanel.Controls.Add(this.bottomLineP2);
+            this.usernamePanel.Controls.Add(this.usernameRegTxt);
+            this.usernamePanel.Location = new System.Drawing.Point(200, 224);
+            this.usernamePanel.Name = "usernamePanel";
+            this.usernamePanel.Size = new System.Drawing.Size(149, 34);
+            this.usernamePanel.TabIndex = 17;
+            this.usernamePanel.Visible = false;
             // 
-            // panel6
+            // bottomLineP2
             // 
-            this.panel6.BackColor = System.Drawing.Color.DarkGray;
-            this.panel6.Location = new System.Drawing.Point(0, 33);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(149, 1);
-            this.panel6.TabIndex = 15;
+            this.bottomLineP2.BackColor = System.Drawing.Color.DarkGray;
+            this.bottomLineP2.Location = new System.Drawing.Point(0, 33);
+            this.bottomLineP2.Name = "bottomLineP2";
+            this.bottomLineP2.Size = new System.Drawing.Size(149, 1);
+            this.bottomLineP2.TabIndex = 15;
             // 
-            // panel7
+            // pwdPanel
             // 
-            this.panel7.BackColor = System.Drawing.SystemColors.Window;
-            this.panel7.Controls.Add(this.panel8);
-            this.panel7.Controls.Add(this.passwordRegTxt);
-            this.panel7.Location = new System.Drawing.Point(41, 296);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(149, 34);
-            this.panel7.TabIndex = 17;
-            this.panel7.Visible = false;
+            this.pwdPanel.BackColor = System.Drawing.SystemColors.Window;
+            this.pwdPanel.Controls.Add(this.bottomLineP3);
+            this.pwdPanel.Controls.Add(this.passwordRegTxt);
+            this.pwdPanel.Location = new System.Drawing.Point(41, 296);
+            this.pwdPanel.Name = "pwdPanel";
+            this.pwdPanel.Size = new System.Drawing.Size(149, 34);
+            this.pwdPanel.TabIndex = 17;
+            this.pwdPanel.Visible = false;
             // 
-            // panel8
+            // bottomLineP3
             // 
-            this.panel8.BackColor = System.Drawing.Color.DarkGray;
-            this.panel8.Location = new System.Drawing.Point(0, 33);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(149, 1);
-            this.panel8.TabIndex = 15;
+            this.bottomLineP3.BackColor = System.Drawing.Color.DarkGray;
+            this.bottomLineP3.Location = new System.Drawing.Point(0, 33);
+            this.bottomLineP3.Name = "bottomLineP3";
+            this.bottomLineP3.Size = new System.Drawing.Size(149, 1);
+            this.bottomLineP3.TabIndex = 15;
             // 
-            // panel9
+            // pwd2Panel
             // 
-            this.panel9.BackColor = System.Drawing.SystemColors.Window;
-            this.panel9.Controls.Add(this.panel10);
-            this.panel9.Controls.Add(this.password2RegTxt);
-            this.panel9.Location = new System.Drawing.Point(196, 296);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(149, 34);
-            this.panel9.TabIndex = 17;
-            this.panel9.Visible = false;
+            this.pwd2Panel.BackColor = System.Drawing.SystemColors.Window;
+            this.pwd2Panel.Controls.Add(this.bottomLineP14);
+            this.pwd2Panel.Controls.Add(this.password2RegTxt);
+            this.pwd2Panel.Location = new System.Drawing.Point(196, 296);
+            this.pwd2Panel.Name = "pwd2Panel";
+            this.pwd2Panel.Size = new System.Drawing.Size(149, 34);
+            this.pwd2Panel.TabIndex = 17;
+            this.pwd2Panel.Visible = false;
             // 
-            // panel10
+            // bottomLineP14
             // 
-            this.panel10.BackColor = System.Drawing.Color.DarkGray;
-            this.panel10.Location = new System.Drawing.Point(0, 33);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(149, 1);
-            this.panel10.TabIndex = 15;
+            this.bottomLineP14.BackColor = System.Drawing.Color.DarkGray;
+            this.bottomLineP14.Location = new System.Drawing.Point(0, 33);
+            this.bottomLineP14.Name = "bottomLineP14";
+            this.bottomLineP14.Size = new System.Drawing.Size(149, 1);
+            this.bottomLineP14.TabIndex = 15;
             // 
             // registerIcon
             // 
@@ -374,20 +374,20 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(177)))), ((int)(((byte)(160)))));
             this.ClientSize = new System.Drawing.Size(373, 551);
             this.Controls.Add(this.registerIcon);
-            this.Controls.Add(this.panel9);
-            this.Controls.Add(this.panel7);
-            this.Controls.Add(this.panel5);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pwd2Panel);
+            this.Controls.Add(this.pwdPanel);
+            this.Controls.Add(this.usernamePanel);
+            this.Controls.Add(this.fullNamePanel);
+            this.Controls.Add(this.loginHereLbl);
+            this.Controls.Add(this.alreadyRegLbl);
+            this.Controls.Add(this.registerHereLbl);
+            this.Controls.Add(this.dontHaveAccLbl);
             this.Controls.Add(this.closeBtn);
             this.Controls.Add(this.loginIcon);
             this.Controls.Add(this.registerBtn);
             this.Controls.Add(this.loginBtn);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.loginPanel);
+            this.Controls.Add(this.logPwdPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -397,19 +397,19 @@
             this.Text = "Form2";
             this.Activated += new System.EventHandler(this.LoginRegister_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LoginRegister_FormClosed);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.loginPanel.ResumeLayout(false);
+            this.loginPanel.PerformLayout();
+            this.logPwdPanel.ResumeLayout(false);
+            this.logPwdPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loginIcon)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
-            this.panel9.ResumeLayout(false);
-            this.panel9.PerformLayout();
+            this.fullNamePanel.ResumeLayout(false);
+            this.fullNamePanel.PerformLayout();
+            this.usernamePanel.ResumeLayout(false);
+            this.usernamePanel.PerformLayout();
+            this.pwdPanel.ResumeLayout(false);
+            this.pwdPanel.PerformLayout();
+            this.pwd2Panel.ResumeLayout(false);
+            this.pwd2Panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.registerIcon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -427,24 +427,24 @@
         private System.Windows.Forms.TextBox usernameRegTxt;
         private System.Windows.Forms.TextBox passwordRegTxt;
         private System.Windows.Forms.TextBox password2RegTxt;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel loginPanel;
         private System.Windows.Forms.Panel thinLineOne;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel logPwdPanel;
         private System.Windows.Forms.Panel thinLinetwo;
         private System.Windows.Forms.PictureBox loginIcon;
         private System.Windows.Forms.Panel closeBtn;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Label dontHaveAccLbl;
+        private System.Windows.Forms.Label registerHereLbl;
+        private System.Windows.Forms.Label alreadyRegLbl;
+        private System.Windows.Forms.Label loginHereLbl;
+        private System.Windows.Forms.Panel fullNamePanel;
+        private System.Windows.Forms.Panel bottomLineP1;
+        private System.Windows.Forms.Panel usernamePanel;
+        private System.Windows.Forms.Panel bottomLineP2;
+        private System.Windows.Forms.Panel pwdPanel;
+        private System.Windows.Forms.Panel bottomLineP3;
+        private System.Windows.Forms.Panel pwd2Panel;
+        private System.Windows.Forms.Panel bottomLineP14;
         private System.Windows.Forms.PictureBox registerIcon;
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace enterpriseDevelopment.Models
 {
-  public class TransactionRepeat : Transaction  
+  public class TransactionRecurring : Transaction  
     {
         public string Period { get; set; }
         public DateTime EndTime { get; set; } 

@@ -23,9 +23,9 @@ namespace enterpriseDevelopment.Repositories
             connection = new SqlConnection(databaseConn);
         }
 
-        public List<TransactionRepeat> GetTransactions(int id)
+        public List<TransactionRecurring> GetTransactions(int id)
         {
-            List<TransactionRepeat> u = new List<TransactionRepeat>();
+            List<TransactionRecurring> u = new List<TransactionRecurring>();
 
             string selectQuery = "SELECT TransactionsRepeatTbl.*, ContactsTbl.ContactName AS ContactName FROM TransactionsRepeatTbl LEFT JOIN ContactsTbl ON ContactsTbl.ContactId = TransactionsRepeatTbl.contactIdFk WHERE TransactionsRepeatTbl.userIdFk = @userID";
             try
@@ -37,7 +37,7 @@ namespace enterpriseDevelopment.Repositories
                 SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
                 while (sqlDataReader.Read())
                 {
-                    TransactionRepeat temp = new TransactionRepeat
+                    TransactionRecurring temp = new TransactionRecurring
                     {
                         Id = (int)sqlDataReader["TransactionId"],
                         Category = sqlDataReader["TransactionCategory"].ToString(),
@@ -84,7 +84,7 @@ namespace enterpriseDevelopment.Repositories
             return u;
         }
 
-        public bool AddTransction(TransactionRepeat transactionRepeat)
+        public bool AddTransction(TransactionRecurring transactionRepeat)
         {
             string selectQuery = "INSERT INTO TransactionsRepeatTbl  ([TransactionCategory], [TransactionAmount], [userIdFk], [contactIdFk], [dateTime], [TransactionMessage], [IncomeExpense], [subscriptionPeriod], [subscriptionEndTime]) VALUES (@TransactionCategory, @TransactionAmount, @userIdFk, @contactIdFk, @dateTime, @TransactionMessage, @IncomeExpense, @subscriptionPeriod, @subscriptionEndTime)";
             try
@@ -127,7 +127,7 @@ namespace enterpriseDevelopment.Repositories
             }
         }
 
-        public bool EditTransaction(TransactionRepeat transactionRepeat)
+        public bool EditTransaction(TransactionRecurring transactionRepeat)
         {
             string selectQuery = "UPDATE TransactionsRepeatTbl SET [TransactionCategory] = @transactionCategory, [TransactionAmount] = @transactionAmount, [dateTime] = @dateTime, [TransactionMessage] = @transactionMessage, [IncomeExpense] = @incomeExpense, [subscriptionPeriod] = @subscriptionPeriod, [subscriptionEndTime] = @subscriptionEndTime, [contactIdFk] = @contactIdFk WHERE [TransactionId] = @id AND [userIdFk] = @userID";
             try
@@ -171,7 +171,7 @@ namespace enterpriseDevelopment.Repositories
             }
         }
 
-        public bool DeleteTransaction(TransactionRepeat transactionRepeat)
+        public bool DeleteTransaction(TransactionRecurring transactionRepeat)
         {
             string selectQuery = "DELETE FROM TransactionsRepeatTbl WHERE [TransactionId] = @transactionID AND [userIdFk] = @userId";
             try

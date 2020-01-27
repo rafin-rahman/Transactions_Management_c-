@@ -12,18 +12,24 @@ namespace enterpriseDevelopment
 {
     class ContactRepository
     {
+        // Loggger to save errors in a txt file
         private Logger Logger = LogManager.GetCurrentClassLogger();
-        public string databaseConn;
+
+        public string databaseConnection;
         SqlConnection connection;
+
+        // Connection to db
         public ContactRepository()
         {
-            databaseConn = ConfigurationManager.ConnectionStrings["Conn"].ConnectionString;
-            connection = new SqlConnection(databaseConn);
+            // get the string URL from app.config
+            databaseConnection = ConfigurationManager.ConnectionStrings["Conn"].ConnectionString;
+            // connectiong to db
+            connection = new SqlConnection(databaseConnection);
         }
 
         public List<Contact> GetContacts(int id)
         {
-            List<Contact> u = new List<Contact>();
+            List<Contact> contacts = new List<Contact>();
 
             string selectQuery = "SELECT * FROM ContactsTbl WHERE [userIdFk] = @userID";
             try
@@ -31,11 +37,12 @@ namespace enterpriseDevelopment
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
                 sqlCommand.Parameters.Add("@userID", SqlDbType.Int).Value = id;
                 connection.Open();
+                // Execute query "selectQuery"
                 SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
-
+                // storing contacts from db to the list u
                 while (sqlDataReader.Read())
                 {
-                    u.Add(new Contact
+                    contacts.Add(new Contact
                     {
                         Id = (int)sqlDataReader["ContactId"],
                         UserFk = (int)sqlDataReader["userIdFk"],
@@ -51,7 +58,7 @@ namespace enterpriseDevelopment
             {
                 connection.Close();
             }
-            return u;
+            return contacts;
         }
 
         public bool DeleteContact(Contact contact)
@@ -67,7 +74,9 @@ namespace enterpriseDevelopment
 
                 var x = sqlCommand.ExecuteNonQuery();
                 connection.Close();
-                if (x > 0) return true;
+                // if it executes the query it will be 1 else 0
+                if (x > 0)
+                    return true;
                 else
                     return false;
             }
@@ -84,7 +93,7 @@ namespace enterpriseDevelopment
         }
 
         public int AddContact(Contact contact)
-        {
+        {   // "OUTPUT INSERTED.ContactId" returns the newly added contactId
             string selectQuery = "INSERT INTO ContactsTbl  ([userIdFk], [Contactname]) OUTPUT INSERTED.ContactId VALUES (@userID, @name)";
             try
             {
@@ -101,6 +110,7 @@ namespace enterpriseDevelopment
                     y = (int)sqlDataReader["ContactId"];
                 }
                 connection.Close();
+                // y = added contactId
                 return y;
             }
             catch (Exception ex)

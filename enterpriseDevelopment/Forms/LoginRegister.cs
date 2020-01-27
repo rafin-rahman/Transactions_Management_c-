@@ -16,23 +16,23 @@ namespace enterpriseDevelopment
     {
         private string fullNameReg, usernameReg, pwdReg, pwd2Reg;
         private string userNameLog, pwdLog;
-        UserRepository userRepositoryObj;
+        UserRepository userRepository;
         public LoginRegister()
         {
             InitializeComponent();
-            userRepositoryObj = new UserRepository();
-            Instance.MainForm.Hide();
+            userRepository = new UserRepository();
+            UserInstance.MainForm.Hide();
         }
 
-        // function for registration validations
+        // validations for registration text fields
         private bool RegistrationValidation()
-        {
+        {   
             if (String.IsNullOrEmpty(fullNameReg))
             {
                 MessageBox.Show("Full name cannot be empty");
                 return false;
             }
-
+            
             if (fullNameReg.Length < 3)
             {
                 MessageBox.Show("Name is too short, please use your full name");
@@ -44,21 +44,21 @@ namespace enterpriseDevelopment
                 MessageBox.Show("Name is too long, please try again");
                 return false;
             }
-
+            
             if (String.IsNullOrWhiteSpace(usernameReg))
             {
                 MessageBox.Show("Username cannot have empty spaces");
                 return false;
             }
             else
-            {
+            {   
                 if (usernameReg.Contains(" "))
                 {
                     MessageBox.Show("Username cannot have empty spaces");
                     return false;
                 }
             }
-
+            
             if (usernameReg.Length < 6)
             {
                 MessageBox.Show("Username is too short, please try again");
@@ -112,23 +112,8 @@ namespace enterpriseDevelopment
             return true;
         }
 
-        private async void loginBtn_Click(object sender, EventArgs e)
-        {
-            userNameLog = usernameLogTxt.Text;
-            pwdLog = passwordLogTxt.Text;
-
-            if (!LoginValidation()) return;
-
-            UserAccount userAccount = await Task.Run(() => userRepositoryObj.GetUserByUsername(userNameLog));
-            if (!CheckUserForLogin(userAccount)) return;
-            if (!CheckPwdForLogin(userAccount)) return;
-            // if login is successful, it will store login user data into the static class
-            Instance.StaticUserAccount = userAccount;
-            Close();
-        }
-
         private bool CheckUserForLogin(UserAccount userAccount)
-        {
+        {   // if the ID is greater then 1 it means it can login
             if (!(userAccount.Id > 0))
             {
                 MessageBox.Show("Username or Password is incorrect, please try again", "Alert");
@@ -138,7 +123,7 @@ namespace enterpriseDevelopment
         }
 
         private bool CheckPwdForLogin(UserAccount userAccount)
-        {
+        {   // Checks if the password is the same in the db
             bool isMatched = bcrypt.Verify("hEllo" + pwdLog + "woRld", userAccount.Password);
 
             if (!isMatched)
@@ -151,51 +136,70 @@ namespace enterpriseDevelopment
             return true;
         }
 
+        private async void loginBtn_Click(object sender, EventArgs e)
+        {
+            userNameLog = usernameLogTxt.Text;
+            pwdLog = passwordLogTxt.Text;
+            // I will run again LoginValidation() until the value is true
+            if (!LoginValidation())
+                return;
+            // Get the user information from the repository, which will connect to the db table
+            UserAccount userAccount = await Task.Run(() => userRepository.GetUserByUsername(userNameLog));
+
+            if (!CheckUserForLogin(userAccount))
+                return;
+            if (!CheckPwdForLogin(userAccount))
+                return;
+            // if login is successful, it will store login user data into the static class
+            UserInstance.StaticUserAccount = userAccount;
+            Close();
+        }
+
         private void closeBtn_Click(object sender, EventArgs e)
         {
             Close();
         }
+
         #region Toogle login / register view
         // Register here link
         private void label2_Click(object sender, EventArgs e)
         {
             // Show register elements in the UI
-            panel2.Visible = true;
-            panel5.Visible = true;
-            panel7.Visible = true;
-            panel9.Visible = true;
+            fullNamePanel.Visible = true;
+            usernamePanel.Visible = true;
+            pwdPanel.Visible = true;
+            pwd2Panel.Visible = true;
             registerBtn.Visible = true;
-            label3.Visible = true;
-            label4.Visible = true;
+            alreadyRegLbl.Visible = true;
+            loginHereLbl.Visible = true;
             registerIcon.Visible = true;
 
             // Hide login  elements in the UI
-            panel1.Visible = false;
-            panel3.Visible = false;
+            loginPanel.Visible = false;
+            logPwdPanel.Visible = false;
             loginBtn.Visible = false;
-            label1.Visible = false;
-            label2.Visible = false;
+            dontHaveAccLbl.Visible = false;
+            registerHereLbl.Visible = false;
             loginIcon.Visible = false;
         }
         // Login here link
-        private void label4_Click(object sender, EventArgs e)
+        private void loginHereLbl_Click(object sender, EventArgs e)
         {
-            panel2.Visible = false;
-            panel5.Visible = false;
-            panel7.Visible = false;
-            panel9.Visible = false;
+            fullNamePanel.Visible = false;
+            usernamePanel.Visible = false;
+            pwdPanel.Visible = false;
+            pwd2Panel.Visible = false;
             registerBtn.Visible = false;
-            label3.Visible = false;
-            label4.Visible = false;
+            alreadyRegLbl.Visible = false;
+            loginHereLbl.Visible = false;
             registerIcon.Visible = false;
-            panel1.Visible = true;
-            panel3.Visible = true;
+            loginPanel.Visible = true;
+            logPwdPanel.Visible = true;
             loginBtn.Visible = true;
-            label1.Visible = true;
-            label2.Visible = true;
+            dontHaveAccLbl.Visible = true;
+            registerHereLbl.Visible = true;
             loginIcon.Visible = true;
         }
-        #endregion
 
         private void LoginRegister_Activated(object sender, EventArgs e)
         {
@@ -204,6 +208,9 @@ namespace enterpriseDevelopment
                 registerIcon.Visible = false;
             }
         }
+        #endregion
+
+
 
         #region Login / Register text field CLICK
         // Login useername  Click
@@ -244,7 +251,6 @@ namespace enterpriseDevelopment
             if (usernameRegTxt.Text == "")
                 usernameRegTxt.Text = "Type username";
         }
-
         // registration username Click
         private void usernameRegTxt_MouseClick(object sender, MouseEventArgs e)
         {
@@ -266,7 +272,6 @@ namespace enterpriseDevelopment
             if (fullNameRegTxt.Text == "")
                 fullNameRegTxt.Text = "Type full name";
         }
-
         // registration password Click
         private void passwordRegTxt_MouseClick(object sender, MouseEventArgs e)
         {
@@ -296,7 +301,7 @@ namespace enterpriseDevelopment
                 password2RegTxt.Text = "";
                 password2RegTxt.UseSystemPasswordChar = true;
             }
-            
+
             if (usernameRegTxt.Text == "")
                 usernameRegTxt.Text = "Type username";
 
@@ -313,22 +318,34 @@ namespace enterpriseDevelopment
 
         private void LoginRegister_FormClosed(object sender, FormClosedEventArgs e)
         {
-            // If user is not logged in, 
-            if (Instance.StaticUserAccount == null)
+            // If user is not logged in
+            if (UserInstance.StaticUserAccount == null)
             {
-                Instance.MainForm.Close();
+                UserInstance.MainForm.Close();
             }
             else
-            {
-                Instance.MainForm.Activate();
-                Instance.MainForm.Show();
+            {// if the user is logged in, show the main form
+                UserInstance.MainForm.Activate();
+                UserInstance.MainForm.Show();
             }
-            // Close the application, removes all the unnecessary data
+            
             Dispose();
         }
 
-        private void EncryptPwd()
+        private async Task<bool> CheckIfUserExists()
         {
+            UserAccount userAccount = await Task.Run(() => userRepository.GetUserByUsername(usernameReg));
+            // if the usernameReg already exist, it will pop up the error message
+            if (userAccount.Id > 0)
+            {
+                MessageBox.Show("Username already in use, please try with different name", "Alert");
+                return false;
+            }
+            return true;
+        }
+
+        private void EncryptPwd()
+        {   // bcrypt is generating salt which is an additional string to improve security
             pwdReg = bcrypt.HashPassword("hEllo" + pwdReg + "woRld", bcrypt.GenerateSalt());
         }
 
@@ -338,29 +355,19 @@ namespace enterpriseDevelopment
             usernameReg = usernameRegTxt.Text;
             pwdReg = passwordRegTxt.Text;
             pwd2Reg = password2RegTxt.Text;
-            
-            if (!RegistrationValidation()) return;
-            if (!await CheckIfUserExists()) return;
+
+            if (!RegistrationValidation())
+                return;
+            if (!await CheckIfUserExists())
+                return;
             EncryptPwd();
-            
-            bool check = await Task.Run(() => userRepositoryObj.AddUserAccount(new UserAccount { FullName = fullNameReg, Username = usernameReg, Password = pwdReg }));
+
+            bool check = await Task.Run(() => userRepository.AddUserAccount(new UserAccount { FullName = fullNameReg, Username = usernameReg, Password = pwdReg }));
             // checks if there was any error during the insertion of the user data into the database, AddUserAccount method returns tre of false 
             if (check)
                 MessageBox.Show("Account successfully created");
             else
                 MessageBox.Show("Error,account not created. Try again.");
-        }
-
-        private async Task<bool> CheckIfUserExists()
-        {
-            UserAccount userAccount = await Task.Run(() => userRepositoryObj.GetUserByUsername(usernameReg));
-            // if the usernameReg already exist, it will pop up the error message
-            if (userAccount.Id > 0)
-            {
-                MessageBox.Show("Username already in use, please try with different name", "Alert");
-                return false;
-            }
-            return true;
         }
     }
 }

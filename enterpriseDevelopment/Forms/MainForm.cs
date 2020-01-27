@@ -28,18 +28,19 @@ namespace enterpriseDevelopment
             InitializeComponent();
             transactionRepository = new TransactionRepository();
             todaysTransaction = new List<Transaction>();
-            Instance.MainForm = this;
+            UserInstance.MainForm = this;
             dashboardPanel = new Panel();
         }
         
         private void MainForm_Activated(object sender, EventArgs e)
         {
-            if (Instance.StaticUserAccount == null)
+            //
+            if (UserInstance.StaticUserAccount == null)
             {// Auto login
-                 Instance.StaticUserAccount = new UserAccount { Id = 1, FullName = "rafraf", LogDate = DateTime.Now.AddDays(-99).AddHours(5) };
+               //  UserInstance.StaticUserAccount = new UserAccount { Id = 1, FullName = "rafraf", LogDate = DateTime.Now.AddDays(-99).AddHours(5) };
             }
-            //  hide the mainform if the StaticUserAccount is empty
-            if (Instance.StaticUserAccount == null)
+            //  shows the login form if the StaticUserAccount is empty
+            if (UserInstance.StaticUserAccount == null)
             {
                 LoginRegister LoginRegisterObj = new LoginRegister();
                 LoginRegisterObj.Activate();
@@ -108,8 +109,8 @@ namespace enterpriseDevelopment
                 if (checkIfFirst == true)
                     checkIfFirst = false;
 
-                Instance.StaticUserAccount.LogDate = DateTime.Now;
-                new UserRepository().EditLogDate(Instance.StaticUserAccount);
+                UserInstance.StaticUserAccount.LogDate = DateTime.Now;
+                new UserRepository().EditLogDate(UserInstance.StaticUserAccount);
             }
         }
         
@@ -117,16 +118,16 @@ namespace enterpriseDevelopment
         {
             TransactionRecurringRepository transactionRecurringRepository = new TransactionRecurringRepository();
             TransactionRepository transactionRepo = new TransactionRepository();
-            List<TransactionRepeat> transactionRepeats = await Task.Run(() => transactionRecurringRepository.GetTransactions(Instance.StaticUserAccount.Id));
-            foreach (TransactionRepeat transactionRepeat in transactionRepeats)
+            List<TransactionRecurring> transactionRepeats = await Task.Run(() => transactionRecurringRepository.GetTransactions(UserInstance.StaticUserAccount.Id));
+            foreach (TransactionRecurring transactionRepeat in transactionRepeats)
             {
                 if (DateTime.Now > transactionRepeat.EndTime && transactionRepeat.EndTime != DateTime.MinValue)
                     continue;
                 
-                DateTime accTime = Instance.StaticUserAccount.LogDate;
+                DateTime accTime = UserInstance.StaticUserAccount.LogDate;
                 DateTime nowTime = DateTime.Now;
                 int days = (nowTime - accTime).Days;
-                DateTime recTime = Instance.StaticUserAccount.LogDate;
+                DateTime recTime = UserInstance.StaticUserAccount.LogDate;
                 TimeSpan ts = new TimeSpan(
                     transactionRepeat.DateTime.Hour,
                     transactionRepeat.DateTime.Minute,
@@ -184,16 +185,16 @@ namespace enterpriseDevelopment
         {
             EventRecurringRepository eventRecurringRepository = new EventRecurringRepository();
             EventRepository eventRepository = new EventRepository();
-            List<EventRepeat> eventRepeats = await Task.Run(() => eventRecurringRepository.GetEvents(Instance.StaticUserAccount.Id));
-            foreach (EventRepeat eventRepeat in eventRepeats)
+            List<EventRecurring> eventRepeats = await Task.Run(() => eventRecurringRepository.GetEvents(UserInstance.StaticUserAccount.Id));
+            foreach (EventRecurring eventRepeat in eventRepeats)
             {
                 if (DateTime.Now > eventRepeat.EndDate && eventRepeat.EndDate != DateTime.MinValue)
                     continue;
                 
-                DateTime accessTime = Instance.StaticUserAccount.LogDate;
+                DateTime accessTime = UserInstance.StaticUserAccount.LogDate;
                 DateTime currentTime = DateTime.Now;
                 int days = (currentTime - accessTime).Days;
-                DateTime recTime = Instance.StaticUserAccount.LogDate;
+                DateTime recTime = UserInstance.StaticUserAccount.LogDate;
                 TimeSpan timespan = new TimeSpan(
                     eventRepeat.Date.Hour,
                     eventRepeat.Date.Minute,
@@ -376,8 +377,7 @@ namespace enterpriseDevelopment
         // Dynamic transaction view on the dashboard
         private async void GetTransactionList()
         {
-            List<Transaction> transactions = await Task.Run(() => transactionRepository.GetTransactions(Instance.StaticUserAccount.Id));
-
+            List<Transaction> transactions = await Task.Run(() => transactionRepository.GetTransactions(UserInstance.StaticUserAccount.Id));
             List<Transaction> tempTransactions = new List<Transaction>();
 
             foreach (Transaction transaction in transactions)
@@ -397,11 +397,11 @@ namespace enterpriseDevelopment
             int count = 0;
             // COLUMN HEADERS 
             Label listLabel = new Label();
-            listLabel.Text = "DAILY TRANSACTION    NAME";
+            listLabel.Text = "DAILY TRANSACTION               NAME";
             listLabel.Size = new Size(250, 20);
-            listLabel.Location = new Point(12, 30);
+            listLabel.Location = new Point(20, 30);
             listLabel.ForeColor = Color.Black;
-            listLabel.Font = new Font("Times", 10, FontStyle.Bold);
+            listLabel.Font = new Font("Calibri", 10, FontStyle.Bold);
 
             dashboardPanel.Controls.Add(listLabel);
             foreach (Transaction transaction in tempTransactions)
@@ -514,7 +514,7 @@ namespace enterpriseDevelopment
         private void creatGraph()
         {
             TransactionRepository transactionRepository = new TransactionRepository();
-            List<Transaction> transactionList = transactionRepository.GetTransactions(DateTime.Now, Instance.StaticUserAccount.Id);
+            List<Transaction> transactionList = transactionRepository.GetTransactions(DateTime.Now, UserInstance.StaticUserAccount.Id);
             decimal totalExpense = 0;
             decimal totalIncome = 0;
 

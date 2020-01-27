@@ -29,69 +29,69 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NotificationForm));
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
+            this.closeLbl = new System.Windows.Forms.Label();
+            this.darkGreyPanel = new System.Windows.Forms.Panel();
+            this.headerLbl = new System.Windows.Forms.Label();
             this.bgWorkerNotification = new System.ComponentModel.BackgroundWorker();
-            this.labelNewTrans = new System.Windows.Forms.Label();
-            this.panel1.SuspendLayout();
+            this.messageLbl = new System.Windows.Forms.Label();
+            this.darkGreyPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
+            // closeLbl
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(22, 16);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 36);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "X";
-            this.label1.Click += new System.EventHandler(this.notificationClose_Click);
+            this.closeLbl.AutoSize = true;
+            this.closeLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.closeLbl.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.closeLbl.Location = new System.Drawing.Point(22, 16);
+            this.closeLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.closeLbl.Name = "closeLbl";
+            this.closeLbl.Size = new System.Drawing.Size(36, 36);
+            this.closeLbl.TabIndex = 0;
+            this.closeLbl.Text = "X";
+            this.closeLbl.Click += new System.EventHandler(this.notificationClose_Click);
             // 
-            // panel1
+            // darkGreyPanel
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(347, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(69, 69);
-            this.panel1.TabIndex = 1;
+            this.darkGreyPanel.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.darkGreyPanel.Controls.Add(this.closeLbl);
+            this.darkGreyPanel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.darkGreyPanel.Location = new System.Drawing.Point(347, 0);
+            this.darkGreyPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.darkGreyPanel.Name = "darkGreyPanel";
+            this.darkGreyPanel.Size = new System.Drawing.Size(69, 69);
+            this.darkGreyPanel.TabIndex = 1;
             // 
-            // label2
+            // headerLbl
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label2.Location = new System.Drawing.Point(2, 16);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(99, 36);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "OPEN";
-            this.label2.Visible = false;
-            this.label2.MouseEnter += new System.EventHandler(this.label2_MouseEnter);
-            this.label2.MouseHover += new System.EventHandler(this.label2_MouseHover);
+            this.headerLbl.AutoSize = true;
+            this.headerLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.headerLbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.headerLbl.Location = new System.Drawing.Point(2, 16);
+            this.headerLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.headerLbl.Name = "headerLbl";
+            this.headerLbl.Size = new System.Drawing.Size(99, 36);
+            this.headerLbl.TabIndex = 2;
+            this.headerLbl.Text = "OPEN";
+            this.headerLbl.Visible = false;
+            this.headerLbl.MouseEnter += new System.EventHandler(this.headerLbl_MouseEnter);
+            this.headerLbl.MouseHover += new System.EventHandler(this.headerLbl_MouseHover);
             // 
             // bgWorkerNotification
             // 
             this.bgWorkerNotification.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorkerNotification_DoWork);
             this.bgWorkerNotification.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorkerNotification_RunWorkerCompleted);
             // 
-            // labelNewTrans
+            // messageLbl
             // 
-            this.labelNewTrans.AutoSize = true;
-            this.labelNewTrans.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNewTrans.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.labelNewTrans.Location = new System.Drawing.Point(102, 20);
-            this.labelNewTrans.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelNewTrans.Name = "labelNewTrans";
-            this.labelNewTrans.Size = new System.Drawing.Size(218, 29);
-            this.labelNewTrans.TabIndex = 3;
-            this.labelNewTrans.Text = "NEW TRANSACTION!";
+            this.messageLbl.AutoSize = true;
+            this.messageLbl.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.messageLbl.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.messageLbl.Location = new System.Drawing.Point(102, 20);
+            this.messageLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.messageLbl.Name = "messageLbl";
+            this.messageLbl.Size = new System.Drawing.Size(218, 29);
+            this.messageLbl.TabIndex = 3;
+            this.messageLbl.Text = "NEW TRANSACTION!";
             // 
             // NotificationForm
             // 
@@ -99,9 +99,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.ClientSize = new System.Drawing.Size(416, 69);
-            this.Controls.Add(this.labelNewTrans);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.messageLbl);
+            this.Controls.Add(this.headerLbl);
+            this.Controls.Add(this.darkGreyPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -111,8 +111,8 @@
             this.MouseEnter += new System.EventHandler(this.NotificationForm_MouseEnter);
             this.MouseLeave += new System.EventHandler(this.NotificationForm_MouseLeave);
             this.MouseHover += new System.EventHandler(this.NotificationForm_MouseHover);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.darkGreyPanel.ResumeLayout(false);
+            this.darkGreyPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -120,10 +120,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label closeLbl;
+        private System.Windows.Forms.Panel darkGreyPanel;
+        private System.Windows.Forms.Label headerLbl;
         private System.ComponentModel.BackgroundWorker bgWorkerNotification;
-        private System.Windows.Forms.Label labelNewTrans;
+        private System.Windows.Forms.Label messageLbl;
     }
 }

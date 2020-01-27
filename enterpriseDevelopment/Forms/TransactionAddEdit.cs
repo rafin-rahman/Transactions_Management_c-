@@ -15,7 +15,7 @@ namespace enterpriseDevelopment.Forms
     public partial class TransactionAddEdit : Form
     {
         private Transaction t;
-        private TransactionRepeat tr;
+        private TransactionRecurring tr;
         private bool isRepeat = false;
        
         public TransactionAddEdit()
@@ -23,7 +23,7 @@ namespace enterpriseDevelopment.Forms
             InitializeComponent();
             actionBtn.Text = "Add";
             Text = "Add transaction";
-            t = new Transaction { UserFk = Instance.StaticUserAccount.Id };
+            t = new Transaction { UserFk = UserInstance.StaticUserAccount.Id };
         }
          
         public TransactionAddEdit(Transaction transaction)
@@ -56,7 +56,7 @@ namespace enterpriseDevelopment.Forms
             recurrCheck.Visible = false;
         }
         
-        public TransactionAddEdit(TransactionRepeat transaction)
+        public TransactionAddEdit(TransactionRecurring transaction)
         {
             InitializeComponent();
             isRepeat = true;
@@ -137,7 +137,7 @@ namespace enterpriseDevelopment.Forms
         private async void TransactionAddEdit_Load(object sender, EventArgs e)
         {
             ContactRepository contactRepository = new ContactRepository();
-            List<Contact> list = await Task.Run(() => contactRepository.GetContacts(Instance.StaticUserAccount.Id));
+            List<Contact> list = await Task.Run(() => contactRepository.GetContacts(UserInstance.StaticUserAccount.Id));
             contactComboBox.DataSource = list;
             contactComboBox.DisplayMember = "ContactName";
 
@@ -168,7 +168,7 @@ namespace enterpriseDevelopment.Forms
                 else
                 {
                     ContactRepository contactsRepository = new ContactRepository();
-                    contactsRepository.AddContact(new Contact { Name = contactComboBox.Text, UserFk = Instance.StaticUserAccount.Id });
+                    contactsRepository.AddContact(new Contact { Name = contactComboBox.Text, UserFk = UserInstance.StaticUserAccount.Id });
                 }
             }
             else
@@ -193,7 +193,7 @@ namespace enterpriseDevelopment.Forms
 
             if (recurrCheck.Checked == true && t.Id == 0)
             {
-                TransactionRepeat transactionRepeat = new TransactionRepeat
+                TransactionRecurring transactionRepeat = new TransactionRecurring
                 {
                     Category = t.Category,
                     Amount = t.Amount,
@@ -244,7 +244,7 @@ namespace enterpriseDevelopment.Forms
                 else
                 {
                     ContactRepository contactsRepository = new ContactRepository();
-                    tr.ContactFk = await Task.Run(() => contactsRepository.AddContact(new Contact { Name = contactComboBox.Text, UserFk = Instance.StaticUserAccount.Id }));
+                    tr.ContactFk = await Task.Run(() => contactsRepository.AddContact(new Contact { Name = contactComboBox.Text, UserFk = UserInstance.StaticUserAccount.Id }));
                 }
             }
 

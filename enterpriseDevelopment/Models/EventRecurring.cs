@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace enterpriseDevelopment.Models
 {
-    public class EventRepeat : Event
+    public class EventRecurring : Event
     {
         // Period = Daily , Monthly, Early
         public string Period { get; set; }

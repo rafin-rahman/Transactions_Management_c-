@@ -122,9 +122,9 @@
     <Compile Include="Instance.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Event.cs" />
-    <Compile Include="Models\EventRepeat.cs" />
+    <Compile Include="Models\EventRecurring.cs" />
     <Compile Include="Models\Transaction.cs" />
-    <Compile Include="Models\TransactionRepeat.cs" />
+    <Compile Include="Models\TransactionRecurring.cs" />
     <Compile Include="Properties\Messages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

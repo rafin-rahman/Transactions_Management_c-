@@ -12,6 +12,7 @@ namespace enterpriseDevelopment.Forms
 {
     public partial class ContactsForm : Form
     {
+        // used for Transaction and Event button animation
         private bool isCollapsed = true;
         private bool isCollapsed2 = true;
         private ContactRepository contactRepository;
@@ -19,9 +20,8 @@ namespace enterpriseDevelopment.Forms
         {
             InitializeComponent();
             contactRepository = new ContactRepository();
-            // When this form in opened, main form will be hidden
-            Instance.MainForm.Hide();
-            listViewContact.HideSelection = true;
+            UserInstance.MainForm.Hide();
+            contactListView.HideSelection = true;
         }
         
         private void addBtn_Click(object sender, EventArgs e)
@@ -33,9 +33,9 @@ namespace enterpriseDevelopment.Forms
 
         private async void deleteBtn_Click(object sender, EventArgs e)
         {
-            if (listViewContact.SelectedItems.Count > 0)
+            if (contactListView.SelectedItems.Count > 0)
             {
-                Contact contact = (Contact)listViewContact.SelectedItems[0].Tag;
+                Contact contact = (Contact)contactListView.SelectedItems[0].Tag;
                 DialogResult dialogResult = MessageBox.Show("Do you want do delete this contact?", "Confirm", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
@@ -50,40 +50,32 @@ namespace enterpriseDevelopment.Forms
 
         private async void ContactsForm_Activated(object sender, EventArgs e)
         {
-            List<Contact> ContactList = await Task.Run(() => contactRepository.GetContacts(Instance.StaticUserAccount.Id));
-            listViewContact.Items.Clear();
+            List<Contact> ContactList = await Task.Run(() => contactRepository.GetContacts(UserInstance.StaticUserAccount.Id));
+            contactListView.Items.Clear();
             foreach (Contact contact in ContactList)
             {
                 ListViewItem lvi = new ListViewItem(new string[] { contact.Name });
+                // Tag is useful when selecting the entire row, the whole contact object will be selected
                 lvi.Tag = contact;
-                listViewContact.Items.Add(lvi);
+                contactListView.Items.Add(lvi);
             }
         }
          
         private void editBtn_Click(object sender, EventArgs e)
         {
-            if (listViewContact.SelectedItems.Count > 0 )
+            if (contactListView.SelectedItems.Count > 0 )
             {
-                Contact contact = (Contact)listViewContact.SelectedItems[0].Tag;
+                Contact contact = (Contact)contactListView.SelectedItems[0].Tag;
                 ContactAddEdit contactAddEdit = new ContactAddEdit(contact);
                 contactAddEdit.Activate();
                 contactAddEdit.Show();
             }
         }
 
-        private void ContactsForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Dispose();
-        }
-
-        private void panel1_Click(object sender, EventArgs e)
-        {
-            Instance.MainForm.Dispose();
-        }
-
+        #region NAVIGATION BUTTONS
         private void mainBtn_Click(object sender, EventArgs e)
         {
-            Instance.MainForm.Show();
+            UserInstance.MainForm.Show();
             Close();
         }
 
@@ -100,6 +92,11 @@ namespace enterpriseDevelopment.Forms
             timer2.Start();
         }
 
+        private void transactionBtn_Click(object sender, EventArgs e)
+        {
+            timer.Start();
+        }
+
         private void summaryBtn_Click(object sender, EventArgs e)
         {
             SummaryForm summaryForm = new SummaryForm();
@@ -107,28 +104,23 @@ namespace enterpriseDevelopment.Forms
             summaryForm.Show();
             Close();
         }
-        
+        #endregion
         private void mainBtn_MouseEnter(object sender, EventArgs e)
         {
-            panel14.Visible = true;
-            pictureBox1.Visible = false;
+            mainBoxPanel.Visible = true;
+            mainIcon.Visible = false;
             mainBtn.Font = new Font(mainBtn.Font, FontStyle.Bold);
             mainBtn.ForeColor = Color.White;
         }
 
         private void mainBtn_MouseLeave(object sender, EventArgs e)
         {
-            panel14.Visible = false;
-            pictureBox1.Visible = true;
+            mainBoxPanel.Visible = false;
+            mainIcon.Visible = true;
             mainBtn.Font = new Font(mainBtn.Font, FontStyle.Regular);
             mainBtn.ForeColor = Color.FromArgb(224, 224, 224);
         }
-
-        private void transactionBtn_Click(object sender, EventArgs e)
-        {
-            timer.Start();
-        }
-
+        
         private void pictureBox4_Click(object sender, EventArgs e)
         {
             TransactionForm transactionForm = new TransactionForm();
@@ -163,48 +155,48 @@ namespace enterpriseDevelopment.Forms
 
         private void transactionBtn_MouseEnter(object sender, EventArgs e)
         {
-            panel7.Visible = true;
-            pictureBox4.Visible = false;
+            transactionBoxPanel.Visible = true;
+            transactionIcon.Visible = false;
             transactionBtn.Font = new Font(transactionBtn.Font, FontStyle.Bold);
             transactionBtn.ForeColor = Color.White;
         }
 
         private void transactionBtn_MouseLeave(object sender, EventArgs e)
         {
-            panel7.Visible = false;
-            pictureBox4.Visible = true;
+            transactionBoxPanel.Visible = false;
+            transactionIcon.Visible = true;
             transactionBtn.Font = new Font(transactionBtn.Font, FontStyle.Regular);
             transactionBtn.ForeColor = Color.FromArgb(224, 224, 224);
         }
 
         private void eventsBtn_MouseEnter(object sender, EventArgs e)
         {
-            panel11.Visible = true;
-            pictureBox3.Visible = false;
+            eventBoxPanel.Visible = true;
+            eventIcon.Visible = false;
             eventsBtn.Font = new Font(eventsBtn.Font, FontStyle.Bold);
             eventsBtn.ForeColor = Color.White;
         }
 
         private void eventsBtn_MouseLeave(object sender, EventArgs e)
         {
-            panel11.Visible = false;
-            pictureBox3.Visible = true;
+            eventBoxPanel.Visible = false;
+            eventIcon.Visible = true;
             eventsBtn.Font = new Font(eventsBtn.Font, FontStyle.Regular);
             eventsBtn.ForeColor = Color.FromArgb(224, 224, 224);
         }
 
         private void predictBtn_MouseEnter(object sender, EventArgs e)
         {
-            panel5.Visible = true;
-            pictureBox2.Visible = false;
+            predictionBoxPanel.Visible = true;
+            predictionIcon.Visible = false;
             predictBtn.Font = new Font(predictBtn.Font, FontStyle.Bold);
             predictBtn.ForeColor = Color.White;
         }
 
         private void predictBtn_MouseLeave(object sender, EventArgs e)
         {
-            panel5.Visible = false;
-            pictureBox2.Visible = true;
+            predictionBoxPanel.Visible = false;
+            predictionIcon.Visible = true;
             predictBtn.Font = new Font(predictBtn.Font, FontStyle.Regular);
             predictBtn.ForeColor = Color.FromArgb(224, 224, 224);
         }
@@ -291,6 +283,16 @@ namespace enterpriseDevelopment.Forms
             transactionForm.Activate();
             transactionForm.Show();
             Close();
+        }
+
+        private void ContactsForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Dispose();
+        }
+
+        private void closeBtn_Click(object sender, EventArgs e)
+        {
+            UserInstance.MainForm.Dispose();
         }
     }
 }

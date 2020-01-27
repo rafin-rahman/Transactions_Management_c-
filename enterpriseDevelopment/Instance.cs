@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace enterpriseDevelopment
 {
-    static class Instance
+    static class UserInstance
     {
         // Creating reference to main form to use in other forms(windows)
         public static Form MainForm;
