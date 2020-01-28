@@ -35,12 +35,12 @@
             this.editBtn = new System.Windows.Forms.Button();
             this.contactListView = new MaterialSkin.Controls.MaterialListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
+            this.headerPanel = new System.Windows.Forms.Panel();
+            this.headerLbl = new System.Windows.Forms.Label();
             this.closeBtn = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.nagivationPanel = new System.Windows.Forms.Panel();
+            this.nagLinePanel = new System.Windows.Forms.Panel();
+            this.logoImgBox = new System.Windows.Forms.PictureBox();
             this.contactIcon = new System.Windows.Forms.PictureBox();
             this.summaryIcon = new System.Windows.Forms.PictureBox();
             this.transactionIcon = new System.Windows.Forms.PictureBox();
@@ -48,45 +48,39 @@
             this.predictionIcon = new System.Windows.Forms.PictureBox();
             this.mainIcon = new System.Windows.Forms.PictureBox();
             this.eventBoxPanel = new System.Windows.Forms.Panel();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.panel13 = new System.Windows.Forms.Panel();
             this.contactBoxPanel = new System.Windows.Forms.Panel();
             this.summaryBoxPanel = new System.Windows.Forms.Panel();
             this.transactionBoxPanel = new System.Windows.Forms.Panel();
             this.predictionBoxPanel = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
             this.mainBoxPanel = new System.Windows.Forms.Panel();
             this.mainBtn = new System.Windows.Forms.Button();
             this.predictBtn = new System.Windows.Forms.Button();
             this.eventsBtn = new System.Windows.Forms.Button();
             this.transactionBtn = new System.Windows.Forms.Button();
             this.summaryBtn = new System.Windows.Forms.Button();
-            this.ContactBtn = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.contactBtn = new System.Windows.Forms.Button();
+            this.deleteLbl = new System.Windows.Forms.Label();
+            this.editLbl = new System.Windows.Forms.Label();
+            this.addLbl = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.panelToogle2 = new System.Windows.Forms.Panel();
+            this.eventToogle = new System.Windows.Forms.Panel();
             this.repeatBtn = new System.Windows.Forms.Button();
-            this.allEventBtn = new System.Windows.Forms.Button();
-            this.panelToggle1 = new System.Windows.Forms.Panel();
+            this.singleEventBtn = new System.Windows.Forms.Button();
+            this.transactionToogle = new System.Windows.Forms.Panel();
             this.eventsRepeatBtn = new System.Windows.Forms.Button();
             this.recurringToggleBtn = new System.Windows.Forms.Button();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            this.headerPanel.SuspendLayout();
+            this.nagivationPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logoImgBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.contactIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.summaryIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.predictionIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainIcon)).BeginInit();
-            this.eventBoxPanel.SuspendLayout();
-            this.predictionBoxPanel.SuspendLayout();
-            this.panelToogle2.SuspendLayout();
-            this.panelToggle1.SuspendLayout();
+            this.eventToogle.SuspendLayout();
+            this.transactionToogle.SuspendLayout();
             this.SuspendLayout();
             // 
             // addBtn
@@ -138,12 +132,12 @@
             this.contactListView.FullRowSelect = true;
             this.contactListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.contactListView.HideSelection = false;
-            this.contactListView.Location = new System.Drawing.Point(388, 85);
+            this.contactListView.Location = new System.Drawing.Point(545, 84);
             this.contactListView.MouseLocation = new System.Drawing.Point(-1, -1);
             this.contactListView.MouseState = MaterialSkin.MouseState.OUT;
             this.contactListView.Name = "contactListView";
             this.contactListView.OwnerDraw = true;
-            this.contactListView.Size = new System.Drawing.Size(544, 340);
+            this.contactListView.Size = new System.Drawing.Size(241, 340);
             this.contactListView.TabIndex = 3;
             this.contactListView.UseCompatibleStateImageBehavior = false;
             this.contactListView.View = System.Windows.Forms.View.Details;
@@ -153,28 +147,28 @@
             this.columnHeader1.Text = "Contact name";
             this.columnHeader1.Width = 236;
             // 
-            // panel2
+            // headerPanel
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.closeBtn);
-            this.panel2.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.panel2.Location = new System.Drawing.Point(282, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(742, 48);
-            this.panel2.TabIndex = 4;
+            this.headerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.headerPanel.Controls.Add(this.headerLbl);
+            this.headerPanel.Controls.Add(this.closeBtn);
+            this.headerPanel.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.headerPanel.Location = new System.Drawing.Point(282, 0);
+            this.headerPanel.Name = "headerPanel";
+            this.headerPanel.Size = new System.Drawing.Size(742, 48);
+            this.headerPanel.TabIndex = 4;
             // 
-            // label4
+            // headerLbl
             // 
-            this.label4.AutoSize = true;
-            this.label4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label4.Font = new System.Drawing.Font("Cambria", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label4.Location = new System.Drawing.Point(324, 1);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(169, 37);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "CONTACTS";
+            this.headerLbl.AutoSize = true;
+            this.headerLbl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.headerLbl.Font = new System.Drawing.Font("Cambria", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.headerLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.headerLbl.Location = new System.Drawing.Point(306, 7);
+            this.headerLbl.Name = "headerLbl";
+            this.headerLbl.Size = new System.Drawing.Size(169, 37);
+            this.headerLbl.TabIndex = 1;
+            this.headerLbl.Text = "CONTACTS";
             // 
             // closeBtn
             // 
@@ -189,52 +183,52 @@
             this.closeBtn.TabIndex = 0;
             this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
             // 
-            // panel3
+            // nagivationPanel
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
-            this.panel3.Controls.Add(this.panel4);
-            this.panel3.Controls.Add(this.pictureBox7);
-            this.panel3.Controls.Add(this.contactIcon);
-            this.panel3.Controls.Add(this.summaryIcon);
-            this.panel3.Controls.Add(this.transactionIcon);
-            this.panel3.Controls.Add(this.eventIcon);
-            this.panel3.Controls.Add(this.predictionIcon);
-            this.panel3.Controls.Add(this.mainIcon);
-            this.panel3.Controls.Add(this.eventBoxPanel);
-            this.panel3.Controls.Add(this.contactBoxPanel);
-            this.panel3.Controls.Add(this.summaryBoxPanel);
-            this.panel3.Controls.Add(this.transactionBoxPanel);
-            this.panel3.Controls.Add(this.predictionBoxPanel);
-            this.panel3.Controls.Add(this.mainBoxPanel);
-            this.panel3.Controls.Add(this.mainBtn);
-            this.panel3.Controls.Add(this.predictBtn);
-            this.panel3.Controls.Add(this.eventsBtn);
-            this.panel3.Controls.Add(this.transactionBtn);
-            this.panel3.Controls.Add(this.summaryBtn);
-            this.panel3.Controls.Add(this.ContactBtn);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(284, 597);
-            this.panel3.TabIndex = 5;
+            this.nagivationPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
+            this.nagivationPanel.Controls.Add(this.nagLinePanel);
+            this.nagivationPanel.Controls.Add(this.logoImgBox);
+            this.nagivationPanel.Controls.Add(this.contactIcon);
+            this.nagivationPanel.Controls.Add(this.summaryIcon);
+            this.nagivationPanel.Controls.Add(this.transactionIcon);
+            this.nagivationPanel.Controls.Add(this.eventIcon);
+            this.nagivationPanel.Controls.Add(this.predictionIcon);
+            this.nagivationPanel.Controls.Add(this.mainIcon);
+            this.nagivationPanel.Controls.Add(this.eventBoxPanel);
+            this.nagivationPanel.Controls.Add(this.contactBoxPanel);
+            this.nagivationPanel.Controls.Add(this.summaryBoxPanel);
+            this.nagivationPanel.Controls.Add(this.transactionBoxPanel);
+            this.nagivationPanel.Controls.Add(this.predictionBoxPanel);
+            this.nagivationPanel.Controls.Add(this.mainBoxPanel);
+            this.nagivationPanel.Controls.Add(this.mainBtn);
+            this.nagivationPanel.Controls.Add(this.predictBtn);
+            this.nagivationPanel.Controls.Add(this.eventsBtn);
+            this.nagivationPanel.Controls.Add(this.transactionBtn);
+            this.nagivationPanel.Controls.Add(this.summaryBtn);
+            this.nagivationPanel.Controls.Add(this.contactBtn);
+            this.nagivationPanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.nagivationPanel.Location = new System.Drawing.Point(0, 0);
+            this.nagivationPanel.Name = "nagivationPanel";
+            this.nagivationPanel.Size = new System.Drawing.Size(284, 597);
+            this.nagivationPanel.TabIndex = 5;
             // 
-            // panel4
+            // nagLinePanel
             // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.panel4.Location = new System.Drawing.Point(0, 104);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(284, 5);
-            this.panel4.TabIndex = 3;
+            this.nagLinePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.nagLinePanel.Location = new System.Drawing.Point(0, 104);
+            this.nagLinePanel.Name = "nagLinePanel";
+            this.nagLinePanel.Size = new System.Drawing.Size(284, 5);
+            this.nagLinePanel.TabIndex = 3;
             // 
-            // pictureBox7
+            // logoImgBox
             // 
-            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
-            this.pictureBox7.Location = new System.Drawing.Point(-14, 1);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(266, 102);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox7.TabIndex = 25;
-            this.pictureBox7.TabStop = false;
+            this.logoImgBox.Image = ((System.Drawing.Image)(resources.GetObject("logoImgBox.Image")));
+            this.logoImgBox.Location = new System.Drawing.Point(-14, 1);
+            this.logoImgBox.Name = "logoImgBox";
+            this.logoImgBox.Size = new System.Drawing.Size(266, 102);
+            this.logoImgBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.logoImgBox.TabIndex = 25;
+            this.logoImgBox.TabStop = false;
             // 
             // contactIcon
             // 
@@ -245,8 +239,8 @@
             this.contactIcon.Size = new System.Drawing.Size(26, 25);
             this.contactIcon.TabIndex = 24;
             this.contactIcon.TabStop = false;
-            this.contactIcon.MouseEnter += new System.EventHandler(this.ContactBtn_MouseEnter);
-            this.contactIcon.MouseLeave += new System.EventHandler(this.ContactBtn_MouseLeave);
+            this.contactIcon.MouseEnter += new System.EventHandler(this.contactBtn_MouseEnter);
+            this.contactIcon.MouseLeave += new System.EventHandler(this.contactBtn_MouseLeave);
             // 
             // summaryIcon
             // 
@@ -312,8 +306,6 @@
             // eventBoxPanel
             // 
             this.eventBoxPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.eventBoxPanel.Controls.Add(this.panel12);
-            this.eventBoxPanel.Controls.Add(this.panel13);
             this.eventBoxPanel.Location = new System.Drawing.Point(185, 272);
             this.eventBoxPanel.Name = "eventBoxPanel";
             this.eventBoxPanel.Size = new System.Drawing.Size(99, 82);
@@ -321,20 +313,6 @@
             this.eventBoxPanel.Visible = false;
             this.eventBoxPanel.MouseEnter += new System.EventHandler(this.eventsBtn_MouseEnter);
             this.eventBoxPanel.MouseLeave += new System.EventHandler(this.eventsBtn_MouseLeave);
-            // 
-            // panel12
-            // 
-            this.panel12.Location = new System.Drawing.Point(0, 82);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(12, 82);
-            this.panel12.TabIndex = 17;
-            // 
-            // panel13
-            // 
-            this.panel13.Location = new System.Drawing.Point(0, 82);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(12, 82);
-            this.panel13.TabIndex = 14;
             // 
             // contactBoxPanel
             // 
@@ -344,8 +322,8 @@
             this.contactBoxPanel.Size = new System.Drawing.Size(99, 82);
             this.contactBoxPanel.TabIndex = 17;
             this.contactBoxPanel.Visible = false;
-            this.contactBoxPanel.MouseEnter += new System.EventHandler(this.ContactBtn_MouseEnter);
-            this.contactBoxPanel.MouseLeave += new System.EventHandler(this.ContactBtn_MouseLeave);
+            this.contactBoxPanel.MouseEnter += new System.EventHandler(this.contactBtn_MouseEnter);
+            this.contactBoxPanel.MouseLeave += new System.EventHandler(this.contactBtn_MouseLeave);
             // 
             // summaryBoxPanel
             // 
@@ -372,8 +350,6 @@
             // predictionBoxPanel
             // 
             this.predictionBoxPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.predictionBoxPanel.Controls.Add(this.panel9);
-            this.predictionBoxPanel.Controls.Add(this.panel6);
             this.predictionBoxPanel.Location = new System.Drawing.Point(185, 190);
             this.predictionBoxPanel.Name = "predictionBoxPanel";
             this.predictionBoxPanel.Size = new System.Drawing.Size(99, 82);
@@ -381,20 +357,6 @@
             this.predictionBoxPanel.Visible = false;
             this.predictionBoxPanel.MouseEnter += new System.EventHandler(this.predictBtn_MouseEnter);
             this.predictionBoxPanel.MouseLeave += new System.EventHandler(this.predictBtn_MouseLeave);
-            // 
-            // panel9
-            // 
-            this.panel9.Location = new System.Drawing.Point(0, 82);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(12, 82);
-            this.panel9.TabIndex = 17;
-            // 
-            // panel6
-            // 
-            this.panel6.Location = new System.Drawing.Point(0, 82);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(12, 82);
-            this.panel6.TabIndex = 14;
             // 
             // mainBoxPanel
             // 
@@ -508,57 +470,57 @@
             this.summaryBtn.MouseEnter += new System.EventHandler(this.summaryBtn_MouseEnter);
             this.summaryBtn.MouseLeave += new System.EventHandler(this.summaryBtn_MouseLeave);
             // 
-            // ContactBtn
+            // contactBtn
             // 
-            this.ContactBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.contactBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ContactBtn.FlatAppearance.BorderSize = 0;
-            this.ContactBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ContactBtn.Font = new System.Drawing.Font("Calibri", 22F);
-            this.ContactBtn.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.ContactBtn.Location = new System.Drawing.Point(0, 518);
-            this.ContactBtn.Margin = new System.Windows.Forms.Padding(2);
-            this.ContactBtn.Name = "ContactBtn";
-            this.ContactBtn.Size = new System.Drawing.Size(284, 82);
-            this.ContactBtn.TabIndex = 0;
-            this.ContactBtn.Text = "  Contact";
-            this.ContactBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ContactBtn.UseVisualStyleBackColor = true;
-            this.ContactBtn.MouseEnter += new System.EventHandler(this.ContactBtn_MouseEnter);
-            this.ContactBtn.MouseLeave += new System.EventHandler(this.ContactBtn_MouseLeave);
+            this.contactBtn.FlatAppearance.BorderSize = 0;
+            this.contactBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.contactBtn.Font = new System.Drawing.Font("Calibri", 22F);
+            this.contactBtn.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.contactBtn.Location = new System.Drawing.Point(0, 518);
+            this.contactBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.contactBtn.Name = "contactBtn";
+            this.contactBtn.Size = new System.Drawing.Size(284, 82);
+            this.contactBtn.TabIndex = 0;
+            this.contactBtn.Text = "  Contact";
+            this.contactBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.contactBtn.UseVisualStyleBackColor = true;
+            this.contactBtn.MouseEnter += new System.EventHandler(this.contactBtn_MouseEnter);
+            this.contactBtn.MouseLeave += new System.EventHandler(this.contactBtn_MouseLeave);
             // 
-            // label3
+            // deleteLbl
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.label3.Location = new System.Drawing.Point(776, 529);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(140, 23);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Delete selection";
+            this.deleteLbl.AutoSize = true;
+            this.deleteLbl.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deleteLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.deleteLbl.Location = new System.Drawing.Point(776, 529);
+            this.deleteLbl.Name = "deleteLbl";
+            this.deleteLbl.Size = new System.Drawing.Size(140, 23);
+            this.deleteLbl.TabIndex = 12;
+            this.deleteLbl.Text = "Delete selection";
             // 
-            // label2
+            // editLbl
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.label2.Location = new System.Drawing.Point(591, 529);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(117, 23);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Edit selection";
+            this.editLbl.AutoSize = true;
+            this.editLbl.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.editLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.editLbl.Location = new System.Drawing.Point(591, 529);
+            this.editLbl.Name = "editLbl";
+            this.editLbl.Size = new System.Drawing.Size(117, 23);
+            this.editLbl.TabIndex = 11;
+            this.editLbl.Text = "Edit selection";
             // 
-            // label1
+            // addLbl
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.label1.Location = new System.Drawing.Point(398, 529);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 23);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Add contact ";
+            this.addLbl.AutoSize = true;
+            this.addLbl.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.addLbl.Location = new System.Drawing.Point(398, 529);
+            this.addLbl.Name = "addLbl";
+            this.addLbl.Size = new System.Drawing.Size(109, 23);
+            this.addLbl.TabIndex = 10;
+            this.addLbl.Text = "Add contact ";
             // 
             // timer
             // 
@@ -570,17 +532,17 @@
             this.timer2.Interval = 15;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
-            // panelToogle2
+            // eventToogle
             // 
-            this.panelToogle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
-            this.panelToogle2.Controls.Add(this.repeatBtn);
-            this.panelToogle2.Controls.Add(this.allEventBtn);
-            this.panelToogle2.Location = new System.Drawing.Point(290, 272);
-            this.panelToogle2.MaximumSize = new System.Drawing.Size(127, 82);
-            this.panelToogle2.MinimumSize = new System.Drawing.Size(0, 82);
-            this.panelToogle2.Name = "panelToogle2";
-            this.panelToogle2.Size = new System.Drawing.Size(0, 82);
-            this.panelToogle2.TabIndex = 13;
+            this.eventToogle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
+            this.eventToogle.Controls.Add(this.repeatBtn);
+            this.eventToogle.Controls.Add(this.singleEventBtn);
+            this.eventToogle.Location = new System.Drawing.Point(290, 272);
+            this.eventToogle.MaximumSize = new System.Drawing.Size(127, 82);
+            this.eventToogle.MinimumSize = new System.Drawing.Size(0, 82);
+            this.eventToogle.Name = "eventToogle";
+            this.eventToogle.Size = new System.Drawing.Size(0, 82);
+            this.eventToogle.TabIndex = 13;
             // 
             // repeatBtn
             // 
@@ -599,33 +561,33 @@
             this.repeatBtn.UseVisualStyleBackColor = false;
             this.repeatBtn.Click += new System.EventHandler(this.repeatBtn_Click);
             // 
-            // allEventBtn
+            // singleEventBtn
             // 
-            this.allEventBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
-            this.allEventBtn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.allEventBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.allEventBtn.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
-            this.allEventBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.allEventBtn.Location = new System.Drawing.Point(0, 0);
-            this.allEventBtn.Name = "allEventBtn";
-            this.allEventBtn.Size = new System.Drawing.Size(0, 39);
-            this.allEventBtn.TabIndex = 11;
-            this.allEventBtn.Text = "All events";
-            this.allEventBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.allEventBtn.UseVisualStyleBackColor = false;
-            this.allEventBtn.Click += new System.EventHandler(this.allEventBtn_Click);
+            this.singleEventBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
+            this.singleEventBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.singleEventBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.singleEventBtn.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
+            this.singleEventBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.singleEventBtn.Location = new System.Drawing.Point(0, 0);
+            this.singleEventBtn.Name = "singleEventBtn";
+            this.singleEventBtn.Size = new System.Drawing.Size(0, 39);
+            this.singleEventBtn.TabIndex = 11;
+            this.singleEventBtn.Text = "All events";
+            this.singleEventBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.singleEventBtn.UseVisualStyleBackColor = false;
+            this.singleEventBtn.Click += new System.EventHandler(this.singleEventBtn_Click);
             // 
-            // panelToggle1
+            // transactionToogle
             // 
-            this.panelToggle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
-            this.panelToggle1.Controls.Add(this.eventsRepeatBtn);
-            this.panelToggle1.Controls.Add(this.recurringToggleBtn);
-            this.panelToggle1.Location = new System.Drawing.Point(287, 354);
-            this.panelToggle1.MaximumSize = new System.Drawing.Size(127, 82);
-            this.panelToggle1.MinimumSize = new System.Drawing.Size(0, 82);
-            this.panelToggle1.Name = "panelToggle1";
-            this.panelToggle1.Size = new System.Drawing.Size(0, 82);
-            this.panelToggle1.TabIndex = 14;
+            this.transactionToogle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
+            this.transactionToogle.Controls.Add(this.eventsRepeatBtn);
+            this.transactionToogle.Controls.Add(this.recurringToggleBtn);
+            this.transactionToogle.Location = new System.Drawing.Point(287, 354);
+            this.transactionToogle.MaximumSize = new System.Drawing.Size(127, 82);
+            this.transactionToogle.MinimumSize = new System.Drawing.Size(0, 82);
+            this.transactionToogle.Name = "transactionToogle";
+            this.transactionToogle.Size = new System.Drawing.Size(0, 82);
+            this.transactionToogle.TabIndex = 14;
             // 
             // eventsRepeatBtn
             // 
@@ -666,13 +628,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1025, 597);
-            this.Controls.Add(this.panelToggle1);
-            this.Controls.Add(this.panelToogle2);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.transactionToogle);
+            this.Controls.Add(this.eventToogle);
+            this.Controls.Add(this.deleteLbl);
+            this.Controls.Add(this.editLbl);
+            this.Controls.Add(this.addLbl);
+            this.Controls.Add(this.nagivationPanel);
+            this.Controls.Add(this.headerPanel);
             this.Controls.Add(this.contactListView);
             this.Controls.Add(this.editBtn);
             this.Controls.Add(this.deleteBtn);
@@ -685,20 +647,18 @@
             this.Text = "ContactsForm";
             this.Activated += new System.EventHandler(this.ContactsForm_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ContactsForm_FormClosed);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            this.headerPanel.ResumeLayout(false);
+            this.headerPanel.PerformLayout();
+            this.nagivationPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.logoImgBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.contactIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.summaryIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.predictionIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainIcon)).EndInit();
-            this.eventBoxPanel.ResumeLayout(false);
-            this.predictionBoxPanel.ResumeLayout(false);
-            this.panelToogle2.ResumeLayout(false);
-            this.panelToggle1.ResumeLayout(false);
+            this.eventToogle.ResumeLayout(false);
+            this.transactionToogle.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -710,12 +670,12 @@
         private System.Windows.Forms.Button editBtn;
         private MaterialSkin.Controls.MaterialListView contactListView;
         private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel headerPanel;
+        private System.Windows.Forms.Label headerLbl;
         private System.Windows.Forms.Panel closeBtn;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.Panel nagivationPanel;
+        private System.Windows.Forms.Panel nagLinePanel;
+        private System.Windows.Forms.PictureBox logoImgBox;
         private System.Windows.Forms.PictureBox contactIcon;
         private System.Windows.Forms.PictureBox summaryIcon;
         private System.Windows.Forms.PictureBox transactionIcon;
@@ -723,30 +683,26 @@
         private System.Windows.Forms.PictureBox predictionIcon;
         private System.Windows.Forms.PictureBox mainIcon;
         private System.Windows.Forms.Panel eventBoxPanel;
-        private System.Windows.Forms.Panel panel12;
-        private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Panel contactBoxPanel;
         private System.Windows.Forms.Panel summaryBoxPanel;
         private System.Windows.Forms.Panel transactionBoxPanel;
         private System.Windows.Forms.Panel predictionBoxPanel;
-        private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel mainBoxPanel;
         private System.Windows.Forms.Button mainBtn;
         private System.Windows.Forms.Button predictBtn;
         private System.Windows.Forms.Button eventsBtn;
         private System.Windows.Forms.Button transactionBtn;
         private System.Windows.Forms.Button summaryBtn;
-        private System.Windows.Forms.Button ContactBtn;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button contactBtn;
+        private System.Windows.Forms.Label deleteLbl;
+        private System.Windows.Forms.Label editLbl;
+        private System.Windows.Forms.Label addLbl;
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.Timer timer2;
-        private System.Windows.Forms.Panel panelToogle2;
+        private System.Windows.Forms.Panel eventToogle;
         private System.Windows.Forms.Button repeatBtn;
-        private System.Windows.Forms.Button allEventBtn;
-        private System.Windows.Forms.Panel panelToggle1;
+        private System.Windows.Forms.Button singleEventBtn;
+        private System.Windows.Forms.Panel transactionToogle;
         private System.Windows.Forms.Button eventsRepeatBtn;
         private System.Windows.Forms.Button recurringToggleBtn;
     }

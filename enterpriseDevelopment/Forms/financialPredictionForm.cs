@@ -165,7 +165,7 @@ namespace enterpriseDevelopment.Forms
                 resultLbl.Text = "The result is " + totalRecurring;
         }
 
-        #region NAVIGATION BUTTONS HOVER ANIMATION
+        #region  BUTTONS HOVER ANIMATION
         private void mainBtn_MouseEnter(object sender, EventArgs e)
         {
             mainBoxPanel.Visible = true;
@@ -260,6 +260,16 @@ namespace enterpriseDevelopment.Forms
             summaryIcon.Visible = true;
             summaryBtn.Font = new Font(summaryBtn.Font, FontStyle.Regular);
             summaryBtn.ForeColor = Color.FromArgb(224, 224, 224);
+        }
+
+        private void closePanel_MouseEnter(object sender, EventArgs e)
+        {
+            this.closePanel.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.closeHover));
+        }
+
+        private void closePanel_MouseLeave(object sender, EventArgs e)
+        {
+            this.closePanel.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.close));
         }
         #endregion
 
@@ -372,18 +382,6 @@ namespace enterpriseDevelopment.Forms
             contactsForm.Activate();
             contactsForm.Show();
             Close();
-        }
-        #endregion
-
-        #region CLOSE BUTTON HOVER ANIMATION
-        private void closePanel_MouseEnter(object sender, EventArgs e)
-        {
-            this.closePanel.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.closeHover));
-        }
-
-        private void closePanel_MouseLeave(object sender, EventArgs e)
-        {
-            this.closePanel.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.close));
         }
         #endregion
 

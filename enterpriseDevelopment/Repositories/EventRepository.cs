@@ -28,6 +28,7 @@ namespace enterpriseDevelopment.Repositories
 
         public List<Event> GetEvents(int id)
         {
+            connection = new SqlConnection(databaseConn);
             List<Event> events = new List<Event>();
             // It joins contact with event if a contact is assigned for an event
             string selectQuery = "SELECT EventsTbl.*, ContactsTbl.ContactName AS ContactName FROM EventsTbl LEFT JOIN ContactsTbl ON ContactsTbl.ContactId = EventsTbl.contactIdFk WHERE EventsTbl.userIdFk = @userID";
@@ -78,6 +79,7 @@ namespace enterpriseDevelopment.Repositories
         
         public bool AddEvent(Event eventObj)
         {
+            connection = new SqlConnection(databaseConn);
             string addQuery = "INSERT INTO EventsTbl ([EventTitle],[EventStatus],[Location],[EventMessage],[dateTime],[userIdFk],[contactIdFk]) VALUES (@title, @status, @location, @message, @datetime, @userFk, @contactFk)";
             try
             {
@@ -118,6 +120,7 @@ namespace enterpriseDevelopment.Repositories
 
         public bool EditEvent(Event editEvent)
         {
+            connection = new SqlConnection(databaseConn);
             string editQuery = "UPDATE EventsTbl SET [EventTitle] = @title, [EventStatus] = @status, [Location] = @location, [EventMessage] = @message, [dateTime] = @dateTime, [contactIdFk] = @contactFk WHERE [EventId] = @id AND [userIdFk] = @userID";
             try
             {
@@ -162,6 +165,7 @@ namespace enterpriseDevelopment.Repositories
 
         public bool DeleteEvent(Event eventObj)
         {
+            connection = new SqlConnection(databaseConn);
             string query = "DELETE FROM EventsTbl WHERE [EventId] = @eventID and [userIdFk] = @userID";
             try
             {
@@ -176,8 +180,9 @@ namespace enterpriseDevelopment.Repositories
                 else
                     return false;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Logger.Error(ex.Message);
                 return false;
             }
             finally

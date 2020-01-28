@@ -25,6 +25,7 @@ namespace enterpriseDevelopment.Repositories
 
         public List<TransactionRecurring> GetTransactions(int id)
         {
+            connection = new SqlConnection(databaseConn);
             List<TransactionRecurring> recurringTransactions = new List<TransactionRecurring>();
 
             string selectQuery = "SELECT TransactionsRepeatTbl.*, ContactsTbl.ContactName AS ContactName FROM TransactionsRepeatTbl LEFT JOIN ContactsTbl ON ContactsTbl.ContactId = TransactionsRepeatTbl.contactIdFk WHERE TransactionsRepeatTbl.userIdFk = @userID";
@@ -86,6 +87,7 @@ namespace enterpriseDevelopment.Repositories
 
         public bool AddTransction(TransactionRecurring transactionRepeat)
         {
+            connection = new SqlConnection(databaseConn);
             string selectQuery = "INSERT INTO TransactionsRepeatTbl  ([TransactionCategory], [TransactionAmount], [userIdFk], [contactIdFk], [dateTime], [TransactionMessage], [IncomeExpense], [subscriptionPeriod], [subscriptionEndTime]) VALUES (@TransactionCategory, @TransactionAmount, @userIdFk, @contactIdFk, @dateTime, @TransactionMessage, @IncomeExpense, @subscriptionPeriod, @subscriptionEndTime)";
             try
             {
@@ -129,6 +131,7 @@ namespace enterpriseDevelopment.Repositories
 
         public bool EditTransaction(TransactionRecurring transactionRepeat)
         {
+            connection = new SqlConnection(databaseConn);
             string selectQuery = "UPDATE TransactionsRepeatTbl SET [TransactionCategory] = @transactionCategory, [TransactionAmount] = @transactionAmount, [dateTime] = @dateTime, [TransactionMessage] = @transactionMessage, [IncomeExpense] = @incomeExpense, [subscriptionPeriod] = @subscriptionPeriod, [subscriptionEndTime] = @subscriptionEndTime, [contactIdFk] = @contactIdFk WHERE [TransactionId] = @id AND [userIdFk] = @userID";
             try
             {
@@ -173,6 +176,7 @@ namespace enterpriseDevelopment.Repositories
 
         public bool DeleteTransaction(TransactionRecurring transactionRepeat)
         {
+            connection = new SqlConnection(databaseConn);
             string selectQuery = "DELETE FROM TransactionsRepeatTbl WHERE [TransactionId] = @transactionID AND [userIdFk] = @userId";
             try
             {

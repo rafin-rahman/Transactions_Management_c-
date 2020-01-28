@@ -25,6 +25,7 @@ namespace enterpriseDevelopment.Repositories
 
         public List<Transaction> GetTransactions(int id)
         {
+            connection = new SqlConnection(databaseConn);
             List<Transaction> u = new List<Transaction>();
 
             string selectQuery = "SELECT TransactionsTbl.*, ContactsTbl.ContactName AS ContactName FROM TransactionsTbl LEFT JOIN ContactsTbl ON ContactsTbl.ContactId = TransactionsTbl.contactIdFk WHERE TransactionsTbl.userIdFk = @userID";
@@ -80,6 +81,7 @@ namespace enterpriseDevelopment.Repositories
 
         public List<Transaction> GetTransactions(DateTime date, int id)
         {
+            connection = new SqlConnection(databaseConn);
             List<Transaction> u = new List<Transaction>();
 
             string selectQuery = "SELECT * FROM TransactionsTbl WHERE userIdFk = @userID AND CONVERT(Date, dateTime,1) BETWEEN @StartDate AND @EndDate";
@@ -131,6 +133,7 @@ namespace enterpriseDevelopment.Repositories
 
         public bool DeleteTransaction(Transaction transaction)
         {
+            connection = new SqlConnection(databaseConn);
             int x = 0;
             string selectQuery = "DELETE FROM TransactionsTbl WHERE [TransactionId] = @transactionID AND [userIdFk] = @userId";
             try
@@ -159,6 +162,7 @@ namespace enterpriseDevelopment.Repositories
 
         public bool AddTransction(Transaction transaction)
         {
+            connection = new SqlConnection(databaseConn);
             string selectQuery = "INSERT INTO TransactionsTbl  ([TransactionCategory], [TransactionAmount], [userIdFk], [contactIdFk], [dateTime], [TransactionMessage], [IncomeExpense]) VALUES (@TransactionCategory, @TransactionAmount, @userIdFk, @contactIdFk, @dateTime, @TransactionMessage, @IncomeExpense)";
             try
             {
@@ -195,6 +199,7 @@ namespace enterpriseDevelopment.Repositories
 
         public bool EditTransaction(Transaction transaction)
         {
+            connection = new SqlConnection(databaseConn);
             string selectQuery = "UPDATE TransactionsTbl SET [TransactionCategory] = @transactionCategory, [TransactionAmount] = @transactionAmount, [dateTime] = @dateTime, [TransactionMessage] = @transactionMessage, [IncomeExpense] = @incomeExpense, [contactIdFk] = @contactIdFk WHERE [TransactionId] = @id AND [userIdFk] = @userID";
             try
             {

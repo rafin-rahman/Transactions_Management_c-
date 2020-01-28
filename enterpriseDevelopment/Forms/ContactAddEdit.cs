@@ -13,6 +13,8 @@ namespace enterpriseDevelopment
     public partial class ContactAddEdit : Form
     {
         private Contact contact;
+
+        #region CONSTRUCTOR
         public ContactAddEdit()
         {
             InitializeComponent();
@@ -29,7 +31,8 @@ namespace enterpriseDevelopment
             Text = "Edit contact";
             contactTxtBox.Text = contact.Name;
         }
-
+        #endregion
+        
         private async void actionBtn_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(contactTxtBox.Text))
@@ -66,6 +69,7 @@ namespace enterpriseDevelopment
             Close();
         }
 
+        #region HOVER ANIMATION
         private void closePanel_MouseEnter(object sender, EventArgs e)
         {
             this.closePanel.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.backButtonHover));
@@ -75,5 +79,7 @@ namespace enterpriseDevelopment
         {
             this.closePanel.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.backButton));
         }
+        #endregion
+
     }
 }

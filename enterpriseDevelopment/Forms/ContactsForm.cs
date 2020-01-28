@@ -125,7 +125,7 @@ namespace enterpriseDevelopment.Forms
             Close();
         }
 
-        private void allEventBtn_Click(object sender, EventArgs e)
+        private void singleEventBtn_Click(object sender, EventArgs e)
         {
             EventForm eventForm = new EventForm();
             eventForm.Activate();
@@ -215,20 +215,20 @@ namespace enterpriseDevelopment.Forms
             predictBtn.ForeColor = Color.FromArgb(224, 224, 224);
         }
 
-        private void ContactBtn_MouseEnter(object sender, EventArgs e)
+        private void contactBtn_MouseEnter(object sender, EventArgs e)
         {
             contactBoxPanel.Visible = true;
             contactIcon.Visible = false;
-            ContactBtn.Font = new Font(ContactBtn.Font, FontStyle.Bold);
-            ContactBtn.ForeColor = Color.White;
+            contactBtn.Font = new Font(contactBtn.Font, FontStyle.Bold);
+            contactBtn.ForeColor = Color.White;
         }
 
-        private void ContactBtn_MouseLeave(object sender, EventArgs e)
+        private void contactBtn_MouseLeave(object sender, EventArgs e)
         {
             contactBoxPanel.Visible = false;
             contactIcon.Visible = true;
-            ContactBtn.Font = new Font(ContactBtn.Font, FontStyle.Regular);
-            ContactBtn.ForeColor = Color.FromArgb(224, 224, 224);
+            contactBtn.Font = new Font(contactBtn.Font, FontStyle.Regular);
+            contactBtn.ForeColor = Color.FromArgb(224, 224, 224);
         }
         #endregion
 
@@ -242,8 +242,8 @@ namespace enterpriseDevelopment.Forms
         {
             if (isCollapsed2)
             {
-                panelToogle2.Width += 20;
-                if (panelToogle2.Size == panelToogle2.MaximumSize)
+                eventToogle.Width += 20;
+                if (eventToogle.Size == eventToogle.MaximumSize)
                 {
                     timer2.Stop();
                     isCollapsed2 = false;
@@ -251,8 +251,8 @@ namespace enterpriseDevelopment.Forms
             }
             else
             {
-                panelToogle2.Width -= 20;
-                if (panelToogle2.Size == panelToogle2.MinimumSize)
+                eventToogle.Width -= 20;
+                if (eventToogle.Size == eventToogle.MinimumSize)
                 {
                     timer2.Stop();
                     isCollapsed2 = true;
@@ -269,8 +269,8 @@ namespace enterpriseDevelopment.Forms
         {
             if (isCollapsed)
             {
-                panelToggle1.Width += 20;
-                if (panelToggle1.Size == panelToggle1.MaximumSize)
+                transactionToogle.Width += 20;
+                if (transactionToogle.Size == transactionToogle.MaximumSize)
                 {
                     timer.Stop();
                     isCollapsed = false;
@@ -278,8 +278,8 @@ namespace enterpriseDevelopment.Forms
             }
             else
             {
-                panelToggle1.Width -= 20;
-                if (panelToggle1.Size == panelToggle1.MinimumSize)
+                transactionToogle.Width -= 20;
+                if (transactionToogle.Size == transactionToogle.MinimumSize)
                 {
                     timer.Stop();
                     isCollapsed = true;

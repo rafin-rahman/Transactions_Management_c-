@@ -18,13 +18,15 @@ namespace enterpriseDevelopment.Forms
         private bool isCollapsed2 = true;
         private TransactionRepository transactionRepository;
         private List<Transaction> transactions;
+
+        #region CONSTRUCTOR
         public SummaryForm()
         {
             InitializeComponent();
             UserInstance.MainForm.Hide();
             transactionRepository = new TransactionRepository();
-            // it will select the first index instead of having empty sting in the design
-            showByCB.SelectedIndex = 0;
+            // it will select the first index instead of having empty string in the design
+            showByComboBox.SelectedIndex = 0;
         }
         private void SummaryForm_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -32,54 +34,53 @@ namespace enterpriseDevelopment.Forms
             UserInstance.MainForm.Show();
             Dispose();
         }
+        #endregion
 
-        private async void showSumBtn_Click(object sender, EventArgs e)
+        private async void summaryBtn_Click(object sender, EventArgs e)
         {
             // set time of the starting period from 12AM
-            dateCountStart.Value = dateCountStart.Value.Date + new TimeSpan();
-            // set time of the end of the day  from 
-            dateCountEnd.Value = dateCountEnd.Value.Date + new TimeSpan(23, 59, 59);
+            startDate.Value = startDate.Value.Date + new TimeSpan();
+            // set time of the end of the day  to 23:59:59
+            endDate.Value = endDate.Value.Date + new TimeSpan(23, 59, 59);
 
-            if (dateCountStart.Value > dateCountEnd.Value)
+            if (startDate.Value > endDate.Value)
             {
                 MessageBox.Show("Starting date cannot be greater than ending date");
                 return;
             }
 
-
-
             if (transactions == null)
                 transactions = await Task.Run(() => transactionRepository.GetTransactions(UserInstance.StaticUserAccount.Id));
 
-            listVSummary.Items.Clear();
+            listViewSummary.Items.Clear();
             List<Transaction> tempList = new List<Transaction>();
 
             for (int i = 0; i < transactions.Count; i++)
             {
                 // if the starting date is smaller than the date allocated to transaction OR ending date is bigger than transaction allocated date it will  be removed
-                if (transactions[i].DateTime >= dateCountStart.Value && transactions[i].DateTime <= dateCountEnd.Value)
+                if (transactions[i].DateTime >= startDate.Value && transactions[i].DateTime <= endDate.Value)
                     tempList.Add(transactions[i]);
             }
 
-            if (showByCB.Text.Equals("Transactions"))
+            if (showByComboBox.Text.Equals("Transactions"))
             {
-                listVSummary.Columns.Clear();
-                listVSummary.Columns.Add("Category", 110);
-                listVSummary.Columns.Add("Amount", 110);
-                listVSummary.Columns.Add("Income / Expense", 110);
-                listVSummary.Columns.Add("Date", 110);
-                listVSummary.Columns.Add("Contact", 110);
+                listViewSummary.Columns.Clear();
+                listViewSummary.Columns.Add("Category", 110);
+                listViewSummary.Columns.Add("Amount", 110);
+                listViewSummary.Columns.Add("Income / Expense", 110);
+                listViewSummary.Columns.Add("Date", 110);
+                listViewSummary.Columns.Add("Contact", 110);
 
                 foreach (Transaction transaction in tempList)
                 {
                     ListViewItem listViewToString = new ListViewItem(new string[] { transaction.Category.ToString(), transaction.Amount.ToString("0.00"), transaction.TransactionType.ToString(), transaction.DateTime.ToString(), transaction.ContactName.ToString() });
-                    listVSummary.Items.Add(listViewToString);
+                    listViewSummary.Items.Add(listViewToString);
                 }
             }
             // DAYS
-            else if (showByCB.Text.Equals("Days"))
+            else if (showByComboBox.Text.Equals("Days"))
             {
-                listVSummary.Columns.Clear();
+                listViewSummary.Columns.Clear();
                 List<DateTime> dateList = new List<DateTime>();
                 List<decimal> incomeList = new List<decimal>();
                 List<decimal> expenseList = new List<decimal>();
@@ -113,9 +114,9 @@ namespace enterpriseDevelopment.Forms
                     }
                 }
 
-                listVSummary.Columns.Add("Date", 100);
-                listVSummary.Columns.Add("Income", 80);
-                listVSummary.Columns.Add("Expense", 80);
+                listViewSummary.Columns.Add("Date", 100);
+                listViewSummary.Columns.Add("Income", 80);
+                listViewSummary.Columns.Add("Expense", 80);
 
                 for (int i = 0; i < dateList.Count; i++)
                 {
@@ -124,14 +125,14 @@ namespace enterpriseDevelopment.Forms
                         incomeList[i].ToString("0.00"),
                         expenseList[i].ToString("0.00")
                     });
-                    listVSummary.Items.Add(listViewItem);
+                    listViewSummary.Items.Add(listViewItem);
                 }
             }
 
             // MONTHS
-            else if (showByCB.Text.Equals("Months"))
+            else if (showByComboBox.Text.Equals("Months"))
             {
-                listVSummary.Columns.Clear();
+                listViewSummary.Columns.Clear();
                 List<string> monthList = new List<string>();
                 List<decimal> incomeList = new List<decimal>();
                 List<decimal> expenseList = new List<decimal>();
@@ -161,9 +162,9 @@ namespace enterpriseDevelopment.Forms
                         incomeList[y] += transaction.Amount;
                 }
 
-                listVSummary.Columns.Add("Date", 100);
-                listVSummary.Columns.Add("Income", 80);
-                listVSummary.Columns.Add("Expense", 80);
+                listViewSummary.Columns.Add("Date", 100);
+                listViewSummary.Columns.Add("Income", 80);
+                listViewSummary.Columns.Add("Expense", 80);
 
                 for (int i = 0; i < monthList.Count; i++)
                 {
@@ -172,14 +173,14 @@ namespace enterpriseDevelopment.Forms
                         incomeList[i].ToString("0.00"),
                         expenseList[i].ToString("0.00")
                     });
-                    listVSummary.Items.Add(listViewItem);
+                    listViewSummary.Items.Add(listViewItem);
                 }
             }
 
             // YEARS
-            else if (showByCB.Text.Equals("Years"))
+            else if (showByComboBox.Text.Equals("Years"))
             {
-                listVSummary.Columns.Clear();
+                listViewSummary.Columns.Clear();
                 List<string> yearList = new List<string>();
                 List<decimal> incomeList = new List<decimal>();
                 List<decimal> expenseList = new List<decimal>();
@@ -209,9 +210,9 @@ namespace enterpriseDevelopment.Forms
                         incomeList[y] += transaction.Amount;
                 }
 
-                listVSummary.Columns.Add("Date", 100);
-                listVSummary.Columns.Add("Income", 80);
-                listVSummary.Columns.Add("Expense", 80);
+                listViewSummary.Columns.Add("Date", 100);
+                listViewSummary.Columns.Add("Income", 80);
+                listViewSummary.Columns.Add("Expense", 80);
 
                 for (int i = 0; i < yearList.Count; i++)
                 {
@@ -220,28 +221,14 @@ namespace enterpriseDevelopment.Forms
                         incomeList[i].ToString("0.00"),
                         expenseList[i].ToString("0.00")
                     });
-                    listVSummary.Items.Add(listViewItem);
+                    listViewSummary.Items.Add(listViewItem);
                 }
             }
             else
                 MessageBox.Show("Something went wrong while showing items", "Error");
         }
 
-        private void closePanel_Click(object sender, EventArgs e)
-        {
-            UserInstance.MainForm.Dispose();
-        }
-
-        private void closePanel_MouseEnter(object sender, EventArgs e)
-        {
-            this.closePanel.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.closeHover));
-        }
-
-        private void closePanel_MouseLeave(object sender, EventArgs e)
-        {
-            this.closePanel.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.close));
-        }
-
+        #region NAVIGATION BUTTONS
         private void mainBtn_Click(object sender, EventArgs e)
         {
             UserInstance.MainForm.Show();
@@ -256,187 +243,9 @@ namespace enterpriseDevelopment.Forms
             Close();
         }
         
-        private void SummaryForm_Click(object sender, EventArgs e)
-        {
-            ContactsForm contactsForm = new ContactsForm();
-            contactsForm.Activate();
-            contactsForm.Show();
-        }
+        
 
-        private void listVSummary_SizeChanged(object sender, EventArgs e)
-        {
-            SetListViewColumns();
-        }
-
-        private void SetListViewColumns()
-        {
-            int total = listVSummary.Width - 18;
-            int count = listVSummary.Columns.Count;
-            int size = total / count;
-            int last = total - (size * (count - 2));
-            for (int i = 0; i < count; i++)
-            {
-                if (i == count - 1)
-                    listVSummary.Columns[i].Width = last;
-
-                else if (i == 0)
-                    listVSummary.Columns[i].Width = last;
-                else
-                    listVSummary.Columns[i].Width = (int)(1.5 * size);
-            }
-        }
-
-        private void mainBtn_MouseEnter(object sender, EventArgs e)
-        {
-            panel4.Visible = true;
-            pictureBox1.Visible = false;
-            mainBtn.Font = new Font(mainBtn.Font, FontStyle.Bold);
-            mainBtn.ForeColor = Color.White;
-        }
-
-        private void mainBtn_MouseLeave(object sender, EventArgs e)
-        {
-            panel4.Visible = false;
-            pictureBox1.Visible = true;
-            mainBtn.Font = new Font(mainBtn.Font, FontStyle.Regular);
-            mainBtn.ForeColor = Color.FromArgb(224, 224, 224);
-        }
-
-        private void predictBtn_MouseEnter(object sender, EventArgs e)
-        {
-            panel5.Visible = true;
-            pictureBox2.Visible = false;
-            predictBtn.Font = new Font(predictBtn.Font, FontStyle.Bold);
-            predictBtn.ForeColor = Color.White;
-        }
-
-        private void predictBtn_MouseLeave(object sender, EventArgs e)
-        {
-            panel5.Visible = false;
-            pictureBox2.Visible = true;
-            predictBtn.Font = new Font(predictBtn.Font, FontStyle.Regular);
-            predictBtn.ForeColor = Color.FromArgb(224, 224, 224);
-        }
-
-        private void eventsBtn_MouseEnter(object sender, EventArgs e)
-        {
-            panel11.Visible = true;
-            pictureBox3.Visible = false;
-            eventsBtn.Font = new Font(eventsBtn.Font, FontStyle.Bold);
-            eventsBtn.ForeColor = Color.White;
-        }
-
-        private void eventsBtn_MouseLeave(object sender, EventArgs e)
-        {
-            panel11.Visible = false;
-            pictureBox3.Visible = true;
-            eventsBtn.Font = new Font(eventsBtn.Font, FontStyle.Regular);
-            eventsBtn.ForeColor = Color.FromArgb(224, 224, 224);
-        }
-
-        private void transactionBtn_MouseEnter(object sender, EventArgs e)
-        {
-            panel7.Visible = true;
-            pictureBox4.Visible = false;
-            transactionBtn.Font = new Font(transactionBtn.Font, FontStyle.Bold);
-            transactionBtn.ForeColor = Color.White;
-        }
-
-        private void transactionBtn_MouseLeave(object sender, EventArgs e)
-        {
-            panel7.Visible = false;
-            pictureBox4.Visible = true;
-            transactionBtn.Font = new Font(transactionBtn.Font, FontStyle.Regular);
-            transactionBtn.ForeColor = Color.FromArgb(224, 224, 224);
-        }
-
-        private void summaryBtn_MouseEnter(object sender, EventArgs e)
-        {
-            panel8.Visible = true;
-            pictureBox5.Visible = false;
-            summaryBtn.Font = new Font(summaryBtn.Font, FontStyle.Bold);
-            summaryBtn.ForeColor = Color.White;
-        }
-
-        private void summaryBtn_MouseLeave(object sender, EventArgs e)
-        {
-            panel8.Visible = false;
-            pictureBox5.Visible = true;
-            summaryBtn.Font = new Font(summaryBtn.Font, FontStyle.Regular);
-            summaryBtn.ForeColor = Color.FromArgb(224, 224, 224);
-        }
-
-        private void ContactBtn_MouseEnter(object sender, EventArgs e)
-        {
-            panel10.Visible = true;
-            pictureBox6.Visible = false;
-            ContactBtn.Font = new Font(ContactBtn.Font, FontStyle.Bold);
-            ContactBtn.ForeColor = Color.White;
-        }
-
-        private void ContactBtn_MouseLeave(object sender, EventArgs e)
-        {
-            panel10.Visible = false;
-            pictureBox6.Visible = true;
-            ContactBtn.Font = new Font(ContactBtn.Font, FontStyle.Regular);
-            ContactBtn.ForeColor = Color.FromArgb(224, 224, 224);
-        }
-
-        private void timer_Tick(object sender, EventArgs e)
-        {
-            if (isCollapsed)
-            {
-                panelToggle1.Width += 20;
-                if (panelToggle1.Size == panelToggle1.MaximumSize)
-                {
-                    timer.Stop();
-                    isCollapsed = false;
-                }
-            }
-            else
-            {
-                panelToggle1.Width -= 20;
-                if (panelToggle1.Size == panelToggle1.MinimumSize)
-                {
-                    timer.Stop();
-                    isCollapsed = true;
-                }
-            }
-        }
-
-        private void timer2_Tick(object sender, EventArgs e)
-        {
-            if (isCollapsed2)
-            {
-                panelToogle2.Width += 20;
-                if (panelToogle2.Size == panelToogle2.MaximumSize)
-                {
-                    timer2.Stop();
-                    isCollapsed2 = false;
-                }
-            }
-            else
-            {
-                panelToogle2.Width -= 20;
-                if (panelToogle2.Size == panelToogle2.MinimumSize)
-                {
-                    timer2.Stop();
-                    isCollapsed2 = true;
-                }
-            }
-        }
-
-        private void eventsBtn_Click(object sender, EventArgs e)
-        {
-            timer2.Start();
-        }
-
-        private void transactionBtn_Click(object sender, EventArgs e)
-        {
-            timer.Start();
-        }
-
-        private void allEventBtn_Click(object sender, EventArgs e)
+        private void eventBtn_Click(object sender, EventArgs e)
         {
             EventForm eventForm = new EventForm();
             eventForm.Activate();
@@ -444,7 +253,7 @@ namespace enterpriseDevelopment.Forms
             Close();
         }
 
-        private void repeatBtn_Click(object sender, EventArgs e)
+        private void recurringEventBtn_Click(object sender, EventArgs e)
         {
             EventForm eventForm = new EventForm(true);
             eventForm.Activate();
@@ -452,7 +261,7 @@ namespace enterpriseDevelopment.Forms
             Close();
         }
 
-        private void recurringToggleBtn_Click(object sender, EventArgs e)
+        private void singleTransactionBtn_Click(object sender, EventArgs e)
         {
             TransactionForm transactionForm = new TransactionForm();
             transactionForm.Activate();
@@ -460,7 +269,7 @@ namespace enterpriseDevelopment.Forms
             Close();
         }
 
-        private void eventsRepeatBtn_Click(object sender, EventArgs e)
+        private void reucurringTransactionBtn_Click(object sender, EventArgs e)
         {
             TransactionForm transactionForm = new TransactionForm(true);
             transactionForm.Activate();
@@ -468,12 +277,205 @@ namespace enterpriseDevelopment.Forms
             Close();
         }
 
-        private void ContactBtn_Click(object sender, EventArgs e)
+        private void contactBtn_Click(object sender, EventArgs e)
         {
             ContactsForm contactsForm = new ContactsForm();
             contactsForm.Activate();
             contactsForm.Show();
             Close();
+        }
+        #endregion
+
+        private void listViewSummary_SizeChanged(object sender, EventArgs e)
+        {
+            SetListViewColumns();
+        }
+        // sets the column width based on the window size
+        private void SetListViewColumns()
+        {
+            int total = listViewSummary.Width - 18;
+            int count = listViewSummary.Columns.Count;
+            int size = total / count;
+            int last = total - (size * (count - 2));
+            for (int i = 0; i < count; i++)
+            {
+                if (i == count - 1)
+                    listViewSummary.Columns[i].Width = last;
+
+                else if (i == 0)
+                    listViewSummary.Columns[i].Width = last;
+                else
+                    listViewSummary.Columns[i].Width = (int)(1.5 * size);
+            }
+        }
+
+        #region BUTTONS HOVER ANIMATION
+        private void mainBtn_MouseEnter(object sender, EventArgs e)
+        {
+            mainBoxPanel.Visible = true;
+            mainIcon.Visible = false;
+            mainBtn.Font = new Font(mainBtn.Font, FontStyle.Bold);
+            mainBtn.ForeColor = Color.White;
+        }
+
+        private void mainBtn_MouseLeave(object sender, EventArgs e)
+        {
+            mainBoxPanel.Visible = false;
+            mainIcon.Visible = true;
+            mainBtn.Font = new Font(mainBtn.Font, FontStyle.Regular);
+            mainBtn.ForeColor = Color.FromArgb(224, 224, 224);
+        }
+
+        private void predictBtn_MouseEnter(object sender, EventArgs e)
+        {
+            predictionBoxPanel.Visible = true;
+            predictionIcon.Visible = false;
+            predictBtn.Font = new Font(predictBtn.Font, FontStyle.Bold);
+            predictBtn.ForeColor = Color.White;
+        }
+
+        private void predictBtn_MouseLeave(object sender, EventArgs e)
+        {
+            predictionBoxPanel.Visible = false;
+            predictionIcon.Visible = true;
+            predictBtn.Font = new Font(predictBtn.Font, FontStyle.Regular);
+            predictBtn.ForeColor = Color.FromArgb(224, 224, 224);
+        }
+
+        private void eventsBtn_MouseEnter(object sender, EventArgs e)
+        {
+            eventBoxPanel.Visible = true;
+            eventIcon.Visible = false;
+            eventsBtn.Font = new Font(eventsBtn.Font, FontStyle.Bold);
+            eventsBtn.ForeColor = Color.White;
+        }
+
+        private void eventsBtn_MouseLeave(object sender, EventArgs e)
+        {
+            eventBoxPanel.Visible = false;
+            eventIcon.Visible = true;
+            eventsBtn.Font = new Font(eventsBtn.Font, FontStyle.Regular);
+            eventsBtn.ForeColor = Color.FromArgb(224, 224, 224);
+        }
+
+        private void transactionBtn_MouseEnter(object sender, EventArgs e)
+        {
+            transactionBoxPanel.Visible = true;
+            transactionIcon.Visible = false;
+            transactionBtn.Font = new Font(transactionBtn.Font, FontStyle.Bold);
+            transactionBtn.ForeColor = Color.White;
+        }
+
+        private void transactionBtn_MouseLeave(object sender, EventArgs e)
+        {
+            transactionBoxPanel.Visible = false;
+            transactionIcon.Visible = true;
+            transactionBtn.Font = new Font(transactionBtn.Font, FontStyle.Regular);
+            transactionBtn.ForeColor = Color.FromArgb(224, 224, 224);
+        }
+
+        private void summaryBtn_MouseEnter(object sender, EventArgs e)
+        {
+            summaryBoxPanel.Visible = true;
+            summaryIcon.Visible = false;
+            summaryBtn0.Font = new Font(summaryBtn0.Font, FontStyle.Bold);
+            summaryBtn0.ForeColor = Color.White;
+        }
+
+        private void summaryBtn_MouseLeave(object sender, EventArgs e)
+        {
+            summaryBoxPanel.Visible = false;
+            summaryIcon.Visible = true;
+            summaryBtn0.Font = new Font(summaryBtn0.Font, FontStyle.Regular);
+            summaryBtn0.ForeColor = Color.FromArgb(224, 224, 224);
+        }
+
+        private void contactBtn_MouseEnter(object sender, EventArgs e)
+        {
+            contactBoxPanel.Visible = true;
+            contactIcon.Visible = false;
+            ContactBtn.Font = new Font(ContactBtn.Font, FontStyle.Bold);
+            ContactBtn.ForeColor = Color.White;
+        }
+
+        private void contactBtn_MouseLeave(object sender, EventArgs e)
+        {
+            contactBoxPanel.Visible = false;
+            contactIcon.Visible = true;
+            ContactBtn.Font = new Font(ContactBtn.Font, FontStyle.Regular);
+            ContactBtn.ForeColor = Color.FromArgb(224, 224, 224);
+        }
+
+        private void closePanel_MouseEnter(object sender, EventArgs e)
+        {
+            this.closePanel.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.closeHover));
+        }
+
+        private void closePanel_MouseLeave(object sender, EventArgs e)
+        {
+            this.closePanel.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.close));
+        }
+        #endregion
+
+        #region ANIMATION TIMER
+        private void eventsBtn_Click(object sender, EventArgs e)
+        {
+            timer2.Start();
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            if (isCollapsed2)
+            {
+                eventToogle.Width += 20;
+                if (eventToogle.Size == eventToogle.MaximumSize)
+                {
+                    timer2.Stop();
+                    isCollapsed2 = false;
+                }
+            }
+            else
+            {
+                eventToogle.Width -= 20;
+                if (eventToogle.Size == eventToogle.MinimumSize)
+                {
+                    timer2.Stop();
+                    isCollapsed2 = true;
+                }
+            }
+        }
+
+        private void transactionBtn_Click(object sender, EventArgs e)
+        {
+            timer.Start();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            if (isCollapsed)
+            {
+                transactionToogle.Width += 20;
+                if (transactionToogle.Size == transactionToogle.MaximumSize)
+                {
+                    timer.Stop();
+                    isCollapsed = false;
+                }
+            }
+            else
+            {
+                transactionToogle.Width -= 20;
+                if (transactionToogle.Size == transactionToogle.MinimumSize)
+                {
+                    timer.Stop();
+                    isCollapsed = true;
+                }
+            }
+        }
+        #endregion
+
+        private void closePanel_Click(object sender, EventArgs e)
+        {
+            UserInstance.MainForm.Dispose();
         }
     }
 }

@@ -226,6 +226,7 @@
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Option";
+            this.groupBox1.Visible = false;
             // 
             // noTimeLimit
             // 

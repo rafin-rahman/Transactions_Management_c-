@@ -29,6 +29,7 @@ namespace enterpriseDevelopment
 
         public List<Contact> GetContacts(int id)
         {
+            connection = new SqlConnection(databaseConnection);
             List<Contact> contacts = new List<Contact>();
 
             string selectQuery = "SELECT * FROM ContactsTbl WHERE [userIdFk] = @userID";
@@ -63,6 +64,7 @@ namespace enterpriseDevelopment
 
         public bool DeleteContact(Contact contact)
         {
+            connection = new SqlConnection(databaseConnection);
             string selectQuery = "DELETE FROM ContactsTbl WHERE [userIdFk] = @userID AND [ContactId] = @contactID";
             try
             {
@@ -95,6 +97,7 @@ namespace enterpriseDevelopment
         public int AddContact(Contact contact)
         {   // "OUTPUT INSERTED.ContactId" returns the newly added contactId
             string selectQuery = "INSERT INTO ContactsTbl  ([userIdFk], [Contactname]) OUTPUT INSERTED.ContactId VALUES (@userID, @name)";
+            connection = new SqlConnection(databaseConnection);
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
@@ -126,6 +129,8 @@ namespace enterpriseDevelopment
 
         public bool EditContact(Contact contact)
         {
+            
+            connection = new SqlConnection(databaseConnection);
             string selectQuery = "UPDATE ContactsTbl SET [Contactname] = @name WHERE [ContactId] = @id AND [userIdFk] = @userID";
             try
             {

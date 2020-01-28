@@ -15,107 +15,112 @@ namespace enterpriseDevelopment.Forms
     public partial class EventAddEdit : Form
     {
 
-        private Event ev;
-        private EventRecurring er;
+        private Event normalEvent;
+        private EventRecurring recurringEvent;
         private bool isRepeat = false;
 
+        #region CONSTRUCTOR
+        // Add event
         public EventAddEdit()
         {
             InitializeComponent();
             actionBtn.Text = "ADD EVENT / TASK";
             Text = "Add event";
-            ev = new Event { UserFK = UserInstance.StaticUserAccount.Id };
+            normalEvent = new Event { UserFK = UserInstance.StaticUserAccount.Id };
         }
-
-        public EventAddEdit(Event eventObj)
+        // Edit normal event form
+        public EventAddEdit(Event normalEvent)
         {
             InitializeComponent();
-            ev = eventObj;
+            this.normalEvent = normalEvent;
             actionBtn.Text = "Edit";
             Text = "Edit event";
-            titleTxt.Text = eventObj.Title;
-            messageRichTxt.Text = eventObj.Message;
-            statusComboBox.SelectedItem = eventObj.Status;
-            dateTimePick.Value = eventObj.Date;
-            locationTxt.Text = eventObj.Location;
+            titleTxt.Text = normalEvent.Title;
+            messageRichTxt.Text = normalEvent.Message;
+            statusComboBox.SelectedItem = normalEvent.Status;
+            dateTimePick.Value = normalEvent.Date;
+            locationTxt.Text = normalEvent.Location;
             groupBox1.Visible = false;
             recurrCheck.Visible = true;
         }
-
-
-        public EventAddEdit(EventRecurring eventRepeat)
+        // Edit recurring event form
+        public EventAddEdit(EventRecurring recurringEvent)
         {
             InitializeComponent();
             isRepeat = true;
-            er = eventRepeat;
+            this.recurringEvent = recurringEvent;
             actionBtn.Text = "Edit";
             Text = "Edit recurring event";
-            titleTxt.Text = eventRepeat.Title;
-            messageRichTxt.Text = eventRepeat.Message;
-            statusComboBox.SelectedItem = eventRepeat.Status;
-            dateTimePick.Value = eventRepeat.Date;
-            locationTxt.Text = eventRepeat.Location;
+            titleTxt.Text = recurringEvent.Title;
+            messageRichTxt.Text = recurringEvent.Message;
+            statusComboBox.SelectedItem = recurringEvent.Status;
+            dateTimePick.Value = recurringEvent.Date;
+            locationTxt.Text = recurringEvent.Location;
             groupBox1.Visible = true;
             recurrCheck.Visible = false;
 
-            if (er.EndDate == DateTime.MinValue)
+            if (this.recurringEvent.EndDate == DateTime.MinValue)
             {
                 dateTimePicker1.Enabled = false;
                 noTimeLimit.Checked = true;
             }
             else
             {
-                dateTimePicker1.Value = er.EndDate;
+                dateTimePicker1.Value = this.recurringEvent.EndDate;
             }
         }
+        #endregion
 
+        #region SET CONTACT TO AN EVENT
         private void setEventContact(List<Contact> list)
         {
-            if (ev.Id > 0)
+            if (normalEvent.Id > 0)
             {
-                if (ev.ContactFk == 0)
+                if (normalEvent.ContactFk == 0)
                     comboBoxEvent.Text = "";
                 else
                 {
                     for (int x = 0; x < list.Count; x++)
                     {
-                        if (ev.ContactFk == list[x].Id)
+                        if (normalEvent.ContactFk == list[x].Id)
                             comboBoxEvent.SelectedItem = comboBoxEvent.Items[x];
                     }
                 }
             }
         }
 
-        private void setEventRepeatContact(List<Contact> list)
+        private void setRecurringEventContact(List<Contact> list)
         {
-            if (er.Id > 0)
+            if (recurringEvent.Id > 0)
             {
-                if (er.ContactFk == 0)
+                if (recurringEvent.ContactFk == 0)
                     comboBoxEvent.Text = "";
                 else
                 {
                     for (int x = 0; x < list.Count; x++)
                     {
-                        if (er.ContactFk == list[x].Id)
+                        if (recurringEvent.ContactFk == list[x].Id)
                             comboBoxEvent.SelectedItem = comboBoxEvent.Items[x];
                     }
                 }
             }
         }
-
+        #endregion
+        
         private async void EventAddEdit_Load(object sender, EventArgs e)
-        {
+        {// Getting contact from repository and showing in the contact dropdown list
             ContactRepository contactRepository = new ContactRepository();
             List<Contact> list = await Task.Run(() => contactRepository.GetContacts(UserInstance.StaticUserAccount.Id));
             comboBoxEvent.DataSource = list;
-            comboBoxEvent.DisplayMember = "ContactName";
+            comboBoxEvent.DisplayMember = "Name";
 
             if (isRepeat)
-                setEventRepeatContact(list);
+                setRecurringEventContact(list);
             else
                 setEventContact(list);
         }
 
+        #region ADD & EDIT EVENT
         private void actionBtn_Click(object sender, EventArgs e)
         {
 
@@ -125,49 +130,48 @@ namespace enterpriseDevelopment.Forms
                 addEditNormEvent();
         }
 
-
         private async void addEditNormEvent()
         {
-            ev.Title = titleTxt.Text;
-            ev.Message = messageRichTxt.Text;
+            normalEvent.Title = titleTxt.Text;
+            normalEvent.Message = messageRichTxt.Text;
 
             Contact contact = (Contact)comboBoxEvent.SelectedItem;
             if (contact == null)
             {
                 if (string.IsNullOrWhiteSpace(comboBoxEvent.Text))
-                    ev.ContactFk = 0;
+                    normalEvent.ContactFk = 0;
                 else
                 {
                     ContactRepository contactsRepository = new ContactRepository();
-                    ev.ContactFk = await Task.Run(() => contactsRepository.AddContact(new Contact { Name = comboBoxEvent.Text, UserFk = UserInstance.StaticUserAccount.Id }));
+                    normalEvent.ContactFk = contactsRepository.AddContact(new Contact { Name = comboBoxEvent.Text, UserFk = UserInstance.StaticUserAccount.Id });
                 }
             }
             else
-                ev.ContactFk = contact.Id;
+                normalEvent.ContactFk = contact.Id;
 
-            ev.Date = dateTimePick.Value;
-            ev.Location = locationTxt.Text;
-            ev.Status = statusComboBox.Text;
+            normalEvent.Date = dateTimePick.Value;
+            normalEvent.Location = locationTxt.Text;
+            normalEvent.Status = statusComboBox.Text;
 
             EventRepository eventRepository = new EventRepository();
 
             bool x;
-            if (ev.Id > 0)
-                x = await Task.Run(() => eventRepository.EditEvent(ev));
+            if (normalEvent.Id > 0)
+                x = await Task.Run(() => eventRepository.EditEvent(normalEvent));
             else
-                x = await Task.Run(() => eventRepository.AddEvent(ev));
+                x = await Task.Run(() => eventRepository.AddEvent(normalEvent));
 
-            if (recurrCheck.Checked == true && ev.Id == 0)
+            if (recurrCheck.Checked == true && normalEvent.Id == 0)
             {
                 EventRecurring eventRepeat = new EventRecurring
                 {
-                    Title = ev.Title,
-                    Message = ev.Message,
-                    UserFK = ev.UserFK,
-                    Status = ev.Status,
-                    Date = ev.Date,
-                    ContactFk = ev.ContactFk,
-                    Location = ev.Location
+                    Title = normalEvent.Title,
+                    Message = normalEvent.Message,
+                    UserFK = normalEvent.UserFK,
+                    Status = normalEvent.Status,
+                    Date = normalEvent.Date,
+                    ContactFk = normalEvent.ContactFk,
+                    Location = normalEvent.Location
                 };
 
                 if (noTimeLimit.Checked)
@@ -186,7 +190,7 @@ namespace enterpriseDevelopment.Forms
                 }
             }
 
-            if (ev.Id > 0 && x == true)
+            if (normalEvent.Id > 0 && x == true)
                 MessageBox.Show("Event Edited!");
             else if (x == true)
                 MessageBox.Show("Event Added!");
@@ -199,41 +203,41 @@ namespace enterpriseDevelopment.Forms
 
         private async void addEditEventRepeat()
         {
-            er.Title = titleTxt.Text;
-            er.Message = messageRichTxt.Text;
+            recurringEvent.Title = titleTxt.Text;
+            recurringEvent.Message = messageRichTxt.Text;
 
             Contact contact = (Contact)comboBoxEvent.SelectedItem;
             if (contact == null)
             {
                 if (string.IsNullOrWhiteSpace(comboBoxEvent.Text))
-                    er.ContactFk = 0;
+                    recurringEvent.ContactFk = 0;
                 else
                 {
                     ContactRepository contactsRepository = new ContactRepository();
-                    er.ContactFk = await Task.Run(() => contactsRepository.AddContact(new Contact { Name = comboBoxEvent.Text, UserFk = UserInstance.StaticUserAccount.Id }));
+                    recurringEvent.ContactFk = await Task.Run(() => contactsRepository.AddContact(new Contact { Name = comboBoxEvent.Text, UserFk = UserInstance.StaticUserAccount.Id }));
                 }
             }
             else
-                er.ContactFk = contact.Id;
+                recurringEvent.ContactFk = contact.Id;
 
 
 
-            er.Date = dateTimePick.Value;
-            er.Location = locationTxt.Text;
+            recurringEvent.Date = dateTimePick.Value;
+            recurringEvent.Location = locationTxt.Text;
 
             EventRecurringRepository eventRecurringRepository = new EventRecurringRepository();
-            
-            bool x;
-            
-            if (noTimeLimit.Checked)
-                er.EndDate = DateTime.MinValue;
-            else
-                er.EndDate = dateTimePicker1.Value;
-            er.Period = periodCombo.Text;
 
-            x = await Task.Run(() => eventRecurringRepository.editEvent(er));
-            
-            if (er.Id > 0 && x == true)
+            bool x;
+
+            if (noTimeLimit.Checked)
+                recurringEvent.EndDate = DateTime.MinValue;
+            else
+                recurringEvent.EndDate = dateTimePicker1.Value;
+            recurringEvent.Period = periodCombo.Text;
+
+            x = await Task.Run(() => eventRecurringRepository.editEvent(recurringEvent));
+
+            if (recurringEvent.Id > 0 && x == true)
                 MessageBox.Show("Event Edited!");
             else
                 MessageBox.Show("ops, Something went wrong");
@@ -241,7 +245,9 @@ namespace enterpriseDevelopment.Forms
             Close();
             Dispose();
         }
-
+        #endregion
+        
+        // toggle recurring event panel
         private void recurrCheck_CheckedChanged(object sender, EventArgs e)
         {
             if (recurrCheck.Checked == true)
@@ -250,6 +256,7 @@ namespace enterpriseDevelopment.Forms
                 groupBox1.Visible = false;
         }
 
+        // enable / disable the date picker if it's checked
         private void noTimeLimit_CheckedChanged(object sender, EventArgs e)
         {
             if (noTimeLimit.Checked == true)
@@ -258,11 +265,7 @@ namespace enterpriseDevelopment.Forms
                 dateTimePicker1.Enabled = true;
         }
 
-        private void closePanel_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
+        #region HOVER ANIMATION
         private void closePanel_MouseEnter(object sender, EventArgs e)
         {
             this.closePanel.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.backButtonHover));
@@ -271,6 +274,12 @@ namespace enterpriseDevelopment.Forms
         private void closePanel_MouseLeave(object sender, EventArgs e)
         {
             this.closePanel.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.backButton));
+        }
+        #endregion
+        
+        private void closePanel_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

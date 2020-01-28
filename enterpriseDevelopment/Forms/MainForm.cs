@@ -39,7 +39,7 @@ namespace enterpriseDevelopment
             
             if (UserInstance.StaticUserAccount == null)
             {// Auto login
-                 UserInstance.StaticUserAccount = new UserAccount { Id = 1, FullName = "rafraf", LogDate = DateTime.Now.AddDays(-99).AddHours(5) };
+             //    UserInstance.StaticUserAccount = new UserAccount { Id = 1, FullName = "rafraf", LogDate = DateTime.Now.AddDays(-99).AddHours(5) };
             }
            
             if (UserInstance.StaticUserAccount == null)
@@ -50,8 +50,9 @@ namespace enterpriseDevelopment
             }
             else
             {
-                GetTransactionList();
+                DynamicTransactionsList();
                 createGraph();
+
                 if (!recurringBGWorker.IsBusy)
                     recurringBGWorker.RunWorkerAsync();
             }
@@ -107,7 +108,7 @@ namespace enterpriseDevelopment
             contactsForm.Show();
         }
         #endregion
-
+        // system adds automatically recurring transactions and events
         private void recurringBGWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker backgroundWorker = (BackgroundWorker)sender;
@@ -123,7 +124,8 @@ namespace enterpriseDevelopment
                 new UserRepository().EditLogDate(UserInstance.StaticUserAccount);
             }
         }
-        
+
+        // checks last access date and current date, it adds recurring transactions happened 
         private async void runRecurringTransaction()
         {
             TransactionRecurringRepository transactionRecurringRepository = new TransactionRecurringRepository();
@@ -190,7 +192,8 @@ namespace enterpriseDevelopment
                 }
             }
         }
-        // ExecuteRecurringEvent
+
+        // checks last access date and current date, it adds recurring event happened
         private async void runRecurringEvent()
         {
             EventRecurringRepository eventRecurringRepository = new EventRecurringRepository();
@@ -263,6 +266,7 @@ namespace enterpriseDevelopment
             if (checkIfFirst == false)
             {
                 string text = (string)e.UserState;
+                // notification text can be "New event" or "New transaction"
                 new NotificationForm(text).Show();
             }
         }
@@ -377,8 +381,7 @@ namespace enterpriseDevelopment
         #endregion
         
         #region CURRENT DATE TRANSACTION SHOWN DYNAMICALLY
-        // Dynamic transaction view on the dashboard
-        private async void GetTransactionList()
+        private async void DynamicTransactionsList()
         {
             List<Transaction> transactions = await Task.Run(() => transactionRepository.GetTransactions(UserInstance.StaticUserAccount.Id));
             List<Transaction> tempTransactions = new List<Transaction>();

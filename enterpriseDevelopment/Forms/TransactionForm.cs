@@ -16,9 +16,11 @@ namespace enterpriseDevelopment.Forms
     {
         private bool isCollapsed = true;
         private bool isCollapsed2 = true;
+        private bool isRepeating = false;
         private TransactionRepository transactionRepository;
         private TransactionRecurringRepository TransactionRecurringRepository;
-        private bool isRepeating = false;
+
+        #region CONSTRUCTOR
         public TransactionForm()
         {
             InitializeComponent();
@@ -27,10 +29,10 @@ namespace enterpriseDevelopment.Forms
             listViewTransaction.HideSelection = true;
         }
 
-        public TransactionForm(bool repeat)
+        public TransactionForm(bool recurring)
         {
             InitializeComponent();
-            isRepeating = repeat;
+            isRepeating = recurring;
             if (isRepeating == true)
             {
                 listViewTransaction.Columns.Add("Period");
@@ -42,8 +44,43 @@ namespace enterpriseDevelopment.Forms
             transactionRepository = new TransactionRepository();
             UserInstance.MainForm.Hide();
         }
+        #endregion
+        
+        // Loads list of transactions in the list view
+        private async void TransactionForm_Activated(object sender, EventArgs e)
+        {   // recurrig transaction
+            if (isRepeating)
+            {
+                List<TransactionRecurring> transactionsList = await Task.Run(() => TransactionRecurringRepository.GetTransactions(UserInstance.StaticUserAccount.Id));
+                listViewTransaction.Items.Clear();
+                foreach (TransactionRecurring transactionRepeat in transactionsList)
+                {
+                    string endDate = "";
+                    if (transactionRepeat.EndTime == DateTime.MinValue)
+                        endDate = "N/A";
+                    else
+                        endDate = transactionRepeat.EndTime.ToString();
 
-        #region Button click events
+                    ListViewItem listViewI = new ListViewItem(new string[] { transactionRepeat.Amount.ToString("0.00"), transactionRepeat.TransactionType, transactionRepeat.Category, transactionRepeat.DateTime.ToString(), transactionRepeat.ContactName, transactionRepeat.Description, transactionRepeat.Period, endDate });
+
+                    listViewI.Tag = transactionRepeat;
+                    listViewTransaction.Items.Add(listViewI);
+                }
+            }
+            else
+            {   // normal transaction
+                List<Transaction> transactionsList = await Task.Run(() => transactionRepository.GetTransactions(UserInstance.StaticUserAccount.Id));
+                listViewTransaction.Items.Clear();
+                foreach (Transaction transaction in transactionsList)
+                {
+                    ListViewItem listViewI = new ListViewItem(new string[] { transaction.Amount.ToString("0.00"), transaction.TransactionType, transaction.Category, transaction.DateTime.ToString(), transaction.ContactName, transaction.Description });
+                    listViewI.Tag = transaction;
+                    listViewTransaction.Items.Add(listViewI);
+                }
+            }
+        }
+
+        #region ADD - EDIT - DELETE 
         private void addBtn_Click(object sender, EventArgs e)
         {
             TransactionAddEdit transactionAddEdit = new TransactionAddEdit();
@@ -71,7 +108,7 @@ namespace enterpriseDevelopment.Forms
                 }
             }
         }
-        #endregion
+
         private async void deleteBtn_Click(object sender, EventArgs e)
         {
             if (listViewTransaction.SelectedItems.Count > 0)
@@ -107,52 +144,9 @@ namespace enterpriseDevelopment.Forms
                 }
             }
         }
+        #endregion
 
-        private void TransactionForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            UserInstance.MainForm.Activate();
-            UserInstance.MainForm.Show();
-            Dispose();
-        }
-
-        private async void TransactionForm_Activated(object sender, EventArgs e)
-        {
-            if (isRepeating)
-            {
-                List<TransactionRecurring> transactionsList = await Task.Run(() => TransactionRecurringRepository.GetTransactions(UserInstance.StaticUserAccount.Id));
-                listViewTransaction.Items.Clear();
-                foreach (TransactionRecurring transactionRepeat in transactionsList)
-                {
-                    string endDate = "";
-                    if (transactionRepeat.EndTime == DateTime.MinValue)
-                        endDate = "N/A";
-                    else
-                        endDate = transactionRepeat.EndTime.ToString();
-
-                    ListViewItem listViewI = new ListViewItem(new string[] { transactionRepeat.Amount.ToString("0.00"), transactionRepeat.TransactionType, transactionRepeat.Category, transactionRepeat.DateTime.ToString(), transactionRepeat.ContactName, transactionRepeat.Description, transactionRepeat.Period, endDate });
-
-                    listViewI.Tag = transactionRepeat;
-                    listViewTransaction.Items.Add(listViewI);
-                }
-            }
-            else
-            {
-                List<Transaction> transactionsList = await Task.Run(() => transactionRepository.GetTransactions(UserInstance.StaticUserAccount.Id));
-                listViewTransaction.Items.Clear();
-                foreach (Transaction transaction in transactionsList)
-                {
-                    ListViewItem listViewI = new ListViewItem(new string[] { transaction.Amount.ToString("0.00"), transaction.TransactionType, transaction.Category, transaction.DateTime.ToString(), transaction.ContactName, transaction.Description });
-                    listViewI.Tag = transaction;
-                    listViewTransaction.Items.Add(listViewI);
-                }
-            }
-        }
-
-        private void panel1_Click(object sender, EventArgs e)
-        {
-            UserInstance.MainForm.Dispose();
-        }
-
+        #region NAVIGATION BUTTONS
         private void mainBtn_Click(object sender, EventArgs e)
         {
             UserInstance.MainForm.Show();
@@ -167,6 +161,38 @@ namespace enterpriseDevelopment.Forms
             Close();
         }
 
+        private void singleEventBtn_Click(object sender, EventArgs e)
+        {
+            EventForm eventForm = new EventForm();
+            eventForm.Activate();
+            eventForm.Show();
+            Close();
+        }
+
+        private void recurringEventBtn_Click(object sender, EventArgs e)
+        {
+            EventForm eventForm = new EventForm(true);
+            eventForm.Activate();
+            eventForm.Show();
+            Close();
+        }
+
+        private void singleTransactionBtn_Click(object sender, EventArgs e)
+        {
+            TransactionForm transactionForm = new TransactionForm();
+            transactionForm.Activate();
+            transactionForm.Show();
+            Close();
+        }
+
+        private void recurringTransactionBtn_Click(object sender, EventArgs e)
+        {
+            TransactionForm transactionForm = new TransactionForm(true);
+            transactionForm.Activate();
+            transactionForm.Show();
+            Close();
+        }
+
         private void summaryBtn_Click(object sender, EventArgs e)
         {
             SummaryForm summaryForm = new SummaryForm();
@@ -175,14 +201,16 @@ namespace enterpriseDevelopment.Forms
             Close();
         }
 
-        private void ContactBtn_Click(object sender, EventArgs e)
+        private void contactBtn_Click(object sender, EventArgs e)
         {
             ContactsForm contactsForm = new ContactsForm();
             contactsForm.Activate();
             contactsForm.Show();
             Close();
         }
+        #endregion
 
+        #region LIST VIEW COLUMN WIDTH
         private void listViewTransaction_SizeChanged(object sender, EventArgs e)
         {
             SetListViewColumns();
@@ -203,106 +231,132 @@ namespace enterpriseDevelopment.Forms
                     listViewTransaction.Columns[i].Width = (int)(1.5 * size);
             }
         }
+        #endregion
 
+        #region HOVER ANIMATION
         private void mainBtn_MouseEnter(object sender, EventArgs e)
         {
-            panel14.Visible = true;
-            pictureBox1.Visible = false;
+            mainBoxPanel.Visible = true;
+            mainIcon.Visible = false;
             mainBtn.Font = new Font(mainBtn.Font, FontStyle.Bold);
             mainBtn.ForeColor = Color.White;
         }
 
         private void mainBtn_MouseLeave(object sender, EventArgs e)
         {
-            panel14.Visible = false;
-            pictureBox1.Visible = true;
+            mainBoxPanel.Visible = false;
+            mainIcon.Visible = true;
             mainBtn.Font = new Font(mainBtn.Font, FontStyle.Regular);
             mainBtn.ForeColor = Color.FromArgb(224, 224, 224);
         }
 
         private void predictBtn_MouseEnter(object sender, EventArgs e)
         {
-            panel5.Visible = true;
-            pictureBox2.Visible = false;
+            predictionBoxPanel.Visible = true;
+            predictionIcon.Visible = false;
             predictBtn.Font = new Font(predictBtn.Font, FontStyle.Bold);
             predictBtn.ForeColor = Color.White;
         }
 
         private void predictBtn_MouseLeave(object sender, EventArgs e)
         {
-            panel5.Visible = false;
-            pictureBox2.Visible = true;
+            predictionBoxPanel.Visible = false;
+            predictionIcon.Visible = true;
             predictBtn.Font = new Font(predictBtn.Font, FontStyle.Regular);
             predictBtn.ForeColor = Color.FromArgb(224, 224, 224);
         }
 
         private void eventsBtn_MouseEnter(object sender, EventArgs e)
         {
-            panel11.Visible = true;
-            pictureBox3.Visible = false;
+            eventBoxIcon.Visible = true;
+            eventIcon.Visible = false;
             eventsBtn.Font = new Font(eventsBtn.Font, FontStyle.Bold);
             eventsBtn.ForeColor = Color.White;
         }
 
         private void eventsBtn_MouseLeave(object sender, EventArgs e)
         {
-            panel11.Visible = false;
-            pictureBox3.Visible = true;
+            eventBoxIcon.Visible = false;
+            eventIcon.Visible = true;
             eventsBtn.Font = new Font(eventsBtn.Font, FontStyle.Regular);
             eventsBtn.ForeColor = Color.FromArgb(224, 224, 224);
         }
 
         private void transactionBtn_MouseEnter(object sender, EventArgs e)
         {
-            panel7.Visible = true;
-            pictureBox4.Visible = false;
+            transactionBoxPanel.Visible = true;
+            transactionIcon.Visible = false;
             transactionBtn.Font = new Font(transactionBtn.Font, FontStyle.Bold);
             transactionBtn.ForeColor = Color.White;
         }
 
         private void transactionBtn_MouseLeave(object sender, EventArgs e)
         {
-            panel7.Visible = false;
-            pictureBox4.Visible = true;
+            transactionBoxPanel.Visible = false;
+            transactionIcon.Visible = true;
             transactionBtn.Font = new Font(transactionBtn.Font, FontStyle.Regular);
             transactionBtn.ForeColor = Color.FromArgb(224, 224, 224);
         }
 
         private void summaryBtn_MouseEnter(object sender, EventArgs e)
         {
-            panel8.Visible = true;
-            pictureBox5.Visible = false;
+            summaryBoxPanel.Visible = true;
+            summaryIcon.Visible = false;
             summaryBtn.Font = new Font(summaryBtn.Font, FontStyle.Bold);
             summaryBtn.ForeColor = Color.White;
         }
 
         private void summaryBtn_MouseLeave(object sender, EventArgs e)
         {
-            panel8.Visible = false;
-            pictureBox5.Visible = true;
+            summaryBoxPanel.Visible = false;
+            summaryIcon.Visible = true;
             summaryBtn.Font = new Font(summaryBtn.Font, FontStyle.Regular);
             summaryBtn.ForeColor = Color.FromArgb(224, 224, 224);
         }
 
-        private void ContactBtn_MouseEnter(object sender, EventArgs e)
+        private void contactBtn_MouseEnter(object sender, EventArgs e)
         {
-            panel10.Visible = true;
-            pictureBox6.Visible = false;
-            ContactBtn.Font = new Font(ContactBtn.Font, FontStyle.Bold);
-            ContactBtn.ForeColor = Color.White;
+            contactBoxPanel.Visible = true;
+            contactIcon.Visible = false;
+            contactBtn.Font = new Font(contactBtn.Font, FontStyle.Bold);
+            contactBtn.ForeColor = Color.White;
         }
 
-        private void ContactBtn_MouseLeave(object sender, EventArgs e)
+        private void contactBtn_MouseLeave(object sender, EventArgs e)
         {
-            panel10.Visible = false;
-            pictureBox6.Visible = true;
-            ContactBtn.Font = new Font(ContactBtn.Font, FontStyle.Regular);
-            ContactBtn.ForeColor = Color.FromArgb(224, 224, 224);
+            contactBoxPanel.Visible = false;
+            contactIcon.Visible = true;
+            contactBtn.Font = new Font(contactBtn.Font, FontStyle.Regular);
+            contactBtn.ForeColor = Color.FromArgb(224, 224, 224);
         }
+        #endregion
 
+        #region ANIMATION TIMER
         private void eventsBtn_Click(object sender, EventArgs e)
         {
             timer2.Start();
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            if (isCollapsed2)
+            {
+                eventToogle.Width += 20;
+                if (eventToogle.Size == eventToogle.MaximumSize)
+                {
+                    timer2.Stop();
+                    isCollapsed2 = false;
+                }
+            }
+            else
+            {
+                eventToogle.Width -= 20;
+                if (eventToogle.Size == eventToogle.MinimumSize)
+                {
+                    timer2.Stop();
+                    isCollapsed2 = true;
+                }
+            }
         }
 
         private void transactionBtn_Click(object sender, EventArgs e)
@@ -314,8 +368,8 @@ namespace enterpriseDevelopment.Forms
         {
             if (isCollapsed)
             {
-                panelToggle1.Width += 20;
-                if (panelToggle1.Size == panelToggle1.MaximumSize)
+                transactionToogle.Width += 20;
+                if (transactionToogle.Size == transactionToogle.MaximumSize)
                 {
                     timer.Stop();
                     isCollapsed = false;
@@ -323,67 +377,28 @@ namespace enterpriseDevelopment.Forms
             }
             else
             {
-                panelToggle1.Width -= 20;
-                if (panelToggle1.Size == panelToggle1.MinimumSize)
+                transactionToogle.Width -= 20;
+                if (transactionToogle.Size == transactionToogle.MinimumSize)
                 {
                     timer.Stop();
                     isCollapsed = true;
                 }
             }
         }
-
-        private void timer2_Tick(object sender, EventArgs e)
+        #endregion
+        
+        private void TransactionForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (isCollapsed2)
-            {
-                panelToogle2.Width += 20;
-                if (panelToogle2.Size == panelToogle2.MaximumSize)
-                {
-                    timer2.Stop();
-                    isCollapsed2 = false;
-                }
-            }
-            else
-            {
-                panelToogle2.Width -= 20;
-                if (panelToogle2.Size == panelToogle2.MinimumSize)
-                {
-                    timer2.Stop();
-                    isCollapsed2 = true;
-                }
-            }
+            UserInstance.MainForm.Activate();
+            UserInstance.MainForm.Show();
+            Dispose();
         }
 
-        private void allEventBtn_Click(object sender, EventArgs e)
+        private void closeBtn_Click(object sender, EventArgs e)
         {
-            EventForm eventForm = new EventForm();
-            eventForm.Activate();
-            eventForm.Show();
-            Close();
+            UserInstance.MainForm.Dispose();
         }
 
-        private void repeatBtn_Click(object sender, EventArgs e)
-        {
-            EventForm eventForm = new EventForm(true);
-            eventForm.Activate();
-            eventForm.Show();
-            Close();
-        }
-
-        private void recurringToggleBtn_Click(object sender, EventArgs e)
-        {
-            TransactionForm transactionForm = new TransactionForm();
-            transactionForm.Activate();
-            transactionForm.Show();
-            Close();
-        }
-
-        private void eventsRepeatBtn_Click(object sender, EventArgs e)
-        {
-            TransactionForm transactionForm = new TransactionForm(true);
-            transactionForm.Activate();
-            transactionForm.Show();
-            Close();
-        }
+        
     }
 }
